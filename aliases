@@ -1,0 +1,40 @@
+# Zsh shortcuts
+alias reload_zsh=". ~/.zshrc"
+alias edit_zsh="subl ~/.zshrc"
+alias edit_plugins="subl ~/plugins.txt"
+alias edit_aliases="subl ~/.aliases"
+
+# Vim shortcuts
+alias reload_vim=". ~/.vimrc"
+alias edit_vim="subl ~/.vimrc"
+
+# iTerm2 jump words (Option-Arrows)
+bindkey -e
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+alias gs="git status"
+alias gp="git pull"
+alias gb="git branch"
+alias gc="git commit"
+alias gco="git checkout $1"
+alias gcob="git checkout -b $1"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gc-="git checkout -"
+alias gsl="git stash list"
+alias gsa="git stash apply"
+
+alias csd="workon sdelements && cd ~/dev/sdelements/sigma"
+alias cst="workon sdetools && cd ~/dev/sdetools"
+
+alias djrs="csd && ./manage.py runserver"
+alias nds="csd && node devServer.js"
+alias djsh="csd && ./manage.py shell_plus"
+alias tst="./manage.py test $1 --settings=test_local_settings --nomigrations"
+
+alias start_celery="csd && cd ../ && celery -A . worker --app=sigma.celery_mod -l debug"
+alias flush_dns="dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
