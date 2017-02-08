@@ -46,7 +46,7 @@
     "overlay_scroll_bars": "enabled",
     "remember_open_files": true,
     "show_full_path": "true",
-    "theme": "Material-Theme.sublime-theme",
     "translate_tabs_to_spaces": true,
     "pep8_max_line_length": 120
+    "theme": "Material-Theme-Darker.sublime-theme",
 }
