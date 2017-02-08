@@ -1,0 +1,48 @@
+{
+	"always_show_minimap_viewport": true,
+	"bold_folder_labels": true,
+	"color_scheme": "Packages/Tomorrow Night Italics Color Scheme/Tomorrow-Night-Italics.tmTheme",
+	"find_selected_text": true,
+	"fold_buttons": true,
+	"folder_exclude_patterns": [
+		".svn",
+		".git",
+		".hg",
+		"CVS",
+		"_build",
+		"dist",
+		"build",
+		"site"
+	],
+	"font_face": "Operator Mono Light",
+	"font_options": [
+		"subpixel_antialias"
+	],
+	"font_size": 12,
+	"highlight_line": true,
+	"ignored_packages": [
+		"Vintage"
+	],
+	"indent_guide_options": [
+		"draw_normal",
+		"draw_active"
+	],
+	"line_padding_bottom": 3,
+	"line_padding_top": 3,
+	"material_theme_accent_orange": true,
+	"material_theme_accent_scrollbars": true,
+	"material_theme_appbar_orange": true,
+	"material_theme_arrow_folders": true,
+	"material_theme_bullet_tree_indicator": true,
+	"material_theme_compact_sidebar": true,
+	"material_theme_contrast_mode": true,
+	"material_theme_small_statusbar": true,
+	"material_theme_small_tab": true,
+	"material_theme_tree_headings": false,
+	"overlay_scroll_bars": "enabled",
+	"remember_open_files": true,
+	"show_full_path": "true",
+	"theme": "Material-Theme-Darker.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"pep8_max_line_length": 120
+}

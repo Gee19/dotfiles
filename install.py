@@ -4,6 +4,8 @@ import os
 Linux - create "Default (Linux).sublime-mousemap" in ~/.config/sublime-text-3/Packages/User
 Mac - create "Default (OSX).sublime-mousemap" in ~/Library/Application Support/Sublime Text 3/Packages/User
 Win - create "Default (Windows).sublime-mousemap" in %appdata%\Sublime Text 3\Packages\User
+
+Settings file - Preferences.sublime-settings
 """
 
 exclude = ['README', 'install.py']
