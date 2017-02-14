@@ -4,7 +4,8 @@
 	"color_scheme": "Packages/Tomorrow Night Italics Color Scheme/Tomorrow-Night-Italics.tmTheme",
 	"find_selected_text": true,
 	"fold_buttons": true,
-	"folder_exclude_patterns": [
+	"folder_exclude_patterns":
+	[
 		".svn",
 		".git",
 		".hg",
@@ -15,15 +16,18 @@
 		"site"
 	],
 	"font_face": "Operator Mono Light",
-	"font_options": [
+	"font_options":
+	[
 		"subpixel_antialias"
 	],
 	"font_size": 12,
 	"highlight_line": true,
-	"ignored_packages": [
+	"ignored_packages":
+	[
 		"Vintage"
 	],
-	"indent_guide_options": [
+	"indent_guide_options":
+	[
 		"draw_normal",
 		"draw_active"
 	],
@@ -40,9 +44,10 @@
 	"material_theme_small_tab": true,
 	"material_theme_tree_headings": false,
 	"overlay_scroll_bars": "enabled",
+	"pep8_max_line_length": 120,
 	"remember_open_files": true,
 	"show_full_path": "true",
-	"theme": "Material-Theme-Darker.sublime-theme",
 	"translate_tabs_to_spaces": true,
-	"pep8_max_line_length": 120
+	"ensure_newline_at_eof_on_save": true,
+	"theme": "Material-Theme-Darker.sublime-theme",
 }

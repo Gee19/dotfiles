@@ -1,8 +1,6 @@
 # Zsh shortcuts
 alias reload_zsh=". ~/.zshrc"
-alias edit_zsh="subl ~/.zshrc"
-alias edit_plugins="subl ~/plugins.txt"
-alias edit_aliases="subl ~/.aliases"
+alias edit_zsh="subl ~/.zshrc && subl ~/.plugins.txt && subl ~/.aliases.txt && subl ~/.zshenv"
 
 # Vim shortcuts
 alias reload_vim=". ~/.vimrc"
@@ -27,6 +25,7 @@ alias gds="git diff --staged"
 alias gc-="git checkout -"
 alias gsl="git stash list"
 alias gsa="git stash apply"
+alias vs="vagrant status"
 
 alias csd="workon sdelements && cd ~/dev/sdelements/sigma"
 alias cst="workon sdetools && cd ~/dev/sdetools"

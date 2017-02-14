@@ -1,14 +1,20 @@
 import os
 
-"""
-Linux - create "Default (Linux).sublime-mousemap" in ~/.config/sublime-text-3/Packages/User
-Mac - create "Default (OSX).sublime-mousemap" in ~/Library/Application Support/Sublime Text 3/Packages/User
-Win - create "Default (Windows).sublime-mousemap" in %appdata%\Sublime Text 3\Packages\User
+# Linux - create "Default (Linux).sublime-mousemap" in ~/.config/sublime-text-3/Packages/User
+# Mac - create "Default (OSX).sublime-mousemap" in ~/Library/Application Support/Sublime Text 3/Packages/User
+# Win - create "Default (Windows).sublime-mousemap" in %appdata%\Sublime Text 3\Packages\User
 
-Settings file - Preferences.sublime-settings
-"""
+# Settings file - Preferences.sublime-settings
 
-exclude = ['README', 'install.py']
+exclude = [
+    'README',
+    'install.py',
+    'iterm_profile',
+    'Default (OSX).sublime-mousemap',
+    'Default (Windows).sublime-mousemap',
+    'Preferences.sublime-settings',
+    'Package Control.sublime-settings'
+]
 
 home = os.path.expanduser('~')
 here = os.path.abspath('.')
@@ -28,8 +34,3 @@ for f in os.listdir('.'):
     print cmd
 
     os.system(cmd)
-
-# clone antigen (zsh plugin manager)
-# zshrc assumes it can load antigen.zsh from here.
-if not os.path.exists(os.path.join(home, ".antigensrc")):
-    os.system('git clone git@github.com:zsh-users/antigen.git ~/.antigensrc')
