@@ -1,6 +1,6 @@
 # Zsh shortcuts
 alias reload_zsh=". ~/.zshrc"
-alias edit_zsh="subl ~/.zshrc && subl ~/.plugins.txt && subl ~/.aliases.txt && subl ~/.zshenv"
+alias edit_zsh="subl ~/.zshrc && subl ~/.plugins.txt && subl ~/.aliases && subl ~/.zshenv"
 
 # Vim shortcuts
 alias reload_vim=". ~/.vimrc"
@@ -32,8 +32,15 @@ alias cst="workon sdetools && cd ~/dev/sdetools"
 
 alias djrs="csd && ./manage.py runserver"
 alias nds="csd && node devServer.js"
+
 alias djsh="csd && ./manage.py shell_plus"
 alias tst="./manage.py test $1 --settings=test_local_settings --nomigrations"
+alias mailserv="python -m smtpd -n -c DebuggingServer localhost:1025"
 
-alias start_celery="csd && cd ../ && celery -A . worker --app=sigma.celery_mod -l debug"
+alias start_celery="csd && celery -A . worker --app=celery_mod -l debug"
 alias flush_dns="dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+
+alias stopdock='docker stop $(docker ps -a -q)'
+alias rmdock='docker rm $(docker ps -a -q)'
+
+alias ll="ls -lah"

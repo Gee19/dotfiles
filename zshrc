@@ -16,6 +16,7 @@ fi
 # zsh pls
 DISABLE_AUTO_TITLE="true"
 
+# theme yo
 antibody bundle bhilburn/powerlevel9k
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs dir)
