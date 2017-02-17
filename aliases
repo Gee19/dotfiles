@@ -25,6 +25,9 @@ alias gds="git diff --staged"
 alias gc-="git checkout -"
 alias gsl="git stash list"
 alias gsa="git stash apply"
+
+alias gsd="git stash show -p $1"
+
 alias vs="vagrant status"
 
 alias csd="workon sdelements && cd ~/dev/sdelements/sigma"
