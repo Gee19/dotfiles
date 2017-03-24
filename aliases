@@ -33,8 +33,11 @@ alias vs="vagrant status"
 alias csd="workon sdelements && cd ~/dev/sdelements/sigma"
 alias cst="workon sdetools && cd ~/dev/sdetools"
 
-alias djrs="csd && ./manage.py runserver"
 alias nds="csd && node devServer.js"
+
+alias djrs="./manage.py runserver"
+alias djm="./manage.py migrate"
+alias djc="./manage.py collectstatic --noinput"
 
 alias djsh="csd && ./manage.py shell_plus"
 alias tst="./manage.py test $1 --settings=test_local_settings --nomigrations"
