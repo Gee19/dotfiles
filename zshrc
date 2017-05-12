@@ -17,16 +17,8 @@ fi
 DISABLE_AUTO_TITLE="true"
 
 # theme yo
-antibody bundle bhilburn/powerlevel9k
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time virtualenv)
-POWERLEVEL9K_STATUS_OK_BACKGROUND="black"
-POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND="black"
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
-POWERLEVEL9K_VIRTUALENV_BACKGROUND="red"
-POWERLEVEL9K_STATUS_VERBOSE=true
+antibody bundle mafredri/zsh-async
+antibody bundle sindresorhus/pure
 
 # include aliases
 [[ -s ~/.aliases ]] && source ~/.aliases
