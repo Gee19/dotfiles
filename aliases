@@ -30,18 +30,19 @@ alias vs="vagrant status"
 
 alias csd="workon sdelements && cd ~/dev/sdelements/sigma"
 alias cst="workon sdetools && cd ~/dev/sdetools"
+alias csd2="workon sde2 && cd ~/dev/sde2/sigma"
 
-alias nds="csd && node devServer.js"
+alias nds="node devServer.js"
 
 alias djrs="./manage.py runserver"
 alias djm="./manage.py migrate"
 alias djc="./manage.py collectstatic --noinput"
 
-alias djsh="csd && ./manage.py shell_plus"
+alias djsh="./manage.py shell_plus"
 alias tst="./manage.py test $1 --settings=test_local_settings --nomigrations"
 alias mailserv="python -m smtpd -n -c DebuggingServer localhost:1025"
 
-alias start_celery="csd && celery -A . worker --app=celery_mod -l debug"
+alias start_celery="celery -A . worker --app=celery_mod -l debug"
 alias flush_dns="dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
 alias stopdock='docker stop $(docker ps -a -q)'
