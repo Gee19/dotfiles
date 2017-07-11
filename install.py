@@ -8,6 +8,9 @@ import os
 
 exclude = [
     'README',
+    'hosts',
+    'osxdefaults',
+    'nginx.conf',
     'install.py',
     'iterm_profile',
     'Default (OSX).sublime-mousemap',

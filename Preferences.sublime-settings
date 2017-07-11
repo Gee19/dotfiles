@@ -2,6 +2,7 @@
 	"always_show_minimap_viewport": true,
 	"bold_folder_labels": true,
 	"color_scheme": "Packages/Tomorrow Night Italics Color Scheme/Tomorrow-Night-Italics.tmTheme",
+	"ensure_newline_at_eof_on_save": true,
 	"find_selected_text": true,
 	"fold_buttons": true,
 	"folder_exclude_patterns":
@@ -20,7 +21,7 @@
 	[
 		"subpixel_antialias"
 	],
-	"font_size": 12,
+	"font_size": 13,
 	"highlight_line": true,
 	"ignored_packages":
 	[
@@ -47,7 +48,6 @@
 	"pep8_max_line_length": 120,
 	"remember_open_files": true,
 	"show_full_path": "true",
-	"translate_tabs_to_spaces": true,
-	"ensure_newline_at_eof_on_save": true,
 	"theme": "Material-Theme-Darker.sublime-theme",
+	"translate_tabs_to_spaces": true
 }
