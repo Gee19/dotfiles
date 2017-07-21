@@ -36,6 +36,7 @@ alias nds="node devServer.js"
 
 alias djrs="./manage.py runserver"
 alias djm="./manage.py migrate"
+alias djmk="./manage.py makemigrations"
 alias djc="./manage.py collectstatic --noinput"
 
 alias djsh="./manage.py shell_plus"
