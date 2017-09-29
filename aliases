@@ -31,6 +31,7 @@ alias vs="vagrant status"
 alias csd="workon sdelements && cd ~/dev/sdelements/sigma"
 alias cst="workon sdetools && cd ~/dev/sdetools"
 alias csd2="workon sde2 && cd ~/dev/sde2/sigma"
+alias cpkg="cd /Users/jhaine/Envs/sdelements/lib/python2.7/site-packages"
 
 alias nds="node devServer.js"
 
