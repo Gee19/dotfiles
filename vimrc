@@ -7,7 +7,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
+Bundle 'w0rp/ale'
 Bundle 'vim-airline/vim-airline'
 
 let g:airline#extensions#tabline#enabled = 1
