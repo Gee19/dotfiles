@@ -14,6 +14,8 @@ DISABLE_AUTO_TITLE="true"
 antibody bundle mafredri/zsh-async
 antibody bundle sindresorhus/pure
 
-autoload -Uz promptinit; promptinit
-prompt pure
-autoload -Uz compinit; compinit
+autoload -Uz promptinit;promptinit
+autoload -Uz compinit;compinit
+
+# max execution time of a process before its run time is shown when it exits
+PURE_CMD_MAX_EXEC_TIME=10
