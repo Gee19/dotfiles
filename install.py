@@ -8,6 +8,8 @@ import os
 
 exclude = [
     'README',
+    'config.cson',
+    'packages.list',
     'hosts',
     'osxdefaults',
     'nginx.conf',
