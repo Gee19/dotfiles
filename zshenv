@@ -1,6 +1,8 @@
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+export HISTCONTROL=ignoredups:erasedups
+export HISTSIZE=100000
+export HISTFILESIZE=100000
+setopt APPEND_HISTORY
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/local/bin:$PATH"
