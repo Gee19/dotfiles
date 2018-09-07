@@ -1,9 +1,12 @@
-HISTFILE=~/.histfile
-export HISTCONTROL=ignoredups:erasedups
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+
 export HISTSIZE=100000
 export HISTFILESIZE=100000
-setopt APPEND_HISTORY
-
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
