@@ -1,14 +1,16 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle.vim/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'w0rp/ale'
-Bundle 'vim-airline/vim-airline'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'w0rp/ale'
+Plugin 'vim-airline/vim-airline'
+
+call vundle#end()
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
