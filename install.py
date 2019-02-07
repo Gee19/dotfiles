@@ -18,7 +18,12 @@ exclude = [
     'Default (OSX).sublime-mousemap',
     'Default (Windows).sublime-mousemap',
     'Preferences.sublime-settings',
-    'Package Control.sublime-settings'
+    'Package Control.sublime-settings',
+    'wage.code-workspace',
+    'sde.code-workspace',
+    'sde_settings.json',
+    'sdetools_settings.json',
+    'settings.json'
 ]
 
 home = os.path.expanduser('~')

@@ -1,0 +1,19 @@
+{
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "editor.fontFamily": "Operator Mono",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "explorer.decorations.badges": false,
+  "workbench.colorTheme": "One Dark Operator Theme",
+  "workbench.fontAliasing": "antialiased",
+  "javascript.preferences.quoteStyle": "single",
+  "tslint.jsEnable": true,
+  "editor.formatOnSave": true,
+  "prettier.singleQuote": true,
+  "prettier.tslintIntegration": true,
+  "prettier.eslintIntegration": true,
+  "typescript.preferences.quoteStyle": "single",
+  "eslint.autoFixOnSave": true,
+  "files.insertFinalNewline": true
+}

@@ -4,12 +4,13 @@
 - antibody
 
 ## Editors
-- Atom
+- VSCode
 - Sublime
+- PyCharm/Atom (old)
 
 ## Symlink dotfiles from homedir
 `python install.py`
 
-## Atom:
+## Atom Packages:
 `apm install --packages-file packages.list`
 

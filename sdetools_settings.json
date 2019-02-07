@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": false,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": ["--ignore=E501,W601,W504,W605"],
+  "python.linting.enabled": true,
+  "python.pythonPath": "/Users/jhaine/envs/sdetools/bin/python"
+}
+
