@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
       "_common/*": [
-        "./frontend/_common/*",
+        "./frontend/_common/*"
       ],
       "frontend/*": [
-        "./frontend/*",
+        "./frontend/*"
       ]
     }
   },

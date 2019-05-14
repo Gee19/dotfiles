@@ -11,7 +11,6 @@
   "prettier.singleQuote": true,
   "prettier.tslintIntegration": true,
   "prettier.eslintIntegration": true,
-  "python.jediEnabled": true,
   "python.formatting.provider": "autopep8",
   "python.linting.pep8Enabled": true,
   "typescript.preferences.quoteStyle": "single",
@@ -57,5 +56,7 @@
   "files.watcherExclude": {
     "**/node_modules/**": true,
     "**/.happypack/**": true
-  }
+  },
+  "python.jediEnabled": false,
+  "editor.gotoLocation.multiple": "goto"
 }
