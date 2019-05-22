@@ -1,6 +1,9 @@
 {
   "folders": [
     {
+      "path": "docs"
+    },
+    {
       "path": "sdelements"
     },
     {
@@ -9,4 +12,3 @@
   ],
   "settings": {}
 }
-

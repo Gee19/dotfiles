@@ -1,62 +1,67 @@
 {
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
-  "editor.fontFamily": "Operator Mono",
-  "editor.fontSize": 14,
-  "editor.fontLigatures": true,
-  "explorer.decorations.badges": false,
-  "workbench.fontAliasing": "antialiased",
-  "javascript.preferences.quoteStyle": "single",
-  "editor.formatOnSave": true,
-  "prettier.singleQuote": true,
-  "prettier.tslintIntegration": true,
-  "prettier.eslintIntegration": true,
-  "python.formatting.provider": "autopep8",
-  "python.linting.pep8Enabled": true,
-  "typescript.preferences.quoteStyle": "single",
-  "files.insertFinalNewline": true,
-  "workbench.activityBar.visible": true,
-  "editor.renderWhitespace": "none",
-  "files.autoSaveDelay": 2000,
-  "workbench.colorTheme": "One Dark Operator Theme",
-  "editor.minimap.enabled": false,
-  "window.zoomLevel": 0,
-  "editor.smoothScrolling": true,
-  "eslint.enable": true,
-  "eslint.options": {
-    "configFile": "sigma/.eslintrc"
-  },
-  "eslint.autoFixOnSave": true,
-  "eslint.packageManager": "yarn",
-  "eslint.nodePath": "/usr/local/bin/node -r babel-register",
-  "eslint.workingDirectories": [
-    {
-      "directory": "~/dev/sdelements/sigma/frontend",
-      "changeProcessCWD": true
-    }
-  ],
-  "files.autoSave": "afterDelay",
-  "editor.formatOnPaste": true,
-  "editor.formatOnType": true,
-  "files.exclude": {
-    "**/node_modules/**": true,
-    "**/.happypack/**": true
-  },
-  "workbench.enableExperiments": false,
-  "workbench.statusBar.feedback.visible": false,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "breadcrumbs.enabled": true,
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.settings.enableNaturalLanguageSearch": false,
-  "files.watcherExclude": {
-    "**/node_modules/**": true,
-    "**/.happypack/**": true
-  },
-  "python.jediEnabled": false,
-  "editor.gotoLocation.multiple": "goto"
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "editor.fontFamily": "Operator Mono",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true,
+    "explorer.decorations.badges": false,
+    "workbench.fontAliasing": "antialiased",
+    "javascript.preferences.quoteStyle": "single",
+    "editor.formatOnSave": true,
+    "prettier.singleQuote": true,
+    "prettier.tslintIntegration": true,
+    "prettier.eslintIntegration": true,
+    "typescript.preferences.quoteStyle": "single",
+    "files.insertFinalNewline": true,
+    "workbench.activityBar.visible": true,
+    "editor.renderWhitespace": "none",
+    "files.autoSaveDelay": 2000,
+    "workbench.colorTheme": "One Dark Operator Theme",
+    "editor.minimap.enabled": false,
+    "window.zoomLevel": 0,
+    "editor.smoothScrolling": true,
+    "eslint.enable": true,
+    "eslint.options": {
+        "configFile": "sigma/.eslintrc"
+    },
+    "eslint.autoFixOnSave": true,
+    "eslint.packageManager": "yarn",
+    "eslint.nodePath": "/usr/local/bin/node -r babel-register",
+    "eslint.workingDirectories": [
+        {
+            "directory": "~/dev/sdelements/sigma/frontend",
+            "changeProcessCWD": true
+        }
+    ],
+    "files.autoSave": "afterDelay",
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "files.exclude": {
+        "**/node_modules/**": true,
+        "**/.happypack/**": true,
+        "**/*.pyc": true,
+        "**/.idea/**": true,
+        "**/.pytest_cache/**": true,
+    },
+    "workbench.enableExperiments": false,
+    "workbench.statusBar.feedback.visible": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "breadcrumbs.enabled": true,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/.happypack/**": true
+    },
+    "python.jediEnabled": true,
+    "editor.gotoLocation.multiple": "goto",
+    "keyboard.touchbar.enabled": false,
+    "editor.tabCompletion": "on",
+    "python.linting.flake8Enabled": true,
+    "editor.formatOnSaveTimeout": 3000,
 }

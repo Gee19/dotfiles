@@ -1,9 +1,7 @@
 {
-  "editor.formatOnSave": true,
+  "python.pythonPath": "/Users/jhaine/envs/sdelements/bin/python",
   "python.linting.pylintEnabled": false,
-  "python.linting.flake8Enabled": false,
-  "python.linting.flake8Args": ["--ignore=E501,W601,W504,W605"],
-  "python.linting.enabled": false,
-  "python.pythonPath": "/Users/jhaine/envs/sdelements/bin/python"
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "editor.formatOnSave": true,
 }
-
