@@ -26,7 +26,7 @@ alias gc-="git checkout -"
 alias gsl="git stash list"
 alias gsa="git stash apply"
 
-alias gsd="git stash show -p $1"
+alias gsd='g() { git stash show -p stash@{$1} };g'
 
 alias vs="vagrant status"
 
