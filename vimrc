@@ -24,6 +24,9 @@ nmap <S-Tab> :bprevious<CR>
 filetype plugin indent on
 syntax on
 
+if !isdirectory($HOME . "/.vim/undodir")
+    call mkdir($HOME . "/.vim/undodir", "p")
+endif
 set undofile
 set undodir=~/.vim/undodir
 set backspace=indent,eol,start

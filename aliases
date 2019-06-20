@@ -17,7 +17,7 @@ alias gp="git pull"
 alias gb="git branch"
 alias gc="git commit"
 alias gl="git log"
-alias glp="git log --pretty=oneline"
+alias glp="git --no-pager log --oneline -n30"
 alias gco="git checkout $1"
 alias gcob="git checkout -b $1"
 alias gd="git diff"
@@ -52,4 +52,5 @@ alias flush_dns="dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias stopdock='docker stop $(docker ps -a -q)'
 alias rmdock='docker rm $(docker ps -a -q)'
 
-alias ll="ls -lah"
+alias l="exa"
+alias ll="exa -la"
