@@ -6,6 +6,7 @@
 ## Editors
 - VSCode
 - Sublime
+- vim
 - PyCharm/Atom (old)
 
 ## Symlink dotfiles from homedir
