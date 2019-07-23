@@ -16,6 +16,12 @@ call plug#end()
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob "!sigma/static_common/*"'
+  let g:ctrlp_use_caching = 0
+endif
+
 set hidden
 
 set timeoutlen=1000 ttimeoutlen=0
