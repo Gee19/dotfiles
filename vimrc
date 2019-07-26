@@ -11,7 +11,12 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
+Plug 'neoclide/coc.nvim', {'branch': 'master'}
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx',
 call plug#end()
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -35,9 +40,11 @@ set undofile
 set undodir=~/.vim/undodir
 set backspace=indent,eol,start
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType javascript.jsx setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
 set expandtab
 set smarttab
 set shiftround

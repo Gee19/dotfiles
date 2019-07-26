@@ -23,7 +23,8 @@ exclude = [
     'sde.code-workspace',
     'sde_settings.json',
     'sdetools_settings.json',
-    'settings.json'
+    'settings.json',
+    'coc-settings.json'
 ]
 
 home = os.path.expanduser('~')
