@@ -29,10 +29,28 @@ if executable('rg')
 endif
 
 set hidden
-
+set expandtab
+set smarttab
+set shiftround
+set autoindent
+set smartindent
+set number
+set nobackup
+set nowritebackup
+set noswapfile
+set hidden
+set autoread
+set ignorecase 
+set smartcase
+set incsearch
+set showmatch
+set hlsearch
+set gdefault
+set cmdheight=2
+set signcolumn=yes
+set updatetime=300
+set colorcolumn=120
 set timeoutlen=1000 ttimeoutlen=0
-nmap <Tab> :bnext<CR>
-nmap <S-Tab> :bprevious<CR>
 
 if !isdirectory($HOME . "/.vim/undodir")
     call mkdir($HOME . "/.vim/undodir", "p")
@@ -41,45 +59,31 @@ set undofile
 set undodir=~/.vim/undodir
 set backspace=indent,eol,start
 
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType javascript.jsx setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType json setlocal tabstop=2 shiftwidth=2 softtabstop=2
+set virtualedit+=block
+noremap j gj
+noremap k gk
 
-set expandtab
-set smarttab
-set shiftround
-set autoindent
-set smartindent
-set number
-set colorcolumn=120
+let mapleader = "\<Space>"
+nmap <C-k> :bnext<CR>
+nmap <C-j> :bprevious<CR>
 
-map <C-e> :NERDTreeToggle<CR> 
-let g:NERDTreeWinSize = 25
-
-set nobackup
-set nowritebackup
-set noswapfile
-set hidden
-set autoread
-
-set ignorecase 
-set smartcase
-set incsearch
-set showmatch
-set hlsearch
-set gdefault
-
-" Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-set updatetime=300
+map <C-e> :NERDTreeToggle<CR>
+let g:NERDTreeWinSize = 25
 
-set virtualedit+=block
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-noremap j gj
-noremap k gk
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType javascript.jsx setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType json setlocal tabstop=2 shiftwidth=2 softtabstop=2
