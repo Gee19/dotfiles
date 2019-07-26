@@ -14,6 +14,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'master'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx',
+Plug 'PeterRincker/vim-searchlight'
 call plug#end()
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
