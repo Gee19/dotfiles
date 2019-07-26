@@ -13,7 +13,7 @@
 `python install.py`
 
 ## Coc Plugins:
-`:CocInstall coc-prettier coc-python coc-json coc-css`
+`:CocInstall coc-prettier coc-python coc-json coc-css coc-tsserver`
 
 ## Atom Packages:
 `apm install --packages-file packages.list`
