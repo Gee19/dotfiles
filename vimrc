@@ -45,6 +45,7 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType javascript.jsx setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType json setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 set expandtab
 set smarttab
@@ -69,6 +70,14 @@ set incsearch
 set showmatch
 set hlsearch
 set gdefault
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+set updatetime=300
 
 set virtualedit+=block
 
