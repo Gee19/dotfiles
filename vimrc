@@ -9,7 +9,6 @@ endif
 call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'master'}
 Plug 'pangloss/vim-javascript'
@@ -17,6 +16,8 @@ Plug 'mxw/vim-jsx',
 Plug 'PeterRincker/vim-searchlight'
 call plug#end()
 
+hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
+hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 let g:airline#extensions#tabline#enabled = 1
@@ -81,6 +82,11 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType javascript.jsx setlocal tabstop=2 shiftwidth=2 softtabstop=2
