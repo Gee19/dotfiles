@@ -19,6 +19,7 @@ call plug#end()
 hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+command! -nargs=0 Jsonfmt :%!python -m json.tool
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
