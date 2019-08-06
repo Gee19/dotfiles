@@ -7,14 +7,18 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'master'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx',
 Plug 'PeterRincker/vim-searchlight'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
+
+" Never open in NERDTree buffer
+au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
 
 hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
@@ -26,9 +30,17 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 if executable('rg')
   set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob "!sigma/static_common/*"'
-  let g:ctrlp_use_caching = 0
 endif
+
+command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=never -g "!{.git,node_modules,static_common}/*" --smart-case '.shellescape(<q-args>), 1,
+    \   <bang>0 ? fzf#vim#with_preview('up:60%')
+    \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+    \   <bang>0)
+
+nnoremap <C-g> :Rg<Cr>
+nnoremap <C-f> :Files<Cr>
 
 set hidden
 set expandtab

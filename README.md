@@ -4,16 +4,18 @@
 - antibody
 
 ## Editors
+- vim
 - VSCode
 - Sublime
-- vim
 - PyCharm/Atom (old)
 
 ## Symlink dotfiles from homedir
 `python install.py`
 
 ## Coc Plugins:
-`:CocInstall coc-prettier coc-python coc-json coc-css coc-tsserver coc-tslint`
+`:CocInstall coc-prettier coc-python coc-json coc-css coc-tsserver coc-eslint`
+
+`:call coc#util#build()`
 
 ## Atom Packages:
 `apm install --packages-file packages.list`

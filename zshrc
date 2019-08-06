@@ -19,3 +19,14 @@ autoload -Uz compinit;compinit
 
 # max execution time of a process before its run time is shown when it exits
 PURE_CMD_MAX_EXEC_TIME=10
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!{.git,node_modules,static_common}"'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+vf() {
+  local file=$(fzf)
+  if [ -n "$file" ]; then
+    vim "$file"
+  fi
+}
