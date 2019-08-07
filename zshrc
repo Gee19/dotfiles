@@ -24,9 +24,4 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!{
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-vf() {
-  local file=$(fzf)
-  if [ -n "$file" ]; then
-    vim "$file"
-  fi
-}
+bindkey -s '^o' 'vim $(fzf)\n'

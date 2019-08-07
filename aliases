@@ -37,6 +37,7 @@ function gsd() {
 
 alias vs="vagrant status"
 
+alias csec="workon checksec2 && cd ~/dev/checksec"
 alias csd="workon sdelements && cd ~/dev/sdelements/sigma"
 alias cst="workon sdetools && cd ~/dev/sdetools"
 alias csd2="workon sde2 && cd ~/dev/sde2/sigma"
