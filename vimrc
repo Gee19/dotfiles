@@ -29,7 +29,6 @@ hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Use ripgrep for vim :grep
 if executable('rg')
