@@ -43,6 +43,7 @@ nnoremap <C-g> :Rg<Cr>
 nnoremap <C-f> :Files<Cr>
 
 " Cool stuff
+syntax on
 set hidden
 set expandtab
 set smarttab
