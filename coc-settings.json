@@ -4,5 +4,6 @@
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
   "coc.preferences.jumpCommand": "drop",
-  "tsserver.npm": "/usr/local/bin/npm"
+  "tsserver.npm": "/usr/local/bin/npm",
+  "diagnostic.checkCurrentLine": true
 }
