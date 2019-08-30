@@ -7,6 +7,11 @@ endif
 
 " Plugins
 call plug#begin()
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
@@ -40,12 +45,6 @@ command! -bang -nargs=* Rg
       \ 1,
       \ fzf#vim#with_preview(),
       \ <bang>0)
-
-" fzf ripgrep
-nnoremap <C-g> :Rg<Cr>
-
-" fzf files
-nnoremap <C-f> :Files<Cr>
 
 " Cool stuff
 syntax on
@@ -91,7 +90,7 @@ noremap k gk
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
-let g:NERDTreeWinSize = 25
+let g:NERDTreeWinSize = 30
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
@@ -113,7 +112,19 @@ command! -nargs=0 Jsonfmt :%!python -m json.tool
 let mapleader = "\<Space>"
 nmap <C-k> :bnext<CR>
 nmap <C-j> :bprevious<CR>
+
+nnoremap <leader><S-c> Oconsole.info();<Esc>
 nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
+nnoremap <leader><S-r> Ofrom celery.contrib import rdb; rdb.set_trace()<Esc>
+
+" fzf ripgrep
+nnoremap <leader><S-f> :Rg<Cr>
+
+" fzf files in cwd
+nnoremap <C-f> :Files<Cr>
+
+" fzf all files in repo
+nnoremap <C-p> :GitFiles<Cr>
 
 " Coc Binds
 nmap <silent> gd <Plug>(coc-definition)
