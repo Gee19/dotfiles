@@ -26,6 +26,8 @@ call plug#end()
 let g:coc_node_path = '/usr/local/bin/node'
 
 " Colors
+syntax on
+let g:onedark_termcolors=256
 colorscheme onedark
 
 " Fix bg color on scroll
@@ -57,7 +59,6 @@ command! -bang -nargs=* Rg
       \ <bang>0)
 
 " Cool stuff
-syntax on
 set hidden
 set expandtab
 set smarttab
