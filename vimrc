@@ -12,7 +12,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
-Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pangloss/vim-javascript'
@@ -22,8 +21,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
-" Prevent fzf from opening file in NERDTree buffer
-au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
+let g:coc_node_path = '/usr/local/bin/node'
 
 " Completion menu styling
 hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
@@ -31,6 +29,9 @@ hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Use ripgrep for vim :grep
 if executable('rg')
@@ -87,10 +88,6 @@ set backspace=indent,eol,start
 set virtualedit+=block
 noremap j gj
 noremap k gk
-
-" NERDTree
-map <C-e> :NERDTreeToggle<CR>
-let g:NERDTreeWinSize = 30
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>

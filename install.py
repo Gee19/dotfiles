@@ -6,6 +6,8 @@ import os
 
 # Settings file - Preferences.sublime-settings
 
+# Kitty: ln -s /Users/jhaine/dev/dotfiles/kitty.conf /Users/jhaine/.config/kitty/kitty.conf
+
 exclude = [
     'README',
     'config.cson',
@@ -24,7 +26,8 @@ exclude = [
     'sde_settings.json',
     'sdetools_settings.json',
     'settings.json',
-    'coc-settings.json'
+    'coc-settings.json',
+    'kitty.conf'
 ]
 
 home = os.path.expanduser('~')

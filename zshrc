@@ -16,6 +16,7 @@ antibody bundle sindresorhus/pure
 
 autoload -Uz promptinit;promptinit
 autoload -Uz compinit;compinit
+kitty + complete setup zsh | source /dev/stdin
 
 # max execution time of a process before its run time is shown when it exits
 PURE_CMD_MAX_EXEC_TIME=10
