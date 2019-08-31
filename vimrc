@@ -7,7 +7,7 @@ endif
 
 " Plugins
 call plug#begin()
-Plug 'morhetz/gruvbox'
+Plug 'mikejakobsen/One-Dark-Operator-Mono'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -26,8 +26,9 @@ call plug#end()
 let g:coc_node_path = '/usr/local/bin/node'
 
 " Colors
-colorscheme gruvbox
-set background=dark
+colorscheme onedark
+
+" Fix bg color on scroll
 autocmd VimEnter * hi Normal ctermbg=none
 
 " Completion menu styling
@@ -35,7 +36,7 @@ hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 
 " vim-airline
-let g:airline_theme='gruvbox'
+let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tagbar#enabled = 0
