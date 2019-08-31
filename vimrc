@@ -7,12 +7,14 @@ endif
 
 " Plugins
 call plug#begin()
+Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx',
@@ -23,11 +25,17 @@ call plug#end()
 
 let g:coc_node_path = '/usr/local/bin/node'
 
+" Colors
+colorscheme gruvbox
+set background=dark
+autocmd VimEnter * hi Normal ctermbg=none
+
 " Completion menu styling
 hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 
 " vim-airline
+let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tagbar#enabled = 0
@@ -60,7 +68,7 @@ set nowritebackup
 set noswapfile
 set hidden
 set autoread
-set ignorecase 
+set ignorecase
 set smartcase
 set incsearch
 set showmatch
