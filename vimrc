@@ -46,14 +46,14 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Use ripgrep for vim :grep
 if executable('rg')
-  set grepprg=rg\ --no-heading\ --color=never\ --column\ --line-number
+  set grepprg=rg\ --no-heading\ --color=always\ --column\ --line-number
   set grepformat=%f:%l:%c:%m
 endif
 
 " fzf ripgrep preview
 let $BAT_THEME = 'TwoDark'
 command! -bang -nargs=* Rg
-      \ call fzf#vim#grep('rg --column --no-heading --line-number --color=never '.shellescape(<q-args>),
+      \ call fzf#vim#grep('rg --column --no-heading --line-number --color=always '.shellescape(<q-args>),
       \ 1,
       \ fzf#vim#with_preview(),
       \ <bang>0)
