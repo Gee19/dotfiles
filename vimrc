@@ -55,7 +55,7 @@ let $BAT_THEME = 'TwoDark'
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep('rg --column --no-heading --line-number --color=always '.shellescape(<q-args>),
       \ 1,
-      \ fzf#vim#with_preview(),
+      \ fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}),
       \ <bang>0)
 
 " Cool stuff
@@ -119,6 +119,9 @@ command! -nargs=0 Jsonfmt :%!python -m json.tool
 let mapleader = "\<Space>"
 nmap <C-k> :bnext<CR>
 nmap <C-j> :bprevious<CR>
+
+" Yank to global clipboard (requires vim +clipboard)
+map <leader>y "*y
 
 nnoremap <leader><S-c> Oconsole.info();<Esc>
 nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
