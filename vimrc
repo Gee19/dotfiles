@@ -164,6 +164,7 @@ autocmd FileType javascript.jsx setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType json setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType asciidoc setlocal tabstop=2 shiftwidth=2 shiftwidth=2 softtabstop=2
 
 " Prevent vim from indenting newlines
 function! IndentIgnoringBlanks(child)
