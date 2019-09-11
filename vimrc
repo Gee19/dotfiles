@@ -68,13 +68,12 @@ set number
 set nobackup
 set nowritebackup
 set noswapfile
-set hidden
 set autoread
 set ignorecase
 set smartcase
-set incsearch
 set showmatch
 set hlsearch
+set incsearch
 set gdefault
 set cmdheight=2
 set signcolumn=yes
