@@ -16,8 +16,8 @@ Plug 'dhruvasagar/vim-prosession'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'pangloss/vim-javascript', { 'for': 'javascript.jsx' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
+Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
+Plug 'mxw/vim-jsx', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'PeterRincker/vim-searchlight'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -82,6 +82,7 @@ set showmatch " When a bracket is inserted, briefly jump to the matching one
 set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
 set showtabline=2 " Always show tabline
+set linebreak " Avoid wrapping in middle of word
 
 " Some coc servers have issues with backup files #649
 set nobackup
