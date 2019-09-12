@@ -13,11 +13,11 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx',
+Plug 'pangloss/vim-javascript', { 'for': 'javascript.jsx' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
 Plug 'PeterRincker/vim-searchlight'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -37,12 +37,22 @@ autocmd VimEnter * hi Normal ctermbg=none
 hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 
-" vim-airline
-let g:airline_theme='onedark'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+" Lightline + Tabline
+let g:lightline = { 'colorscheme': 'onedark' }
+let g:lightline#bufferline#show_number = 1
+let g:lightline#bufferline#unnamed = '[No Name]'
+let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type = {'buffers': 'tabsel'}
+
+" Only show buffer filename
+let g:lightline#bufferline#filename_modifier = ':t'
+
+" Match tabline background color
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+let s:palette.inactive.middle = s:palette.normal.middle
+let s:palette.tabline.middle = s:palette.normal.middle
 
 " Use ripgrep for vim :grep
 if executable('rg')
@@ -58,28 +68,36 @@ command! -bang -nargs=* Rg
       \ fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}),
       \ <bang>0)
 
-" Cool stuff
-set hidden
-set expandtab
-set smarttab
-set shiftround
-set autoindent
-set number
+set hidden " New buffers with unsaved changes
+set number " Line numbers
+set noswapfile " No swap file on buffer load
+set autoread " Auto read files changed outside of vim
+set gdefault " Substitute all matches in a line
+set cmdheight=2 " Better display for messages
+set signcolumn=yes " Show left sidebar
+set updatetime=300 " Fix coc diagnostic messages
+set colorcolumn=120 " Long line warning
+set timeoutlen=1000 ttimeoutlen=0 " Mapping and keycode delays
+set showmatch " When a bracket is inserted, briefly jump to the matching one
+set splitright " Open vplit buffer to the right
+set laststatus=2 " Always show statusline
+set showtabline=2 " Always show tabline
+
+" Some coc servers have issues with backup files #649
 set nobackup
 set nowritebackup
-set noswapfile
-set autoread
-set ignorecase
-set smartcase
-set showmatch
-set hlsearch
-set incsearch
-set gdefault
-set cmdheight=2
-set signcolumn=yes
-set updatetime=300
-set colorcolumn=120
-set timeoutlen=1000 ttimeoutlen=0
+
+" Indentation
+set expandtab " Convert tabs to spaces
+set smarttab " Indent according to shiftwidth at beginning of line
+set shiftround " Round indent to multiple of shiftwidth
+set autoindent " Copy indent from current line when starting a new line
+
+" Search
+set ignorecase " Ignore case in search pattern
+set smartcase " Override ignorecase if search contains uppercase
+set hlsearch " Highlight previous search results
+set incsearch " Match search terms incrementally
 
 " Create undodir if it doesn't exist
 if !isdirectory($HOME . "/.vim/undodir")
@@ -155,6 +173,12 @@ endfunction
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" vsplit help
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+augroup END
 
 " Indenting
 filetype plugin indent on

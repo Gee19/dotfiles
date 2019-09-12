@@ -3,7 +3,8 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
+  "python.linting.flake8Args": ["--ignore=E501,W601"],
   "coc.preferences.jumpCommand": "drop",
-  "tsserver.npm": "/usr/local/bin/npm",
-  "diagnostic.checkCurrentLine": true
+  "diagnostic.checkCurrentLine": true,
+  "tsserver.npm": "/usr/local/bin/npm"
 }
