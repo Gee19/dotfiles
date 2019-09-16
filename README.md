@@ -4,7 +4,7 @@
 - antibody
 
 ## Editor
-- vim
+- vim/neovim
 
 ## Symlink dotfiles from homedir
 `python install.py`
