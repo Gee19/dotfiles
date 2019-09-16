@@ -19,12 +19,7 @@ call plug#end()
 let g:coc_node_path = '/usr/local/bin/node'
 
 " Colors
-syntax on
-let g:onedark_termcolors=256
 colorscheme onedark
-
-" Fix bg color on scroll
-autocmd VimEnter * hi Normal ctermbg=none
 
 " Completion menu styling
 hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
@@ -41,11 +36,11 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 " Only show buffer filename
 let g:lightline#bufferline#filename_modifier = ':t'
 
-" Match tabline background color
-let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-let s:palette.inactive.middle = s:palette.normal.middle
-let s:palette.tabline.middle = s:palette.normal.middle
+" Match tabline background color (16bit colors)
+" let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+" let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+" let s:palette.inactive.middle = s:palette.normal.middle
+" let s:palette.tabline.middle = s:palette.normal.middle
 
 " Use ripgrep for vim :grep
 if executable('rg')
@@ -64,7 +59,6 @@ command! -bang -nargs=* Rg
 set hidden " New buffers with unsaved changes
 set number " Line numbers
 set noswapfile " No swap file on buffer load
-set autoread " Auto read files changed outside of vim
 set gdefault " Substitute all matches in a line
 set cmdheight=2 " Better display for messages
 set signcolumn=yes " Show left sidebar
@@ -73,7 +67,6 @@ set colorcolumn=120 " Long line warning
 set timeoutlen=1000 ttimeoutlen=0 " Mapping and keycode delays
 set showmatch " When a bracket is inserted, briefly jump to the matching one
 set splitright " Open vplit buffer to the right
-set laststatus=2 " Always show statusline
 set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
 
@@ -83,27 +76,14 @@ set nowritebackup
 
 " Indentation
 set expandtab " Convert tabs to spaces
-set smarttab " Indent according to shiftwidth at beginning of line
 set shiftround " Round indent to multiple of shiftwidth
-set autoindent " Copy indent from current line when starting a new line
 
 " Search
 set ignorecase " Ignore case in search pattern
 set smartcase " Override ignorecase if search contains uppercase
-set hlsearch " Highlight previous search results
-set incsearch " Match search terms incrementally
 
-" Create undodir if it doesn't exist
-if !isdirectory($HOME . "/.vim/undodir")
-    call mkdir($HOME . "/.vim/undodir", "p")
-endif
-
-" Enable undofile
+" Enable undofile ($XDG_DATA_HOME/nvim/undo)
 set undofile
-set undodir=~/.vim/undodir
-
-" Backspace in insert mode
-set backspace=indent,eol,start
 
 " Move cursor by display lines when wrapping
 set virtualedit+=block
@@ -175,7 +155,6 @@ augroup vimrc_help
 augroup END
 
 " Indenting
-filetype plugin indent on
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType javascript.jsx setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2

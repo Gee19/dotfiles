@@ -35,6 +35,8 @@ function gsd() {
     fi
 }
 
+alias vi="nvim"
+alias vim="nvim"
 alias vs="vagrant status"
 
 alias csec="workon checksec2 && cd ~/dev/checksec"

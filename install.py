@@ -7,7 +7,7 @@ import os
 # Settings file - Preferences.sublime-settings
 
 # Kitty: ln -s /Users/jhaine/dev/dotfiles/kitty.conf /Users/jhaine/.config/kitty/kitty.conf
-
+# Neovim: ln -s /Users/jhaine/dev/dotfiles/init.vim /Users/jhaine/.config/nvim/init.vim
 exclude = [
     'README',
     'config.cson',
@@ -27,7 +27,8 @@ exclude = [
     'sdetools_settings.json',
     'settings.json',
     'coc-settings.json',
-    'kitty.conf'
+    'kitty.conf',
+    'init.vim'
 ]
 
 home = os.path.expanduser('~')
