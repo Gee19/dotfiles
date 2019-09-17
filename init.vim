@@ -1,6 +1,6 @@
 " vim-plug
 call plug#begin()
-Plug 'mikejakobsen/One-Dark-Operator-Mono'
+Plug 'joshdick/onedark.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
