@@ -10,8 +10,6 @@ import os
 # Neovim: ln -s /Users/jhaine/dev/dotfiles/init.vim /Users/jhaine/.config/nvim/init.vim
 exclude = [
     'README',
-    'config.cson',
-    'packages.list',
     'hosts',
     'osxdefaults',
     'nginx.conf',
@@ -21,7 +19,6 @@ exclude = [
     'Default (Windows).sublime-mousemap',
     'Preferences.sublime-settings',
     'Package Control.sublime-settings',
-    'wage.code-workspace',
     'sde.code-workspace',
     'sde_settings.json',
     'sdetools_settings.json',
