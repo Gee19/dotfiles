@@ -69,6 +69,7 @@ set showmatch " When a bracket is inserted, briefly jump to the matching one
 set splitright " Open vplit buffer to the right
 set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
+set inccommand=nosplit " Preview substitutions
 
 " Some coc servers have issues with backup files #649
 set nobackup
