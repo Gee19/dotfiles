@@ -1,10 +1,9 @@
 ## Shell
 - kitty
-- zsh
-- antibody
+- zsh + antibody
 
 ## Editor
-- vim/neovim
+- neovim
 
 ## Symlink dotfiles from homedir
 `python install.py`
