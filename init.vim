@@ -36,12 +36,6 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 " Only show buffer filename
 let g:lightline#bufferline#filename_modifier = ':t'
 
-" Match tabline background color (16bit colors)
-" let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-" let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-" let s:palette.inactive.middle = s:palette.normal.middle
-" let s:palette.tabline.middle = s:palette.normal.middle
-
 " Use ripgrep for vim :grep
 if executable('rg')
   set grepprg=rg\ --no-heading\ --color=always\ --column\ --line-number

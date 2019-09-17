@@ -1,8 +1,7 @@
 alias reload_zsh=". ~/.zshrc"
 alias edit_zsh="subl ~/.zshrc && subl ~/.plugins.txt && subl ~/.aliases && subl ~/.zshenv"
 
-alias reload_vim=". ~/.vimrc"
-alias edit_vim="subl ~/.vimrc"
+alias edit_vim="subl ~/.vimrc && subl ~/.config/nvim/init.vim"
 
 # iTerm2 jump words (Option-Arrows)
 bindkey -e
