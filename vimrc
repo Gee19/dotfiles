@@ -130,6 +130,8 @@ command! -nargs=0 Jsonfmt :%!python -m json.tool
 let mapleader = "\<Space>"
 nmap <C-k> :bnext<CR>
 nmap <C-j> :bprevious<CR>
+nmap <left> :bprevious<CR>
+nmap <right> :bnext<CR>
 
 " Yank to global clipboard (requires vim +clipboard)
 map <leader>y "*y
