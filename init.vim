@@ -119,6 +119,10 @@ nnoremap <leader><S-c> Oconsole.info();<Esc>
 nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
 nnoremap <leader><S-r> Ofrom celery.contrib import rdb; rdb.set_trace()<Esc>
 
+" lazy browsing
+nnoremap <up> <c-u>
+nnoremap <down> <c-d>
+
 " fzf ripgrep
 nnoremap <leader><S-f> :Rg<Cr>
 
