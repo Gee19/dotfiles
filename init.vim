@@ -18,7 +18,7 @@ call plug#end()
 
 let g:coc_node_path = '/usr/local/bin/node'
 
-" Colors
+set termguicolors " Use true colours
 colorscheme onedark
 
 " Operator Mono OP

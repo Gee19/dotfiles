@@ -1,7 +1,7 @@
 alias reload_zsh=". ~/.zshrc"
-alias edit_zsh="subl ~/.zshrc && subl ~/.plugins.txt && subl ~/.aliases && subl ~/.zshenv"
+alias edit_zsh="vim ~/.zshrc ~/.plugins.txt ~/.aliases ~/.zshenv"
 
-alias edit_vim="subl ~/.vimrc && subl ~/.config/nvim/init.vim"
+alias edit_vim="vim ~/.vimrc ~/.config/nvim/init.vim"
 
 # iTerm2 jump words (Option-Arrows)
 bindkey -e
@@ -45,6 +45,7 @@ alias csd2="workon sde2 && cd ~/dev/sde2/sigma"
 alias cpkg="cd /Users/jhaine/Envs/sdelements/lib/python2.7/site-packages"
 
 alias nds="node devServer.js"
+alias yd="yarn dev"
 
 alias djrs="./manage.py runserver"
 alias djm="./manage.py migrate"

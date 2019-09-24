@@ -21,6 +21,7 @@ let g:coc_node_path = '/usr/local/bin/node'
 " Colors
 syntax on
 let g:onedark_termcolors=256
+set termguicolors " Use true colours
 colorscheme onedark
 
 " Fix bg color on scroll
