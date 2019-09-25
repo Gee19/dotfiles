@@ -8,7 +8,7 @@ Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'mxw/vim-jsx', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'PeterRincker/vim-searchlight'
