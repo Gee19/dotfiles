@@ -4,45 +4,41 @@ import os
 # Mac - create "Default (OSX).sublime-mousemap" in ~/Library/Application Support/Sublime Text 3/Packages/User
 # Win - create "Default (Windows).sublime-mousemap" in %appdata%\Sublime Text 3\Packages\User
 
-# Settings file - Preferences.sublime-settings
+include = {
+    # Editors
+    'init.vim': '$HOME/.config/nvim/init.vim',
+    'vimrc': '$HOME/.vimrc',
 
-# Kitty: ln -s /Users/jhaine/dev/dotfiles/kitty.conf /Users/jhaine/.config/kitty/kitty.conf
-# Neovim: ln -s /Users/jhaine/dev/dotfiles/init.vim /Users/jhaine/.config/nvim/init.vim
-exclude = [
-    'README',
-    'hosts',
-    'osxdefaults',
-    'nginx.conf',
-    'install.py',
-    'iterm_profile',
-    'Default (OSX).sublime-mousemap',
-    'Default (Windows).sublime-mousemap',
-    'Preferences.sublime-settings',
-    'Package Control.sublime-settings',
-    'sde.code-workspace',
-    'sde_settings.json',
-    'sdetools_settings.json',
-    'settings.json',
-    'coc-settings.json',
-    'kitty.conf',
-    'init.vim'
-]
+    # coc.nvim
+    'coc-settings.json': ['$HOME/.config/nvim/coc-settings.json', '$HOME/.vim/coc-settings.json'],
 
-home = os.path.expanduser('~')
+    # pdb
+    'pdbrc': '$HOME/.pdbrc',
+
+    # Terminal
+    'kitty.conf': '$HOME/.config/kitty/kitty.conf',
+
+    # Shell
+    'bashrc': '$HOME/.bashrc',
+    'aliases': '$HOME/.aliases',
+    'zshenv': '$HOME/.zshenv',
+    'zshrc': '$HOME/.zshrc',
+    'plugins.txt': '$HOME/.plugins.txt',
+}
+
+# home = os.path.expanduser('~')
 here = os.path.abspath('.')
 
-# symlink all the files in this repo in the home directory
-for f in os.listdir('.'):
-    if f in exclude or f[0] == '.':
-        continue
-
+cmds = []
+for f, install_path in include.iteritems():
     local_file = "%s/%s" % (here, f)
-    install_file = "%s/.%s" % (home, f)
-    if os.path.exists(install_file):
-        continue
 
-    cmd = 'ln -sf %s %s' % (local_file, install_file)
+    if isinstance(install_path, list):
+        for path in install_path:
+            cmds.append('ln -sf %s %s' % (local_file, path))
+    else:
+        cmds.append('ln -sf %s %s' % (local_file, install_path))
 
+for cmd in cmds:
     print cmd
-
     os.system(cmd)
