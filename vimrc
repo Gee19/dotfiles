@@ -13,6 +13,8 @@ Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'json', '
 Plug 'mxw/vim-jsx', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'scrooloose/nerdtree'
 Plug 'PeterRincker/vim-searchlight'
+Plug 'kalekundert/vim-coiled-snake'
+Plug 'Konfekt/FastFold'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
