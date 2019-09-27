@@ -11,6 +11,7 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'mxw/vim-jsx', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
+Plug 'scrooloose/nerdtree'
 Plug 'PeterRincker/vim-searchlight'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -110,6 +111,14 @@ set backspace=indent,eol,start
 set virtualedit+=block
 noremap j gj
 noremap k gk
+
+" NERDTree
+map <C-e> :NERDTreeToggle<CR>
+let g:NERDTreeWinSize = 25
+let NERDTreeIgnore = ['\.pyc$', '\.egg-info$']
+
+" Never open in NERDTree buffer
+au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
