@@ -22,7 +22,7 @@ PURE_CMD_MAX_EXEC_TIME=10
 
 export BAT_THEME='TwoDark'
 export FZF_COMPLETION_OPTS='--preview "(bat --color=never --style=numbers {} || cat {} || tree -C {}) 2> /dev/null | head -50"'
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!{.git,node_modules,static_common,*.xml,*.txt,*.csv,*.nessus,*.json"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!{.git,node_modules,static_common}"'
 
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
 fbr() {
