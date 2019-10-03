@@ -2,11 +2,11 @@
 - kitty
 - zsh + antibody
 
-`brew install zsh zsh-completions antibody`
+`brew install zsh antibody`
 
 `chsh -s /bin/zsh`
 
-## Editor
+## Editor (requires Node + fzf)
 - neovim + vim-plug + coc.nvim
 
 `brew install vim neovim`
