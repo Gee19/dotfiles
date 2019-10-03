@@ -11,9 +11,6 @@ fi
 
 DISABLE_AUTO_TITLE="true"
 
-antibody bundle mafredri/zsh-async
-antibody bundle sindresorhus/pure
-
 autoload -Uz promptinit;promptinit
 autoload -Uz compinit;compinit
 kitty + complete setup zsh | source /dev/stdin
