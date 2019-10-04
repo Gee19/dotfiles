@@ -2,9 +2,10 @@
   "coc.preferences.jumpCommand": "drop",
   "coc.preferences.rootPatterns": [".git", ".vim", ".vscode"],
   "diagnostic.checkCurrentLine": true,
+  "python.pythonPath": "/Users/jhaine/Envs/sdetools/bin/python",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": ["--append-config='${workspaceFolder}/.flake8'"],
+  "python.linting.flake8Args": ["--config='${workspaceFolder}/.flake8'"],
   "tsserver.npm": "/usr/local/bin/npm"
 }

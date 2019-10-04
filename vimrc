@@ -85,6 +85,9 @@ set linebreak " Avoid wrapping in middle of word
 set nobackup
 set nowritebackup
 
+" Persist coc workspace folders in session file
+set sessionoptions+=globals
+
 " Indentation
 set expandtab " Convert tabs to spaces
 set smarttab " Indent according to shiftwidth at beginning of line

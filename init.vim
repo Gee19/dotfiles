@@ -79,6 +79,9 @@ set scrolloff=999 " Keep cursor in middle of screen when possible
 set nobackup
 set nowritebackup
 
+" Persist coc workspace folders in session file
+set sessionoptions+=globals
+
 " Indentation
 set expandtab " Convert tabs to spaces
 set shiftround " Round indent to multiple of shiftwidth
