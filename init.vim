@@ -54,10 +54,12 @@ endif
 " fzf ripgrep preview
 let $BAT_THEME = 'TwoDark'
 command! -bang -nargs=* Rg
-      \ call fzf#vim#grep('rg --column --no-heading --line-number --glob "!{.git,node_modules,static_common,*.xml,*.txt,*.csv,*.nessus,*.json}" --color=always '.shellescape(<q-args>),
-      \ 1,
-      \ fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}),
-      \ <bang>0)
+  \ call fzf#vim#grep(
+  \   'rg --column --no-heading --line-number --glob "!{.git,node_modules,static_common,*.xml,*.txt,*.csv,*.nessus,*.json}" --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'up:60%')
+  \           : fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
+  \ <bang>0)
+
 
 set hidden " New buffers with unsaved changes
 set number " Line numbers
