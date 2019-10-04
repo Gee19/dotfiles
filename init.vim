@@ -142,14 +142,15 @@ nnoremap <leader><S-r> Ofrom celery.contrib import rdb; rdb.set_trace()<Esc>
 nnoremap <up> <c-u>
 nnoremap <down> <c-d>
 
+" nerdtree + fzf
 " fzf ripgrep
-nnoremap <leader><S-f> :Rg<Cr>
+nnoremap <silent> <expr> <leader><S-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg\<cr>"
 
 " fzf files in cwd
-nnoremap <C-f> :Files<Cr>
+nnoremap <silent> <expr> <C-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 
 " fzf all files in repo
-nnoremap <C-p> :GitFiles<Cr>
+nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GitFiles\<cr>"
 
 " Coc Binds
 nmap <silent> gd <Plug>(coc-definition)
