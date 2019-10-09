@@ -11,7 +11,7 @@
 
 `brew install vim neovim`
 
-`:PlugInstall:`
+`:PlugInstall`
 
 `:CocInstall coc-prettier coc-python coc-json coc-css coc-tsserver coc-eslint coc-pairs`
 

@@ -1,6 +1,7 @@
 {
   "coc.preferences.jumpCommand": "drop",
   "coc.preferences.rootPatterns": [".git", ".vim", ".vscode"],
+  "coc.preferences.formatOnSaveFiletypes": ["javascriptreact", "typescriptreact", "css"],
   "diagnostic.checkCurrentLine": true,
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
