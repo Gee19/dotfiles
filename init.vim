@@ -12,6 +12,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lock
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'mxw/vim-jsx', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'scrooloose/nerdtree'
+Plug 'thirtythreeforty/lessspace.vim'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
