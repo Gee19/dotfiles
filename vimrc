@@ -13,6 +13,7 @@ Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'json', '
 Plug 'mxw/vim-jsx', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'scrooloose/nerdtree'
 Plug 'thirtythreeforty/lessspace.vim'
+Plug 'zivyangll/git-blame.vim'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
@@ -155,6 +156,9 @@ nmap <right> :bnext<CR>
 
 " Yank to global clipboard (requires vim +clipboard)
 map <leader>y "*y
+
+" Git blame current line
+nnoremap <Leader>b :<C-u>call gitblame#echo()<CR>
 
 nnoremap <leader><S-c> Oconsole.info();<Esc>
 nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
