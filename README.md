@@ -9,7 +9,10 @@
 ## Editor (requires Node + fzf)
 - neovim + vim-plug + coc.nvim
 
-`brew install vim neovim`
+`brew install utf8proc`
+- https://github.com/neovim/neovim/issues/11125
+
+`brew install neovim --HEAD`
 
 `:PlugInstall`
 
