@@ -13,7 +13,7 @@ Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'json', '
 Plug 'mxw/vim-jsx', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'scrooloose/nerdtree'
 Plug 'thirtythreeforty/lessspace.vim'
-Plug 'zivyangll/git-blame.vim'
+Plug 'rhysd/git-messenger.vim'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
@@ -35,6 +35,9 @@ highlight htmlArg cterm=italic
 " Completion menu styling
 hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
+
+" Commit hash at 'Commit:' header with 'Special' highlight group
+hi link gitmessengerHash Special
 
 " Lightline + Tabline
 let g:lightline = { 'colorscheme': 'onedark' }
@@ -138,9 +141,6 @@ nmap <right> :bnext<CR>
 
 " Yank to global clipboard (requires vim +clipboard)
 map <leader>y "*y
-
-" Git blame current line
-nnoremap <Leader>b :<C-u>call gitblame#echo()<CR>
 
 nnoremap <leader><S-c> Oconsole.info();<Esc>
 nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
