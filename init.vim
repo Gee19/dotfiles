@@ -81,6 +81,7 @@ set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
 set inccommand=nosplit " Preview substitutions
 set scrolloff=999 " Keep cursor in middle of screen when possible
+set showbreak=↪ " Show this char when wrapping
 
 " Some coc servers have issues with backup files #649
 set nobackup
@@ -134,8 +135,6 @@ command! -nargs=0 Jsonfmt :%!python -m json.tool
 
 " Binds
 let mapleader = "\<Space>"
-nmap <C-k> :bnext<CR>
-nmap <C-j> :bprevious<CR>
 nmap <left> :bprevious<CR>
 nmap <right> :bnext<CR>
 

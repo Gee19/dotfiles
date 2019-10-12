@@ -86,6 +86,7 @@ set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
 set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
+set showbreak=↪ " Show this char when wrapping
 
 " Some coc servers have issues with backup files #649
 set nobackup
@@ -152,8 +153,6 @@ command! -nargs=0 Jsonfmt :%!python -m json.tool
 
 " Binds
 let mapleader = "\<Space>"
-nmap <C-k> :bnext<CR>
-nmap <C-j> :bprevious<CR>
 nmap <left> :bprevious<CR>
 nmap <right> :bnext<CR>
 
@@ -163,6 +162,10 @@ map <leader>y "*y
 nnoremap <leader><S-c> Oconsole.info();<Esc>
 nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
 nnoremap <leader><S-r> Ofrom celery.contrib import rdb; rdb.set_trace()<Esc>
+
+" lazy browsing
+nnoremap <up> <c-u>
+nnoremap <down> <c-d>
 
 " nerdtree + fzf
 " fzf ripgrep
