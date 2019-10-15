@@ -11,9 +11,10 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'mxw/vim-jsx', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'thirtythreeforty/lessspace.vim'
 Plug 'rhysd/git-messenger.vim'
+Plug 'rhysd/clever-f.vim'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
@@ -148,6 +149,9 @@ nnoremap <leader><S-r> Ofrom celery.contrib import rdb; rdb.set_trace()<Esc>
 " lazy browsing
 nnoremap <up> <c-u>
 nnoremap <down> <c-d>
+
+" Shift+U undo
+nnoremap U :redo<cr>
 
 " nerdtree + fzf
 " fzf ripgrep
