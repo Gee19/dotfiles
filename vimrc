@@ -11,13 +11,13 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'mxw/vim-jsx', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'thirtythreeforty/lessspace.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'rhysd/clever-f.vim'
-Plug 'PeterRincker/vim-searchlight'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
+Plug 'PeterRincker/vim-searchlight'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
@@ -88,6 +88,8 @@ set laststatus=2 " Always show statusline
 set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
 set showbreak=↪ " Show this char when wrapping
+set foldlevelstart=1 " Fold class methods by default
+set foldmethod=indent " Fold based on indentation
 
 " Some coc servers have issues with backup files #649
 set nobackup
@@ -126,7 +128,6 @@ noremap j gj
 noremap k gk
 
 " NERDTree
-map <C-e> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 25
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$']
 
@@ -156,6 +157,10 @@ command! -nargs=0 Jsonfmt :%!python -m json.tool
 let mapleader = "\<Space>"
 nmap <left> :bprevious<CR>
 nmap <right> :bnext<CR>
+
+" NERDTree
+map <C-e> :NERDTreeToggle<CR>
+map <leader>e :NERDTreeFind<CR>
 
 " Yank to global clipboard (requires vim +clipboard)
 map <leader>y "*y
