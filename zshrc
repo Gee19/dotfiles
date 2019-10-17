@@ -20,6 +20,8 @@ PURE_CMD_MAX_EXEC_TIME=10
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+ZSH_AUTOSUGGEST_USE_ASYNC='true'
+
 export BAT_THEME='TwoDark'
 export FZF_COMPLETION_OPTS='--preview "(bat --color=never --style=numbers {} || cat {} || tree -C {}) 2> /dev/null | head -50"'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!{.git,node_modules,static_common}"'
