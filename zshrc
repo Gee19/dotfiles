@@ -21,6 +21,7 @@ PURE_CMD_MAX_EXEC_TIME=10
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ZSH_AUTOSUGGEST_USE_ASYNC='true'
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 export BAT_THEME='TwoDark'
 export FZF_COMPLETION_OPTS='--preview "(bat --color=never --style=numbers {} || cat {} || tree -C {}) 2> /dev/null | head -50"'
