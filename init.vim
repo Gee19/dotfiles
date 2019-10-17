@@ -147,6 +147,17 @@ map <leader>e :NERDTreeFind<CR>
 " Yank to global clipboard (requires vim +clipboard)
 map <leader>y "*y
 
+" Vertically split screen
+nnoremap <silent><leader>\ :vs<CR>
+" Split screen
+nnoremap <silent><leader>- :split<CR>
+
+" Easier movement between split windows CTRL + {h, j, k, l}
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
 nnoremap <leader><S-c> Oconsole.info();<Esc>
 nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
 nnoremap <leader><S-r> Ofrom celery.contrib import rdb; rdb.set_trace()<Esc>
