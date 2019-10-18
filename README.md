@@ -6,8 +6,8 @@
 
 `chsh -s /bin/zsh`
 
-## Editor (requires Node + fzf)
-- neovim + vim-plug + coc.nvim
+## Editor
+- vim/neovim + vim-plug + coc.nvim
 
 `brew install utf8proc neovim --HEAD`
 - https://github.com/neovim/neovim/issues/11125
