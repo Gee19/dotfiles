@@ -1,5 +1,5 @@
 " vim-plug
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 Plug 'joshdick/onedark.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -22,16 +22,27 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
-let g:coc_node_path = '/usr/local/bin/node'
-
-" Colors
-syntax on
-let g:onedark_termcolors=256
-set termguicolors " Use true colours
 colorscheme onedark
 
-" Fix bg color on scroll
-autocmd VimEnter * hi Normal ctermbg=none
+if !has('nvim')
+  syntax on
+  let g:onedark_termcolors=256
+
+  " Fix bg color on scroll
+  autocmd VimEnter * hi Normal ctermbg=none
+endif
+
+if has('termguicolors')
+  set termguicolors " Use true colours
+endif
+
+if has('nvim')
+  " Operator Mono OP
+  highlight Comment gui=italic
+  highlight Comment cterm=italic
+  highlight htmlArg gui=italic
+  highlight htmlArg cterm=italic
+endif
 
 " Completion menu styling
 hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
@@ -51,11 +62,13 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 " Only show buffer filename
 let g:lightline#bufferline#filename_modifier = ':t'
 
-" Match tabline background color
-let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-let s:palette.inactive.middle = s:palette.normal.middle
-let s:palette.tabline.middle = s:palette.normal.middle
+if !has('nvim')
+  " Match tabline background color
+  let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+  let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+  let s:palette.inactive.middle = s:palette.normal.middle
+  let s:palette.tabline.middle = s:palette.normal.middle
+endif
 
 " Use ripgrep for vim :grep
 if executable('rg')
@@ -87,9 +100,15 @@ set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
 set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
+set scrolloff=999 " Keep cursor in middle of screen when possible
 set showbreak=↪ " Show this char when wrapping
-set foldlevelstart=1 " Fold class methods by default
+set foldlevelstart=2 " Fold class methods
 set foldmethod=indent " Fold based on indentation
+set nofoldenable " Open all folds by default
+
+if has('nvim')
+  set inccommand=nosplit " Preview substitutions
+endif
 
 " Some coc servers have issues with backup files #649
 set nobackup
@@ -137,20 +156,51 @@ au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && w
 " Close vi if NERDTree is last and only buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+if has_key(g:plugs, 'coc.nvim')
+  let g:coc_node_path = '/usr/local/bin/node'
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+  " Use tab for trigger completion with characters ahead and navigate.
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Commands
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
+  " Prettier command
+  command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+  " Use K to show documentation in preview window
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocActionAsync('doHover')
+    endif
+  endfunction
+
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  " Coc Binds
+  augroup coc-config
+    autocmd!
+    autocmd VimEnter * nmap <silent> gd <Plug>(coc-definition)
+    autocmd VimEnter * nmap <silent> gy <Plug>(coc-type-definition)
+    autocmd VimEnter * nmap <silent> gi <Plug>(coc-implementation)
+    autocmd VimEnter * nmap <silent> gr <Plug>(coc-references)
+
+    " Use `[c` and `]c` to navigate diagnostics
+    autocmd VimEnter * nmap <silent> [c <Plug>(coc-diagnostic-prev)
+    autocmd VimEnter * nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+  augroup END
+endif
+
+" Format JSON (TODO: jq)
 command! -nargs=0 Jsonfmt :%!python -m json.tool
 
 " Binds
@@ -186,9 +236,13 @@ nnoremap <leader>C Oconsole.info();<Esc>
 nnoremap <leader>P Oimport pdb; pdb.set_trace()<Esc>
 nnoremap <leader>R Ofrom celery.contrib import rdb; rdb.set_trace()<Esc>
 
-" lazy browsing
+" lazy
 nnoremap <up> <c-u>
 nnoremap <down> <c-d>
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>b :bd<cr>
+nnoremap <leader>x :x<cr>
 
 " Shift+U undo
 nnoremap U :redo<cr>
@@ -198,6 +252,11 @@ nnoremap Y y$
 
 " qq to record, Q to replay
 nnoremap Q @q
+
+" FZF
+if has('nvim') || has('gui_running')
+  let $FZF_DEFAULT_OPTS .= ' --inline-info'
+endif
 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -219,7 +278,7 @@ autocmd! FileType fzf
 autocmd  FileType fzf set noshowmode noruler nonu
 
 if has('nvim') && exists('&winblend') && has('termguicolors')
-  set winblend=10
+  set winblend=10 " Transparency
 
   if exists('g:fzf_colors.bg')
     call remove(g:fzf_colors, 'bg')
@@ -245,7 +304,7 @@ if has('nvim') && exists('&winblend') && has('termguicolors')
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 endif
 
-" nerdtree + fzf
+" Never open fzf in NERDTree split
 " fzf ripgrep
 nnoremap <silent> <expr> <leader><S-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg\<cr>"
 
@@ -254,27 +313,6 @@ nnoremap <silent> <expr> <C-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : ''
 
 " fzf all files in repo
 nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GitFiles\<cr>"
-
-" Coc Binds
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
-endfunction
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " vsplit help
 augroup vimrc_help
