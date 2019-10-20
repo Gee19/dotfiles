@@ -24,6 +24,12 @@ call plug#end()
 
 colorscheme onedark
 
+if exists('$SHELL')
+  set shell=$SHELL
+else
+  set shell=/bin/sh
+endif
+
 if !has('nvim')
   syntax on
   let g:onedark_termcolors=256
@@ -105,6 +111,7 @@ set showbreak=↪ " Show this char when wrapping
 set foldlevelstart=2 " Fold class methods
 set foldmethod=indent " Fold based on indentation
 set nofoldenable " Open all folds by default
+set noshowmode " Hide mode, handled by lightline
 
 if has('nvim')
   set inccommand=nosplit " Preview substitutions
@@ -148,7 +155,7 @@ noremap k gk
 
 " NERDTree
 let g:NERDTreeWinSize = 25
-let NERDTreeIgnore = ['\.pyc$', '\.egg-info$']
+let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 
 " Never open in NERDTree buffer
 au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
@@ -207,6 +214,9 @@ command! -nargs=0 Jsonfmt :%!python -m json.tool
 let mapleader = "\<Space>"
 nmap <left> :bprevious<CR>
 nmap <right> :bnext<CR>
+
+" Clear search highlighting with escape
+nnoremap <silent><esc> :noh<return><esc>
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
