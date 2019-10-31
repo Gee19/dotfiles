@@ -54,6 +54,7 @@ alias djc="./manage.py collectstatic --noinput"
 
 alias djsh="./manage.py shell_plus"
 alias tst="./manage.py test $1 --settings=test_local_settings --nomigrations"
+alias tstci="./manage.py test $1 --settings=test_local_settings --failfast --noinput -v 2 --parallel 2"
 alias mailserv="python -m smtpd -n -c DebuggingServer localhost:1025"
 
 alias start_celery="celery -A . worker --app=celery_mod -l debug"

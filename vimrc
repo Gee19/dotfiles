@@ -9,8 +9,8 @@ Plug 'dhruvasagar/vim-prosession'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
-Plug 'mxw/vim-jsx', { 'for': [ 'javascript', 'typescript', 'json', 'javascript.jsx', 'typescript.jsx' ] }
+Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx', 'typescript.jsx' ] }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx', 'typescript.jsx' ] }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'thirtythreeforty/lessspace.vim'
 Plug 'rhysd/git-messenger.vim'
@@ -125,6 +125,12 @@ set nowritebackup
 set sessionoptions+=globals
 
 " Indentation
+filetype plugin indent on
+
+set tabstop=4 " Interpret <TAB> as 4 spaces
+set softtabstop=2 " 2 columns per tab
+set shiftwidth=2 " Indent width
+
 set expandtab " Convert tabs to spaces
 set smarttab " Indent according to shiftwidth at beginning of line
 set shiftround " Round indent to multiple of shiftwidth
@@ -138,7 +144,7 @@ set incsearch " Match search terms incrementally
 
 " Create undodir if it doesn't exist
 if !isdirectory($HOME . "/.vim/undodir")
-    call mkdir($HOME . "/.vim/undodir", "p")
+  call mkdir($HOME . "/.vim/undodir", "p")
 endif
 
 " Enable undofile
@@ -329,15 +335,6 @@ augroup vimrc_help
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
-
-" Indenting
-filetype plugin indent on
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType javascript.jsx setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType json setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType asciidoc setlocal tabstop=2 shiftwidth=2 shiftwidth=2 softtabstop=2
 
 " Prevent vim from indenting newlines
 function! IndentIgnoringBlanks(child)
