@@ -1,6 +1,8 @@
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
 
+local WORDCHARS='*?_[]~=&;!#$%^(){}<>'
+
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_find_no_dups
