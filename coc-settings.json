@@ -1,11 +1,12 @@
 {
   "coc.preferences.jumpCommand": "drop",
   "coc.preferences.rootPatterns": [".git", ".vim", ".vscode"],
-  "coc.preferences.formatOnSaveFiletypes": ["javascriptreact", "typescriptreact", "css"],
+  "coc.preferences.formatOnSaveFiletypes": ["python", "javascriptreact", "typescriptreact", "css"],
   "diagnostic.checkCurrentLine": true,
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": ["--append-config='${workspaceFolder}/.flake8'"],
+  "python.formatting.provider": "black",
   "tsserver.npm": "/usr/local/bin/npm"
 }

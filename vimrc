@@ -9,8 +9,8 @@ Plug 'dhruvasagar/vim-prosession'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx', 'typescript.jsx' ] }
-Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx', 'typescript.jsx' ] }
+Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact' ] }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'thirtythreeforty/lessspace.vim'
@@ -159,6 +159,9 @@ set backspace=indent,eol,start
 set virtualedit+=block
 noremap j gj
 noremap k gk
+
+" Colorful JS
+let g:vim_jsx_pretty_colorful_config = 1
 
 " NERDTree
 let g:NERDTreeWinSize = 25
