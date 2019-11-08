@@ -1,3 +1,4 @@
+# Expand Alias: <Esc>x _expand_alias
 alias reload_zsh=". ~/.zshrc"
 alias edit_zsh="vim ~/.zshrc ~/.plugins.txt ~/.aliases ~/.zshenv"
 
@@ -42,6 +43,7 @@ alias vim="nvim"
 alias vs="vagrant status"
 
 alias csec="workon checksec2 && cd ~/dev/checksec"
+alias cdsec="workon djangosec && cd ~/dev/django-security"
 alias csd="workon sdelements && cd ~/dev/sdelements/sigma"
 alias cst="workon sdetools && cd ~/dev/sdetools"
 alias csd2="workon sde2 && cd ~/dev/sde2/sigma"
