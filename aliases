@@ -4,14 +4,6 @@ alias edit_zsh="vim ~/.zshrc ~/.plugins.txt ~/.aliases ~/.zshenv"
 
 alias edit_vim="vim ~/.vimrc ~/.config/nvim/init.vim"
 
-# iTerm2 jump words (Option-Arrows)
-bindkey -e
-bindkey "\e\e[C" forward-word
-bindkey "\e\e[D" backward-word
-
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
 alias gs="git status"
 alias gp="git pull"
 alias gb="git branch"

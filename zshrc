@@ -1,8 +1,8 @@
+# antibody
 source <(antibody init)
 antibody bundle < ~/.plugins.txt
 
-[[ -s ~/.aliases ]] && source ~/.aliases
-
+# virtualenvwrapper
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=~/Envs
     mkdir -p $WORKON_HOME
@@ -10,19 +10,94 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 DISABLE_AUTO_TITLE="true"
-
-autoload -Uz promptinit;promptinit
-autoload -Uz compinit;compinit
-kitty + complete setup zsh | source /dev/stdin
-
-# max execution time of a process before its run time is shown when it exits
 PURE_CMD_MAX_EXEC_TIME=10
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 ZSH_AUTOSUGGEST_USE_ASYNC='true'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
+# prompt + completions
+autoload -Uz promptinit;promptinit
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots) # Include hidden files
+
+# Kitty OP
+kitty + complete setup zsh | source /dev/stdin
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Dependencies for vim status + colours
+zmodload zsh/zle
+autoload -U colors && colors
+
+# Change prompt icon + color based on insert/normal vim mode in prompt
+export PURE_PROMPT_SYMBOL="[I] ❯"
+export PURE_PROMPT_VICMD_SYMBOL="%{$fg[green]%}[N] ❮%{$reset_color%}"
+
+# By default, we have insert mode shown on right hand side
+export RPROMPT="%{$fg[blue]%}[INSERT]%{$reset_color%}"
+
+# Callback for vim mode change
+function zle-keymap-select () {
+    # Only supported in these terminals
+    if [ "$TERM" = "xterm-256color" ] || [ "$TERM" = "xterm-kitty" ] || [ "$TERM" = "screen-256color" ]; then
+        if [ $KEYMAP = vicmd ]; then
+            # Command mode
+            export RPROMPT="%{$fg[green]%}[NORMAL]%{$reset_color%}"
+
+            # Set block cursor
+            echo -ne '\e[1 q'
+        else
+            # Insert mode
+            export RPROMPT="%{$fg[blue]%}[INSERT]%{$reset_color%}"
+
+            # Set beam cursor
+            echo -ne '\e[5 q'
+        fi
+    fi
+
+    if typeset -f prompt_pure_update_vim_prompt_widget > /dev/null; then
+        # Refresh prompt and call Pure super function
+        prompt_pure_update_vim_prompt_widget
+    fi
+}
+
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# ci"
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+done
+
+# ci{, ci(, di{ etc..
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export BAT_THEME='TwoDark'
 export FZF_COMPLETION_OPTS='--preview "(bat --color=never --style=numbers {} || cat {} || tree -C {}) 2> /dev/null | head -50"'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!{.git,node_modules,static_common}"'
@@ -38,3 +113,25 @@ fbr() {
 
 bindkey -s '^b' 'fbr\n'
 bindkey -s '^o' 'vim $(fzf)\n'
+
+# iTerm2 jump words (Option-Arrows)
+# bindkey -e
+# bindkey "\e\e[C" forward-word
+# bindkey "\e\e[D" backward-word
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# Old habits die hard
+bindkey -M viins '\e\e[C' forward-word
+bindkey -M viins '\e\e[D' backward-word
+bindkey -M viins '^[^?' backward-kill-word
+
+[[ -s ~/.aliases ]] && source ~/.aliases
