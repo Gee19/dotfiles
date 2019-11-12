@@ -113,6 +113,7 @@ set foldlevelstart=2 " Fold class methods
 set foldmethod=indent " Fold based on indentation
 set nofoldenable " Open all folds by default
 set noshowmode " Hide mode, handled by lightline
+set relativenumber " Show line numbers from current location
 
 if has('nvim')
   set inccommand=nosplit " Preview substitutions
@@ -256,22 +257,11 @@ nnoremap <leader>C Oconsole.info();<Esc>
 nnoremap <leader>P Oimport pdb; pdb.set_trace()<Esc>
 nnoremap <leader>R Ofrom celery.contrib import rdb; rdb.set_trace()<Esc>
 
-" lazy
-nnoremap <up> <c-u>
-nnoremap <down> <c-d>
-nnoremap <leader>w :w<cr>
-nnoremap <leader>q :q<cr>
-nnoremap <leader>b :bd<cr>
-nnoremap <leader>x :x<cr>
-
 " Shift+U undo
 nnoremap U :redo<cr>
 
 " Make Y behave like other capitals
 nnoremap Y y$
-
-" qq to record, Q to replay
-nnoremap Q @q
 
 " FZF
 if has('nvim') || has('gui_running')
@@ -339,6 +329,9 @@ augroup vimrc_help
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
+
+" Automatically equalize splits when resized
+autocmd VimResized * wincmd =
 
 " Prevent vim from indenting newlines
 function! IndentIgnoringBlanks(child)
