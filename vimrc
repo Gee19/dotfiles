@@ -71,6 +71,9 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 " Only show buffer filename
 let g:lightline#bufferline#filename_modifier = ':t'
 
+" Show devicons in bufferline
+let g:lightline#bufferline#enable_devicons = 1
+
 if !has('nvim')
   " Match tabline background color
   let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
