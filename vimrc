@@ -19,6 +19,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
 Plug 'PeterRincker/vim-searchlight'
+Plug 'ryanoasis/vim-devicons'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
@@ -34,6 +35,7 @@ endif
 if !has('nvim')
   syntax on
   let g:onedark_termcolors=256
+  set encoding=UTF-8
 
   " Fix bg color on scroll
   autocmd VimEnter * hi Normal ctermbg=none
