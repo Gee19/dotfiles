@@ -173,6 +173,9 @@ let g:vim_jsx_pretty_colorful_config = 1
 let g:NERDTreeWinSize = 25
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 
+" Fancy open/close icons for folders
+let g:DevIconsEnableFoldersOpenClose = 1
+
 " Never open in NERDTree buffer
 au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
 
