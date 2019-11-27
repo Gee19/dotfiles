@@ -9,9 +9,7 @@
 ## Editor
 - vim/neovim + vim-plug + coc.nvim
 
-`brew install utf8proc neovim --HEAD`
-- https://github.com/neovim/neovim/issues/11125
-- https://github.com/Homebrew/homebrew-core/pull/45426
+`brew install neovim --HEAD`
 
 `:PlugInstall`
 
@@ -19,6 +17,9 @@
 
 ## Symlink dotfiles from homedir
 `python install.py`
+
+# Pyhon
+`pip install jedi`
 
 ## Node
 `brew install node yarn`

@@ -20,6 +20,7 @@ Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
@@ -128,6 +129,9 @@ endif
 set nobackup
 set nowritebackup
 
+" Don't persist folds in sessions (FastFold docs)
+set sessionoptions-=folds
+
 " Persist coc workspace folders in session file
 set sessionoptions+=globals
 
@@ -173,8 +177,14 @@ let g:vim_jsx_pretty_colorful_config = 1
 let g:NERDTreeWinSize = 25
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 
+" vim-nerdtree-syntax-highlight full name
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+" ryanoasis/vim-devicons/issues/243
 " Fancy open/close icons for folders
-let g:DevIconsEnableFoldersOpenClose = 1
+" let g:DevIconsEnableFoldersOpenClose = 1
 
 " Never open in NERDTree buffer
 au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
@@ -234,8 +244,10 @@ let mapleader = "\<Space>"
 nmap <left> :bprevious<CR>
 nmap <right> :bnext<CR>
 
-" Clear search highlighting with escape
-nnoremap <silent><esc> :noh<return><esc>
+if has('nvim')
+  " Clear search highlighting with escape, broken in regular vim
+  nnoremap <silent><esc> :noh<return><esc>
+endif
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
