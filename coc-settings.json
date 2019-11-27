@@ -1,4 +1,5 @@
 {
+  "suggest.noselect": false,
   "coc.preferences.jumpCommand": "drop",
   "coc.preferences.rootPatterns": [".git", ".vim", ".vscode"],
   "coc.preferences.formatOnSaveFiletypes": ["python", "javascriptreact", "typescriptreact", "css"],
