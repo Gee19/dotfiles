@@ -17,7 +17,6 @@ Plug 'thirtythreeforty/lessspace.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'kalekundert/vim-coiled-snake'
-Plug 'tyru/current-func-info.vim'
 Plug 'Konfekt/FastFold'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'ryanoasis/vim-devicons'
@@ -62,10 +61,6 @@ hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 " Commit hash at 'Commit:' header with 'Special' highlight group
 hi link gitmessengerHash Special
 
-function! CurrentSymbol()
-    return cfi#format("%s", "")
-endfunction
-
 function! StatusDiagnostic() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
@@ -84,11 +79,10 @@ let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'relativepath', 'modified', 'statusdiag', 'currentsymbol' ] ]
+      \             [ 'readonly', 'relativepath', 'modified', 'statusdiag'] ]
       \ },
       \ 'component_function': {
       \   'statusdiag': 'StatusDiagnostic',
-      \   'currentsymbol': 'CurrentSymbol'
       \ },
       \ }
 let g:lightline#bufferline#show_number = 1
