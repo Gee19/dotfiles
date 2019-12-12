@@ -36,10 +36,13 @@ alias vs="vagrant status"
 
 alias csec="workon checksec2 && cd ~/dev/checksec"
 alias cdsec="workon djangosec && cd ~/dev/django-security"
-alias csd="workon sdelements && cd ~/dev/sdelements/sigma"
-alias cst="workon sdetools && cd ~/dev/sdetools"
+
+alias csd="workon sde3 && cd ~/dev/sdelements/sigma"
 alias csd2="workon sde2 && cd ~/dev/sde2/sigma"
-alias csd3="workon sde3 && cd ~/dev/sdelements/sigma"
+
+alias cst="workon sdetools3 && cd ~/dev/sdetools"
+alias cst2="workon sdetools2 && cd ~/dev/sdetools2"
+
 alias cpca="workon pca && cd ~/dev/project-creation-automation"
 alias cpkg="cd /Users/jhaine/Envs/sdelements/lib/python2.7/site-packages"
 
