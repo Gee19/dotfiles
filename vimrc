@@ -19,10 +19,11 @@ Plug 'rhysd/clever-f.vim'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
 Plug 'PeterRincker/vim-searchlight'
-Plug 'ryanoasis/vim-devicons'
+Plug 'psliwka/vim-smoothie'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 colorscheme onedark
@@ -241,8 +242,6 @@ if has_key(g:plugs, 'coc.nvim')
     endif
   endfunction
 
-  nnoremap <silent> K :call <SID>show_documentation()<CR>
-
   " Coc Binds
   augroup coc-config
     autocmd!
@@ -250,6 +249,7 @@ if has_key(g:plugs, 'coc.nvim')
     autocmd VimEnter * nmap <silent> gy <Plug>(coc-type-definition)
     autocmd VimEnter * nmap <silent> gi <Plug>(coc-implementation)
     autocmd VimEnter * nmap <silent> gr <Plug>(coc-references)
+    autocmd VimEnter * nmap <silent> K :call <SID>show_documentation()<CR>
 
     " Use `[c` and `]c` to navigate diagnostics
     autocmd VimEnter * nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -270,6 +270,13 @@ if has('nvim')
   " Clear search highlighting with escape, broken in regular vim
   nnoremap <silent><esc> :noh<return><esc>
 endif
+
+" vim-smoothie
+let g:smoothie_no_default_mappings = v:true
+nmap <C-d> <Plug>(SmoothieDownwards)
+nmap <C-u> <Plug>(SmoothieUpwards)
+nmap <S-Down> <Plug>(SmoothieForwards)
+nmap <S-Up> <Plug>(SmoothieBackwards)
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
@@ -356,15 +363,26 @@ if has('nvim') && exists('&winblend') && has('termguicolors')
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 endif
 
-" Never open fzf in NERDTree split
-" fzf ripgrep
-nnoremap <silent> <expr> <leader><S-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg\<cr>"
+" fzf + ripgrep: global search
+nnoremap <silent> <expr> <leader><S-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg!\<cr>"
 
-" fzf files in cwd
-nnoremap <silent> <expr> <leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+" fzf + ripgrep: global search current word
+nnoremap <silent> <expr> <leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg!\ ".expand('<cword>')."<cr>"
 
 " fzf all files in repo
 nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GitFiles\<cr>"
+
+" fzf files in cwd
+nnoremap <silent> <expr> <C-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+
+" fzf buffers
+nnoremap <silent> <expr> <leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Buffers\<cr>"
+
+" fzf marks
+nnoremap <silent> <expr> <leader>m (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Marks\<cr>"
+
+" fzf commits of current buffer - kinda requires fugitive
+nnoremap <silent> <expr> <leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":BCommits!\<cr>"
 
 " vsplit help
 augroup vimrc_help
