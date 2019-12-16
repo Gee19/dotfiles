@@ -20,7 +20,6 @@ Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'psliwka/vim-smoothie'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
@@ -200,15 +199,6 @@ let g:vim_jsx_pretty_colorful_config = 1
 let g:NERDTreeWinSize = 25
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 
-" vim-nerdtree-syntax-highlight full name
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-
-" NERDTree syntax highlight performance stuff
-let g:NERDTreeHighlightCursorline = 0
-let g:NERDTreeLimitedSyntax = 1
-
 " ryanoasis/vim-devicons/issues/243
 " Fancy open/close icons for folders
 " let g:DevIconsEnableFoldersOpenClose = 1
@@ -386,7 +376,7 @@ nnoremap <silent> <expr> <leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" 
 nnoremap <silent> <expr> <leader>m (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Marks\<cr>"
 
 " fzf commits of current buffer - kinda requires fugitive
-nnoremap <silent> <expr> <leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":BCommits!\<cr>"
+nnoremap <silent> <expr> <leader>bc (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":BCommits!\<cr>"
 
 " vsplit help
 augroup vimrc_help
