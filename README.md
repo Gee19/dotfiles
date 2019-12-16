@@ -18,7 +18,7 @@
 ## Symlink dotfiles from homedir
 `python install.py`
 
-# Pyhon
+# Python
 `pip install jedi`
 
 ## Node
