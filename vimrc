@@ -205,6 +205,10 @@ let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 
+" NERDTree syntax highlight performance stuff
+let g:NERDTreeHighlightCursorline = 0
+let g:NERDTreeLimitedSyntax = 1
+
 " ryanoasis/vim-devicons/issues/243
 " Fancy open/close icons for folders
 " let g:DevIconsEnableFoldersOpenClose = 1
