@@ -314,7 +314,7 @@ nnoremap Y y$
 
 " FZF
 if has('nvim') || has('gui_running')
-  let $FZF_DEFAULT_OPTS .= ' --inline-info --layout=reverse'
+  let $FZF_DEFAULT_OPTS .= ' --inline-info'
 endif
 
 let g:fzf_colors =
