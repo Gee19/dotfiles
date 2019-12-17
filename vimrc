@@ -306,6 +306,9 @@ nnoremap U :redo<cr>
 " Make Y behave like other capitals
 nnoremap Y y$
 
+" Disable ex mode
+nnoremap Q <Nop>
+
 " FZF
 if has('nvim') || has('gui_running')
   let $FZF_DEFAULT_OPTS .= ' --inline-info'
