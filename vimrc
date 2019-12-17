@@ -105,21 +105,6 @@ if !has('nvim')
   let s:palette.tabline.middle = s:palette.normal.middle
 endif
 
-" Use ripgrep for vim :grep
-if executable('rg')
-  set grepprg=rg\ --no-heading\ --color=always\ --column\ --line-number
-  set grepformat=%f:%l:%c:%m
-endif
-
-" fzf ripgrep preview
-let $BAT_THEME = 'TwoDark'
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --no-heading --line-number --glob "!{.git,node_modules,static_common,*.xml,*.txt,*.csv,*.nessus,*.json,*.html}" --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'up:60%')
-  \           : fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
-  \ <bang>0)
-
 set hidden " New buffers with unsaved changes
 set number " Line numbers
 set noswapfile " No swap file on buffer load
@@ -311,7 +296,7 @@ nnoremap Q <Nop>
 
 " FZF
 if has('nvim') || has('gui_running')
-  let $FZF_DEFAULT_OPTS .= ' --inline-info'
+  let $FZF_DEFAULT_OPTS .= ' --inline-info --layout=reverse'
 endif
 
 let g:fzf_colors =
@@ -359,6 +344,21 @@ if has('nvim') && exists('&winblend') && has('termguicolors')
 
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 endif
+
+" Use ripgrep for vim :grep
+if executable('rg')
+  set grepprg=rg\ --no-heading\ --color=always\ --column\ --line-number
+  set grepformat=%f:%l:%c:%m
+endif
+
+" fzf ripgrep preview
+let $BAT_THEME = 'TwoDark'
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --no-heading --line-number --glob "!{.git,node_modules,static_common,*.xml,*.txt,*.csv,*.nessus,*.json,*.html}" --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--layout=default'}, 'up:70%')
+  \           : fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
+  \ <bang>0)
 
 " fzf + ripgrep: global search
 nnoremap <silent> <expr> <leader><S-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg!\<cr>"
