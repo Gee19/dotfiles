@@ -7,6 +7,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
@@ -79,10 +80,11 @@ let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'relativepath', 'modified', 'statusdiag'] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'statusdiag'] ]
       \ },
       \ 'component_function': {
       \   'statusdiag': 'StatusDiagnostic',
+      \   'gitbranch': 'gitbranch#name'
       \ },
       \ }
 let g:lightline#bufferline#show_number = 1
@@ -355,7 +357,7 @@ endif
 let $BAT_THEME = 'TwoDark'
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --no-heading --line-number --glob "!{.git,node_modules,static_common,*.xml,*.txt,*.csv,*.nessus,*.json,*.html}" --color=always '.shellescape(<q-args>), 1,
+  \   'rg --column --no-heading --line-number --color=always --glob "!{.git,node_modules,static_common,*.xml,*.txt,*.csv,*.nessus,*.json,*.html}" '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--layout=default'}, 'up:70%')
   \           : fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
   \ <bang>0)
