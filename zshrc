@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 # antibody
 source <(antibody init)
 antibody bundle < ~/.plugins.txt
@@ -19,7 +21,19 @@ autoload -Uz promptinit;promptinit
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+
+# speed up compinit by only checking cache once a day
+# https://gist.github.com/ctechols/ca1035271ad134841284
+() {
+  setopt extendedglob local_options
+
+  if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+  else
+    compinit -C
+  fi
+}
+
 _comp_options+=(globdots) # Include hidden files
 
 # Kitty OP
@@ -135,3 +149,5 @@ bindkey -M viins '\e\e[D' backward-word
 bindkey -M viins '^[^?' backward-kill-word
 
 [[ -s ~/.aliases ]] && source ~/.aliases
+
+# zprof
