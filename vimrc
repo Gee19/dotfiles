@@ -197,6 +197,7 @@ au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && w
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 if has_key(g:plugs, 'coc.nvim')
+  " let g:coc_force_debug = 1
   let g:coc_node_path = '/usr/local/n/versions/node/13.1.0/bin/node'
 
   " Use tab for trigger completion with characters ahead and navigate.
