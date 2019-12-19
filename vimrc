@@ -350,7 +350,7 @@ endif
 
 " Use ripgrep for vim :grep
 if executable('rg')
-  set grepprg=rg\ --no-heading\ --color=always\ --column\ --line-number
+  set grepprg=rg\ --vimgrep
   set grepformat=%f:%l:%c:%m
 endif
 
