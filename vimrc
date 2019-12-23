@@ -384,6 +384,9 @@ nnoremap <silent> <expr> <leader>m (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" 
 " fzf commits of current buffer - kinda requires fugitive
 nnoremap <silent> <expr> <leader>bc (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":BCommits!\<cr>"
 
+" fzf most recently updated files
+nnoremap <silent> <expr> <leader>h (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":History\<cr>"
+
 " vsplit help
 augroup vimrc_help
   autocmd!
