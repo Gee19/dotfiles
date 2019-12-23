@@ -20,7 +20,9 @@ Plug 'rhysd/clever-f.vim'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
 Plug 'PeterRincker/vim-searchlight'
+Plug 'PeterRincker/vim-argumentative'
 Plug 'psliwka/vim-smoothie'
+Plug 'romainl/vim-qf'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
@@ -386,6 +388,11 @@ nnoremap <silent> <expr> <leader>bc (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>"
 
 " fzf most recently updated files
 nnoremap <silent> <expr> <leader>h (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":History\<cr>"
+
+" vim-qf
+nmap <leader>] <Plug>(qf_qf_next)
+nmap <leader>[ <Plug>(qf_qf_previous)
+nmap <leader>qf <Plug>(qf_qf_toggle)
 
 " vsplit help
 augroup vimrc_help
