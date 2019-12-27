@@ -21,6 +21,8 @@ Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'PeterRincker/vim-argumentative'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'airblade/vim-gitgutter'
 Plug 'psliwka/vim-smoothie'
 Plug 'romainl/vim-qf'
 Plug '/usr/local/opt/fzf'
@@ -55,7 +57,13 @@ if has('nvim')
   highlight Comment cterm=italic
   highlight htmlArg gui=italic
   highlight htmlArg cterm=italic
+
+  " nvim-colorizer
+  lua require 'colorizer'.setup()
 endif
+
+" Add conf filetype so nvim-colorizer works
+autocmd BufRead,BufNewFile *.conf setlocal filetype=conf
 
 " Completion menu styling
 hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
@@ -116,7 +124,7 @@ set autoread " Auto read files changed outside of vim
 set gdefault " Substitute all matches in a line
 set cmdheight=2 " Better display for messages
 set signcolumn=yes " Show left sidebar
-set updatetime=300 " Fix coc diagnostic messages
+set updatetime=100 " Fix coc diagnostic messages
 set colorcolumn=120 " Long line warning
 set timeoutlen=1000 ttimeoutlen=0 " Mapping and keycode delays
 set showmatch " When a bracket is inserted, briefly jump to the matching one
@@ -131,6 +139,7 @@ set foldmethod=indent " Fold based on indentation
 set nofoldenable " Open all folds by default
 set noshowmode " Hide mode, handled by lightline
 set relativenumber " Show line numbers from current location
+set shortmess+=c " don't give ins-completion-menu messages
 
 if has('nvim')
   set inccommand=nosplit " Preview substitutions
@@ -393,6 +402,16 @@ nnoremap <silent> <expr> <leader>h (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" 
 nmap <leader>] <Plug>(qf_qf_next)
 nmap <leader>[ <Plug>(qf_qf_previous)
 nmap <leader>qf <Plug>(qf_qf_toggle)
+
+" vim-gitgutter
+let g:gitgutter_map_keys = 0
+let g:gitgutter_grep = 'rg'
+highlight GitGutterAdd    guifg=#98c379 guibg=0 ctermfg=2 ctermbg=0
+highlight GitGutterChange guifg=#e5c07b guibg=0 ctermfg=3 ctermbg=0
+highlight GitGutterDelete guifg=#e06c75 guibg=0 ctermfg=1 ctermbg=0
+
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 " vsplit help
 augroup vimrc_help
