@@ -44,7 +44,7 @@ if !has('nvim')
   set encoding=UTF-8
 
   " Fix bg color on scroll
-  autocmd VimEnter * hi Normal ctermbg=none
+  autocmd VimEnter * highlight Normal ctermbg=none
 endif
 
 if has('termguicolors')
@@ -66,11 +66,11 @@ endif
 autocmd BufRead,BufNewFile *.conf setlocal filetype=conf
 
 " Completion menu styling
-hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
-hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
+highlight Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
+highlight PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 
 " Commit hash at 'Commit:' header with 'Special' highlight group
-hi link gitmessengerHash Special
+highlight link gitmessengerHash Special
 
 function! StatusDiagnostic() abort
   let info = get(b:, 'coc_diagnostic_info', {})
@@ -202,7 +202,7 @@ let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 " let g:DevIconsEnableFoldersOpenClose = 1
 
 " Never open in NERDTree buffer
-au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
 
 " Close vi if NERDTree is last and only buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -500,6 +500,6 @@ command! -bar IndentNormally
             \   let &l:indentkeys = b:blanks_indentkeys |
             \ endif
 augroup IndentIgnoringBlanks
-  au!
-  au FileType * IndentIgnoringBlanks
+  autocmd!
+  autocmd FileType * IndentIgnoringBlanks
 augroup END
