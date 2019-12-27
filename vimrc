@@ -27,6 +27,7 @@ Plug 'hauleth/vim-backscratch'
 Plug 'psliwka/vim-smoothie'
 Plug 'romainl/vim-qf'
 Plug '/usr/local/opt/fzf'
+Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -403,6 +404,9 @@ nnoremap <silent> <expr> <leader>h (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" 
 nmap <leader>] <Plug>(qf_qf_next)
 nmap <leader>[ <Plug>(qf_qf_previous)
 nmap <leader>qf <Plug>(qf_qf_toggle)
+
+" vim-peekaboo
+" let g:peekaboo_compact=1
 
 " vim-gitgutter
 let g:gitgutter_map_keys = 0
