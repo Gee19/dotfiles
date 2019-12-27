@@ -1,35 +1,54 @@
 " vim-plug
 call plug#begin('~/.vim/plugged')
+" Theme
 Plug 'joshdick/onedark.vim'
+
+" tpope
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
+
+" Auto session management
 Plug 'dhruvasagar/vim-prosession'
+
+" Statusline and bufferline
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'mengelbrecht/lightline-bufferline'
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+
+" Text Objects
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'glts/vim-textobj-comment'
+Plug 'lucapette/vim-textobj-underscore'
+
+" Syntax highlighting
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact' ] }
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'thirtythreeforty/lessspace.vim'
-Plug 'rhysd/git-messenger.vim'
-Plug 'rhysd/clever-f.vim'
+
+" Folds
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
+
+" viM iSn'T aN IDe
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'rhysd/git-messenger.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'thirtythreeforty/lessspace.vim'
+Plug 'rhysd/clever-f.vim'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'airblade/vim-gitgutter'
 Plug 'hauleth/vim-backscratch'
 Plug 'psliwka/vim-smoothie'
 Plug 'romainl/vim-qf'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/fzf.vim'
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons' " Always load last
 call plug#end()
 
 colorscheme onedark
