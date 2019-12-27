@@ -406,12 +406,36 @@ nmap <leader>qf <Plug>(qf_qf_toggle)
 " vim-gitgutter
 let g:gitgutter_map_keys = 0
 let g:gitgutter_grep = 'rg'
+let g:gitgutter_preview_win_floating = 0
+
+" highlight colours
 highlight GitGutterAdd    guifg=#98c379 guibg=0 ctermfg=2 ctermbg=0
 highlight GitGutterChange guifg=#e5c07b guibg=0 ctermfg=3 ctermbg=0
 highlight GitGutterDelete guifg=#e06c75 guibg=0 ctermfg=1 ctermbg=0
 
+" mappings
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
+nmap gsh <Plug>(GitGutterStageHunk)
+nmap guh <Plug>(GitGutterUndoHunk)
+
+function! PreviewExists()
+  for winnum in range(1, winnr('$'))
+    if getwinvar(winnum, '&previewwindow')
+      return 1
+    endif
+  endfor
+  return 0
+endfunction
+
+" Toggle hunk preview
+nnoremap <silent> gph :exe PreviewExists() ? 'pc' : 'GitGutterPreviewHunk'<CR>
+
+" text objects
+omap ih <Plug>(GitGutterTextObjectInnerPending)
+omap ah <Plug>(GitGutterTextObjectOuterPending)
+xmap ih <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 
 " vsplit help
 augroup vimrc_help
