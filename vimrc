@@ -64,8 +64,11 @@ if !has('nvim')
   let g:onedark_termcolors=256
   set encoding=UTF-8
 
-  " Fix bg color on scroll
-  autocmd VimEnter * highlight Normal ctermbg=none
+  augroup vim_scroll_fix
+    " Fix bg color on scroll
+    autocmd!
+    autocmd VimEnter * highlight Normal ctermbg=none
+  augroup END
 endif
 
 if has('termguicolors')
@@ -83,8 +86,10 @@ if has('nvim')
   lua require 'colorizer'.setup()
 endif
 
-" Add conf filetype so nvim-colorizer works
-autocmd BufRead,BufNewFile *.conf setlocal filetype=conf
+augroup filetype_conf
+  autocmd!
+  autocmd BufRead,BufNewFile *.conf setlocal filetype=conf " Add conf filetype so nvim-colorizer works
+augroup END
 
 " Completion menu styling
 highlight Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
@@ -222,11 +227,15 @@ let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 " Fancy open/close icons for folders
 " let g:DevIconsEnableFoldersOpenClose = 1
 
-" Never open in NERDTree buffer
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
+augroup nerdtree_fixes
+  autocmd!
 
-" Close vi if NERDTree is last and only buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  " Never open in NERDTree buffer
+  autocmd BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
+
+  " Close vi if NERDTree is last and only buffer
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
@@ -349,9 +358,13 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-" Terminal buffer options for fzf
-autocmd! FileType fzf
-autocmd  FileType fzf set noshowmode noruler nonu
+
+augroup fzf_statusline
+  " Terminal buffer options for fzf
+  autocmd!
+  autocmd! FileType fzf
+  autocmd  FileType fzf set noshowmode noruler nonu
+augroup END
 
 if has('nvim') && exists('&winblend') && has('termguicolors')
   set winblend=10 " Transparency
@@ -461,14 +474,11 @@ omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 
-" vsplit help
-augroup vimrc_help
+augroup split_help
   autocmd!
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+  autocmd VimResized * wincmd = " Automatically equalize splits when resized
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
 augroup END
-
-" Automatically equalize splits when resized
-autocmd VimResized * wincmd =
 
 " Prevent vim from indenting newlines
 function! IndentIgnoringBlanks(child)
