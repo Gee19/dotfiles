@@ -32,6 +32,9 @@ Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact' ] }
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
 
+" My fork of vim-backscratch with vnew default
+Plug 'Gee19/vim-backscratch'
+
 " viM iSn'T aN IDe
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -42,7 +45,6 @@ Plug 'rhysd/clever-f.vim'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'hauleth/vim-backscratch'
 Plug 'psliwka/vim-smoothie'
 Plug 'romainl/vim-qf'
 Plug '/usr/local/opt/fzf'
