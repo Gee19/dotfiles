@@ -243,13 +243,19 @@ if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
   let g:coc_node_path = '/usr/local/n/versions/node/13.1.0/bin/node'
 
-  " Use tab for trigger completion with characters ahead and navigate.
+  " use <tab> for trigger completion and navigate to the next completion item
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ coc#refresh()
+
+  " use shift-<tab> to navigate to previous completion item
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+  " enter selects the first completion item and confirm the completion when no item has been selected
+  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+  " neoclide/coc.nvim/issues/28
   function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
