@@ -21,7 +21,9 @@ export PYTHONPATH=.
 export sde_admin_repo_path='/Users/jhaine/dev/sde-admin/'
 export sde_build_repo_path='/Users/jhaine/dev/sde-build/'
 export CSC_LINK=/Volumes/JHaine_EncryptedDisk1/SecurityCompass/comodo-csc-2018.p12
+
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export PATH="$PATH:/Users/jhaine/.dotnet/tools"
 
 export GITLAB_TOKEN=%NOPE%
 export CSC_KEY_PASSWORD=%NOPE%
