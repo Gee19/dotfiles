@@ -1,5 +1,8 @@
 {
   "suggest.noselect": false,
+  "suggest.enablePreview": true,
+  "suggest.removeDuplicateItems": true,
+  "codeLens.enable": true,
   "coc.preferences.jumpCommand": "drop",
   "coc.preferences.rootPatterns": [".git", ".vim", ".vscode"],
   "coc.preferences.formatOnSaveFiletypes": ["python", "javascriptreact", "typescriptreact", "css"],
