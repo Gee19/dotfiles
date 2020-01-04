@@ -91,7 +91,7 @@ endif
 augroup filetypes
   autocmd!
   autocmd BufRead,BufNewFile *.conf setlocal filetype=conf " Add conf filetype so nvim-colorizer works
-  autocmd FileType cs setlocal tabstop=4 shiftwidth=4 shiftwidth=4 softtabstop=4 " Fix c# indentation
+  autocmd FileType cs setlocal tabstop=4 shiftwidth=4 " Fix c# indentation
 augroup END
 
 " Completion menu styling
@@ -216,8 +216,6 @@ set backspace=indent,eol,start
 
 " Move cursor by display lines when wrapping
 set virtualedit+=block
-noremap j gj
-noremap k gk
 
 " Colorful JS
 let g:vim_jsx_pretty_colorful_config = 1
@@ -346,6 +344,21 @@ nnoremap Y y$
 
 " Disable ex mode
 nnoremap Q <Nop>
+
+" Map j and k to gj/gk, but only when no count is given
+" However, for larger jumps like 6j add the current position to the jump list
+" so that you can use <c-o>/<c-i> to jump to the previous position
+nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+
+" Highlight last inserted text
+nnoremap gV `[V`]
+
+" Ctrl+a goes to the beginning of the command line
+cnoremap <C-a> <Home>
+
+" Ctrl+e goes to the end of the command line
+cnoremap <C-e> <End>
 
 " FZF
 if has('nvim') || has('gui_running')
