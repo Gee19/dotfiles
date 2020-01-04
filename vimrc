@@ -88,9 +88,10 @@ if has('nvim')
   lua require 'colorizer'.setup()
 endif
 
-augroup filetype_conf
+augroup filetypes
   autocmd!
   autocmd BufRead,BufNewFile *.conf setlocal filetype=conf " Add conf filetype so nvim-colorizer works
+  autocmd FileType cs setlocal tabstop=4 shiftwidth=4 shiftwidth=4 softtabstop=4 " Fix c# indentation
 augroup END
 
 " Completion menu styling
