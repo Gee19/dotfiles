@@ -238,6 +238,8 @@ augroup nerdtree_fixes
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
+let mapleader = "\<Space>"
+
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
   let g:coc_node_path = '/usr/local/n/versions/node/13.1.0/bin/node'
@@ -275,26 +277,31 @@ if has_key(g:plugs, 'coc.nvim')
   endfunction
 
   " Coc Binds
-  augroup coc-config
-    autocmd!
-    autocmd VimEnter * nmap <silent> gd <Plug>(coc-definition)
-    autocmd VimEnter * nmap <silent> gy <Plug>(coc-type-definition)
-    autocmd VimEnter * nmap <silent> gi <Plug>(coc-implementation)
-    autocmd VimEnter * nmap <silent> gr <Plug>(coc-references)
-    autocmd VimEnter * nmap <silent> K :call <SID>show_documentation()<CR>
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+  nmap <silent> K :call <SID>show_documentation()<CR>
 
-    " Use `[c` and `]c` to navigate diagnostics
-    autocmd VimEnter * nmap <silent> [c <Plug>(coc-diagnostic-prev)
-    autocmd VimEnter * nmap <silent> ]c <Plug>(coc-diagnostic-next)
+  " Use `[c` and `]c` to navigate diagnostics
+  nmap <silent> [c <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-  augroup END
+  " Show all diagnostics
+  nnoremap <silent><leader>d :<C-u>CocList diagnostics<cr>
+
+  " Fix autofix problem of current line
+  nmap <leader>fc <Plug>(coc-fix-current)
+
+  " Show code actions
+  nmap <leader>ca :<C-u>CocList actions<cr>
+
 endif
 
 " Format JSON (TODO: jq)
 command! -nargs=0 Jsonfmt :%!python -m json.tool
 
 " Binds
-let mapleader = "\<Space>"
 nmap <left> :bprevious<CR>
 nmap <right> :bnext<CR>
 
