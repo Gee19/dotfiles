@@ -225,7 +225,7 @@ set virtualedit+=block
 let g:vim_jsx_pretty_colorful_config = 1
 
 " NERDTree
-let g:NERDTreeWinSize = 25
+let g:NERDTreeWinSize = 35
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 
 " ryanoasis/vim-devicons/issues/243
