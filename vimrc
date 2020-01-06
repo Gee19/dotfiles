@@ -35,6 +35,10 @@ Plug 'Konfekt/FastFold'
 " My fork of vim-backscratch with vnew default
 Plug 'Gee19/vim-backscratch'
 
+if has('nvim')
+  Plug 'kizza/actionmenu.nvim' " A nice context menu for vim (coc code actions)
+endif
+
 " viM iSn'T aN IDe
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -266,7 +270,7 @@ if has_key(g:plugs, 'coc.nvim')
   command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
   " Use K to show/hide documentation in preview window
-  function! s:show_documentation()
+  function! s:show_documentation() abort
     if coc#util#has_float()
       call coc#util#float_hide()
     elseif (index(['vim','help'], &filetype) >= 0)
@@ -293,8 +297,36 @@ if has_key(g:plugs, 'coc.nvim')
   " Fix autofix problem of current line
   nmap <leader>cf <Plug>(coc-fix-current)
 
+  " Code actions in context menu
+  let s:code_actions = []
+
+  function! ActionMenuCodeActions() abort
+    let s:code_actions = CocAction('codeActions')
+    let l:menu_items = map(copy(s:code_actions), { index, item -> item['title'] })
+    call actionmenu#open(l:menu_items, 'ActionMenuCodeActionsCallback')
+  endfunc
+
+  function! ActionMenuCodeActionsCallback(index, item) abort
+    if a:index >= 0
+      let l:selected_code_action = s:code_actions[a:index]
+      let l:response = CocAction('doCodeAction', l:selected_code_action)
+    endif
+  endfunc
+
+  function! s:show_code_action_menu() abort
+    if !has('nvim')
+      nnoremap <leader>ca :<C-u>CocList actions<cr>
+    endif
+
+    if coc#util#has_float()
+      call coc#util#float_hide()
+    endif
+
+    call ActionMenuCodeActions()
+  endfunction
+
   " Show code actions
-  nmap <leader>ca :<C-u>CocList actions<cr>
+  nnoremap <silent><leader>ca :call <SID>show_code_action_menu()<CR>
 
 endif
 
@@ -408,7 +440,7 @@ if has('nvim') && exists('&winblend') && has('termguicolors')
     let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
   endif
 
-  function! CreateCenteredFloatingWindow()
+  function! CreateCenteredFloatingWindow() abort
       let width = float2nr(&columns * 0.6)
       let height = float2nr(&lines * 0.6)
       let top = ((&lines - height) / 2) - 1
@@ -497,7 +529,7 @@ nmap [h <Plug>(GitGutterPrevHunk)
 nmap gsh <Plug>(GitGutterStageHunk)
 nmap guh <Plug>(GitGutterUndoHunk)
 
-function! PreviewExists()
+function! PreviewExists() abort
   for winnum in range(1, winnr('$'))
     if getwinvar(winnum, '&previewwindow')
       return 1
@@ -522,7 +554,7 @@ augroup split_help
 augroup END
 
 " Prevent vim from indenting newlines
-function! IndentIgnoringBlanks(child)
+function! IndentIgnoringBlanks(child) abort
   let lnum = v:lnum
   while v:lnum > 1 && getline(v:lnum-1) == ""
     normal k
