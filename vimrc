@@ -42,6 +42,7 @@ endif
 " viM iSn'T aN IDe
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'jiangmiao/auto-pairs'
 Plug 'rhysd/git-messenger.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'thirtythreeforty/lessspace.vim'
