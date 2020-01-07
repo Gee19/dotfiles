@@ -1,17 +1,9 @@
 {
-  "coc.preferences.jumpCommand": "drop",
-  "coc.preferences.rootPatterns": [".git", ".vim", ".vscode"],
   "coc.preferences.formatOnSaveFiletypes": ["javascriptreact", "typescriptreact", "css"],
-  "diagnostic.checkCurrentLine": true,
   "python.pythonPath": "/Users/jhaine/Envs/sde3/bin/python",
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": false,
-  "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
     "--config='${workspaceFolder}/.flake8'",
     "--ignore=D205,D100,D102,D105,D106,D107,E501"
   ],
-  "python.formatting.provider": "black",
-  "tsserver.npm": "/usr/local/bin/npm",
   "eslint.options": {"configFile": "/Users/jhaine/dev/sdelements/sigma/.eslintrc"}
 }
