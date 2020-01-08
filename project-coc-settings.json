@@ -1,5 +1,4 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["javascriptreact", "typescriptreact", "css"],
   "python.pythonPath": "/Users/jhaine/Envs/sde3/bin/python",
   "python.linting.flake8Args": [
     "--config='${workspaceFolder}/.flake8'",
