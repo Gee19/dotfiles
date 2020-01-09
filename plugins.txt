@@ -1,5 +1,5 @@
 mafredri/zsh-async
-sindresorhus/pure
+sindresorhus/pure branch:indestructible-pure
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting 

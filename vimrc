@@ -53,6 +53,7 @@ Plug 'psliwka/vim-smoothie'
 Plug 'romainl/vim-qf'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons' " Always load last
 call plug#end()
