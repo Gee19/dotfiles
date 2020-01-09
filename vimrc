@@ -47,15 +47,20 @@ Plug 'airblade/vim-gitgutter'
 Plug 'thirtythreeforty/lessspace.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'PeterRincker/vim-searchlight'
-Plug 'PeterRincker/vim-argumentative'
+Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'psliwka/vim-smoothie'
 Plug 'romainl/vim-qf'
+
+" junegunn op
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf.vim'
-Plug 'ryanoasis/vim-devicons' " Always load last
+
+" Always load last
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 colorscheme onedark
@@ -241,6 +246,12 @@ augroup nerdtree_fixes
 
   " Close vi if NERDTree is last and only buffer
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+
+augroup goyo_limelight
+  autocmd!
+  autocmd! User GoyoEnter Limelight
+  autocmd! User GoyoLeave Limelight!
 augroup END
 
 let mapleader = "\<Space>"
