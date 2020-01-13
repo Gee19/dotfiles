@@ -37,6 +37,7 @@ Plug 'Gee19/vim-backscratch'
 
 if has('nvim')
   Plug 'kizza/actionmenu.nvim' " A nice context menu for vim (coc code actions)
+  Plug 'norcalli/nvim-colorizer.lua'
 endif
 
 " viM iSn'T aN IDe
@@ -48,7 +49,6 @@ Plug 'thirtythreeforty/lessspace.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
-Plug 'norcalli/nvim-colorizer.lua'
 Plug 'psliwka/vim-smoothie'
 Plug 'romainl/vim-qf'
 
@@ -95,7 +95,7 @@ if has('nvim')
   highlight htmlArg cterm=italic
 
   " nvim-colorizer
-  lua require 'colorizer'.setup()
+  lua require 'colorizer'.setup({'*', '!text'})
 endif
 
 augroup filetypes
