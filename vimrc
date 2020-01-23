@@ -33,7 +33,7 @@ Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
 
 " My fork of vim-backscratch with vnew default
-Plug 'Gee19/vim-backscratch'
+" Plug 'Gee19/vim-backscratch'
 
 if has('nvim')
   Plug 'kizza/actionmenu.nvim' " A nice context menu for vim (coc code actions)
@@ -47,9 +47,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'thirtythreeforty/lessspace.vim'
 Plug 'rhysd/clever-f.vim'
-Plug 'PeterRincker/vim-searchlight'
 Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
-Plug 'psliwka/vim-smoothie'
 Plug 'romainl/vim-qf'
 
 " junegunn op
@@ -258,7 +256,7 @@ let mapleader = "\<Space>"
 
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
-  let g:coc_node_path = '/usr/local/n/versions/node/13.6.0/bin/node'
+  let g:coc_node_path = '/usr/local/n/versions/node/13.7.0/bin/node'
 
   " use <tab> for trigger completion and navigate to the next completion item
   inoremap <silent><expr> <TAB>
@@ -354,13 +352,6 @@ if has('nvim')
   nnoremap <silent><esc> :noh<return><esc>
 endif
 
-" vim-smoothie
-let g:smoothie_no_default_mappings = v:true
-nmap <C-d> <Plug>(SmoothieDownwards)
-nmap <C-u> <Plug>(SmoothieUpwards)
-nmap <S-Down> <Plug>(SmoothieForwards)
-nmap <S-Up> <Plug>(SmoothieBackwards)
-
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
@@ -378,6 +369,19 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+" Blink current search match
+nnoremap <silent> n n:call <SID>BlinkCurrentMatch()<CR>
+nnoremap <silent> N N:call <SID>BlinkCurrentMatch()<CR>
+
+function! s:BlinkCurrentMatch()
+  let target = '\c\%#'.@/
+  let match = matchadd('IncSearch', target)
+  redraw
+  sleep 100m
+  call matchdelete(match)
+  redraw
+endfunction
 
 " Insert newline above or below and stay in normal mode
 " No insert mode, doesn't move the cursor, and allows you to use a counter to append several lines at once
@@ -512,7 +516,7 @@ nnoremap <silent> <expr> <leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" 
 nnoremap <silent> <expr> <leader>m (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Marks\<cr>"
 
 " fzf commits of current buffer - kinda requires fugitive
-nnoremap <silent> <expr> <leader>bc (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":BCommits!\<cr>"
+nnoremap <silent> <expr> <leader>gl (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":BCommits!\<cr>"
 
 " fzf most recently updated files
 nnoremap <silent> <expr> <leader>h (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":History\<cr>"
