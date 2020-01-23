@@ -14,7 +14,7 @@ Plug 'dhruvasagar/vim-prosession'
 
 " Statusline and bufferline
 Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-gitbranch'
+" Plug 'itchyny/vim-gitbranch'
 Plug 'mengelbrecht/lightline-bufferline'
 
 " Text Objects
