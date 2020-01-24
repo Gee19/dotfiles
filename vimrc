@@ -437,6 +437,7 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+let g:fzf_buffers_jump = 1 " Jump to open buffer
 
 augroup fzf_statusline
   " Terminal buffer options for fzf
