@@ -6,8 +6,8 @@
 
 `chsh -s /bin/zsh`
 
-## Editor
-- vim/neovim + vim-plug + coc.nvim
+## Editor(s)
+- vim/neovim + coc.nvim
 
 `brew install neovim --HEAD`
 
@@ -19,7 +19,7 @@
 `python install.py`
 
 # Python
-`pip install jedi`
+`pip install flake8==3.7.8 flake8-docstrings pydocstyle==4.0.1`
 
 ## Node
 `brew install node yarn`
@@ -28,3 +28,7 @@
 
 ## Extras
 `brew install fzf ripgrep bat exa fd`
+
+## TODO
+- nvm
+- automate Brewfile
