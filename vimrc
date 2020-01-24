@@ -49,6 +49,7 @@ Plug 'thirtythreeforty/lessspace.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 Plug 'romainl/vim-qf'
+Plug 'AndrewRadev/switch.vim'
 
 " junegunn op
 Plug '/usr/local/opt/fzf'
@@ -526,6 +527,9 @@ nnoremap <silent> <expr> <leader>h (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" 
 nmap <leader>] <Plug>(qf_qf_next)
 nmap <leader>[ <Plug>(qf_qf_previous)
 nmap <leader>qf <Plug>(qf_qf_toggle)
+
+" switch.vim
+let g:switch_mapping = "<leader>s"
 
 " vim-peekaboo
 " let g:peekaboo_compact=1
