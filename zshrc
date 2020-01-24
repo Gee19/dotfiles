@@ -148,6 +148,4 @@ bindkey -M viins '\e\e[C' forward-word
 bindkey -M viins '\e\e[D' backward-word
 bindkey -M viins '^[^?' backward-kill-word
 
-[[ -s ~/.aliases ]] && source ~/.aliases
-
 # zprof

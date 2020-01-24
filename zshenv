@@ -3,6 +3,8 @@ HISTFILE=~/.zsh_history
 
 local WORDCHARS='*?_[]~=&;!#$%^(){}<>'
 
+[[ -s ~/.aliases ]] && source ~/.aliases
+
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_find_no_dups
