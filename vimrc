@@ -50,6 +50,8 @@ Plug 'rhysd/clever-f.vim'
 Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
+Plug 'alvan/vim-closetag'
+Plug 'jiangmiao/auto-pairs'
 
 " junegunn op
 Plug '/usr/local/opt/fzf'
@@ -225,6 +227,8 @@ set backspace=indent,eol,start
 
 " Move cursor by display lines when wrapping
 set virtualedit+=block
+
+let g:closetag_filetypes='html,xhtml,jsx,xml,javascriptreact,javascript,typescriptreact,typescript'
 
 " Colorful JS
 let g:vim_jsx_pretty_colorful_config = 1

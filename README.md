@@ -13,7 +13,7 @@
 
 `:PlugInstall`
 
-`:CocInstall coc-prettier coc-python coc-json coc-css coc-tsserver coc-eslint coc-pairs coc-omnisharp`
+`:CocInstall coc-prettier coc-python coc-json coc-css coc-tsserver coc-eslint coc-omnisharp`
 
 ## Symlink dotfiles from homedir
 `python install.py`
