@@ -130,11 +130,10 @@ let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'statusdiag'] ]
+      \             [ 'readonly', 'filename', 'modified', 'statusdiag'] ]
       \ },
       \ 'component_function': {
-      \   'statusdiag': 'StatusDiagnostic',
-      \   'gitbranch': 'gitbranch#name'
+      \   'statusdiag': 'StatusDiagnostic'
       \ },
       \ }
 let g:lightline#bufferline#show_number = 1
