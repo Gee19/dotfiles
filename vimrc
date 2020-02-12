@@ -260,7 +260,7 @@ let mapleader = "\<Space>"
 
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
-  let g:coc_node_path = '/usr/local/n/versions/node/13.7.0/bin/node'
+  let g:coc_node_path = '/usr/local/n/versions/node/13.8.0/bin/node'
 
   " use <tab> for trigger completion and navigate to the next completion item
   inoremap <silent><expr> <TAB>
