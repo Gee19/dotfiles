@@ -526,6 +526,15 @@ nnoremap <silent> <expr> <leader>gl (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>"
 " fzf most recently updated files
 nnoremap <silent> <expr> <leader>h (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":History\<cr>"
 
+" fzf lines in current buffer
+nnoremap <silent> <expr> <leader>l (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":BLines\<cr>"
+
+" fzf lines in any buffer
+nnoremap <silent> <expr> <leader>L (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Lines\<cr>"
+
+" fzf help
+nnoremap <silent> <expr> <leader>H (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Helptags\<cr>"
+
 " vim-qf
 nmap <leader>] <Plug>(qf_qf_next)
 nmap <leader>[ <Plug>(qf_qf_previous)
