@@ -120,15 +120,18 @@ function! StatusDiagnostic() abort
   return join(msgs, ' ')
 endfunction
 
+" Use auocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
 " Lightline + Tabline
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'statusdiag'] ]
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified'] ]
       \ },
       \ 'component_function': {
-      \   'statusdiag': 'StatusDiagnostic'
+      \   'cocstatus': 'coc#status'
       \ },
       \ }
 let g:lightline#bufferline#show_number = 1
