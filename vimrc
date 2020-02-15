@@ -32,11 +32,7 @@ Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact' ] }
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'Konfekt/FastFold'
 
-" My fork of vim-backscratch with vnew default
-" Plug 'Gee19/vim-backscratch'
-
 if has('nvim')
-  Plug 'kizza/actionmenu.nvim' " A nice context menu for vim (coc code actions)
   Plug 'norcalli/nvim-colorizer.lua'
 endif
 
@@ -311,36 +307,11 @@ if has_key(g:plugs, 'coc.nvim')
   " Fix autofix problem of current line
   nmap <leader>cf <Plug>(coc-fix-current)
 
-  " Code actions in context menu
-  let s:code_actions = []
-
-  function! ActionMenuCodeActions() abort
-    let s:code_actions = CocAction('codeActions')
-    let l:menu_items = map(copy(s:code_actions), { index, item -> item['title'] })
-    call actionmenu#open(l:menu_items, 'ActionMenuCodeActionsCallback')
-  endfunc
-
-  function! ActionMenuCodeActionsCallback(index, item) abort
-    if a:index >= 0
-      let l:selected_code_action = s:code_actions[a:index]
-      let l:response = CocAction('doCodeAction', l:selected_code_action)
-    endif
-  endfunc
-
-  function! s:show_code_action_menu() abort
-    if !has('nvim')
-      nnoremap <leader>ca :<C-u>CocList actions<cr>
-    endif
-
-    if coc#util#has_float()
-      call coc#util#float_hide()
-    endif
-
-    call ActionMenuCodeActions()
-  endfunction
-
   " Show code actions
-  nnoremap <silent><leader>ca :call <SID>show_code_action_menu()<CR>
+  nmap <leader>ca <Plug>(coc-codeaction)
+
+  " Remap for rename current word
+  nmap <leader>rn <Plug>(coc-rename)
 
 endif
 
