@@ -306,8 +306,13 @@ if has_key(g:plugs, 'coc.nvim')
   " Fix autofix problem of current line
   nmap <leader>cf <Plug>(coc-fix-current)
 
-  " Show code actions
-  nmap <leader>ca <Plug>(coc-codeaction)
+  " Remap for codeAction of selected region
+  function! s:cocActionsOpenFromSelected(type) abort
+    execute 'CocCommand actions.open ' . a:type
+  endfunction
+
+  xmap <silent> <leader>ca :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+  nmap <silent> <leader>ca :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
   " Remap for rename current word
   nmap <leader>rn <Plug>(coc-rename)

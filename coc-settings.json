@@ -6,6 +6,8 @@
   "coc.preferences.jumpCommand": "drop",
   "coc.preferences.rootPatterns": [".git", ".vscode"],
   "coc.preferences.formatOnSaveFiletypes": ["python", "javascriptreact", "typescriptreact", "css"],
+  "coc-actions.hideCursor": false,
+  "coc-actions.useCursorLine": true,
   "diagnostic.checkCurrentLine": false,
   "python.jediEnabled": false,
   "python.linting.enabled": true,
