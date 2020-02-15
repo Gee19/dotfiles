@@ -14,7 +14,6 @@ Plug 'dhruvasagar/vim-prosession'
 
 " Statusline and bufferline
 Plug 'itchyny/lightline.vim'
-" Plug 'itchyny/vim-gitbranch'
 Plug 'mengelbrecht/lightline-bufferline'
 
 " Text Objects
@@ -22,6 +21,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'glts/vim-textobj-comment'
 Plug 'lucapette/vim-textobj-underscore'
+Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 
 " Syntax highlighting
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
@@ -43,7 +43,6 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'thirtythreeforty/lessspace.vim'
 Plug 'rhysd/clever-f.vim'
-Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
@@ -382,9 +381,6 @@ nnoremap Q <Nop>
 " so that you can use <c-o>/<c-i> to jump to the previous position
 nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
-
-" Highlight last inserted text
-nnoremap gV `[V`]
 
 " Ctrl+a goes to the beginning of the command line
 cnoremap <C-a> <Home>
