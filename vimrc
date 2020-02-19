@@ -322,7 +322,7 @@ if has_key(g:plugs, 'coc.nvim')
 
 endif
 
-" Format JSON (TODO: jq)
+" Format JSON (TODO: jq & find more resilient method)
 command! -nargs=0 Jsonfmt :%!python -m json.tool
 
 " Binds
@@ -377,7 +377,8 @@ map <leader>y "*y
 
 " Vertically split screen
 nnoremap <silent><leader>\ :vs<CR>
-" Split screen
+
+" Horizontally split screen
 nnoremap <silent><leader>- :split<CR>
 
 " Easier movement between split windows CTRL + {h, j, k, l}
@@ -385,6 +386,22 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+" beginning of the command line
+cnoremap <C-a> <Home>
+
+" end of the command line
+cnoremap <C-e> <End>
+
+" in insert mode
+inoremap <C-e> <END>
+inoremap <C-a> <HOME>
+
+" hjkl with ctrl
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
 
 " Blink current search match
 nnoremap <silent> n n:call <SID>BlinkCurrentMatch()<CR>
@@ -423,12 +440,6 @@ nnoremap Q <Nop>
 " so that you can use <c-o>/<c-i> to jump to the previous position
 nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
-
-" Ctrl+a goes to the beginning of the command line
-cnoremap <C-a> <Home>
-
-" Ctrl+e goes to the end of the command line
-cnoremap <C-e> <End>
 
 " FZF
 if has('nvim') || has('gui_running')
@@ -596,6 +607,7 @@ augroup split_help
 augroup END
 
 " Prevent vim from indenting newlines
+" https://vim.fandom.com/wiki/Get_the_correct_indent_for_new_lines_despite_blank_lines
 function! IndentIgnoringBlanks(child) abort
   let lnum = v:lnum
   while v:lnum > 1 && getline(v:lnum-1) == ""
