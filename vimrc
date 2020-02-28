@@ -46,7 +46,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
-Plug 'jiangmiao/auto-pairs'
+Plug 'Krasjet/auto.pairs'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
