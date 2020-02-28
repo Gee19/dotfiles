@@ -49,7 +49,7 @@ Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs'
 
 " junegunn op
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -441,79 +441,14 @@ nnoremap Q <Nop>
 nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
-" FZF
-if has('nvim') || has('gui_running')
-  let $FZF_DEFAULT_OPTS .= ' --inline-info --layout=reverse'
-endif
-
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-let g:fzf_buffers_jump = 1 " Jump to open buffer
-
-augroup fzf_statusline
-  " Terminal buffer options for fzf
-  autocmd!
-  autocmd! FileType fzf
-  autocmd  FileType fzf set noshowmode noruler nonu
-augroup END
-
-if has('nvim') && exists('&winblend') && has('termguicolors')
-  set winblend=10 " Transparency
-
-  if exists('g:fzf_colors.bg')
-    call remove(g:fzf_colors, 'bg')
-  endif
-
-  if stridx($FZF_DEFAULT_OPTS, '--border') == -1
-    let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
-  endif
-
-  function! CreateCenteredFloatingWindow() abort
-      let width = float2nr(&columns * 0.6)
-      let height = float2nr(&lines * 0.6)
-      let top = ((&lines - height) / 2) - 1
-      let left = (&columns - width) / 2
-      let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
-
-      let top = "╭" . repeat("─", width - 2) . "╮"
-      let mid = "│" . repeat(" ", width - 2) . "│"
-      let bot = "╰" . repeat("─", width - 2) . "╯"
-      let lines = [top] + repeat([mid], height - 2) + [bot]
-      let s:buf = nvim_create_buf(v:false, v:true)
-      call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-      call nvim_open_win(s:buf, v:true, opts)
-      set winhl=Normal:Floating
-      let opts.row += 1
-      let opts.height -= 2
-      let opts.col += 2
-      let opts.width -= 4
-      call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-      au BufWipeout <buffer> exe 'bw '.s:buf
-  endfunction
-
-  let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
-endif
-
 " Use ripgrep for vim :grep
 if executable('rg')
   set grepprg=rg\ --vimgrep
   set grepformat=%f:%l:%c:%m
 endif
 
-" fzf ripgrep preview
+" FZF
+" ripgrep preview
 let $BAT_THEME = 'TwoDark'
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -522,38 +457,65 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
   \ <bang>0)
 
-" fzf + ripgrep: global search
-nnoremap <silent> <expr> <leader><S-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg!\<cr>"
+" fullscreen ripgrep global search
+nnoremap <silent> <leader><S-f> :Rg!<cr>
 
-" fzf + ripgrep: global search current word
-nnoremap <silent> <expr> <leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg!\ ".expand('<cword>')."<cr>"
+" fullscreen ripgrep global search current word
+nnoremap <silent> <expr> <leader>f ":Rg!\ ".expand('<cword>')."<cr>"
 
-" fzf all files in repo
-nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GitFiles\<cr>"
+" all files in repo
+nnoremap <silent> <C-p> :GitFiles<cr>
 
-" fzf files in cwd
-nnoremap <silent> <expr> <C-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+" files in cwd
+nnoremap <silent> <C-f> :Files<cr>
 
-" fzf buffers
-nnoremap <silent> <expr> <leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Buffers\<cr>"
+" buffers
+nnoremap <silent> <leader>b :Buffers<cr>
 
-" fzf marks
-nnoremap <silent> <expr> <leader>m (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Marks\<cr>"
+" marks
+nnoremap <silent> <leader>m :Marks<cr>
 
-" fzf commits of current buffer - kinda requires fugitive
-nnoremap <silent> <expr> <leader>gl (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":BCommits!\<cr>"
+" commits of current buffer - kinda requires fugitive
+nnoremap <silent> <leader>gl :BCommits!<cr>
 
-" fzf most recently updated files
-nnoremap <silent> <expr> <leader>h (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":History\<cr>"
+" most recently updated files
+nnoremap <silent> <leader>h :History<cr>
 
-" fzf lines in current buffer
-nnoremap <silent> <expr> <leader>l (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":BLines\<cr>"
+" lines in current buffer
+nnoremap <silent> <leader>l :BLines<cr>
 
-" fzf lines in any buffer
-nnoremap <silent> <expr> <leader>L (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Lines\<cr>"
+" lines in any buffer
+nnoremap <silent> <leader>L :Lines<cr>
 
-" fzf help
-nnoremap <silent> <expr> <leader>H (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Helptags\<cr>"
+" help
+nnoremap <silent> <leader>H :Helptags<cr>
+
+" Reverse layout for floating windows
+if has('nvim') || has('gui_running')
+  let $FZF_DEFAULT_OPTS .= ' --inline-info --layout=reverse'
+  let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.3, 'yoffset': '-1', 'border': 'rounded' } }
+endif
+
+" Hide statusline when fzf open in vim
+if !has('nvim')
+  augroup fzf_statusline
+    autocmd! FileType fzf
+    autocmd  FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  augroup END
+end
+
+" Transparency
+if has('nvim') && exists('&winblend') && has('termguicolors')
+  set winblend=10
+
+  if exists('g:fzf_colors.bg')
+    call remove(g:fzf_colors, 'bg')
+  endif
+endif
+
+" Jump to open buffer
+let g:fzf_buffers_jump = 1
 
 " vim-qf
 nmap <leader>] <Plug>(qf_qf_next)

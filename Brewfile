@@ -9,7 +9,6 @@ brew install ctags
 brew install exa
 brew install fd
 brew install freetds@0.91
-brew install fzf
 brew install geckodriver
 brew install git
 brew install gnu-tar
