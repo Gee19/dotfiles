@@ -107,20 +107,21 @@ highlight PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 g
 " Commit hash at 'Commit:' header with 'Special' highlight group
 highlight link gitmessengerHash Special
 
-function! StatusDiagnostic() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let msgs = []
-  if get(info, 'error', 0)
-    call add(msgs, 'E' . info['error'])
-  endif
-  if get(info, 'warning', 0)
-    call add(msgs, 'W' . info['warning'])
-  endif
-  return join(msgs, ' ')
-endfunction
+" Useless with coc#status
+" function! StatusDiagnostic() abort
+"   let info = get(b:, 'coc_diagnostic_info', {})
+"   if empty(info) | return '' | endif
+"   let msgs = []
+"   if get(info, 'error', 0)
+"     call add(msgs, 'E' . info['error'])
+"   endif
+"   if get(info, 'warning', 0)
+"     call add(msgs, 'W' . info['warning'])
+"   endif
+"   return join(msgs, ' ')
+" endfunction
 
-" Use auocmd to force lightline update.
+" Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 " Lightline + Tabline
