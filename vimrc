@@ -449,6 +449,9 @@ if executable('rg')
 endif
 
 " FZF
+" Default preview off, only in fullscreen (Rg!)
+let g:fzf_preview_window = ''
+
 " ripgrep preview
 let $BAT_THEME = 'TwoDark'
 command! -bang -nargs=* Rg
