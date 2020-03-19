@@ -35,7 +35,6 @@ alias vim="nvim"
 alias vs="vagrant status"
 
 alias ebank="workon exploitmebank && cd ~/dev/exploitmebank/ExploitMe_Bank"
-alias ebank3="workon ebank3 && cd ~/dev/exploitmebank/ExploitMe_Bank"
 
 alias csec="workon checksec2 && cd ~/dev/checksec"
 alias cdsec="workon djangosec && cd ~/dev/django-security"
@@ -51,6 +50,9 @@ alias cpkg="cd /Users/jhaine/Envs/sdelements/lib/python2.7/site-packages"
 
 alias nds="node devServer.js"
 alias yd="yarn dev"
+alias ys="yarn start"
+alias yb="yarn build"
+alias ycc="yarn cache clean"
 
 alias djrs="./manage.py runserver"
 alias djm="./manage.py migrate"
