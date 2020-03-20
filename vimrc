@@ -46,7 +46,9 @@ Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
-Plug 'Krasjet/auto.pairs'
+Plug 'Yggdroot/indentLine'
+Plug 'tmsvg/pear-tree'
+" Plug 'Krasjet/auto.pairs'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -230,6 +232,18 @@ let g:closetag_filetypes='html,xhtml,jsx,xml,javascriptreact,javascript,typescri
 
 " Colorful JS
 let g:vim_jsx_pretty_colorful_config = 1
+
+" Indent guides
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+" Auto pairs
+" Pair expansion is dot-repeatable by default:
+let g:pear_tree_repeatable_expand = 1
+
+" Smart pairs are disabled by default:
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
 
 " NERDTree
 let g:NERDTreeWinSize = 35
