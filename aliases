@@ -35,6 +35,7 @@ alias vim="nvim"
 alias vs="vagrant status"
 
 alias ebank="workon exploitmebank && cd ~/dev/exploitmebank/ExploitMe_Bank"
+alias ebank3="workon ebank3 && cd ~/dev/exploitmebank/ExploitMe_Bank"
 
 alias csec="workon checksec2 && cd ~/dev/checksec"
 alias cdsec="workon djangosec && cd ~/dev/django-security"
