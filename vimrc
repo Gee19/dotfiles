@@ -47,8 +47,7 @@ Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
 Plug 'Yggdroot/indentLine'
-Plug 'tmsvg/pear-tree'
-" Plug 'Krasjet/auto.pairs'
+Plug 'Krasjet/auto.pairs'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -108,20 +107,6 @@ highlight PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 g
 
 " Commit hash at 'Commit:' header with 'Special' highlight group
 highlight link gitmessengerHash Special
-
-" Useless with coc#status
-" function! StatusDiagnostic() abort
-"   let info = get(b:, 'coc_diagnostic_info', {})
-"   if empty(info) | return '' | endif
-"   let msgs = []
-"   if get(info, 'error', 0)
-"     call add(msgs, 'E' . info['error'])
-"   endif
-"   if get(info, 'warning', 0)
-"     call add(msgs, 'W' . info['warning'])
-"   endif
-"   return join(msgs, ' ')
-" endfunction
 
 " Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
@@ -236,15 +221,6 @@ let g:vim_jsx_pretty_colorful_config = 1
 " Indent guides
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-" Auto pairs
-" Pair expansion is dot-repeatable by default:
-let g:pear_tree_repeatable_expand = 1
-
-" Smart pairs are disabled by default:
-let g:pear_tree_smart_openers = 1
-let g:pear_tree_smart_closers = 1
-let g:pear_tree_smart_backspace = 1
-
 " NERDTree
 let g:NERDTreeWinSize = 35
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
@@ -274,6 +250,17 @@ let mapleader = "\<Space>"
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
   let g:coc_node_path = '/usr/local/n/versions/node/13.8.0/bin/node'
+
+  let g:coc_global_extensions = [
+    \ 'coc-prettier',
+    \ 'coc-python',
+    \ 'coc-json',
+    \ 'coc-css',
+    \ 'coc-tsserver',
+    \ 'coc-eslint',
+    \ 'coc-omnisharp',
+    \ 'coc-actions'
+  \ ]
 
   " use <tab> for trigger completion and navigate to the next completion item
   inoremap <silent><expr> <TAB>
