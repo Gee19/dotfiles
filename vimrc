@@ -383,12 +383,6 @@ nnoremap <silent><leader>\ :vs<CR>
 " Horizontally split screen
 nnoremap <silent><leader>- :split<CR>
 
-" Easier movement between split windows CTRL + {h, j, k, l}
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-
 " beginning of the command line
 cnoremap <C-a> <Home>
 
