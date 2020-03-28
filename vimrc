@@ -46,7 +46,6 @@ Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
-Plug 'Yggdroot/indentLine'
 Plug 'Krasjet/auto.pairs'
 
 " junegunn op
@@ -578,7 +577,6 @@ augroup split_help
   autocmd!
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
-  autocmd FileType help,nerdtree IndentLinesToggle " Disable indentlines in nerdtree/help
 augroup END
 
 " Prevent vim from indenting newlines
