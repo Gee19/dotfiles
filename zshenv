@@ -1,4 +1,4 @@
-SAVEHIST=100000
+SAVEHIST=1000000
 HISTFILE=~/.zsh_history
 
 local WORDCHARS='*?_[]~=&;!#$%^(){}<>'
