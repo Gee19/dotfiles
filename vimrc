@@ -101,7 +101,7 @@ augroup filetypes
 augroup END
 
 " Completion menu styling
-highlight Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
+highlight Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#373d48 gui=NONE
 highlight PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 
 " Commit hash at 'Commit:' header with 'Special' highlight group
@@ -258,7 +258,8 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-tsserver',
     \ 'coc-eslint',
     \ 'coc-omnisharp',
-    \ 'coc-actions'
+    \ 'coc-actions',
+    \ 'coc-rls'
   \ ]
 
   " use <tab> for trigger completion and navigate to the next completion item
@@ -545,9 +546,9 @@ let g:gitgutter_grep = 'rg'
 let g:gitgutter_preview_win_floating = 0
 
 " highlight colours
-highlight GitGutterAdd    guifg=#98c379 guibg=0 ctermfg=2 ctermbg=0
-highlight GitGutterChange guifg=#e5c07b guibg=0 ctermfg=3 ctermbg=0
-highlight GitGutterDelete guifg=#e06c75 guibg=0 ctermfg=1 ctermbg=0
+highlight GitGutterAdd    guifg=#98c379 guibg=bg ctermfg=2 ctermbg=bg
+highlight GitGutterChange guifg=#e5c07b guibg=bg ctermfg=3 ctermbg=bg
+highlight GitGutterDelete guifg=#e06c75 guibg=bg ctermfg=1 ctermbg=bg
 
 " mappings
 nmap ]h <Plug>(GitGutterNextHunk)
