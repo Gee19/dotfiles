@@ -469,6 +469,10 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
   \ <bang>0)
 
+" files in git repo with changes, fullscreen if called with bang
+command! -bang -nargs=* Gd call fzf#vim#gitfiles('?', {'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, <bang>0)
+nnoremap <silent> <leader>gd :Gd<cr>
+
 " fullscreen ripgrep global search
 nnoremap <silent> <leader><S-f> :Rg!<cr>
 

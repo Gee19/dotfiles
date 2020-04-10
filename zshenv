@@ -30,6 +30,7 @@ export CPPFLAGS="-I/usr/local/opt/readline/include"
 export HOMEBREW_NO_ANALYTICS=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export PATH="$PATH:/Users/jhaine/.dotnet/tools"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
 
 export GITLAB_TOKEN=%NOPE%
 export CSC_KEY_PASSWORD=%NOPE%
