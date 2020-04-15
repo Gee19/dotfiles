@@ -327,10 +327,6 @@ endif
 " Format JSON (TODO: jq & find more resilient method)
 command! -nargs=0 Jsonfmt :%!python -m json.tool
 
-" Binds
-nmap <left> :bprevious<CR>
-nmap <right> :bnext<CR>
-
 if has('nvim')
   " Clear search highlighting with escape, broken in regular vim
   nnoremap <silent><esc> :noh<return><esc>
