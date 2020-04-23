@@ -156,7 +156,7 @@ set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
 set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
-set scrolloff=999 " Keep cursor in middle of screen when possible
+" set scrolloff=999 " Keep cursor in middle of screen when possible
 set showbreak=↪ " Show this char when wrapping
 set foldlevelstart=2 " Fold class methods
 set foldmethod=indent " Fold based on indentation

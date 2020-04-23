@@ -34,6 +34,8 @@ alias vi="nvim"
 alias vim="nvim"
 alias vs="vagrant status"
 
+alias mcs="workon mcs && cd ~/dev/management_command_system"
+
 alias ebank="workon exploitmebank && cd ~/dev/exploitmebank/ExploitMe_Bank"
 alias ebank3="workon ebank3 && cd ~/dev/exploitmebank/ExploitMe_Bank"
 
