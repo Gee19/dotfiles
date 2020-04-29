@@ -1,8 +1,6 @@
 # Expand Alias: <Esc>x _expand_alias
 alias reload_zsh=". ~/.zshrc"
-alias edit_zsh="vim ~/.zshrc ~/.plugins.txt ~/.aliases ~/.zshenv"
-
-alias edit_vim="vim ~/.vimrc ~/.config/nvim/init.vim"
+alias edit_zsh="nvim ~/.zshrc ~/.plugins.txt ~/.aliases ~/.zshenv"
 
 alias gs="git status"
 alias gp="git pull"
@@ -30,9 +28,11 @@ function gsd() {
     fi
 }
 
+alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
-alias vs="vagrant status"
+
+alias dots="cd ~/dev/dotfiles && nvim"
 
 alias mcs="workon mcs && cd ~/dev/management_command_system"
 

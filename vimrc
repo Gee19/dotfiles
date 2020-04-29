@@ -217,9 +217,6 @@ let g:closetag_filetypes='html,xhtml,jsx,xml,javascriptreact,javascript,typescri
 " Colorful JS
 let g:vim_jsx_pretty_colorful_config = 1
 
-" Indent guides
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-
 " NERDTree
 let g:NERDTreeWinSize = 35
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
