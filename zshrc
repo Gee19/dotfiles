@@ -128,11 +128,6 @@ fbr() {
 bindkey -s '^b' 'fbr\n'
 bindkey -s '^o' 'vim $(fzf)\n'
 
-# iTerm2 jump words (Option-Arrows)
-# bindkey -e
-# bindkey "\e\e[C" forward-word
-# bindkey "\e\e[D" backward-word
-
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 

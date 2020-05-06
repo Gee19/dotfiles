@@ -245,7 +245,7 @@ let mapleader = "\<Space>"
 
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
-  let g:coc_node_path = '/usr/local/n/versions/node/13.8.0/bin/node'
+  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.2.0/bin/node'
 
   let g:coc_global_extensions = [
     \ 'coc-prettier',

@@ -1,6 +1,6 @@
 # Expand Alias: <Esc>x _expand_alias
 alias reload_zsh=". ~/.zshrc"
-alias edit_zsh="nvim ~/.zshrc ~/.plugins.txt ~/.aliases ~/.zshenv"
+alias edit_zsh="nvim.appimage ~/.zshrc ~/.plugins.txt ~/.aliases ~/.zshenv"
 
 alias gs="git status"
 alias gp="git pull"
@@ -28,11 +28,11 @@ function gsd() {
     fi
 }
 
-alias v="nvim"
-alias vi="nvim"
-alias vim="nvim"
+alias v="nvim.appimage"
+alias vi="nvim.appimage"
+alias vim="nvim.appimage"
 
-alias dots="cd ~/dev/dotfiles && nvim"
+alias dots="cd ~/dev/dotfiles && nvim.appimage"
 
 alias mcs="workon mcs && cd ~/dev/management_command_system"
 
@@ -73,5 +73,5 @@ alias flush_dns="dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias stopdock='docker stop $(docker ps -a -q)'
 alias rmdock='docker rm $(docker ps -a -q)'
 
-alias l="exa"
-alias ll="exa -la"
+alias l="ls"
+alias ll="ls -la"
