@@ -16,7 +16,7 @@ include = {
     'pdbrc': '$HOME/.pdbrc',
 
     # pdb++
-    'pdbrc.py': '$HOME/.pdbrc.py'
+    'pdbrc.py': '$HOME/.pdbrc.py',
 
     # Terminal
     'kitty.conf': '$HOME/.config/kitty/kitty.conf',

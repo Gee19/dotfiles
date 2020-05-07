@@ -75,3 +75,5 @@ alias rmdock='docker rm $(docker ps -a -q)'
 
 alias l="ls"
 alias ll="ls -la"
+
+alias sudo='sudo '
