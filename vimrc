@@ -363,6 +363,12 @@ if has('nvim')
   augroup END
 endif
 
+" XPS 2019 :(
+nnoremap <PageUp> <Nop>
+nnoremap <PageDown> <Nop>
+inoremap <PageUp> <Nop>
+inoremap <PageDown> <Nop>
+
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
