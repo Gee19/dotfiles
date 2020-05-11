@@ -21,8 +21,6 @@ export sde_build_repo_path='/Users/jhaine/dev/sde-build/'
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-export HOMEBREW_NO_ANALYTICS=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 export GITLAB_TOKEN=%NOPE%
-export CSC_KEY_PASSWORD=%NOPE%
