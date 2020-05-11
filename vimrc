@@ -374,7 +374,7 @@ map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 
 " Yank to global clipboard (requires vim +clipboard)
-map <leader>y "*y
+map <leader>y "+y
 
 " Vertically split screen
 nnoremap <silent><leader>\ :vs<CR>
