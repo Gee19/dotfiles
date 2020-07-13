@@ -26,7 +26,7 @@ Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 " Syntax highlighting
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
-Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact' ] }
+Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact', 'typescript' ] }
 
 " Folds
 Plug 'kalekundert/vim-coiled-snake'
