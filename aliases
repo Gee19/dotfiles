@@ -49,7 +49,7 @@ alias cst="workon sdetools3 && cd ~/dev/sdetools"
 alias cst2="workon sdetools2 && cd ~/dev/sdetools2"
 
 alias cpca="workon pca && cd ~/dev/project-creation-automation"
-alias cpkg="cd /home/jhaine/Envs/sde3/lib/python2.7/site-packages"
+alias cpkg="cd /home/jhaine/Envs/sde3/lib/python3.6/site-packages"
 
 alias nds="node devServer.js"
 alias yd="yarn dev"
