@@ -14,7 +14,7 @@ Plug 'dhruvasagar/vim-prosession'
 
 " Statusline and bufferline
 Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
+" Plug 'mengelbrecht/lightline-bufferline'
 
 " Text Objects
 Plug 'kana/vim-textobj-user'
@@ -121,25 +121,26 @@ let g:lightline = {
       \   'cocstatus': 'coc#status'
       \ },
       \ }
-let g:lightline#bufferline#show_number = 1
-let g:lightline#bufferline#unnamed = '[No Name]'
-let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type = {'buffers': 'tabsel'}
+
+" let g:lightline#bufferline#show_number = 1
+" let g:lightline#bufferline#unnamed = '[No Name]'
+" let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+" let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+" let g:lightline.component_type = {'buffers': 'tabsel'}
 
 " Only show buffer filename
-let g:lightline#bufferline#filename_modifier = ':t'
+" let g:lightline#bufferline#filename_modifier = ':t'
 
 " Show devicons in bufferline
-let g:lightline#bufferline#enable_devicons = 1
+" let g:lightline#bufferline#enable_devicons = 1
 
-if !has('nvim')
-  " Match tabline background color
-  let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-  let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-  let s:palette.inactive.middle = s:palette.normal.middle
-  let s:palette.tabline.middle = s:palette.normal.middle
-endif
+" if !has('nvim')
+"   " Match tabline background color
+"   let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+"   let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+"   let s:palette.inactive.middle = s:palette.normal.middle
+"   let s:palette.tabline.middle = s:palette.normal.middle
+" endif
 
 set hidden " New buffers with unsaved changes
 set number " Line numbers
@@ -164,6 +165,7 @@ set nofoldenable " Open all folds by default
 set noshowmode " Hide mode, handled by lightline
 set relativenumber " Show line numbers from current location
 set shortmess+=c " don't give ins-completion-menu messages
+set showtabline=0
 
 if has('nvim')
   set inccommand=nosplit " Preview substitutions
