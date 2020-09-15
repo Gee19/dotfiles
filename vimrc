@@ -432,9 +432,11 @@ endfunction
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
-nnoremap <leader>C Oconsole.info();<Esc>hi
-nnoremap <leader>P Oimport pdb; pdb.set_trace()<Esc>
-nnoremap <leader>R Ofrom celery.contrib import rdb; rdb.set_trace()<Esc>
+augroup pysnips
+  autocmd!
+  autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()<Esc>
+  autocmd FileType python :iabbrev <buffer> rdb from celery.contrib import rdb; rdb.set_trace()<Esc>
+augroup END
 
 " Shift+U undo
 nnoremap U :redo<cr>
