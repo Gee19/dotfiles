@@ -14,7 +14,6 @@ Plug 'dhruvasagar/vim-prosession'
 
 " Statusline and bufferline
 Plug 'itchyny/lightline.vim'
-" Plug 'mengelbrecht/lightline-bufferline'
 
 " Text Objects
 Plug 'kana/vim-textobj-user'
@@ -122,26 +121,6 @@ let g:lightline = {
       \ },
       \ }
 
-" let g:lightline#bufferline#show_number = 1
-" let g:lightline#bufferline#unnamed = '[No Name]'
-" let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
-" let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-" let g:lightline.component_type = {'buffers': 'tabsel'}
-
-" Only show buffer filename
-" let g:lightline#bufferline#filename_modifier = ':t'
-
-" Show devicons in bufferline
-" let g:lightline#bufferline#enable_devicons = 1
-
-" if !has('nvim')
-"   " Match tabline background color
-"   let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-"   let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-"   let s:palette.inactive.middle = s:palette.normal.middle
-"   let s:palette.tabline.middle = s:palette.normal.middle
-" endif
-
 set hidden " New buffers with unsaved changes
 set number " Line numbers
 set noswapfile " No swap file on buffer load
@@ -157,7 +136,6 @@ set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
 set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
-" set scrolloff=999 " Keep cursor in middle of screen when possible
 set showbreak=↪ " Show this char when wrapping
 set foldlevelstart=2 " Fold class methods
 set foldmethod=indent " Fold based on indentation
@@ -222,10 +200,6 @@ let g:vim_jsx_pretty_colorful_config = 1
 " NERDTree
 let g:NERDTreeWinSize = 35
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
-
-" ryanoasis/vim-devicons/issues/243
-" Fancy open/close icons for folders
-" let g:DevIconsEnableFoldersOpenClose = 1
 
 augroup nerdtree_fixes
   autocmd!
@@ -377,6 +351,9 @@ map <leader>e :NERDTreeFind<CR>
 
 " Yank to global clipboard (requires vim +clipboard)
 map <leader>y "+y
+
+" Paste from global clipboard (requires vim +clipboard)
+map <leader>p "*p
 
 " Vertically split screen
 nnoremap <silent><leader>\ :vs<CR>
