@@ -371,6 +371,10 @@ cnoremap <C-e> <End>
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
 
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
 "splitting panes and moving around in panes
 function! WinMove(key)
     let t:curwin = winnr()
