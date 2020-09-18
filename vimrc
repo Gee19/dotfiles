@@ -46,6 +46,7 @@ Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
 Plug 'Krasjet/auto.pairs'
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }

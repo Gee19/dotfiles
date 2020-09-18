@@ -15,8 +15,8 @@ export EDITOR="nvim.appimage"
 export VISUAL="nvim.appimage"
 export DJANGO_SETTINGS_MODULE=settings
 export PYTHONPATH=.
-export sde_admin_repo_path='/Users/jhaine/dev/sde-admin/'
-export sde_build_repo_path='/Users/jhaine/dev/sde-build/'
+export sde_admin_repo_path='/home/jhaine/dev/sde-admin/'
+export sde_build_repo_path='/home/jhaine/dev/sde-build/'
 
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
