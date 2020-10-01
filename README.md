@@ -21,5 +21,3 @@
 ## TODO
 - drop coc -> nvim lsp
 - .config bare repo
-- update readme
-- merge ubuntu to master (later tim apple)
