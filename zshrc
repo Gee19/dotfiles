@@ -5,10 +5,10 @@ source <(antibody init)
 antibody bundle < ~/.plugins.txt
 
 # virtualenvwrapper
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+if [ -f /home/jhaine/.local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=~/Envs
     mkdir -p $WORKON_HOME
-    source /usr/local/bin/virtualenvwrapper.sh
+    source /home/jhaine/.local/bin/virtualenvwrapper.sh
 fi
 
 DISABLE_AUTO_TITLE="true"
@@ -127,11 +127,6 @@ fbr() {
 
 bindkey -s '^b' 'fbr\n'
 bindkey -s '^o' 'vim $(fzf)\n'
-
-# iTerm2 jump words (Option-Arrows)
-# bindkey -e
-# bindkey "\e\e[C" forward-word
-# bindkey "\e\e[D" backward-word
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down

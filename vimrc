@@ -14,7 +14,6 @@ Plug 'dhruvasagar/vim-prosession'
 
 " Statusline and bufferline
 Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
 
 " Text Objects
 Plug 'kana/vim-textobj-user'
@@ -26,7 +25,7 @@ Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 " Syntax highlighting
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
-Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact' ] }
+Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact', 'typescript' ] }
 
 " Folds
 Plug 'kalekundert/vim-coiled-snake'
@@ -47,6 +46,7 @@ Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
 Plug 'Krasjet/auto.pairs'
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -121,25 +121,6 @@ let g:lightline = {
       \   'cocstatus': 'coc#status'
       \ },
       \ }
-let g:lightline#bufferline#show_number = 1
-let g:lightline#bufferline#unnamed = '[No Name]'
-let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type = {'buffers': 'tabsel'}
-
-" Only show buffer filename
-let g:lightline#bufferline#filename_modifier = ':t'
-
-" Show devicons in bufferline
-let g:lightline#bufferline#enable_devicons = 1
-
-if !has('nvim')
-  " Match tabline background color
-  let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-  let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-  let s:palette.inactive.middle = s:palette.normal.middle
-  let s:palette.tabline.middle = s:palette.normal.middle
-endif
 
 set hidden " New buffers with unsaved changes
 set number " Line numbers
@@ -156,7 +137,6 @@ set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
 set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
-" set scrolloff=999 " Keep cursor in middle of screen when possible
 set showbreak=↪ " Show this char when wrapping
 set foldlevelstart=2 " Fold class methods
 set foldmethod=indent " Fold based on indentation
@@ -164,6 +144,7 @@ set nofoldenable " Open all folds by default
 set noshowmode " Hide mode, handled by lightline
 set relativenumber " Show line numbers from current location
 set shortmess+=c " don't give ins-completion-menu messages
+set showtabline=0
 
 if has('nvim')
   set inccommand=nosplit " Preview substitutions
@@ -221,10 +202,6 @@ let g:vim_jsx_pretty_colorful_config = 1
 let g:NERDTreeWinSize = 35
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 
-" ryanoasis/vim-devicons/issues/243
-" Fancy open/close icons for folders
-" let g:DevIconsEnableFoldersOpenClose = 1
-
 augroup nerdtree_fixes
   autocmd!
 
@@ -245,7 +222,7 @@ let mapleader = "\<Space>"
 
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
-  let g:coc_node_path = '/usr/local/n/versions/node/13.8.0/bin/node'
+  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.2.0/bin/node'
 
   let g:coc_global_extensions = [
     \ 'coc-prettier',
@@ -363,12 +340,21 @@ if has('nvim')
   augroup END
 endif
 
+" XPS 2019 :(
+nnoremap <PageUp> <Nop>
+nnoremap <PageDown> <Nop>
+inoremap <PageUp> <Nop>
+inoremap <PageDown> <Nop>
+
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 
 " Yank to global clipboard (requires vim +clipboard)
-map <leader>y "*y
+map <leader>y "+y
+
+" Paste from global clipboard (requires vim +clipboard)
+map <leader>p "*p
 
 " Vertically split screen
 nnoremap <silent><leader>\ :vs<CR>
@@ -385,6 +371,10 @@ cnoremap <C-e> <End>
 " in insert mode
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
+
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
 
 "splitting panes and moving around in panes
 function! WinMove(key)
@@ -424,9 +414,11 @@ endfunction
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
-nnoremap <leader>C Oconsole.info();<Esc>hi
-nnoremap <leader>P Oimport pdb; pdb.set_trace()<Esc>
-nnoremap <leader>R Ofrom celery.contrib import rdb; rdb.set_trace()<Esc>
+augroup pysnips
+  autocmd!
+  autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()<Esc>
+  autocmd FileType python :iabbrev <buffer> rdb from celery.contrib import rdb; rdb.set_trace()<Esc>
+augroup END
 
 " Shift+U undo
 nnoremap U :redo<cr>
@@ -458,8 +450,8 @@ let $BAT_THEME = 'TwoDark'
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --no-heading --line-number --color=always --glob "!{.git,node_modules,static_common,*.xml,*.txt,*.csv,*.nessus,*.json,*.html,*.dll,*.cache,*.fvdl}" '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2], 'options': '--layout=default'}, 'up:70%')
-  \           : fzf#vim#with_preview({'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
+  \   <bang>0 ? fzf#vim#with_preview({'options':'--layout=default --delimiter : --nth 4..', 'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'up:70%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..', 'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
   \ <bang>0)
 
 " files in git repo with changes, fullscreen if called with bang

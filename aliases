@@ -1,6 +1,6 @@
 # Expand Alias: <Esc>x _expand_alias
 alias reload_zsh=". ~/.zshrc"
-alias edit_zsh="nvim ~/.zshrc ~/.plugins.txt ~/.aliases ~/.zshenv"
+alias edit_zsh="nvim.appimage ~/.zshrc ~/.plugins.txt ~/.aliases ~/.zshenv"
 
 alias gs="git status"
 alias gp="git pull"
@@ -28,13 +28,14 @@ function gsd() {
     fi
 }
 
-alias v="nvim"
-alias vi="nvim"
-alias vim="nvim"
+alias v="nvim.appimage"
+alias vi="nvim.appimage"
+alias vim="nvim.appimage"
+alias nvim="nvim.appimage"
 
-alias dots="cd ~/dev/dotfiles && nvim"
+alias dots="cd ~/dev/dotfiles"
 
-alias mcs="workon mcs && cd ~/dev/management_command_system"
+alias mcs="workon mcs && cd ~/dev/management_command_system && nvm use"
 
 alias ebank="workon exploitmebank && cd ~/dev/exploitmebank/ExploitMe_Bank"
 alias ebank3="workon ebank3 && cd ~/dev/exploitmebank/ExploitMe_Bank"
@@ -42,14 +43,14 @@ alias ebank3="workon ebank3 && cd ~/dev/exploitmebank/ExploitMe_Bank"
 alias csec="workon checksec2 && cd ~/dev/checksec"
 alias cdsec="workon djangosec && cd ~/dev/django-security"
 
-alias csd="workon sde3 && cd ~/dev/sdelements/sigma"
-alias csd2="workon sde2 && cd ~/dev/sde2/sigma"
+alias csd="workon sde3 && cd ~/dev/sdelements/sigma && nvm use"
+alias csd2="workon sde2 && cd ~/dev/sde2/sigma && nvm use"
 
 alias cst="workon sdetools3 && cd ~/dev/sdetools"
 alias cst2="workon sdetools2 && cd ~/dev/sdetools2"
 
 alias cpca="workon pca && cd ~/dev/project-creation-automation"
-alias cpkg="cd /Users/jhaine/Envs/sdelements/lib/python2.7/site-packages"
+alias cpkg="cd /home/jhaine/Envs/sde3/lib/python3.6/site-packages"
 
 alias nds="node devServer.js"
 alias yd="yarn dev"
@@ -75,3 +76,5 @@ alias rmdock='docker rm $(docker ps -a -q)'
 
 alias l="exa"
 alias ll="exa -la"
+
+alias sudo='sudo '

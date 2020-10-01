@@ -1,9 +1,5 @@
 import os
 
-# Linux - create "Default (Linux).sublime-mousemap" in ~/.config/sublime-text-3/Packages/User
-# Mac - create "Default (OSX).sublime-mousemap" in ~/Library/Application Support/Sublime Text 3/Packages/User
-# Win - create "Default (Windows).sublime-mousemap" in %appdata%\Sublime Text 3\Packages\User
-
 include = {
     # Editors
     'init.vim': '$HOME/.config/nvim/init.vim',
@@ -16,7 +12,7 @@ include = {
     'pdbrc': '$HOME/.pdbrc',
 
     # pdb++
-    'pdbrc.py': '$HOME/.pdbrc.py'
+    'pdbrc.py': '$HOME/.pdbrc.py',
 
     # Terminal
     'kitty.conf': '$HOME/.config/kitty/kitty.conf',
@@ -43,5 +39,5 @@ for f, install_path in include.iteritems():
         cmds.append('ln -sf %s %s' % (local_file, install_path))
 
 for cmd in cmds:
-    print cmd
+    print(cmd)
     os.system(cmd)
