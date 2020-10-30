@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 " Theme
 Plug 'joshdick/onedark.vim'
 
-" Plug 'sainnhe/sonokai'
 " Plug 'nvim-treesitter/nvim-treesitter'
 
 " tpope
@@ -67,11 +66,6 @@ if has('termguicolors')
 endif
 
 colorscheme onedark
-
-"let g:sonokai_style = 'atlantis'
-"let g:sonokai_enable_italic = 0
-"let g:sonokai_disable_italic_comment = 0
-"colorscheme sonokai
 
 "lua << EOF
 "  require'nvim-treesitter.configs'.setup {
