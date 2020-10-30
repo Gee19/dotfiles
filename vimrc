@@ -3,6 +3,9 @@ call plug#begin('~/.vim/plugged')
 " Theme
 Plug 'joshdick/onedark.vim'
 
+" Plug 'sainnhe/sonokai'
+" Plug 'nvim-treesitter/nvim-treesitter'
+
 " tpope
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -59,7 +62,40 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+if has('termguicolors')
+  set termguicolors " Use true colours
+endif
+
 colorscheme onedark
+
+"let g:sonokai_style = 'atlantis'
+"let g:sonokai_enable_italic = 0
+"let g:sonokai_disable_italic_comment = 0
+"colorscheme sonokai
+
+"lua << EOF
+"  require'nvim-treesitter.configs'.setup {
+"    ensure_installed = {
+"      "bash",
+"      "c_sharp",
+"      "css",
+"      "go",
+"      "html",
+"      "javascript",
+"      "json",
+"      "lua",
+"      "python",
+"      "regex",
+"      "rust",
+"      "tsx",
+"      "typescript",
+"    },
+"    highlight = {
+"      enable = true,
+"      disable = {},
+"    },
+"  }
+"EOF
 
 if exists('$SHELL')
   set shell=$SHELL
@@ -77,10 +113,6 @@ if !has('nvim')
     autocmd!
     autocmd VimEnter * highlight Normal ctermbg=none
   augroup END
-endif
-
-if has('termguicolors')
-  set termguicolors " Use true colours
 endif
 
 if has('nvim')
@@ -123,7 +155,6 @@ let g:lightline = {
       \ }
 
 set hidden " New buffers with unsaved changes
-set number " Line numbers
 set noswapfile " No swap file on buffer load
 set autoread " Auto read files changed outside of vim
 set gdefault " Substitute all matches in a line
@@ -142,9 +173,14 @@ set foldlevelstart=2 " Fold class methods
 set foldmethod=indent " Fold based on indentation
 set nofoldenable " Open all folds by default
 set noshowmode " Hide mode, handled by lightline
-set relativenumber " Show line numbers from current location
 set shortmess+=c " don't give ins-completion-menu messages
-set showtabline=0
+set showtabline=0 " hide tabline
+
+" set number " Line numbers
+" set relativenumber " Show line numbers from current location
+
+" Toggle between no numbers -> absolute -> relative with absolute on cursor line
+nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 
 if has('nvim')
   set inccommand=nosplit " Preview substitutions
@@ -259,8 +295,8 @@ if has_key(g:plugs, 'coc.nvim')
 
   " Use K to show/hide documentation in preview window
   function! s:show_documentation() abort
-    if coc#util#has_float()
-      call coc#util#float_hide()
+    if coc#float#has_float()
+      call coc#float#close_all()
     elseif (index(['vim','help'], &filetype) >= 0)
       execute 'h '.expand('<cword>')
     else
@@ -566,7 +602,7 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 augroup split_help
   autocmd!
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
+  " autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
 augroup END
 
 " Prevent vim from indenting newlines
