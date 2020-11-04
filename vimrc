@@ -3,8 +3,6 @@ call plug#begin('~/.vim/plugged')
 " Theme
 Plug 'joshdick/onedark.vim'
 
-" Plug 'nvim-treesitter/nvim-treesitter'
-
 " tpope
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -66,30 +64,6 @@ if has('termguicolors')
 endif
 
 colorscheme onedark
-
-"lua << EOF
-"  require'nvim-treesitter.configs'.setup {
-"    ensure_installed = {
-"      "bash",
-"      "c_sharp",
-"      "css",
-"      "go",
-"      "html",
-"      "javascript",
-"      "json",
-"      "lua",
-"      "python",
-"      "regex",
-"      "rust",
-"      "tsx",
-"      "typescript",
-"    },
-"    highlight = {
-"      enable = true,
-"      disable = {},
-"    },
-"  }
-"EOF
 
 if exists('$SHELL')
   set shell=$SHELL
@@ -168,10 +142,9 @@ set foldmethod=indent " Fold based on indentation
 set nofoldenable " Open all folds by default
 set noshowmode " Hide mode, handled by lightline
 set shortmess+=c " don't give ins-completion-menu messages
-set showtabline=0 " hide tabline
 
-" set number " Line numbers
-" set relativenumber " Show line numbers from current location
+set number " Line numbers
+set relativenumber " Show line numbers from current location
 
 " Toggle between no numbers -> absolute -> relative with absolute on cursor line
 nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
