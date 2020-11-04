@@ -134,7 +134,7 @@ set timeoutlen=1500 ttimeoutlen=0 " Mapping and keycode delays
 set showmatch " When a bracket is inserted, briefly jump to the matching one
 set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
-set showtabline=2 " Always show tabline
+" set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
 set showbreak=↪ " Show this char when wrapping
 set foldlevelstart=2 " Fold class methods
@@ -142,7 +142,6 @@ set foldmethod=indent " Fold based on indentation
 set nofoldenable " Open all folds by default
 set noshowmode " Hide mode, handled by lightline
 set shortmess+=c " don't give ins-completion-menu messages
-
 set number " Line numbers
 set relativenumber " Show line numbers from current location
 
