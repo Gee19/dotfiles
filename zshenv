@@ -20,6 +20,11 @@ export sde_build_repo_path='/home/jhaine/dev/sde-build/'
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+export M2_HOME=/opt/maven
+export MAVEN_HOME=/opt/maven
+export PATH="${M2_HOME}/bin:${PATH}"
+
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 

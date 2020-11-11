@@ -19,5 +19,6 @@
 `fzf ripgrep bat exa fd`
 
 ## TODO
-- drop coc -> nvim lsp
+- coc-python -> coc-pyright
+- coc -> nvim lsp when its more mature
 - .config bare repo
