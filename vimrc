@@ -226,6 +226,8 @@ if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
   let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.2.0/bin/node'
 
+  " coc-java requires manual install of jdt-ls
+  " neoclide/coc-java/issues/99
   let g:coc_global_extensions = [
     \ 'coc-prettier',
     \ 'coc-python',
@@ -235,7 +237,8 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-eslint',
     \ 'coc-omnisharp',
     \ 'coc-actions',
-    \ 'coc-rls'
+    \ 'coc-rls',
+    \ 'coc-java'
   \ ]
 
   " use <tab> for trigger completion and navigate to the next completion item
@@ -357,6 +360,9 @@ map <leader>y "+y
 
 " Paste from global clipboard (requires vim +clipboard)
 map <leader>p "*p
+
+" Toggle word wrapping
+map <leader>w :set wrap!<CR>
 
 " Vertically split screen
 nnoremap <silent><leader>\ :vs<CR>
