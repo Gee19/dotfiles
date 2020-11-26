@@ -16,6 +16,7 @@ include = {
 
     # Terminal
     'kitty.conf': '$HOME/.config/kitty/kitty.conf',
+    'diff.conf': '$HOME/.config/kitty/diff.conf',
 
     # Shell
     'bashrc': '$HOME/.bashrc',
