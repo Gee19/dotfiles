@@ -26,6 +26,7 @@ Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact', 'typescript' ] }
+Plug 'towolf/vim-helm'
 
 " Folds
 Plug 'kalekundert/vim-coiled-snake'
@@ -238,7 +239,8 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-omnisharp',
     \ 'coc-actions',
     \ 'coc-rls',
-    \ 'coc-java'
+    \ 'coc-java',
+    \ 'coc-yaml'
   \ ]
 
   " use <tab> for trigger completion and navigate to the next completion item
