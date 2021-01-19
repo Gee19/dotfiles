@@ -27,6 +27,7 @@ Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascri
 Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact', 'typescript' ] }
 Plug 'towolf/vim-helm'
+Plug 'cespare/vim-toml'
 
 " Folds
 Plug 'kalekundert/vim-coiled-snake'
