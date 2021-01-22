@@ -232,7 +232,7 @@ if has_key(g:plugs, 'coc.nvim')
   " neoclide/coc-java/issues/99
   let g:coc_global_extensions = [
     \ 'coc-prettier',
-    \ 'coc-python',
+    \ 'coc-pyright',
     \ 'coc-json',
     \ 'coc-css',
     \ 'coc-tsserver',
