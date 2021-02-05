@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'joshdick/onedark.vim'
 
 " tpope
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -117,10 +118,11 @@ let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified'] ]
+      \             [ 'cocstatus', 'readonly', 'tpope_op', 'filename', 'modified'] ]
       \ },
       \ 'component_function': {
-      \   'cocstatus': 'coc#status'
+      \   'cocstatus': 'coc#status',
+      \   'tpope_op': 'FugitiveHead'
       \ },
       \ }
 
