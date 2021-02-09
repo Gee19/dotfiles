@@ -15,6 +15,7 @@ Plug 'dhruvasagar/vim-prosession'
 
 " Statusline and bufferline
 Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 
 " Text Objects
 Plug 'kana/vim-textobj-user'
@@ -126,6 +127,26 @@ let g:lightline = {
       \ },
       \ }
 
+let g:lightline#bufferline#show_number = 1
+let g:lightline#bufferline#unnamed = '[No Name]'
+let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type = {'buffers': 'tabsel'}
+
+" Only show buffer filename
+let g:lightline#bufferline#filename_modifier = ':t'
+
+" Show devicons in bufferline
+let g:lightline#bufferline#enable_devicons = 1
+
+if !has('nvim')
+  " Match tabline background color
+  let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+  let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+  let s:palette.inactive.middle = s:palette.normal.middle
+  let s:palette.tabline.middle = s:palette.normal.middle
+endif
+
 set hidden " New buffers with unsaved changes
 set noswapfile " No swap file on buffer load
 set autoread " Auto read files changed outside of vim
@@ -138,7 +159,7 @@ set timeoutlen=1500 ttimeoutlen=0 " Mapping and keycode delays
 set showmatch " When a bracket is inserted, briefly jump to the matching one
 set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
-" set showtabline=2 " Always show tabline
+set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
 set showbreak=↪ " Show this char when wrapping
 set foldlevelstart=2 " Fold class methods

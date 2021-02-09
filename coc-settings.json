@@ -9,7 +9,6 @@
   "coc-actions.hideCursor": false,
   "coc-actions.useCursorLine": true,
   "diagnostic.checkCurrentLine": false,
-  "python.jediEnabled": false,
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
