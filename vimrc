@@ -51,6 +51,7 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
 Plug 'Krasjet/auto.pairs'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
+Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -308,8 +309,8 @@ if has_key(g:plugs, 'coc.nvim')
   nmap <silent> K :call <SID>show_documentation()<CR>
 
   " Use `[c` and `]c` to navigate diagnostics
-  nmap <silent> [c <Plug>(coc-diagnostic-prev)
-  nmap <silent> ]c <Plug>(coc-diagnostic-next)
+  nmap <silent> [d <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
   " Show all diagnostics
   nnoremap <silent><leader>d :<C-u>CocList diagnostics<cr>
@@ -560,9 +561,6 @@ nmap <leader>qf <Plug>(qf_qf_toggle)
 
 " switch.vim
 let g:switch_mapping = "<leader>s"
-
-" vim-peekaboo
-" let g:peekaboo_compact=1
 
 " vim-gitgutter
 let g:gitgutter_map_keys = 0
