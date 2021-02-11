@@ -29,7 +29,7 @@ Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascri
 Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact', 'typescript' ] }
 Plug 'towolf/vim-helm'
-Plug 'cespare/vim-toml'
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " Folds
 Plug 'kalekundert/vim-coiled-snake'
@@ -173,6 +173,15 @@ set relativenumber " Show line numbers from current location
 
 " Toggle between no numbers -> absolute -> relative with absolute on cursor line
 nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+
+" always center the screen after any movement command
+nnoremap <C-d> <C-d>zz
+nnoremap <C-f> <C-f>zz
+nnoremap <C-b> <C-b>zz
+nnoremap <C-u> <C-u>zz
 
 if has('nvim')
   set inccommand=nosplit " Preview substitutions
@@ -407,10 +416,6 @@ cnoremap <C-e> <End>
 " in insert mode
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
-
-" Visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
 
 "splitting panes and moving around in panes
 function! WinMove(key)
