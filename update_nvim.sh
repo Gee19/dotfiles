@@ -21,4 +21,7 @@ fi
 wget "https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage"
 
 chmod u+x nvim.appimage
+
+echo "Symlinking to /usr/bin"
+sudo ln -s ~/.local/bin/nvim.appimage /usr/bin/nvim.appimage
 exit 0

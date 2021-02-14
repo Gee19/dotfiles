@@ -1,0 +1,19 @@
+--max-columns=150
+--max-columns-preview
+
+--type-add
+web:*.{html,css,js,jsx,ts,tsx}*
+
+--smart-case
+
+# ignore
+--glob=!.git/*
+--glob=!node_modules/*
+--glob=!static_common/*
+--glob=!*.dll
+--glob=!.cache"
+
+--colors=line:none
+--colors=line:style:bold
+
+--hidden
