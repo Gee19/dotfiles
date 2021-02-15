@@ -2,11 +2,18 @@ import os
 
 include = {
     # Editors
-    'init.vim': '$HOME/.config/nvim/init.vim',
+    'init.vim': '$XDG_CONFIG_HOME/nvim/init.vim',
     'vimrc': '$HOME/.vimrc',
 
+    # Git
+    'gitconfig': '$HOME/.gitconfig',
+    'stCommitMsg': '$HOME/.stCommitMsg',
+
     # coc.nvim
-    'coc-settings.json': ['$HOME/.config/nvim/coc-settings.json', '$HOME/.vim/coc-settings.json'],
+    'coc-settings.json': ['$XDG_CONFIG_HOME/nvim/coc-settings.json', '$HOME/.vim/coc-settings.json'],
+
+    # ripgrep
+    'ripgreprc': '$XDG_CONFIG_HOME/.ripgreprc',
 
     # pdb
     'pdbrc': '$HOME/.pdbrc',
@@ -15,12 +22,13 @@ include = {
     'pdbrc.py': '$HOME/.pdbrc.py',
 
     # Terminal
-    'kitty.conf': '$HOME/.config/kitty/kitty.conf',
-    'diff.conf': '$HOME/.config/kitty/diff.conf',
+    # 'kitty.conf': '$HOME/.config/kitty/kitty.conf',
+    # 'diff.conf': '$HOME/.config/kitty/diff.conf',
 
     # Shell
     'bashrc': '$HOME/.bashrc',
     'aliases': '$HOME/.aliases',
+
     'zshenv': '$HOME/.zshenv',
     'zshrc': '$HOME/.zshrc',
     'plugins.txt': '$HOME/.plugins.txt',
@@ -30,7 +38,7 @@ include = {
 here = os.path.abspath('.')
 
 cmds = []
-for f, install_path in include.iteritems():
+for f, install_path in include.items():
     local_file = "%s/%s" % (here, f)
 
     if isinstance(install_path, list):

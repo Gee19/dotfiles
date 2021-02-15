@@ -61,7 +61,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf.vim'
 
 " Always load last
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 if has('termguicolors')
@@ -138,7 +138,7 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 let g:lightline#bufferline#filename_modifier = ':t'
 
 " Show devicons in bufferline
-let g:lightline#bufferline#enable_devicons = 1
+" let g:lightline#bufferline#enable_devicons = 1
 
 if !has('nvim')
   " Match tabline background color
@@ -259,7 +259,9 @@ let mapleader = "\<Space>"
 
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
-  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.2.0/bin/node'
+  " let g:coc_disable_startup_warning = 1
+  " let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.2.0/bin/node'
+  let g:coc_node_path = '/usr/bin/node'
 
   " coc-java requires manual install of jdt-ls
   " neoclide/coc-java/issues/99

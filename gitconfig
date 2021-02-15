@@ -1,14 +1,18 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Jordan Haine
-	email = jhaine@securitycompass.com
-	signingkey = 0CBAF74277601D93
+	email = gee19haine@gmail.com
+# [user]
+#     name = Jordan Haine
+#     email = jhaine@securitycompass.com
+#     signingkey = 0CBAF74277601D93
 [core]
 	excludesfile = /home/jhaine/.gitignore_global
 	editor = nvim.appimage
 [commit]
 	template = /home/jhaine/.stCommitMsg
-	gpgsign = true
+	gpgsign = false
+	# gpgsign = true
 [submodule]
 	recurse = true
 [filter "lfs"]

@@ -5,10 +5,10 @@ source <(antibody init)
 antibody bundle < ~/.plugins.txt
 
 # virtualenvwrapper
-if [ -f /home/jhaine/.local/bin/virtualenvwrapper.sh ]; then
+if [ -f ${HOME}/.local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=~/Envs
     mkdir -p $WORKON_HOME
-    source /home/jhaine/.local/bin/virtualenvwrapper.sh
+    source $HOME/.local/bin/virtualenvwrapper.sh
 fi
 
 DISABLE_AUTO_TITLE="true"
@@ -36,8 +36,9 @@ zmodload zsh/complist
 
 _comp_options+=(globdots) # Include hidden files
 
-# Kitty OP
-kitty + complete setup zsh | source /dev/stdin
+if [ "$TERM" = "xterm-kitty" ]; then
+  kitty + complete setup zsh | source /dev/stdin
+fi
 
 # vi mode
 bindkey -v
@@ -113,8 +114,8 @@ bindkey '^e' edit-command-line
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export BAT_THEME='TwoDark'
-export FZF_COMPLETION_OPTS='--preview "(bat --color=never --style=numbers {} || cat {} || tree -C {}) 2> /dev/null | head -50"'
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!{.git,node_modules,static_common,*.dll,*.cache}"'
+export FZF_COMPLETION_OPTS='--preview "(bat --color=always --style=numbers {} || cat {} || tree -C {}) 2> /dev/null | head -50"'
+export FZF_DEFAULT_COMMAND='rg --files'
 
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
 fbr() {
