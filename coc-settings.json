@@ -13,7 +13,7 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "black",
-  "tsserver.npm": "/usr/local/bin/npm",
+  "tsserver.npm": "/usr/bin/npm",
   "javascript.referencesCodeLens.enable": false,
   "javascript.implementationsCodeLens.enable": false,
   "typescript.referencesCodeLens.enable": false,
