@@ -260,8 +260,8 @@ let mapleader = "\<Space>"
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
   " let g:coc_disable_startup_warning = 1
-  " let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.2.0/bin/node'
-  let g:coc_node_path = '/usr/bin/node'
+  " let g:coc_node_path = '/usr/bin/node'
+  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.2.0/bin/node'
 
   " coc-java requires manual install of jdt-ls
   " neoclide/coc-java/issues/99

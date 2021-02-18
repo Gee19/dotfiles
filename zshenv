@@ -38,8 +38,8 @@ export PATH="$GOPATH/bin:$PATH"
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
 # Node/nvm
-# export NVM_DIR=~/.nvm
-#  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" ]
+export NVM_DIR=~/.nvm
+ [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" ]
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 

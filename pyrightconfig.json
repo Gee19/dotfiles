@@ -1,0 +1,31 @@
+{
+  "include": [
+    "pas"
+  ],
+
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__"
+  ],
+
+  "ignore": [
+    ""
+  ],
+
+  "stubPath": "",
+  "venvPath": "/home/jhaine/Envs",
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+  "pythonVersion": "3.6",
+  "pythonPlatform": "Linux",
+  "executionEnvironments": [
+    {
+      "root": "pas",
+      "pythonVersion": "3.6",
+      "extraPaths": [
+        ""
+      ],
+      "venv": "mcs"
+    }
+  ]
+}
