@@ -61,7 +61,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf.vim'
 
 " Always load last
-" Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 if has('termguicolors')
@@ -138,7 +138,7 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 let g:lightline#bufferline#filename_modifier = ':t'
 
 " Show devicons in bufferline
-" let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#enable_devicons = 1
 
 if !has('nvim')
   " Match tabline background color
