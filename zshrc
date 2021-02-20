@@ -144,4 +144,8 @@ bindkey -M viins '\e\e[C' forward-word
 bindkey -M viins '\e\e[D' backward-word
 bindkey -M viins '^[^?' backward-kill-word
 
+if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
+  tmux new-session -A -s main
+fi
+
 # zprof

@@ -4,7 +4,7 @@ sudo apt -y update && sudo apt -y dist-upgrade
 
 # Node unzip zsh
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-sudo apt -y install zsh unzip nodejs python3-pip
+sudo apt -y install zsh unzip nodejs python3-pip tmux
 
 # antibody
 curl -sfL git.io/antibody | sudo sh -s - -b /usr/local/bin

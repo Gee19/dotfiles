@@ -1,4 +1,5 @@
-" vim-plug
+" vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
+" vim-plug {{{
 call plug#begin('~/.vim/plugged')
 " Theme
 Plug 'joshdick/onedark.vim'
@@ -63,7 +64,9 @@ Plug 'junegunn/fzf.vim'
 " Always load last
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
+" }}}
 
+" shell/colorscheme/grepprg {{{
 if has('termguicolors')
   set termguicolors " Use true colours
 endif
@@ -76,10 +79,27 @@ else
   set shell=/bin/sh
 endif
 
+" Format JSON (TODO: jq & find more resilient method)
+command! -nargs=0 Jsonfmt :%!python -m json.tool
+
+" Use ripgrep for vim :grep
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+  set grepformat=%f:%l:%c:%m
+endif
+" }}}
+
+" vim only {{{
 if !has('nvim')
   syntax on
   let g:onedark_termcolors=256
   set encoding=UTF-8
+
+  " Match tabline background color
+  let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+  let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+  let s:palette.inactive.middle = s:palette.normal.middle
+  let s:palette.tabline.middle = s:palette.normal.middle
 
   augroup vim_scroll_fix
     " Fix bg color on scroll
@@ -87,7 +107,9 @@ if !has('nvim')
     autocmd VimEnter * highlight Normal ctermbg=none
   augroup END
 endif
+" }}}
 
+" neovim only {{{
 if has('nvim')
   " Operator Mono OP
   highlight Comment gui=italic
@@ -95,27 +117,78 @@ if has('nvim')
   highlight htmlArg gui=italic
   highlight htmlArg cterm=italic
 
+  " Preview substitutions
+  set inccommand=nosplit
+
   " nvim-colorizer
   lua require 'colorizer'.setup({'*', '!text'})
-endif
 
+  " Clear search highlighting with escape, broken in regular vim
+  nnoremap <silent><esc> :noh<return><esc>
+
+  " TextYankPost highlight
+  function! s:hl_yank(operator, regtype, inclusive) abort
+    if a:operator !=# 'y' || a:regtype ==# ''
+      return
+    endif
+    " edge cases:
+    "   ^v[count]l ranges multiple lines
+
+    " TODO:
+    "   bug: ^v where the cursor cannot go past EOL, so '] reports a lesser column.
+
+    let bnr = bufnr('%')
+    let ns = nvim_create_namespace('')
+    call nvim_buf_clear_namespace(bnr, ns, 0, -1)
+
+    let [_, lin1, col1, off1] = getpos("'[")
+    let [lin1, col1] = [lin1 - 1, col1 - 1]
+    let [_, lin2, col2, off2] = getpos("']")
+    let [lin2, col2] = [lin2 - 1, col2 - (a:inclusive ? 0 : 1)]
+    for l in range(lin1, lin1 + (lin2 - lin1))
+      let is_first = (l == lin1)
+      let is_last = (l == lin2)
+      let c1 = is_first || a:regtype[0] ==# "\<C-v>" ? (col1 + off1) : 0
+      let c2 = is_last || a:regtype[0] ==# "\<C-v>" ? (col2 + off2) : -1
+      call nvim_buf_add_highlight(bnr, ns, 'TextYank', l, c1, c2)
+    endfor
+    call timer_start(300, {-> nvim_buf_is_valid(bnr) && nvim_buf_clear_namespace(bnr, ns, 0, -1)})
+  endfunc
+  highlight default link TextYank Visual
+  augroup vimrc_hlyank
+    autocmd!
+    autocmd TextYankPost * call s:hl_yank(v:event.operator, v:event.regtype, v:event.inclusive)
+  augroup END
+endif
+" }}}
+
+" autocmds {{{
 augroup filetypes
   autocmd!
   autocmd BufRead,BufNewFile *.conf setlocal filetype=conf " Add conf filetype so nvim-colorizer works
   autocmd FileType cs setlocal tabstop=4 shiftwidth=4 " Fix c# indentation
 augroup END
 
-" Completion menu styling
-highlight Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#373d48 gui=NONE
-highlight PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
+augroup pysnips
+  autocmd!
+  autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()<Esc>
+  autocmd FileType python :iabbrev <buffer> rdb from celery.contrib import rdb; rdb.set_trace()<Esc>
+augroup END
 
-" Commit hash at 'Commit:' header with 'Special' highlight group
-highlight link gitmessengerHash Special
+augroup goyo_limelight
+  autocmd!
+  autocmd! User GoyoEnter Limelight
+  autocmd! User GoyoLeave Limelight!
+augroup END
 
-" Use autocmd to force lightline update.
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+augroup split_help
+  autocmd!
+  autocmd VimResized * wincmd = " Automatically equalize splits when resized
+  " autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
+augroup END
+" }}}
 
-" Lightline + Tabline
+" Lightline + Tabline {{{
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
@@ -137,17 +210,14 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 " Only show buffer filename
 let g:lightline#bufferline#filename_modifier = ':t'
 
+" Use autocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
 " Show devicons in bufferline
 let g:lightline#bufferline#enable_devicons = 1
+" }}}
 
-if !has('nvim')
-  " Match tabline background color
-  let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-  let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-  let s:palette.inactive.middle = s:palette.normal.middle
-  let s:palette.tabline.middle = s:palette.normal.middle
-endif
-
+" global vars {{{
 set hidden " New buffers with unsaved changes
 set noswapfile " No swap file on buffer load
 set autoread " Auto read files changed outside of vim
@@ -170,22 +240,6 @@ set noshowmode " Hide mode, handled by lightline
 set shortmess+=c " don't give ins-completion-menu messages
 set number " Line numbers
 set relativenumber " Show line numbers from current location
-
-" Toggle between no numbers -> absolute -> relative with absolute on cursor line
-nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
-
-" Keep the cursor in place while joining lines
-nnoremap J mzJ`z
-
-" always center the screen after any movement command
-nnoremap <C-d> <C-d>zz
-nnoremap <C-f> <C-f>zz
-nnoremap <C-b> <C-b>zz
-nnoremap <C-u> <C-u>zz
-
-if has('nvim')
-  set inccommand=nosplit " Preview substitutions
-endif
 
 " Some coc servers have issues with backup files #649
 set nobackup
@@ -215,6 +269,12 @@ set smartcase " Override ignorecase if search contains uppercase
 set hlsearch " Highlight previous search results
 set incsearch " Match search terms incrementally
 
+" Backspace in insert mode
+set backspace=indent,eol,start
+
+" Move cursor by display lines when wrapping
+set virtualedit+=block
+
 " Create undodir if it doesn't exist
 if !isdirectory($HOME . "/.vim/undodir")
   call mkdir($HOME . "/.vim/undodir", "p")
@@ -223,19 +283,130 @@ endif
 " Enable undofile
 set undofile
 set undodir=~/.vim/undodir
+" }}}
 
-" Backspace in insert mode
-set backspace=indent,eol,start
+" mappings {{{
+let mapleader = "\<Space>"
 
-" Move cursor by display lines when wrapping
-set virtualedit+=block
+" Toggle between no numbers -> absolute -> relative with absolute on cursor line
+nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+
+" always center the screen after any movement command
+nnoremap <C-d> <C-d>zz
+nnoremap <C-f> <C-f>zz
+nnoremap <C-b> <C-b>zz
+nnoremap <C-u> <C-u>zz
+
+" XPS 2019 :(
+nnoremap <PageUp> <Nop>
+nnoremap <PageDown> <Nop>
+inoremap <PageUp> <Nop>
+inoremap <PageDown> <Nop>
+
+" NERDTree
+map <C-e> :NERDTreeToggle<CR>
+map <leader>e :NERDTreeFind<CR>
+
+" Yank to global clipboard (requires vim +clipboard)
+map <leader>y "+y
+
+" Paste from global clipboard (requires vim +clipboard)
+map <leader>p "*p
+
+" Toggle word wrapping
+map <leader>w :set wrap!<CR>
+
+" Vertically split screen
+nnoremap <silent><leader>\ :vs<CR>
+
+" Horizontally split screen
+nnoremap <silent><leader>- :split<CR>
+
+" beginning of the command line
+cnoremap <C-a> <Home>
+
+" end of the command line
+cnoremap <C-e> <End>
+
+" in insert mode
+inoremap <C-e> <END>
+inoremap <C-a> <HOME>
+
+"splitting panes and moving around in panes
+function! WinMove(key)
+    let t:curwin = winnr()
+    exec "wincmd ".a:key
+    if (t:curwin == winnr())
+        if (match(a:key,'[jk]'))
+            wincmd v
+        else
+            wincmd s
+        endif
+        exec "wincmd ".a:key
+    endif
+endfunction
+
+nnoremap <silent> <C-h> :call WinMove('h')<CR>
+nnoremap <silent> <C-j> :call WinMove('j')<CR>
+nnoremap <silent> <C-k> :call WinMove('k')<CR>
+nnoremap <silent> <C-l> :call WinMove('l')<CR>
+
+" Blink current search match
+nnoremap <silent> n n:call <SID>BlinkCurrentMatch()<CR>
+nnoremap <silent> N N:call <SID>BlinkCurrentMatch()<CR>
+
+function! s:BlinkCurrentMatch()
+  let target = '\c\%#'.@/
+  let match = matchadd('IncSearch', target)
+  redraw
+  sleep 100m
+  call matchdelete(match)
+  redraw
+endfunction
+
+" Insert newline above or below and stay in normal mode
+" No insert mode, doesn't move the cursor, and allows you to use a counter to append several lines at once
+" Add 3 lines above: 3-leader-O
+nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+
+" Shift+U undo
+nnoremap U :redo<cr>
+
+" Make Y behave like other capitals
+nnoremap Y y$
+
+" Disable ex mode
+nnoremap Q <Nop>
+
+" Map j and k to gj/gk, but only when no count is given
+" However, for larger jumps like 6j add the current position to the jump list
+" so that you can use <c-o>/<c-i> to jump to the previous position
+nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+
+" switch.vim
+let g:switch_mapping = "<leader>s"
+" }}}
+
+" styling {{{
+" Completion menu styling
+highlight Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#373d48 gui=NONE
+highlight PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
+
+" Commit hash at 'Commit:' header with 'Special' highlight group
+highlight link gitmessengerHash Special
 
 let g:closetag_filetypes='html,xhtml,jsx,xml,javascriptreact,javascript,typescriptreact,typescript'
 
 " Colorful JS
 let g:vim_jsx_pretty_colorful_config = 1
+" }}}
 
-" NERDTree
+" NERDTree {{{
 let g:NERDTreeWinSize = 35
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 
@@ -248,15 +419,9 @@ augroup nerdtree_fixes
   " Close vi if NERDTree is last and only buffer
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
+" }}}
 
-augroup goyo_limelight
-  autocmd!
-  autocmd! User GoyoEnter Limelight
-  autocmd! User GoyoLeave Limelight!
-augroup END
-
-let mapleader = "\<Space>"
-
+" coc.nvim {{{
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
   " let g:coc_disable_startup_warning = 1
@@ -341,150 +506,9 @@ if has_key(g:plugs, 'coc.nvim')
   nmap <leader>rn <Plug>(coc-rename)
 
 endif
+" }}}
 
-" Format JSON (TODO: jq & find more resilient method)
-command! -nargs=0 Jsonfmt :%!python -m json.tool
-
-if has('nvim')
-  " Clear search highlighting with escape, broken in regular vim
-  nnoremap <silent><esc> :noh<return><esc>
-
-  " TextYankPost highlight
-  function! s:hl_yank(operator, regtype, inclusive) abort
-    if a:operator !=# 'y' || a:regtype ==# ''
-      return
-    endif
-    " edge cases:
-    "   ^v[count]l ranges multiple lines
-
-    " TODO:
-    "   bug: ^v where the cursor cannot go past EOL, so '] reports a lesser column.
-
-    let bnr = bufnr('%')
-    let ns = nvim_create_namespace('')
-    call nvim_buf_clear_namespace(bnr, ns, 0, -1)
-
-    let [_, lin1, col1, off1] = getpos("'[")
-    let [lin1, col1] = [lin1 - 1, col1 - 1]
-    let [_, lin2, col2, off2] = getpos("']")
-    let [lin2, col2] = [lin2 - 1, col2 - (a:inclusive ? 0 : 1)]
-    for l in range(lin1, lin1 + (lin2 - lin1))
-      let is_first = (l == lin1)
-      let is_last = (l == lin2)
-      let c1 = is_first || a:regtype[0] ==# "\<C-v>" ? (col1 + off1) : 0
-      let c2 = is_last || a:regtype[0] ==# "\<C-v>" ? (col2 + off2) : -1
-      call nvim_buf_add_highlight(bnr, ns, 'TextYank', l, c1, c2)
-    endfor
-    call timer_start(300, {-> nvim_buf_is_valid(bnr) && nvim_buf_clear_namespace(bnr, ns, 0, -1)})
-  endfunc
-  highlight default link TextYank Visual
-  augroup vimrc_hlyank
-    autocmd!
-    autocmd TextYankPost * call s:hl_yank(v:event.operator, v:event.regtype, v:event.inclusive)
-  augroup END
-endif
-
-" XPS 2019 :(
-nnoremap <PageUp> <Nop>
-nnoremap <PageDown> <Nop>
-inoremap <PageUp> <Nop>
-inoremap <PageDown> <Nop>
-
-" NERDTree
-map <C-e> :NERDTreeToggle<CR>
-map <leader>e :NERDTreeFind<CR>
-
-" Yank to global clipboard (requires vim +clipboard)
-map <leader>y "+y
-
-" Paste from global clipboard (requires vim +clipboard)
-map <leader>p "*p
-
-" Toggle word wrapping
-map <leader>w :set wrap!<CR>
-
-" Vertically split screen
-nnoremap <silent><leader>\ :vs<CR>
-
-" Horizontally split screen
-nnoremap <silent><leader>- :split<CR>
-
-" beginning of the command line
-cnoremap <C-a> <Home>
-
-" end of the command line
-cnoremap <C-e> <End>
-
-" in insert mode
-inoremap <C-e> <END>
-inoremap <C-a> <HOME>
-
-"splitting panes and moving around in panes
-function! WinMove(key)
-    let t:curwin = winnr()
-    exec "wincmd ".a:key
-    if (t:curwin == winnr())
-        if (match(a:key,'[jk]'))
-            wincmd v
-        else
-            wincmd s
-        endif
-        exec "wincmd ".a:key
-    endif
-endfunction
-
-nnoremap <silent> <C-h> :call WinMove('h')<CR>
-nnoremap <silent> <C-j> :call WinMove('j')<CR>
-nnoremap <silent> <C-k> :call WinMove('k')<CR>
-nnoremap <silent> <C-l> :call WinMove('l')<CR>
-
-" Blink current search match
-nnoremap <silent> n n:call <SID>BlinkCurrentMatch()<CR>
-nnoremap <silent> N N:call <SID>BlinkCurrentMatch()<CR>
-
-function! s:BlinkCurrentMatch()
-  let target = '\c\%#'.@/
-  let match = matchadd('IncSearch', target)
-  redraw
-  sleep 100m
-  call matchdelete(match)
-  redraw
-endfunction
-
-" Insert newline above or below and stay in normal mode
-" No insert mode, doesn't move the cursor, and allows you to use a counter to append several lines at once
-" Add 3 lines above: 3-leader-O
-nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
-
-augroup pysnips
-  autocmd!
-  autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()<Esc>
-  autocmd FileType python :iabbrev <buffer> rdb from celery.contrib import rdb; rdb.set_trace()<Esc>
-augroup END
-
-" Shift+U undo
-nnoremap U :redo<cr>
-
-" Make Y behave like other capitals
-nnoremap Y y$
-
-" Disable ex mode
-nnoremap Q <Nop>
-
-" Map j and k to gj/gk, but only when no count is given
-" However, for larger jumps like 6j add the current position to the jump list
-" so that you can use <c-o>/<c-i> to jump to the previous position
-nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
-nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
-
-" Use ripgrep for vim :grep
-if executable('rg')
-  set grepprg=rg\ --vimgrep
-  set grepformat=%f:%l:%c:%m
-endif
-
-" FZF
+" FZF {{{
 " Default preview off, only in fullscreen (Rg!)
 let g:fzf_preview_window = ''
 
@@ -492,7 +516,7 @@ let g:fzf_preview_window = ''
 let $BAT_THEME = 'TwoDark'
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --no-heading --line-number --color=always --glob "!{.git,node_modules,static_common,*.xml,*.txt,*.csv,*.nessus,*.json,*.html,*.dll,*.cache,*.fvdl}" '.shellescape(<q-args>), 1,
+  \   'rg --column --no-heading --line-number --color=always '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview({'options':'--layout=default --delimiter : --nth 4..', 'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'up:70%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..', 'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
   \ <bang>0)
@@ -560,16 +584,15 @@ endif
 
 " Jump to open buffer
 let g:fzf_buffers_jump = 1
+" }}}
 
-" vim-qf
+" vim-qf {{{
 nmap <leader>] <Plug>(qf_qf_next)
 nmap <leader>[ <Plug>(qf_qf_previous)
 nmap <leader>qf <Plug>(qf_qf_toggle)
+" }}}
 
-" switch.vim
-let g:switch_mapping = "<leader>s"
-
-" vim-gitgutter
+" vim-gitgutter {{{
 let g:gitgutter_map_keys = 0
 let g:gitgutter_grep = 'rg'
 let g:gitgutter_preview_win_floating = 0
@@ -602,14 +625,9 @@ omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
+" }}}
 
-augroup split_help
-  autocmd!
-  autocmd VimResized * wincmd = " Automatically equalize splits when resized
-  " autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
-augroup END
-
-" Prevent vim from indenting newlines
+" Prevent vim from indenting newlines {{{
 " https://vim.fandom.com/wiki/Get_the_correct_indent_for_new_lines_despite_blank_lines
 function! IndentIgnoringBlanks(child) abort
   let lnum = v:lnum
@@ -667,3 +685,4 @@ augroup IndentIgnoringBlanks
   autocmd!
   autocmd FileType * IndentIgnoringBlanks
 augroup END
+" }}}

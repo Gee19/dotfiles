@@ -22,6 +22,9 @@ include = {
     # pdb++
     'pdbrc.py': '$HOME/.pdbrc.py',
 
+    #Tmux
+    'tmux.conf': '$HOME/.tmux.conf',
+
     # Terminal
     # 'kitty.conf': '$HOME/.config/kitty/kitty.conf',
     # 'diff.conf': '$HOME/.config/kitty/diff.conf',
