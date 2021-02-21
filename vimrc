@@ -240,6 +240,7 @@ set noshowmode " Hide mode, handled by lightline
 set shortmess+=c " don't give ins-completion-menu messages
 set number " Line numbers
 set relativenumber " Show line numbers from current location
+set scrolloff=5 " Keep X lines above/below cursor when near edge of screen
 
 " Some coc servers have issues with backup files #649
 set nobackup
