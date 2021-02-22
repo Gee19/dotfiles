@@ -587,6 +587,15 @@ endif
 let g:fzf_buffers_jump = 1
 " }}}
 
+" clever-f {{{
+let g:clever_f_across_no_line = 1 " only span 1 line
+let g:clever_f_fix_key_direction = 1 " always force f->forward F->backward
+
+" Keep functionality of ; & ,
+map ; <Plug>(clever-f-repeat-forward)
+map , <Plug>(clever-f-repeat-back)
+" }}}
+
 " vim-qf {{{
 nmap <leader>] <Plug>(qf_qf_next)
 nmap <leader>[ <Plug>(qf_qf_previous)
