@@ -53,6 +53,7 @@ Plug 'alvan/vim-closetag'
 Plug 'Krasjet/auto.pairs'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
+Plug 'christoomey/vim-tmux-navigator'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -336,7 +337,7 @@ cnoremap <C-e> <End>
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
 
-"splitting panes and moving around in panes
+" splitting panes and moving around in panes
 function! WinMove(key)
     let t:curwin = winnr()
     exec "wincmd ".a:key
@@ -350,10 +351,10 @@ function! WinMove(key)
     endif
 endfunction
 
-nnoremap <silent> <C-h> :call WinMove('h')<CR>
-nnoremap <silent> <C-j> :call WinMove('j')<CR>
-nnoremap <silent> <C-k> :call WinMove('k')<CR>
-nnoremap <silent> <C-l> :call WinMove('l')<CR>
+nnoremap <silent> <leader>h :call WinMove('h')<CR>
+nnoremap <silent> <leader>j :call WinMove('j')<CR>
+nnoremap <silent> <leader>k :call WinMove('k')<CR>
+nnoremap <silent> <leader>l :call WinMove('l')<CR>
 
 " Blink current search match
 nnoremap <silent> n n:call <SID>BlinkCurrentMatch()<CR>
@@ -551,10 +552,10 @@ nnoremap <silent> <leader>gl :BCommits!<cr>
 nnoremap <silent> <leader>h :History<cr>
 
 " lines in current buffer
-nnoremap <silent> <leader>l :BLines<cr>
+nnoremap <silent> <leader>cb :BLines<cr>
 
 " lines in any buffer
-nnoremap <silent> <leader>L :Lines<cr>
+nnoremap <silent> <leader>ab :Lines<cr>
 
 " help
 nnoremap <silent> <leader>H :Helptags<cr>
