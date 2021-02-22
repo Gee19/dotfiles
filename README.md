@@ -1,7 +1,10 @@
+# Term
+- kitty / winterm + wsl2
+
 ## Shell
 - tmux + zsh + antibody
 
-## Editor(s)
+## Editor
 - neovim + coc.nvim
 
 `:PlugInstall`
@@ -23,7 +26,7 @@
 
 ## TODO
 - alacritty?
-- antibody is deprecated.. should static load plugins
+- antibody is deprecated.. should static load plugins (zplug?)
 - .config bare repo
   - should fix antibody dependency
   - simplifies `setup_env.sh`

@@ -549,7 +549,7 @@ nnoremap <silent> <leader>m :Marks<cr>
 nnoremap <silent> <leader>gl :BCommits!<cr>
 
 " most recently updated files
-nnoremap <silent> <leader>h :History<cr>
+nnoremap <silent> <leader>H :History<cr>
 
 " lines in current buffer
 nnoremap <silent> <leader>cb :BLines<cr>
