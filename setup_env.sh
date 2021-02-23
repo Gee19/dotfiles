@@ -6,6 +6,9 @@ sudo apt -y update && sudo apt -y dist-upgrade
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt -y install zsh unzip nodejs python3-pip tmux
 
+# TPM
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # antibody
 curl -sfL git.io/antibody | sudo sh -s - -b /usr/local/bin
 
