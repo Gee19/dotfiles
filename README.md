@@ -2,7 +2,8 @@
 - kitty / winterm + wsl2
 
 ## Shell
-- tmux + zsh + antibody
+- tmux + tpm
+- zsh + antibody
 
 ## Editor
 - neovim + coc.nvim
