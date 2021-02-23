@@ -25,7 +25,6 @@
 `chsh -s /usr/bin/zsh`
 
 ## TODO
-- alacritty?
 - antibody is deprecated.. should static load plugins (zplug?)
 - .config bare repo
   - should fix antibody dependency
