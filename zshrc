@@ -127,7 +127,15 @@ fbr() {
 }
 
 bindkey -s '^b' 'fbr\n'
-bindkey -s '^o' 'vim $(fzf)\n'
+
+# pipe fzf output to vim if non-zero exit code
+# TODO: not possible to use --exit-0 and --select-1 in interactive mode?
+function vzf() {
+    local fname
+    fname=$(fzf) || return
+    vim "$fname"
+}
+bindkey -s '^o' 'vzf\n'
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
