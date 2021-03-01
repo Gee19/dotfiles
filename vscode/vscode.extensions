@@ -1,8 +1,0 @@
-code --install-extension esbenp.prettier-vscode
-code --install-extension kvnxush.one-dark-operator-theme
-code --install-extension mgmcdermott.vscode-language-babel
-code --install-extension ms-python.python
-code --install-extension dbaeumer.vscode-eslint
-code --install-extension waderyan.gitblame
-code --install-extension vscodevim.vim
-code --install-extension joaompinto.asciidoctor-vscode

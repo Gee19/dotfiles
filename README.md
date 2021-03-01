@@ -1,5 +1,6 @@
-# Term
-- kitty / winterm + wsl2
+## Term
+- Ubuntu: kitty
+- Windows: winterm + wsl2
 
 ## Shell
 - tmux + tpm
@@ -7,8 +8,6 @@
 
 ## Editor
 - neovim + coc.nvim
-
-`:PlugInstall`
 
 ## Setup
 `ssh key magic`
