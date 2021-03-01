@@ -9,13 +9,13 @@ sudo apt -y install zsh unzip nodejs python3-pip tmux
 # TPM
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# antibody
-curl -sfL git.io/antibody | sudo sh -s - -b /usr/local/bin
-
 # Yarn
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt -y update && sudo apt -y install yarn
+
+# Znap
+git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git ~/zsh/znap-repos/zsh-snap
 
 mkdir -p ~/.config/nvim
 mkdir -p ~/.vim

@@ -1,8 +1,14 @@
 # zmodload zsh/zprof
 
-# antibody
-source <(antibody init)
-antibody bundle < ~/.plugins.txt
+# znap
+source ~/zsh/znap-repos/zsh-snap/znap.zsh
+znap prompt "sindresorhus/pure"
+znap source "mafredri/zsh-async"
+znap source "zsh-users/zsh-completions"
+znap source "zsh-users/zsh-autosuggestions"
+znap source "zsh-users/zsh-syntax-highlighting"
+znap source "zsh-users/zsh-history-substring-search"
+znap source "hlissner/zsh-autopair"
 
 # virtualenvwrapper
 if [ -f ${HOME}/.local/bin/virtualenvwrapper.sh ]; then
@@ -16,23 +22,8 @@ PURE_CMD_MAX_EXEC_TIME=10
 ZSH_AUTOSUGGEST_USE_ASYNC='true'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
-# prompt + completions
-autoload -Uz promptinit;promptinit
-autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-
-# speed up compinit by only checking cache once a day
-# https://gist.github.com/ctechols/ca1035271ad134841284
-() {
-  setopt extendedglob local_options
-
-  if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-    compinit
-  else
-    compinit -C
-  fi
-}
 
 _comp_options+=(globdots) # Include hidden files
 

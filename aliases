@@ -1,6 +1,5 @@
 # Expand Alias: <Esc>x _expand_alias
 alias reload_zsh=". ~/.zshrc"
-alias edit_zsh="nvim.appimage ~/.zshrc ~/.plugins.txt ~/.aliases ~/.zshenv"
 alias reload_tmux="tmux source-file ~/.tmux.conf"
 
 alias gs="git status"

@@ -34,8 +34,7 @@ include = {
     'aliases': '$HOME/.aliases',
 
     'zshenv': '$HOME/.zshenv',
-    'zshrc': '$HOME/.zshrc',
-    'plugins.txt': '$HOME/.plugins.txt',
+    'zshrc': '$HOME/.zshrc'
 }
 
 # home = os.path.expanduser('~')

@@ -3,7 +3,7 @@
 
 ## Shell
 - tmux + tpm
-- zsh + antibody
+- zsh + znap
 
 ## Editor
 - neovim + coc.nvim
@@ -26,8 +26,4 @@
 `chsh -s /usr/bin/zsh`
 
 ## TODO
-- antibody is deprecated.. should static load plugins (zplug?)
-- .config bare repo
-  - should fix antibody dependency
-  - simplifies `setup_env.sh`
 - coc -> nvim lsp when its more mature
