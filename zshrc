@@ -9,6 +9,7 @@ znap source "zsh-users/zsh-autosuggestions"
 znap source "zsh-users/zsh-syntax-highlighting"
 znap source "zsh-users/zsh-history-substring-search"
 znap source "hlissner/zsh-autopair"
+znap source "agkozak/zsh-z"
 
 # virtualenvwrapper
 if [ -f ${HOME}/.local/bin/virtualenvwrapper.sh ]; then
