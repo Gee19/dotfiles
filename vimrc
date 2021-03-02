@@ -57,7 +57,7 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf.vim'
