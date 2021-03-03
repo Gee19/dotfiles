@@ -38,10 +38,23 @@ Plug 'Konfekt/FastFold'
 
 if has('nvim')
   Plug 'norcalli/nvim-colorizer.lua'
+
+  " LSP
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/completion-nvim'
+  Plug 'tjdevries/nlua.nvim'
+  Plug 'kosayoda/nvim-lightbulb'
+  Plug 'tjdevries/lsp_extensions.nvim'
+  Plug 'steelsojka/completion-buffers'
+
+  " Telescope
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzy-native.nvim'
 endif
 
 " viM iSn'T aN IDe
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'rhysd/git-messenger.vim'
 Plug 'airblade/vim-gitgutter'
@@ -57,14 +70,51 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
-" Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'junegunn/fzf.vim'
 
-" Always load last
-Plug 'ryanoasis/vim-devicons'
 call plug#end()
+" }}}
+
+" LSP + Telescope + Completion {{{
+lua << EOF
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.tsserver.setup{}
+
+local sorters = require 'telescope.sorters'
+local previewers = require 'telescope.previewers'
+local actions = require 'telescope.actions'
+require('telescope').setup {
+    defaults = {
+        prompt_prefix = ' >',
+        prompt_position = 'top',
+
+        generic_sorter = sorters.get_fzy_sorter,
+        file_sorter = sorters.get_fzy_sorter,
+        file_previewer   = previewers.vim_buffer_cat.new,
+        grep_previewer   = previewers.vim_buffer_vimgrep.new,
+        qflist_previewer = previewers.vim_buffer_qflist.new,
+
+        mappings = {
+            i = {
+                ["<C-q>"] = actions.send_to_qflist,
+            },
+        }
+    }
+}
+require('telescope').load_extension('fzy_native')
+
+vim.g.completion_chain_complete_list = {
+  default = {
+    { complete_items = { 'lsp' } },
+    { complete_items = { 'buffers' } },
+    { mode = { '<c-p>' } },
+    { mode = { '<c-n>' } }
+  },
+}
+EOF
+let g:completion_auto_change_source = 1 " fix completion source for buffers with inactive lsp
+command! RestartLSP :lua vim.lsp.stop_client(vim.lsp.get_active_clients()); vim.cmd 'edit'
 " }}}
 
 " shell/colorscheme/grepprg {{{
@@ -86,6 +136,9 @@ if exists('$SHELL')
 else
   set shell=/bin/sh
 endif
+
+" inline lua highlighting in vimscript
+let g:vimsyn_embed= 'l'
 
 " Format JSON (TODO: jq & find more resilient method)
 command! -nargs=0 Jsonfmt :%!python -m json.tool
@@ -194,6 +247,11 @@ augroup split_help
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
   " autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
 augroup END
+
+augroup lspstuff
+  autocmd BufEnter * lua require'completion'.on_attach()
+  autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+augroup END
 " }}}
 
 " Lightline + Tabline {{{
@@ -201,10 +259,9 @@ let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'tpope_op', 'filename', 'modified'] ]
+      \             [ 'readonly', 'tpope_op', 'filename', 'modified'] ]
       \ },
       \ 'component_function': {
-      \   'cocstatus': 'coc#status',
       \   'tpope_op': 'FugitiveHead'
       \ },
       \ }
@@ -218,8 +275,7 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 " Only show buffer filename
 let g:lightline#bufferline#filename_modifier = ':t'
 
-" Use autocmd to force lightline update.
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+" TODO: lsp status + lightline
 
 " Show devicons in bufferline
 let g:lightline#bufferline#enable_devicons = 1
@@ -232,7 +288,7 @@ set autoread " Auto read files changed outside of vim
 set gdefault " Substitute all matches in a line
 set cmdheight=2 " Better display for messages
 set signcolumn=yes " Show left sidebar
-set updatetime=100 " Fix coc diagnostic messages
+set updatetime=300 " Write swap file to disk after X ms passes
 set colorcolumn=120 " Long line warning
 set timeoutlen=1500 ttimeoutlen=0 " Mapping and keycode delays
 set showmatch " When a bracket is inserted, briefly jump to the matching one
@@ -246,19 +302,21 @@ set foldmethod=indent " Fold based on indentation
 set nofoldenable " Open all folds by default
 set noshowmode " Hide mode, handled by lightline
 set shortmess+=c " don't give ins-completion-menu messages
+set completeopt=menuone,noinsert,noselect " better completion experience
+set pumblend=10 " pseudo transparency for popup menu
 set number " Line numbers
 set relativenumber " Show line numbers from current location
 set scrolloff=5 " Keep X lines above/below cursor when near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 
-" Some coc servers have issues with backup files #649
+" Some lsp servers have issues with backup files #649
 set nobackup
 set nowritebackup
 
 " Don't persist folds in sessions (FastFold docs)
 set sessionoptions-=folds
 
-" Persist coc workspace folders in session file
+" Persist workspace folders in session file
 set sessionoptions+=globals
 
 " Indentation
@@ -297,6 +355,33 @@ set undodir=~/.vim/undodir
 
 " mappings {{{
 let mapleader = "\<Space>"
+
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <leader><S-h> <cmd>lua vim.lsp.buf.signature_help()<CR>
+
+nnoremap <silent> [d <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> ]d <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+inoremap <expr> <Up>   pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
+
+" inoremap <silent> <C-Space> <cmd>lua require'completion'.triggerCompletion()<CR>
+inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
+
+nnoremap <C-f> <cmd>Telescope find_files<cr>
+nnoremap <C-p> <cmd>lua require'telescope.builtin'.git_files{ }<CR>
+nnoremap <leader>F <cmd>Telescope live_grep<cr>
+nnoremap <leader>b <cmd>lua require'telescope.builtin'.buffers{ show_all_buffers = true, shorten_path = true, sort_lastused = true }<CR>
+nnoremap <leader>f <cmd>lua require'telescope.builtin'.grep_string{ initial_mode = "normal", shorten_path = true, word_match = "-w", only_sort_text = true }<CR>
+nnoremap <leader>r <cmd>lua require'telescope.builtin'.lsp_references{ shorten_path = true }<CR>
+nnoremap <leader>ds <cmd>lua require'telescope.builtin'.lsp_document_symbols{ initial_mode = "normal", shorten_path = true }<CR>
+nnoremap <leader>ws <cmd>lua require'telescope.builtin'.lsp_workspace_symbols({ initial_mode = "normal", query = vim.fn.input("> "), shorten_path = true })<CR>
 
 " Toggle between no numbers -> absolute -> relative with absolute on cursor line
 nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
@@ -429,171 +514,6 @@ augroup nerdtree_fixes
   " Close vi if NERDTree is last and only buffer
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
-" }}}
-
-" coc.nvim {{{
-if has_key(g:plugs, 'coc.nvim')
-  " let g:coc_force_debug = 1
-  " let g:coc_disable_startup_warning = 1
-  " let g:coc_node_path = '/usr/bin/node'
-  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.2.0/bin/node'
-
-  " coc-java requires manual install of jdt-ls
-  " neoclide/coc-java/issues/99
-  let g:coc_global_extensions = [
-    \ 'coc-prettier',
-    \ 'coc-pyright',
-    \ 'coc-json',
-    \ 'coc-css',
-    \ 'coc-tsserver',
-    \ 'coc-eslint',
-    \ 'coc-omnisharp',
-    \ 'coc-actions',
-    \ 'coc-rls',
-    \ 'coc-java',
-    \ 'coc-yaml',
-    \ 'coc-lua'
-  \ ]
-
-  " use <tab> for trigger completion and navigate to the next completion item
-  inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
-
-  " use shift-<tab> to navigate to previous completion item
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-  " enter selects the first completion item and confirm the completion when no item has been selected
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-
-  " neoclide/coc.nvim/issues/28
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
-
-  " Prettier command
-  command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-  " Use K to show/hide documentation in preview window
-  function! s:show_documentation() abort
-    if coc#float#has_float()
-      call coc#float#close_all()
-    elseif (index(['vim','help'], &filetype) >= 0)
-      execute 'h '.expand('<cword>')
-    else
-      call CocActionAsync('doHover')
-    endif
-  endfunction
-
-  " Coc Binds
-  nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
-  nmap <silent> gr <Plug>(coc-references)
-  nmap <silent> K :call <SID>show_documentation()<CR>
-
-  " Use `[c` and `]c` to navigate diagnostics
-  nmap <silent> [d <Plug>(coc-diagnostic-prev)
-  nmap <silent> ]d <Plug>(coc-diagnostic-next)
-
-  " Show all diagnostics
-  nnoremap <silent><leader>d :<C-u>CocList diagnostics<cr>
-
-  " Fix autofix problem of current line
-  nmap <leader>cf <Plug>(coc-fix-current)
-
-  " Remap for codeAction of selected region
-  function! s:cocActionsOpenFromSelected(type) abort
-    execute 'CocCommand actions.open ' . a:type
-  endfunction
-
-  xmap <silent> <leader>ca :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-  nmap <silent> <leader>ca :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-
-  " Remap for rename current word
-  nmap <leader>rn <Plug>(coc-rename)
-
-endif
-" }}}
-
-" FZF {{{
-" Default preview off, only in fullscreen (Rg!)
-let g:fzf_preview_window = ''
-
-" ripgrep preview
-let $BAT_THEME = 'TwoDark'
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --no-heading --line-number --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options':'--layout=default --delimiter : --nth 4..', 'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'up:70%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..', 'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
-  \ <bang>0)
-
-" files in git repo with changes, fullscreen if called with bang
-command! -bang -nargs=* Gd call fzf#vim#gitfiles('?', {'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, <bang>0)
-nnoremap <silent> <leader>gd :Gd<cr>
-
-" fullscreen ripgrep global search
-nnoremap <silent> <leader><S-f> :Rg!<cr>
-
-" fullscreen ripgrep global search current word
-nnoremap <silent> <expr> <leader>f ":Rg!\ ".expand('<cword>')."<cr>"
-
-" all files in repo
-nnoremap <silent> <C-p> :GitFiles<cr>
-
-" files in cwd
-nnoremap <silent> <C-f> :Files<cr>
-
-" buffers
-nnoremap <silent> <leader>b :Buffers<cr>
-
-" marks
-nnoremap <silent> <leader>m :Marks<cr>
-
-" commits of current buffer - kinda requires fugitive
-nnoremap <silent> <leader>gl :BCommits!<cr>
-
-" most recently updated files
-nnoremap <silent> <leader>H :History<cr>
-
-" lines in current buffer
-nnoremap <silent> <leader>cb :BLines<cr>
-
-" lines in any buffer
-nnoremap <silent> <leader>ab :Lines<cr>
-
-" help
-nnoremap <silent> <leader>H :Helptags<cr>
-
-" Reverse layout for floating windows
-if has('nvim') || has('gui_running')
-  let $FZF_DEFAULT_OPTS .= ' --inline-info --layout=reverse'
-  let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.3, 'yoffset': '-1', 'border': 'rounded' } }
-endif
-
-" Hide statusline when fzf open in vim
-if !has('nvim')
-  augroup fzf_statusline
-    autocmd! FileType fzf
-    autocmd  FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-  augroup END
-end
-
-" Transparency
-if has('nvim') && exists('&winblend') && has('termguicolors')
-  set winblend=10
-
-  if exists('g:fzf_colors.bg')
-    call remove(g:fzf_colors, 'bg')
-  endif
-endif
-
-" Jump to open buffer
-let g:fzf_buffers_jump = 1
 " }}}
 
 " clever-f {{{

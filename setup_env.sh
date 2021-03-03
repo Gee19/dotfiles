@@ -6,6 +6,9 @@ sudo apt -y update && sudo apt -y dist-upgrade
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt -y install zsh unzip nodejs python3-pip tmux
 
+# lsp servers, might not need RUN yes
+RUN yes | npm install -g pyright typescript typescript-language-server
+
 # TPM
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 

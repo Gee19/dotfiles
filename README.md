@@ -1,3 +1,5 @@
+## WIP DROP COC.NVIM
+
 ## Term
 - Ubuntu: kitty
 - Windows: winterm + wsl2
@@ -7,7 +9,7 @@
 - zsh + znap
 
 ## Editor
-- neovim + coc.nvim
+- neovim
 
 ## Setup
 `ssh key magic`
@@ -25,4 +27,4 @@
 `chsh -s /usr/bin/zsh`
 
 ## TODO
-- coc -> nvim lsp when its more mature
+- nvim-lua/lsp-status.nvim

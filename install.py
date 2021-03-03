@@ -10,9 +10,6 @@ include = {
     'gitignore_global': '$HOME/.gitignore_global',
     'stCommitMsg': '$HOME/.stCommitMsg',
 
-    # coc.nvim
-    'coc-settings.json': ['$XDG_CONFIG_HOME/nvim/coc-settings.json', '$HOME/.vim/coc-settings.json'],
-
     # ripgrep
     'ripgreprc': '$XDG_CONFIG_HOME/.ripgreprc',
 

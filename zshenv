@@ -41,6 +41,10 @@ export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" ]
 
+# npm
+export PATH="$HOME/.npm/bin:$PATH"
+export PATH="./node_modules/.bin:$PATH"
+
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 export GITLAB_TOKEN=%NOPE%
