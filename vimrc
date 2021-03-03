@@ -38,14 +38,11 @@ Plug 'Konfekt/FastFold'
 
 if has('nvim')
   Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'kosayoda/nvim-lightbulb'
 
   " LSP
   Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/completion-nvim'
-  Plug 'tjdevries/nlua.nvim'
-  Plug 'kosayoda/nvim-lightbulb'
-  Plug 'tjdevries/lsp_extensions.nvim'
-  Plug 'steelsojka/completion-buffers'
+  Plug 'hrsh7th/nvim-compe'
 
   " Telescope
   Plug 'nvim-lua/popup.nvim'
@@ -104,16 +101,59 @@ require('telescope').setup {
 }
 require('telescope').load_extension('fzy_native')
 
-vim.g.completion_chain_complete_list = {
-  default = {
-    { complete_items = { 'lsp' } },
-    { complete_items = { 'buffers' } },
-    { mode = { '<c-p>' } },
-    { mode = { '<c-n>' } }
-  },
-}
+
+require'compe'.setup({
+	enabled = true,
+	source = {
+		path = true,
+		buffer = true,
+		nvim_lsp = true,
+	},
+})
+
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
+    else
+        return false
+    end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif vim.fn.call("vsnip#available", {1}) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+    return t "<Plug>(vsnip-jump-prev)"
+  else
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 EOF
-let g:completion_auto_change_source = 1 " fix completion source for buffers with inactive lsp
+inoremap <silent><expr> <CR> compe#confirm('<CR>')
 command! RestartLSP :lua vim.lsp.stop_client(vim.lsp.get_active_clients()); vim.cmd 'edit'
 " }}}
 
@@ -248,8 +288,7 @@ augroup split_help
   " autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
 augroup END
 
-augroup lspstuff
-  autocmd BufEnter * lua require'completion'.on_attach()
+augroup lightbulb
   autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 augroup END
 " }}}
@@ -302,7 +341,7 @@ set foldmethod=indent " Fold based on indentation
 set nofoldenable " Open all folds by default
 set noshowmode " Hide mode, handled by lightline
 set shortmess+=c " don't give ins-completion-menu messages
-set completeopt=menuone,noinsert,noselect " better completion experience
+set completeopt=menuone,noselect " better completion experience
 set pumblend=10 " pseudo transparency for popup menu
 set number " Line numbers
 set relativenumber " Show line numbers from current location
@@ -364,15 +403,6 @@ nnoremap <silent> <leader><S-h> <cmd>lua vim.lsp.buf.signature_help()<CR>
 
 nnoremap <silent> [d <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent> ]d <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-inoremap <expr> <Up>   pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
-
-" inoremap <silent> <C-Space> <cmd>lua require'completion'.triggerCompletion()<CR>
-inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
 
 nnoremap <C-f> <cmd>Telescope find_files<cr>
 nnoremap <C-p> <cmd>lua require'telescope.builtin'.git_files{ }<CR>
