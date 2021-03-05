@@ -7,6 +7,7 @@ include = {
 
     # Git
     'gitconfig': '$HOME/.gitconfig',
+    # 'gitconfig_home': '$HOME/.gitconfig',
     'gitignore_global': '$HOME/.gitignore_global',
     'stCommitMsg': '$HOME/.stCommitMsg',
 
