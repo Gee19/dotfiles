@@ -421,8 +421,8 @@ nnoremap J mzJ`z
 
 " always center the screen after any movement command
 nnoremap <C-d> <C-d>zz
-nnoremap <C-f> <C-f>zz
-nnoremap <C-b> <C-b>zz
+" nnoremap <C-f> <C-f>zz
+" nnoremap <C-b> <C-b>zz
 nnoremap <C-u> <C-u>zz
 
 " XPS 2019 :(
