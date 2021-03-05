@@ -25,4 +25,4 @@
 `chsh -s /usr/bin/zsh`
 
 ## TODO
-- coc -> nvim lsp when its more mature
+- coc -> nvim lsp when its more mature (https://github.com/Gee19/dotfiles/pull/5)
