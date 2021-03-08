@@ -19,6 +19,8 @@ alias gc-="git checkout -"
 alias gsl="git stash list"
 alias gsa="git stash apply"
 
+alias rdb="socat readline tcp:$1:$2"
+
 function gsd() {
     if [ "$1" != "" ]
     then
