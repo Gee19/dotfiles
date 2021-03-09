@@ -2,6 +2,8 @@
 alias reload_zsh=". ~/.zshrc"
 alias reload_tmux="tmux source-file ~/.tmux.conf"
 
+alias ..="cd .."
+
 alias gs="git status"
 alias gp="git pull"
 alias gb="git branch"
