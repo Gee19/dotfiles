@@ -24,3 +24,5 @@
 [mergetool "fugitive"]
 	; open neovim and invoke :Git mergetool
 	cmd = nvim.appimage -c \"Git mergetool\"
+[pull]
+	rebase = false
