@@ -304,11 +304,20 @@ nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
+" Don't let x and c to spoil the yank register
+nnoremap x "_x
+nnoremap c "_c
+
 " always center the screen after any movement command
 nnoremap <C-d> <C-d>zz
-" nnoremap <C-f> <C-f>zz
-" nnoremap <C-b> <C-b>zz
 nnoremap <C-u> <C-u>zz
+
+" go to end of yanked text
+vnoremap <silent> y y`]
+
+" simple sizing of splits
+map - <C-W>-
+map + <C-W>+
 
 " XPS 2019 :(
 nnoremap <PageUp> <Nop>
