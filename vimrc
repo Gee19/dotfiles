@@ -33,8 +33,8 @@ Plug 'towolf/vim-helm'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " Folds
-Plug 'kalekundert/vim-coiled-snake'
-Plug 'Konfekt/FastFold'
+" Plug 'kalekundert/vim-coiled-snake'
+" Plug 'Konfekt/FastFold'
 
 if has('nvim')
   Plug 'norcalli/nvim-colorizer.lua'
@@ -57,7 +57,6 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
-Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf.vim'
@@ -256,7 +255,9 @@ set nobackup
 set nowritebackup
 
 " Don't persist folds in sessions (FastFold docs)
-set sessionoptions-=folds
+" set sessionoptions-=folds
+" set sessionoptions-=options
+" set viewoptions-=options
 
 " Persist coc workspace folders in session file
 set sessionoptions+=globals
@@ -445,7 +446,7 @@ if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
   " let g:coc_disable_startup_warning = 1
   " let g:coc_node_path = '/usr/bin/node'
-  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.2.0/bin/node'
+  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.16.0/bin/node'
 
   " coc-java requires manual install of jdt-ls
   " neoclide/coc-java/issues/99
