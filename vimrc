@@ -616,9 +616,13 @@ map , <Plug>(clever-f-repeat-back)
 " }}}
 
 " vim-qf {{{
-nmap <leader>] <Plug>(qf_qf_next)
-nmap <leader>[ <Plug>(qf_qf_previous)
-nmap <leader>qf <Plug>(qf_qf_toggle)
+nmap <C-]> <Plug>(qf_qf_next)
+nmap <C-[> <Plug>(qf_qf_previous)
+nmap <C-q> <Plug>(qf_qf_toggle)
+
+nmap <leader>] <Plug>(qf_loc_next)
+nmap <leader>[ <Plug>(qf_loc_previous)
+nmap <leader>q <Plug>(qf_loc_toggle)
 " }}}
 
 " vim-gitgutter {{{
