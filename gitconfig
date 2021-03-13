@@ -26,3 +26,5 @@
 	cmd = nvim.appimage -c \"Git mergetool\"
 [pull]
 	rebase = false
+[init]
+	defaultBranch = master
