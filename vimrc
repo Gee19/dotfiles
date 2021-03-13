@@ -249,6 +249,7 @@ set number " Line numbers
 set relativenumber " Show line numbers from current location
 set scrolloff=5 " Keep X lines above/below cursor when near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
+set wildignorecase " Ignore case when completing file names and directories
 
 " Some coc servers have issues with backup files #649
 set nobackup
