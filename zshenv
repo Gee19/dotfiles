@@ -37,9 +37,11 @@ export PATH="$GOPATH/bin:$PATH"
 # Python
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
-# Node/nvm
-export NVM_DIR=~/.nvm
- [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" ]
+# Node/nvm, unusable with fzf on wsl2
+if ! [[ $(uname -r) =~ WSL$ ]]; then
+  export NVM_DIR=~/.nvm
+   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" ]
+fi
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 

@@ -32,10 +32,6 @@ Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact', 'typescript' 
 Plug 'towolf/vim-helm'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
-" Folds
-" Plug 'kalekundert/vim-coiled-snake'
-" Plug 'Konfekt/FastFold'
-
 if has('nvim')
   Plug 'norcalli/nvim-colorizer.lua'
 endif
@@ -61,8 +57,12 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf.vim'
 
-" Always load last
-Plug 'ryanoasis/vim-devicons'
+" nerd fonts broken in wsl
+let s:in_wsl = system("uname -r") =~ "WSL"
+if !(s:in_wsl)
+  Plug 'ryanoasis/vim-devicons' " Always load last
+endif
+
 call plug#end()
 " }}}
 
@@ -232,8 +232,10 @@ let g:lightline#bufferline#filename_modifier = ':t'
 " Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-" Show devicons in bufferline
-let g:lightline#bufferline#enable_devicons = 1
+" Show devicons in bufferline when not in WSL
+if !(s:in_wsl)
+  let g:lightline#bufferline#enable_devicons = 1
+endif
 " }}}
 
 " global vars {{{
@@ -458,9 +460,18 @@ augroup END
 " coc.nvim {{{
 if has_key(g:plugs, 'coc.nvim')
   " let g:coc_force_debug = 1
-  " let g:coc_disable_startup_warning = 1
-  " let g:coc_node_path = '/usr/bin/node'
-  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.16.0/bin/node'
+
+  " disable coc startup warning in vim
+  if !has('nvim')
+    let g:coc_disable_startup_warning = 1
+  endif
+
+  " node paths for my separate environments
+  if (s:in_wsl)
+    let g:coc_node_path = '/usr/bin/node'
+  else
+    let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.16.0/bin/node'
+  endif
 
   " coc-java requires manual install of jdt-ls
   " neoclide/coc-java/issues/99

@@ -6,8 +6,6 @@ include = {
     'vimrc': '$HOME/.vimrc',
 
     # Git
-    'gitconfig': '$HOME/.gitconfig',
-    # 'gitconfig_home': '$HOME/.gitconfig',
     'gitignore_global': '$HOME/.gitignore_global',
     'stCommitMsg': '$HOME/.stCommitMsg',
 
@@ -26,10 +24,6 @@ include = {
     #Tmux
     'tmux.conf': '$HOME/.tmux.conf',
 
-    # Terminal
-    # 'kitty.conf': '$HOME/.config/kitty/kitty.conf',
-    # 'diff.conf': '$HOME/.config/kitty/diff.conf',
-
     # Shell
     'bashrc': '$HOME/.bashrc',
     'aliases': '$HOME/.aliases',
@@ -37,6 +31,15 @@ include = {
     'zshenv': '$HOME/.zshenv',
     'zshrc': '$HOME/.zshrc'
 }
+
+# git
+in_wsl = 'WSL' in os.uname().release
+relevant_gitconfig = 'gitconfig' if not in_wsl else 'gitconfig_home'
+include[relevant_gitconfig] = '$HOME/.gitconfig'
+
+if not in_wsl:
+    include['kitty.conf'] = '$HOME/.config/kitty/kitty.conf'
+    include['diff.conf'] = '$HOME/.config/kitty/diff.conf'
 
 # home = os.path.expanduser('~')
 here = os.path.abspath('.')
