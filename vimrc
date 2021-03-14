@@ -103,10 +103,17 @@ if !has('nvim')
   set encoding=UTF-8
 
   " Match tabline background color
-  let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-  let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-  let s:palette.inactive.middle = s:palette.normal.middle
-  let s:palette.tabline.middle = s:palette.normal.middle
+  autocmd VimEnter * call SetupLightlineColors()
+  function SetupLightlineColors() abort
+    " transparent background in statusbar
+    let l:palette = lightline#palette()
+
+    let l:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+    let l:palette.inactive.middle = l:palette.normal.middle
+    let l:palette.tabline.middle = l:palette.normal.middle
+
+    call lightline#colorscheme()
+  endfunction
 
   augroup vim_scroll_fix
     " Fix bg color on scroll
@@ -130,8 +137,8 @@ if has('nvim')
   " nvim-colorizer
   lua require 'colorizer'.setup({'*', '!text'})
 
-  " Clear search highlighting with escape, broken in regular vim
-  nnoremap <silent><esc> :noh<return><esc>
+  " Clear search highlighting with escape x2
+  nnoremap <silent><esc><esc> :nohlsearch<CR>
 
   " TextYankPost highlight
   function! s:hl_yank(operator, regtype, inclusive) abort
@@ -186,6 +193,11 @@ augroup goyo_limelight
   autocmd!
   autocmd! User GoyoEnter Limelight
   autocmd! User GoyoLeave Limelight!
+augroup END
+
+augroup newline_formatting
+  autocmd!
+  autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
 
 augroup split_help
@@ -250,6 +262,7 @@ set relativenumber " Show line numbers from current location
 set scrolloff=5 " Keep X lines above/below cursor when near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
+set iskeyword+=- " treat dash-separated-words as word text object
 
 " Some coc servers have issues with backup files #649
 set nobackup
