@@ -1,4 +1,17 @@
 " vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
+
+" disable some built-ins (might want shada..)
+let g:loaded_shada_plugin=1
+let g:loaded_netrwPlugin=1
+let g:loaded_gzip=1
+let g:loaded_man=1
+let g:loaded_matchit=1
+let g:loaded_matchparen=1
+let g:loaded_tarPlugin=1
+let g:loaded_tar=1
+let g:loaded_zipPlugin=1
+let g:loaded_zip=1
+
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
 " Theme
