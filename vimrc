@@ -1,6 +1,6 @@
 " vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
 
-" disable some built-ins (might want shada..)
+" disable some built-ins (might want shada/netrw) {{{
 let g:loaded_shada_plugin=1
 let g:loaded_netrwPlugin=1
 let g:loaded_gzip=1
@@ -11,6 +11,7 @@ let g:loaded_tarPlugin=1
 let g:loaded_tar=1
 let g:loaded_zipPlugin=1
 let g:loaded_zip=1
+" }}}
 
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
@@ -63,6 +64,7 @@ Plug 'Krasjet/auto.pairs'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'antoinemadec/FixCursorHold.nvim'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -138,6 +140,10 @@ endif
 
 " neovim only {{{
 if has('nvim')
+  " https://github.com/neovim/neovim/issues/12587
+  " leave updatetime untouched (and avoid unnecessary swap writes)
+  let g:cursorhold_updatetime = 100
+
   " Operator Mono OP
   highlight Comment gui=italic
   highlight Comment cterm=italic
