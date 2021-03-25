@@ -344,6 +344,12 @@ nnoremap J mzJ`z
 nnoremap x "_x
 nnoremap c "_c
 
+" Don't jump to next occurrence of search when using */g* (doesn't pollute registers/jump list)
+nnoremap <silent><expr> * v:count ? '*'
+      \ : ':execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+nnoremap <silent><expr> g* v:count ? 'g*'
+      \ : ':execute "keepjumps normal! g*" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+
 " always center the screen after any movement command
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
