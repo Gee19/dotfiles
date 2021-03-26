@@ -22,6 +22,12 @@ wget "https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage"
 
 chmod u+x nvim.appimage
 
+echo "Removing old symlink in /usr/bin"
+cd /usr/bin
+if [ -f "nvim.appimage" ]; then
+  sudo rm nvim.appimage
+fi
+
 echo "Symlinking to /usr/bin"
 sudo ln -s ~/.local/bin/nvim.appimage /usr/bin/nvim.appimage
 exit 0

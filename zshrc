@@ -124,8 +124,8 @@ bindkey -s '^b' 'fbr\n'
 # TODO: not possible to use --exit-0 and --select-1 in interactive mode?
 function vzf() {
     local fname
-    fname=$(fzf) || return
-    vim "$fname"
+    fname=$(fzf) || ""
+    [[ -z "$fname" ]] && return || nvim.appimage "$fname"
 }
 bindkey -s '^o' 'vzf\n'
 
