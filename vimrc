@@ -50,6 +50,10 @@ if has('nvim')
   Plug 'norcalli/nvim-colorizer.lua'
 endif
 
+" Folds
+Plug 'Konfekt/FastFold'
+Plug 'kalekundert/vim-coiled-snake'
+
 " viM iSn'T aN IDe
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -289,10 +293,13 @@ set iskeyword+=- " treat dash-separated-words as word text object
 set nobackup
 set nowritebackup
 
-" Don't persist folds in sessions (FastFold docs)
-" set sessionoptions-=folds
+" FastFold debugging graveyard
 " set sessionoptions-=options
 " set viewoptions-=options
+
+set sessionoptions-=folds " Don't persist folds in sessions (FastFold docs)
+let g:fastfold_savehook = 0 " folds are only updated manually but not when saving the buffer
+let g:fastfold_fold_command_suffixes = [] " folds are not updated when closing or opening with mappings
 
 " Persist coc workspace folders in session file
 set sessionoptions+=globals
