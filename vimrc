@@ -547,13 +547,15 @@ if has_key(g:plugs, 'coc.nvim')
   command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
   " Use K to show/hide documentation in preview window
-  function! s:show_documentation() abort
+  function! s:show_documentation()
     if coc#float#has_float()
       call coc#float#close_all()
     elseif (index(['vim','help'], &filetype) >= 0)
       execute 'h '.expand('<cword>')
-    else
+    elseif (coc#rpc#ready())
       call CocActionAsync('doHover')
+    else
+      execute '!' . &keywordprg . " " . expand('<cword>')
     endif
   endfunction
 
