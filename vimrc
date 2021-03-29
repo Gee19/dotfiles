@@ -64,7 +64,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
-Plug 'Krasjet/auto.pairs'
+" Plug 'Krasjet/auto.pairs'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'christoomey/vim-tmux-navigator'
@@ -291,9 +291,14 @@ set iskeyword+=- " treat dash-separated-words as word text object
 set nobackup
 set nowritebackup
 
-" FastFold debugging graveyard
-" set sessionoptions-=options
-" set viewoptions-=options
+" enable bracketed paste when used within tmux
+" https://vi.stackexchange.com/a/28284
+if &term =~ "screen"
+    let &t_BE = "\e[?2004h"
+    let &t_BD = "\e[?2004l"
+    exec "set t_PS=\e[200~"
+    exec "set t_PE=\e[201~"
+endif
 
 set sessionoptions-=folds " Don't persist folds in sessions (FastFold docs)
 let g:fastfold_savehook = 0 " folds are only updated manually but not when saving the buffer
