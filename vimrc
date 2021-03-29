@@ -21,6 +21,7 @@ Plug 'joshdick/onedark.vim'
 " tpope
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
@@ -535,7 +536,18 @@ if has_key(g:plugs, 'coc.nvim')
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
   " enter selects the first completion item and confirm the completion when no item has been selected
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+  " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+  " same as above but fixes coc + endwise conflict
+  " tpope/vim-endwise/issues/125
+  inoremap <silent> <CR> <C-r>=<SID>coc_confirm()<CR>
+  function! s:coc_confirm() abort
+    if pumvisible()
+      return coc#_select_confirm()
+    else
+      return "\<C-g>u\<CR>"
+    endif
+  endfunction
 
   " neoclide/coc.nvim/issues/28
   function! s:check_back_space() abort
