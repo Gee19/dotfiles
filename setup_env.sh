@@ -22,6 +22,13 @@ mkdir -p ~/.vim
 mkdir -p ~/.local/bin
 cd ~/.local/bin
 
+# wsl-open
+if [[ $(uname -r) =~ WSL$ ]]; then
+  wget "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
+  mv wsl-open.sh wsl-open
+  chmod +x wsl-open
+fi
+
 # EXA
 wget "https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip"
 unzip -o exa-linux-x86_64-0.9.0.zip

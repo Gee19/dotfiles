@@ -468,9 +468,6 @@ highlight PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 g
 " Commit hash at 'Commit:' header with 'Special' highlight group
 highlight link gitmessengerHash Special
 
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
 let g:closetag_filetypes='html,xhtml,jsx,xml,javascriptreact,javascript,typescriptreact,typescript'
 
 " Colorful JS

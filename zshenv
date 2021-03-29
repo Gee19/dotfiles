@@ -43,6 +43,15 @@ if ! [[ $(uname -r) =~ WSL$ ]]; then
    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" ]
 fi
 
+# Adding wsl-open as a browser for Windows
+if [[ $(uname -r) =~ (m|M)icrosoft ]]; then
+  if [[ -z $BROWSER ]]; then
+    export BROWSER=wsl-open
+  else
+    export BROWSER=$BROWSER:wsl-open
+  fi
+fi
+
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 export GITLAB_TOKEN=%NOPE%
