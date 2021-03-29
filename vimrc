@@ -72,8 +72,6 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf.vim'
 
 " nerd fonts broken in wsl
