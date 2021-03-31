@@ -27,3 +27,4 @@
 ## TODO
 - coc -> nvim lsp when its more mature (https://github.com/Gee19/dotfiles/pull/5)
 - add xdotool to setup env
+- sponsor junegunn

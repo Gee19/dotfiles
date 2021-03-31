@@ -105,11 +105,13 @@ bindkey '^e' edit-command-line
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export BAT_THEME='TwoDark'
-export FZF_COMPLETION_OPTS='--preview "(bat --color=always --style=numbers {} || cat {} || tree -C {}) 2> /dev/null | head -50"'
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_COMPLETION_OPTS='--info=inline'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d"
 
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
-fbr() {
+function fbr() {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
   branch=$(echo "$branches" |
@@ -123,10 +125,39 @@ bindkey -s '^b' 'fbr\n'
 # TODO: not possible to use --exit-0 and --select-1 in interactive mode?
 function vzf() {
     local fname
-    fname=$(fzf) || ""
-    [[ -z "$fname" ]] && return || nvim.appimage "$fname"
+    fname=$(fzf)
+
+    if [ -n "$fname" ]; then
+      nvim.appimage "$fname"
+    fi
+    return
 }
 bindkey -s '^o' 'vzf\n'
+
+# fzf venvs
+function ezf() {
+  local selected_env
+  selected_env=$(ls $WORKON_HOME | fzf)
+
+  if [ -n "$selected_env" ]; then
+    source "$WORKON_HOME/$selected_env/bin/activate"
+  fi
+  return
+}
+bindkey -s '^[v' 'ezf\n'
+
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+function _fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+function _fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down

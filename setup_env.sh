@@ -40,6 +40,11 @@ wget "https://github.com/sharkdp/bat/releases/download/v0.17.1/bat_0.17.1_amd64.
 sudo dpkg -i bat_0.17.1_amd64.deb
 rm bat_0.17.1_amd64.deb
 
+# FD
+wget "https://github.com/sharkdp/fd/releases/download/v8.2.1/fd_8.2.1_amd64.deb"
+sudo dpkg -i fd_8.2.1_amd64.deb
+rm fd_8.2.1_amd64.deb
+
 # RG
 wget "https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb"
 sudo dpkg -i ripgrep_12.1.1_amd64.deb
