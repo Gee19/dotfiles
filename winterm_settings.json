@@ -7,7 +7,8 @@
   "profiles": {
     "defaults": {
       "colorScheme": "One Dark",
-      "fontFamily": "Operator Mono"
+      "fontFamily": "Operator Mono",
+      "bellStyle": "visual"
     },
     "list": [
       {
