@@ -8,7 +8,7 @@
     "defaults": {
       "colorScheme": "One Dark",
       "fontFamily": "Operator Mono",
-      "bellStyle": "visual"
+      "bellStyle": "none"
     },
     "list": [
       {
