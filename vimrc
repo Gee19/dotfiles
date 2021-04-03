@@ -70,6 +70,8 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'jesseleite/vim-agriculture'
+Plug 'moll/vim-bbye'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -407,6 +409,10 @@ cnoremap <C-e> <End>
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
 
+" Quickly append semicolon or comma
+imap ;; <Esc>A;<Esc>
+imap ,, <Esc>A,<Esc>
+
 " splitting panes and moving around in panes
 function! WinMove(key)
     let t:curwin = winnr()
@@ -621,6 +627,11 @@ nnoremap <silent> <leader>gd :Gd<cr>
 
 " fullscreen ripgrep global search
 nnoremap <silent> <leader><S-f> :Rg!<cr>
+
+" agriculture
+nmap <leader><S-r> <Plug>RgRawSearch
+vmap <leader>/ <Plug>RgRawVisualSelection
+nmap <leader>* <Plug>RgRawWordUnderCursor
 
 " fullscreen ripgrep global search current word
 nnoremap <silent> <expr> <leader>f ":Rg!\ ".expand('<cword>')."<cr>"
