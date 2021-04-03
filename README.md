@@ -1,6 +1,6 @@
 ## Term
 - Ubuntu: kitty
-- Windows: winterm + wsl2
+- Windows: winterm preview + wsl2
 
 ## Shell
 - tmux + tpm
@@ -28,3 +28,4 @@
 - coc -> nvim lsp when its more mature (https://github.com/Gee19/dotfiles/pull/5)
 - add xdotool to setup env
 - sponsor junegunn
+- bracketed paste broken in WSL2 (fixed in preview build microsoft/terminal/pull/9034#issuecomment-788151711)
