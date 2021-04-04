@@ -2,47 +2,42 @@ import os
 
 include = {
     # Editors
-    'init.vim': '$XDG_CONFIG_HOME/nvim/init.vim',
-    'vimrc': '$HOME/.vimrc',
-
+    "init.vim": "$XDG_CONFIG_HOME/nvim/init.vim",
+    "vimrc": "$HOME/.vimrc",
     # Git
-    'gitignore_global': '$HOME/.gitignore_global',
-    'stCommitMsg': '$HOME/.stCommitMsg',
-
+    "gitignore_global": "$HOME/.gitignore_global",
+    "stCommitMsg": "$HOME/.stCommitMsg",
     # coc.nvim
-    'coc-settings.json': ['$XDG_CONFIG_HOME/nvim/coc-settings.json', '$HOME/.vim/coc-settings.json'],
-
+    "coc-settings.json": [
+        "$XDG_CONFIG_HOME/nvim/coc-settings.json",
+        "$HOME/.vim/coc-settings.json",
+    ],
     # ripgrep
-    'ripgreprc': '$XDG_CONFIG_HOME/.ripgreprc',
-
+    "ripgreprc": "$XDG_CONFIG_HOME/.ripgreprc",
     # pdb
-    'pdbrc': '$HOME/.pdbrc',
-
+    "pdbrc": "$HOME/.pdbrc",
     # pdb++
-    'pdbrc.py': '$HOME/.pdbrc.py',
-
-    #Tmux
-    'tmux.conf': '$HOME/.tmux.conf',
-
+    "pdbrc.py": "$HOME/.pdbrc.py",
+    # Tmux
+    "tmux.conf": "$HOME/.tmux.conf",
     # Shell
-    'bashrc': '$HOME/.bashrc',
-    'aliases': '$HOME/.aliases',
-
-    'zshenv': '$HOME/.zshenv',
-    'zshrc': '$HOME/.zshrc'
+    "bashrc": "$HOME/.bashrc",
+    "aliases": "$HOME/.aliases",
+    "zshenv": "$HOME/.zshenv",
+    "zshrc": "$HOME/.zshrc",
 }
 
 # git
-in_wsl = 'WSL' in os.uname().release
-relevant_gitconfig = 'gitconfig' if not in_wsl else 'gitconfig_home'
-include[relevant_gitconfig] = '$HOME/.gitconfig'
+in_wsl = "WSL" in os.uname().release
+relevant_gitconfig = "gitconfig" if not in_wsl else "gitconfig_home"
+include[relevant_gitconfig] = "$HOME/.gitconfig"
 
 if not in_wsl:
-    include['kitty.conf'] = '$HOME/.config/kitty/kitty.conf'
-    include['diff.conf'] = '$HOME/.config/kitty/diff.conf'
+    include["kitty.conf"] = "$HOME/.config/kitty/kitty.conf"
+    include["diff.conf"] = "$HOME/.config/kitty/diff.conf"
 
 # home = os.path.expanduser('~')
-here = os.path.abspath('.')
+here = os.path.abspath(".")
 
 cmds = []
 for f, install_path in include.items():
@@ -50,9 +45,9 @@ for f, install_path in include.items():
 
     if isinstance(install_path, list):
         for path in install_path:
-            cmds.append('ln -sf %s %s' % (local_file, path))
+            cmds.append("ln -sf %s %s" % (local_file, path))
     else:
-        cmds.append('ln -sf %s %s' % (local_file, install_path))
+        cmds.append("ln -sf %s %s" % (local_file, install_path))
 
 for cmd in cmds:
     print(cmd)

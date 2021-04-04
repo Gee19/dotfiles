@@ -65,6 +65,7 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'rhysd/git-messenger.vim'
 Plug 'airblade/vim-gitgutter'
 " Plug 'thirtythreeforty/lessspace.vim'
+Plug 'tweekmonster/wstrip.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
@@ -306,6 +307,9 @@ endif
 " Enable undofile
 set undofile
 set undodir=~/.vim/undodir
+
+" Enable wstrip on buffer save globally for all filetypes
+let g:wstrip_auto = 1
 " }}}
 
 " mappings {{{

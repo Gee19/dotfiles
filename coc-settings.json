@@ -13,6 +13,7 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "black",
+  "python.formatting.blackPath": "~/.local/bin/black",
   "python.venvPath": "~/Envs",
   "tsserver.npm": "/home/jhaine/.nvm/versions/node/v14.2.0/bin/npm",
   "javascript.referencesCodeLens.enable": false,
