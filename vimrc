@@ -183,12 +183,6 @@ augroup pysnips
   autocmd FileType python :iabbrev <buffer> rdb from celery.contrib import rdb; rdb.set_trace()<Esc>
 augroup END
 
-augroup goyo_limelight
-  autocmd!
-  autocmd! User GoyoEnter Limelight
-  autocmd! User GoyoLeave Limelight!
-augroup END
-
 augroup newline_formatting
   autocmd!
   autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o
