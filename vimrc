@@ -81,6 +81,7 @@ Plug 'moll/vim-bbye'
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
 
 " nerd fonts broken in wsl
 let s:in_wsl = system("uname -r") =~ "WSL"
