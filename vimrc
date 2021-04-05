@@ -57,7 +57,6 @@ Plug 'kalekundert/vim-coiled-snake'
 
 " i made this
 Plug 'Gee19/indent-ignoreblank.vim' " Get the correct indent for new lines despite blank lines
-Plug 'Gee19/text-yank-highlight.nvim' " Briefly highlight yanked text
 
 " viM iSn'T aN IDe
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
@@ -194,6 +193,11 @@ augroup split_help
   autocmd!
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
   " autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
+augroup END
+
+augroup yank_highlight
+  autocmd!
+  autocmd TextYankPost * if exists('##TextYankPost') | exe "silent! lua require'vim.highlight'.on_yank()" | endif
 augroup END
 " }}}
 
@@ -670,8 +674,8 @@ map , <Plug>(clever-f-repeat-back)
 " }}}
 
 " vim-qf {{{
-nmap <C-]> <Plug>(qf_qf_next)
-nmap <C-[> <Plug>(qf_qf_previous)
+nmap q] <Plug>(qf_qf_next)
+nmap q[ <Plug>(qf_qf_previous)
 nmap <C-q> <Plug>(qf_qf_toggle)
 
 nmap <leader>] <Plug>(qf_loc_next)
