@@ -69,7 +69,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
-" Plug 'Krasjet/auto.pairs'
+Plug 'Krasjet/auto.pairs'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'christoomey/vim-tmux-navigator'
