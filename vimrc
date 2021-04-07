@@ -46,6 +46,7 @@ Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascr
 Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact', 'typescript' ] }
 Plug 'towolf/vim-helm'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'elixir-editors/vim-elixir'
 
 if has('nvim')
   Plug 'norcalli/nvim-colorizer.lua'
@@ -502,7 +503,8 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-rls',
     \ 'coc-java',
     \ 'coc-yaml',
-    \ 'coc-lua'
+    \ 'coc-lua',
+    \ 'coc-elixir'
   \ ]
 
   " use <tab> for trigger completion and navigate to the next completion item

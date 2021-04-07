@@ -58,4 +58,12 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 pip3 install virtualenv virtualenvwrapper
 
+# Elixir
+wget "https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb"
+sudo dpkg -i erlang-solutions_2.0_all.deb
+rm erlang-solutions_2.0_all.deb
+sudo apt update
+sudo apt install esl-erlang
+sudo apt install elixir
+
 exit 0
