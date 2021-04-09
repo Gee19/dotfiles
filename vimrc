@@ -77,6 +77,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'jesseleite/vim-agriculture'
 Plug 'moll/vim-bbye'
+Plug 'preservim/vimux'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -442,6 +443,9 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 " switch.vim
 let g:switch_mapping = "<leader>s"
+
+" Vimux
+nnoremap <silent> <leader>t :call VimuxRunCommand("clear; pytest -vv " . expand('%:p'))<CR>
 " }}}
 
 " styling {{{
