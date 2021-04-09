@@ -454,9 +454,9 @@ if exists('$TMUX')
     " autocmd FileType cucumber map <leader>tt :RunAllCukes<CR>
   augroup END
 
-  nnoremap <silent> <leader>tp :VimuxPromptCommand<CR>
-  nnoremap <silent> <leader>to :VimuxOpenRunner<CR>
-  nnoremap <silent> <leader>tq :VimuxCloseRunner<CR>
+  nnoremap <leader>tp :VimuxPromptCommand<CR>
+  nnoremap <leader>to :VimuxOpenRunner<CR>
+  nnoremap <leader>tq :VimuxCloseRunner<CR>
 endif
 " }}}
 
