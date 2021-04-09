@@ -445,7 +445,19 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 let g:switch_mapping = "<leader>s"
 
 " Vimux
-nnoremap <silent> <leader>t :call VimuxRunCommand("clear; pytest -vv " . expand('%:p'))<CR>
+if exists('$TMUX')
+  let g:VimuxRunnerName = "vimuxout"
+
+  augroup vimux_maps
+    autocmd!
+    autocmd FileType python map <buffer> <leader>tt :call VimuxRunCommand("clear; pytest -vv " . expand('%:p'))<CR>
+    " autocmd FileType cucumber map <leader>tt :RunAllCukes<CR>
+  augroup END
+
+  nnoremap <silent> <leader>tp :VimuxPromptCommand<CR>
+  nnoremap <silent> <leader>to :VimuxOpenRunner<CR>
+  nnoremap <silent> <leader>tq :VimuxCloseRunner<CR>
+endif
 " }}}
 
 " styling {{{
