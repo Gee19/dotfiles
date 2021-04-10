@@ -317,6 +317,9 @@ endif
 " Enable undofile
 set undofile
 set undodir=~/.vim/undodir
+
+" Bbye
+cabbrev Bd Bdelete
 " }}}
 
 " mappings {{{
@@ -580,7 +583,6 @@ if has_key(g:plugs, 'coc.nvim')
 
   " Remap for rename current word
   nmap <leader>rn <Plug>(coc-rename)
-
 endif
 " }}}
 
