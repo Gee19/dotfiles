@@ -727,18 +727,18 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " }}}
 
 " tbone {{{
-function! s:pytest_buffer() abort
-  execute 'Tmux send-keys -t ''bottom'' ''C-u'''
-  execute 'Tmux send-keys -t ''bottom'' ''clear'''
-  execute 'Tmux send-keys -t ''bottom'' ''Enter'''
-  execute 'Tmux send-keys -t ''bottom'' ''pytest -vv '.expand('%:p').' '''
-  execute 'Tmux send-keys -t ''bottom'' ''Enter'''
-endfunction
-
 if exists('$TMUX')
+  function! SendToPane(pane, cmd) abort
+    execute 'Tmux send-keys -t '''.a:pane.''' ''C-u'''
+    execute 'Tmux send-keys -t '''.a:pane.''' ''clear'''
+    execute 'Tmux send-keys -t '''.a:pane.''' ''Enter'''
+    execute 'Tmux send-keys -t '''.a:pane.''' '''.a:cmd.' '' '.expand('%:p')
+    execute 'Tmux send-keys -t '''.a:pane.''' ''Enter'''
+  endfunction
+
   augroup long_live_tpope
     autocmd!
-    autocmd FileType python map <buffer> <leader>tt :call <SID>pytest_buffer()<CR>
+    autocmd FileType python map <buffer> <leader>t :call SendToPane('bottom', 'pytest -vv')<CR>
   augroup END
 endif
 " }}}
