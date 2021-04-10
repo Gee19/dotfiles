@@ -65,13 +65,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lock
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'rhysd/git-messenger.vim'
 Plug 'airblade/vim-gitgutter'
-" Plug 'thirtythreeforty/lessspace.vim'
-Plug 'tweekmonster/wstrip.vim'
+Plug 'thirtythreeforty/lessspace.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
-" Plug 'Krasjet/auto.pairs'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'christoomey/vim-tmux-navigator'
@@ -319,9 +317,6 @@ endif
 " Enable undofile
 set undofile
 set undodir=~/.vim/undodir
-
-" Enable wstrip on buffer save globally for all filetypes
-let g:wstrip_auto = 1
 " }}}
 
 " mappings {{{
@@ -741,4 +736,21 @@ if exists('$TMUX')
     autocmd FileType python map <buffer> <leader>t :call SendToPane('bottom', 'pytest -vv')<CR>
   augroup END
 endif
+" }}}
+
+" lessspace {{{
+let s:lesspace_enabled = 1
+function! ToggleLessSpace() abort
+  if (s:lesspace_enabled)
+    exec 'LessSpace!'
+    let s:lesspace_enabled = 0
+    echo 'Disabled LessSpace'
+  else
+    exec 'LessSpace'
+    let s:lesspace_enabled = 1
+    echo 'Enabled LessSpace'
+  endif
+endfunction
+
+nmap <C-s> :call ToggleLessSpace()<CR>
 " }}}
