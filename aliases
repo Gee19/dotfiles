@@ -1,6 +1,5 @@
 # Expand Alias: <Esc>x _expand_alias
-alias reload_zsh=". ~/.zshrc"
-alias reload_tmux="tmux source-file ~/.tmux.conf"
+alias reload_zsh="znap restart"
 
 alias ..="cd .."
 
