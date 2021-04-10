@@ -25,6 +25,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-tbone'
 
 " Auto session management
 Plug 'dhruvasagar/vim-prosession'
@@ -70,14 +71,13 @@ Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
 Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
-Plug 'Krasjet/auto.pairs'
+" Plug 'Krasjet/auto.pairs'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'jesseleite/vim-agriculture'
 Plug 'moll/vim-bbye'
-Plug 'preservim/vimux'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -200,6 +200,11 @@ augroup END
 augroup yank_highlight
   autocmd!
   autocmd TextYankPost * if exists('##TextYankPost') | exe "silent! lua require'vim.highlight'.on_yank()" | endif
+augroup END
+
+augroup remember_cursor_position
+    autocmd!
+    autocmd BufReadPost \* if line("'\\"") > 1 && line("'\\"") <= line("$") | exe "normal! g`\"" | call timer\_start(1, {tid -> execute("normal! zz")})  | endif
 augroup END
 " }}}
 
@@ -443,21 +448,6 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 " switch.vim
 let g:switch_mapping = "<leader>s"
-
-" Vimux
-if exists('$TMUX')
-  let g:VimuxRunnerName = "vimuxout"
-
-  augroup vimux_maps
-    autocmd!
-    autocmd FileType python map <buffer> <leader>tt :call VimuxRunCommand("clear; pytest -vv " . expand('%:p'))<CR>
-    " autocmd FileType cucumber map <leader>tt :RunAllCukes<CR>
-  augroup END
-
-  nnoremap <leader>tp :VimuxPromptCommand<CR>
-  nnoremap <leader>to :VimuxOpenRunner<CR>
-  nnoremap <leader>tq :VimuxCloseRunner<CR>
-endif
 " }}}
 
 " styling {{{
@@ -734,4 +724,21 @@ omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
+" }}}
+
+" tbone {{{
+function! s:pytest_buffer() abort
+  execute 'Tmux send-keys -t ''bottom'' ''C-u'''
+  execute 'Tmux send-keys -t ''bottom'' ''clear'''
+  execute 'Tmux send-keys -t ''bottom'' ''Enter'''
+  execute 'Tmux send-keys -t ''bottom'' ''pytest -vv '.expand('%:p').' '''
+  execute 'Tmux send-keys -t ''bottom'' ''Enter'''
+endfunction
+
+if exists('$TMUX')
+  augroup long_live_tpope
+    autocmd!
+    autocmd FileType python map <buffer> <leader>tt :call <SID>pytest_buffer()<CR>
+  augroup END
+endif
 " }}}
