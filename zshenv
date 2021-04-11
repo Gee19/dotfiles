@@ -17,6 +17,7 @@ export VISUAL="nvim.appimage"
 export XDG_CONFIG_HOME="$HOME/.config"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/.ripgreprc"
 export PATH="$HOME/.local/bin:$PATH"
+export LD_LIBRARY_PATH="${HOME}/.local/lib:$LD_LIBRARY_PATH"
 
 # Work
 export DJANGO_SETTINGS_MODULE=settings

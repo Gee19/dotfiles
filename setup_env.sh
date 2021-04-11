@@ -4,7 +4,7 @@ sudo apt -y update && sudo apt -y dist-upgrade
 
 # Node unzip zsh
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-sudo apt -y install zsh unzip nodejs python3-pip tmux mosh
+sudo apt -y install zsh unzip nodejs python3-pip mosh automake libtool libssl-dev
 
 # TPM
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

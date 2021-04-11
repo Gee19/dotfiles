@@ -109,6 +109,8 @@ export FZF_COMPLETION_OPTS='--info=inline'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d"
+export FZF_TMUX=1
+export FZF_TMUX_OPTS="-p"
 
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
 function fbr() {
@@ -125,7 +127,7 @@ bindkey -s '^b' 'fbr\n'
 # TODO: not possible to use --exit-0 and --select-1 in interactive mode?
 function vzf() {
     local fname
-    fname=$(fzf)
+    fname=$(fzf-tmux)
 
     if [ -n "$fname" ]; then
       nvim.appimage "$fname"
@@ -137,7 +139,7 @@ bindkey -s '^o' 'vzf\n'
 # fzf venvs
 function ezf() {
   local selected_env
-  selected_env=$(ls $WORKON_HOME | fzf)
+  selected_env=$(ls $WORKON_HOME | fzf-tmux)
 
   if [ -n "$selected_env" ]; then
     source "$WORKON_HOME/$selected_env/bin/activate"

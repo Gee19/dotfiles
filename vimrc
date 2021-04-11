@@ -644,7 +644,11 @@ nnoremap <silent> <leader>H :Helptags<cr>
 " Reverse layout for floating windows
 if has('nvim') || has('gui_running')
   let $FZF_DEFAULT_OPTS .= ' --inline-info --layout=reverse'
-  let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.3, 'yoffset': '-1', 'border': 'rounded' } }
+  if exists('$TMUX')
+    let g:fzf_layout = { 'tmux': '-p' }
+  else
+    let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.3, 'yoffset': '-1', 'border': 'rounded' } }
+  endif
 endif
 
 " Hide statusline when fzf open in vim
@@ -657,13 +661,13 @@ if !has('nvim')
 end
 
 " Transparency
-if has('nvim') && exists('&winblend') && has('termguicolors')
-  set winblend=10
+" if has('nvim') && exists('&winblend') && has('termguicolors')
+"   set winblend=10
 
-  if exists('g:fzf_colors.bg')
-    call remove(g:fzf_colors, 'bg')
-  endif
-endif
+"   if exists('g:fzf_colors.bg')
+"     call remove(g:fzf_colors, 'bg')
+"   endif
+" endif
 
 " Jump to open buffer
 let g:fzf_buffers_jump = 1
