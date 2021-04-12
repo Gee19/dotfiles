@@ -48,6 +48,8 @@ Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact', 'typescript' 
 Plug 'towolf/vim-helm'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'elixir-editors/vim-elixir'
+Plug 'vim-python/python-syntax', { 'for': [ 'python' ] }
+let g:python_highlight_all = 1
 
 if has('nvim')
   Plug 'norcalli/nvim-colorizer.lua'
