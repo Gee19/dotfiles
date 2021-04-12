@@ -116,8 +116,8 @@ command! -nargs=0 Jsonfmt :%!python -m json.tool
 
 " Use ripgrep for vim :grep
 if executable('rg')
-  set grepprg=rg\ --vimgrep
-  set grepformat=%f:%l:%c:%m
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 " }}}
 
@@ -451,6 +451,9 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 " switch.vim
 let g:switch_mapping = "<leader>s"
+
+" Open a Quickfix window for the last search.
+nnoremap <silent> <leader>? :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " }}}
 
 " styling {{{
@@ -684,8 +687,8 @@ map , <Plug>(clever-f-repeat-back)
 " }}}
 
 " vim-qf {{{
-nmap q] <Plug>(qf_qf_next)
-nmap q[ <Plug>(qf_qf_previous)
+nmap ]q <Plug>(qf_qf_next)
+nmap [q <Plug>(qf_qf_previous)
 nmap <C-q> <Plug>(qf_qf_toggle)
 
 nmap <leader>] <Plug>(qf_loc_next)
