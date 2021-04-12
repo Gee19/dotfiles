@@ -320,6 +320,11 @@ set undodir=~/.vim/undodir
 
 " Bbye
 cabbrev Bd Bdelete
+
+" Plug
+cabbrev PC PlugClean
+cabbrev PI PlugInstall
+cabbrev PU PlugUpdate
 " }}}
 
 " mappings {{{
