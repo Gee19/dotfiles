@@ -201,11 +201,6 @@ augroup yank_highlight
   autocmd!
   autocmd TextYankPost * if exists('##TextYankPost') | exe "silent! lua require'vim.highlight'.on_yank()" | endif
 augroup END
-
-augroup remember_cursor_position
-    autocmd!
-    autocmd BufReadPost \* if line("'\\"") > 1 && line("'\\"") <= line("$") | exe "normal! g`\"" | call timer\_start(1, {tid -> execute("normal! zz")})  | endif
-augroup END
 " }}}
 
 " Lightline + Tabline {{{
@@ -358,12 +353,6 @@ vnoremap <silent> y y`]
 " simple sizing of splits
 map - <C-W>-
 map + <C-W>+
-
-" XPS 2019 :(
-nnoremap <PageUp> <Nop>
-nnoremap <PageDown> <Nop>
-inoremap <PageUp> <Nop>
-inoremap <PageDown> <Nop>
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
@@ -593,6 +582,22 @@ if has_key(g:plugs, 'coc.nvim')
 
   " Remap for rename current word
   nmap <leader>rn <Plug>(coc-rename)
+
+  " Scroll floating window if it exists
+  nnoremap <silent><expr> <Up> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<Up>"
+  nnoremap <silent><expr> <Down> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<Down>"
+  inoremap <silent><expr> <Up> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Up>"
+  inoremap <silent><expr> <Down> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<Down>"
+  vnoremap <silent><expr> <Up> coc#float#has_scroll() ? coc#util#float_scroll_i(-1) : "\<Up>"
+  vnoremap <silent><expr> <Down> coc#float#has_scroll() ? coc#util#float_scroll_i(1) : "\<Down>"
+
+  " Make use of PageUp/PageDown somehow
+  nnoremap <silent><expr> <PageUp> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<PageUp>"
+  nnoremap <silent><expr> <PageDown> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<PageDown>"
+  inoremap <silent><expr> <PageUp> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<PageUp>"
+  inoremap <silent><expr> <PageDown> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<PageDown>"
+  vnoremap <silent><expr> <PageUp> coc#float#has_scroll() ? coc#util#float_scroll_i(-1) : "\<PageUp>"
+  vnoremap <silent><expr> <PageDown> coc#float#has_scroll() ? coc#util#float_scroll_i(1) : "\<PageDown>"
 endif
 " }}}
 
