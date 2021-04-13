@@ -3,11 +3,11 @@
 - Windows: winterm preview + wsl2
 
 ## Shell
-- tmux + tpm
 - zsh + znap
+- tmux + tpm
 
-## Editor
-- neovim + coc.nvim
+## Editor (starts in ~35ms, notbad.jpg)
+- neovim/vim + coc.nvim
 
 ## Setup
 `ssh key magic`
@@ -25,7 +25,9 @@
 `chsh -s /usr/bin/zsh`
 
 ## TODO
-- coc -> nvim lsp when its more mature (https://github.com/Gee19/dotfiles/pull/5)
+- coc -> nvim lsp when its more mature (https://github.com/Gee19/dotfiles/pull/5) idk i like regular vim too
 - add xdotool to setup env
 - bracketed paste broken in WSL2 (fixed in preview build microsoft/terminal/pull/9034#issuecomment-788151711)
 - add cucumber tbone test mapping
+- try vim-dispatch or asyncrun.vim for test cases with quickfix support
+- covert tbone function to spit buffer path to last tmux pane

@@ -41,10 +41,11 @@ autoload -U colors && colors
 
 # Change prompt icon + color based on insert/normal vim mode in prompt
 export PURE_PROMPT_SYMBOL="[I] ❯"
-export PURE_PROMPT_VICMD_SYMBOL="%{$fg[green]%}[N] ❮%{$reset_color%}"
+export PURE_PROMPT_VICMD_SYMBOL="%{$fg[green]%}[N] ❯%{$reset_color%}"
 
 # By default, we have insert mode shown on right hand side
-export RPROMPT="%{$fg[blue]%}[INSERT]%{$reset_color%}"
+# export RPROMPT="%{$fg[blue]%}[INSERT]%{$reset_color%}"
+export RPROMPT=""
 
 # Callback for vim mode change
 function zle-keymap-select () {
@@ -52,13 +53,13 @@ function zle-keymap-select () {
     if [ "$TERM" = "xterm-256color" ] || [ "$TERM" = "xterm-kitty" ] || [ "$TERM" = "screen-256color" ]; then
         if [ $KEYMAP = vicmd ]; then
             # Command mode
-            export RPROMPT="%{$fg[green]%}[NORMAL]%{$reset_color%}"
+            # export RPROMPT="%{$fg[green]%}[NORMAL]%{$reset_color%}"
 
             # Set block cursor
             echo -ne '\e[1 q'
         else
             # Insert mode
-            export RPROMPT="%{$fg[blue]%}[INSERT]%{$reset_color%}"
+            # export RPROMPT="%{$fg[blue]%}[INSERT]%{$reset_color%}"
 
             # Set beam cursor
             echo -ne '\e[5 q'

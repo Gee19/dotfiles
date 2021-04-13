@@ -656,6 +656,9 @@ nnoremap <silent> <leader>ab :Lines<cr>
 " help
 nnoremap <silent> <leader>H :Helptags<cr>
 
+" commands
+nnoremap <silent> <leader>c :Commands<cr>
+
 " Reverse layout for floating windows
 if has('nvim') || has('gui_running')
   let $FZF_DEFAULT_OPTS .= ' --inline-info --layout=reverse'
