@@ -315,6 +315,12 @@ endif
 set undofile
 set undodir=~/.vim/undodir
 
+" Yank absolute path to system clipboard
+cabbrev fp let @+=expand("%:p")<CR>
+
+" Yank file name to system clipboard
+cabbrev fn let @+=expand("%:t")<CR>
+
 " Bbye
 cabbrev Bd Bdelete
 
