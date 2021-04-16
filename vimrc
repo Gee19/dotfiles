@@ -59,10 +59,8 @@ endif
 Plug 'Konfekt/FastFold'
 Plug 'kalekundert/vim-coiled-snake'
 
-" i made this
-Plug 'Gee19/indent-ignoreblank.vim' " Get the correct indent for new lines despite blank lines
-
 " viM iSn'T aN IDe
+Plug 'Gee19/indent-ignoreblank.vim' " Get the correct indent for new lines despite blank lines
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'rhysd/git-messenger.vim'
@@ -390,8 +388,8 @@ inoremap <C-e> <END>
 inoremap <C-a> <HOME>
 
 " Quickly append semicolon or comma
-imap ;; <Esc>A;<Esc>
-imap ,, <Esc>A,<Esc>
+" imap ;; <Esc>A;<Esc>
+" imap ,, <Esc>A,<Esc>
 
 " splitting panes and moving around in panes
 function! WinMove(key)
