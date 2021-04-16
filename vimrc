@@ -53,6 +53,7 @@ let g:python_highlight_all = 1
 
 if has('nvim')
   Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 
 " Folds
@@ -168,6 +169,10 @@ if has('nvim')
 
   " Clear search highlighting with escape x2
   nnoremap <silent><esc><esc> :nohlsearch<CR>
+
+  if has_key(g:plugs, 'nvim-treesitter')
+    lua require'nvim-treesitter.configs'.setup{ensure_installed="maintained", highlight={enable = true}}
+  endif
 endif
 " }}}
 
