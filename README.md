@@ -29,5 +29,3 @@
 - add xdotool to setup env
 - bracketed paste broken in WSL2 (fixed in preview build microsoft/terminal/pull/9034#issuecomment-788151711)
 - add cucumber tbone test mapping
-- try vim-dispatch or asyncrun.vim for test cases with quickfix support
-- covert tbone function to spit buffer path to last tmux pane
