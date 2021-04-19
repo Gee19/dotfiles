@@ -309,14 +309,20 @@ set backspace=indent,eol,start
 " Move cursor by display lines when wrapping
 set virtualedit+=block
 
-" Create undodir if it doesn't exist
-if !isdirectory($HOME . "/.vim/undodir")
-  call mkdir($HOME . "/.vim/undodir", "p")
+" undofiles are incompatible between vim & neovim..
+" also can't set this to a variable for some reason..
+if !has('nvim')
+  if !isdirectory($HOME . "/.vim/undodir")
+    call mkdir($HOME . "/.vim/undodir", "p")
+  endif
+  set undodir=~/.vim/undodir
+else
+  if !isdirectory($HOME . "/.config/nvim/undodir")
+    call mkdir($HOME . "/.config/nvim/undodir", "p")
+  endif
+  set undodir=~/.config/nvim/undodir
 endif
-
-" Enable undofile
 set undofile
-set undodir=~/.vim/undodir
 
 " Yank absolute path to system clipboard
 cabbrev fp let @+=expand("%:p")<CR>

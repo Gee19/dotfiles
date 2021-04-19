@@ -33,7 +33,7 @@ function gsd() {
 
 alias v="nvim.appimage"
 alias vi="nvim.appimage"
-alias vim="nvim.appimage"
+alias vim="TERM=xterm-color vim"
 alias nvim="nvim.appimage"
 
 alias dots="cd ~/dev/dotfiles"
