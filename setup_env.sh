@@ -7,7 +7,7 @@ sudo add-apt-repository -y ppa:jonathonf/vim
 sudo apt -y update
 
 # Remove system vim (might need vim.tiny here)
-sudo apt -y uninstall vim
+sudo apt -y remove vim
 
 # Node unzip zsh py3-pip tmux mosh vim
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
