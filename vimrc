@@ -167,9 +167,6 @@ if has('nvim')
   " nvim-colorizer
   lua require 'colorizer'.setup({'*', '!text'})
 
-  " Clear search highlighting with escape x2
-  nnoremap <silent><esc><esc> :nohlsearch<CR>
-
   " if has_key(g:plugs, 'nvim-treesitter')
   "   lua require'nvim-treesitter.configs'.setup{ensure_installed="maintained", ignore_install={"javascript","typescript"}, highlight={enable = true}}
   " endif
@@ -398,9 +395,8 @@ cnoremap <C-e> <End>
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
 
-" Quickly append semicolon or comma
-" imap ;; <Esc>A;<Esc>
-" imap ,, <Esc>A,<Esc>
+" Clear search highlighting with escape x2
+nnoremap <silent><esc><esc> :nohlsearch<CR>
 
 " splitting panes and moving around in panes
 function! WinMove(key)
