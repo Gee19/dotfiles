@@ -517,7 +517,6 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-tsserver',
     \ 'coc-eslint',
     \ 'coc-omnisharp',
-    \ 'coc-actions',
     \ 'coc-rls',
     \ 'coc-java',
     \ 'coc-yaml',
@@ -584,19 +583,19 @@ if has_key(g:plugs, 'coc.nvim')
   " Show all diagnostics
   nnoremap <silent><leader>d :<C-u>CocList diagnostics<cr>
 
+  " Applying codeAction to the selected region.
+  " Example: `<leader>aap` for current paragraph
+  xmap <silent><leader>a  <Plug>(coc-codeaction-selected)
+  nmap <silent><leader>a  <Plug>(coc-codeaction-selected)
+
+  " Remap keys for applying codeAction to the current buffer.
+  nmap <silent><leader>ac  <Plug>(coc-codeaction)
+
   " Fix autofix problem of current line
-  nmap <leader>cf <Plug>(coc-fix-current)
-
-  " Remap for codeAction of selected region
-  function! s:cocActionsOpenFromSelected(type) abort
-    execute 'CocCommand actions.open ' . a:type
-  endfunction
-
-  xmap <silent> <leader>ca :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-  nmap <silent> <leader>ca :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+  nmap <silent><leader>al <Plug>(coc-fix-current)
 
   " Remap for rename current word
-  nmap <leader>rn <Plug>(coc-rename)
+  nmap <silent><leader>rn <Plug>(coc-rename)
 
   " Scroll floating window if it exists
   nnoremap <silent><expr> <Up> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<Up>"
@@ -662,12 +661,6 @@ nnoremap <silent> <leader>gl :BCommits!<cr>
 " most recently updated files
 nnoremap <silent> <leader>H :History<cr>
 
-" lines in current buffer
-nnoremap <silent> <leader>cb :BLines<cr>
-
-" lines in any buffer
-nnoremap <silent> <leader>ab :Lines<cr>
-
 " help
 nnoremap <silent> <leader>H :Helptags<cr>
 
@@ -675,19 +668,8 @@ nnoremap <silent> <leader>H :Helptags<cr>
 nnoremap <silent> <leader>c :Commands<cr>
 
 " Reverse layout for floating windows
-if has('nvim') || has('gui_running')
-  let $FZF_DEFAULT_OPTS .= ' --inline-info --layout=reverse'
-  let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.3, 'yoffset': '-1', 'border': 'rounded' } }
-endif
-
-" Hide statusline when fzf open in vim
-if !has('nvim')
-  augroup fzf_statusline
-    autocmd! FileType fzf
-    autocmd  FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-  augroup END
-end
+let $FZF_DEFAULT_OPTS .= ' --inline-info --layout=reverse'
+let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.3, 'yoffset': '-1', 'border': 'rounded' } }
 
 " Transparency
 if has('nvim') && exists('&winblend') && has('termguicolors')
