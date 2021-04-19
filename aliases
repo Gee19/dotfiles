@@ -33,8 +33,10 @@ function gsd() {
 
 alias v="nvim.appimage"
 alias vi="nvim.appimage"
-alias vim="TERM=xterm-color vim"
 alias nvim="nvim.appimage"
+
+# vim doesn't show colors in tmux with screen-256color
+alias vim="TERM=xterm-256color vim"
 
 alias dots="cd ~/dev/dotfiles"
 
