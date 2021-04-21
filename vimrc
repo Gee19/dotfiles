@@ -51,10 +51,9 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'vim-python/python-syntax', { 'for': [ 'python' ] }
 let g:python_highlight_all = 1
 
-if has('nvim')
-  Plug 'norcalli/nvim-colorizer.lua'
-  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-endif
+" if has('nvim')
+"   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" endif
 
 " Folds
 Plug 'Konfekt/FastFold'
@@ -163,9 +162,6 @@ if has('nvim')
 
   " Preview substitutions
   set inccommand=nosplit
-
-  " nvim-colorizer
-  lua require 'colorizer'.setup({'*', '!text'})
 
   " if has_key(g:plugs, 'nvim-treesitter')
   "   lua require'nvim-treesitter.configs'.setup{ensure_installed="maintained", ignore_install={"javascript","typescript"}, highlight={enable = true}}
