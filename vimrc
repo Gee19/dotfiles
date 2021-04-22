@@ -253,10 +253,12 @@ set noshowmode " Hide mode, handled by lightline
 set shortmess+=c " don't give ins-completion-menu messages
 set number " Line numbers
 set relativenumber " Show line numbers from current location
-set scrolloff=5 " Keep X lines above/below cursor when near edge of screen
+set scrolloff=8 " Keep X lines above/below cursor when near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
 set iskeyword+=- " treat dash-separated-words as word text object
+set lazyredraw " don't redraw when executing macro
+set synmaxcol=2048 " don't syntax color long lines
 
 " Some coc servers have issues with backup files #649
 set nobackup
@@ -412,19 +414,6 @@ nnoremap <silent> <leader>h :call WinMove('h')<CR>
 nnoremap <silent> <leader>j :call WinMove('j')<CR>
 nnoremap <silent> <leader>k :call WinMove('k')<CR>
 nnoremap <silent> <leader>l :call WinMove('l')<CR>
-
-" Blink current search match
-nnoremap <silent> n n:call <SID>BlinkCurrentMatch()<CR>
-nnoremap <silent> N N:call <SID>BlinkCurrentMatch()<CR>
-
-function! s:BlinkCurrentMatch()
-  let target = '\c\%#'.@/
-  let match = matchadd('IncSearch', target)
-  redraw
-  sleep 100m
-  call matchdelete(match)
-  redraw
-endfunction
 
 " Insert newline above or below and stay in normal mode
 " No insert mode, doesn't move the cursor, and allows you to use a counter to append several lines at once
