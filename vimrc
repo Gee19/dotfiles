@@ -172,8 +172,8 @@ endif
 " autocmds {{{
 augroup filetypes
   autocmd!
-  autocmd BufRead,BufNewFile *.conf setlocal filetype=conf " Add conf filetype so nvim-colorizer works
-  autocmd FileType cs setlocal tabstop=4 shiftwidth=4 " Fix c# indentation
+  autocmd FileType cs setlocal tabstop=4 shiftwidth=4 " C#
+  autocmd FileType dockerfile setlocal tabstop=4 shiftwidth=4 " Docker
 augroup END
 
 augroup pysnips

@@ -63,7 +63,7 @@ alias ys="yarn start"
 alias yb="yarn build"
 alias ycc="yarn cache clean"
 
-alias djrs="./manage.py runserver"
+alias djrs="./manage.py runserver 0.0.0.0:8000"
 alias djm="./manage.py migrate"
 alias djmk="./manage.py makemigrations"
 alias djc="./manage.py collectstatic --noinput"
@@ -81,6 +81,7 @@ alias flush_dns="dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
 alias stopdock='docker stop $(docker ps -a -q)'
 alias rmdock='docker rm $(docker ps -a -q)'
+alias dc='docker-compose'
 
 alias l="exa"
 alias ll="exa -la"

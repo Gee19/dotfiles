@@ -25,5 +25,10 @@
 `chsh -s /usr/bin/zsh`
 
 ## TODO
+- elixir install breaks rabbitmq-server
 - add cucumber tbone test mapping
-- vim wiki
+- tmux bind for notes window
+- try these as well:
+  - vimwiki (vimwiki/vimwiki)
+  - wiki.vim (lervag/wiki.vim)
+  - vim-dotoo (dhruvasagar/vim-dotoo)
