@@ -66,11 +66,15 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 pip3 install virtualenv virtualenvwrapper
 
 # Elixir
-# wget "https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb"
-# sudo dpkg -i erlang-solutions_2.0_all.deb
-# rm erlang-solutions_2.0_all.deb
-# sudo apt update
-# sudo apt install esl-erlang
-# sudo apt install elixir
+wget "https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb"
+sudo dpkg -i erlang-solutions_2.0_all.deb
+rm erlang-solutions_2.0_all.deb
+sudo apt update
+sudo apt install -y esl-erlang
+sudo apt install -y elixir
+
+# RabbitMQ + Redis
+sudo apt install -y rabbitmq-server --fix-missing
+sudo apt install -y redis
 
 exit 0
