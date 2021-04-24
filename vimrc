@@ -332,6 +332,8 @@ cabbrev Bd Bdelete
 cabbrev PC PlugClean
 cabbrev PI PlugInstall
 cabbrev PU PlugUpdate
+cabbrev CU CocUpdate
+cabbrev CL CocList
 " }}}
 
 " mappings {{{
@@ -735,18 +737,46 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " }}}
 
 " tbone {{{
-if exists('$TMUX')
-  function! SendToPane(pane, cmd) abort
+if exists('$TMUX') && has_key(g:plugs, 'vim-tbone')
+  let s:last_pane = ''
+  function! SendToInterpreter(pane) abort
+    if (a:pane == 'last' && s:last_pane == '')
+      echo 'No last pane, use a direction first (hjkl)'
+      return
+    endif
+
+    let s:pane = ''
+    if (a:pane == 'last')
+      let s:pane = s:last_pane
+    else
+      let s:last_pane = a:pane
+      let s:pane = a:pane
+    endif
+
+    execute 'Tmux send-keys -t '''.s:pane.''' ''C-u'''
+    execute 'Twrite '.s:pane.''
+    execute 'Tmux send-keys -t '''.s:pane.''' ''Enter'''
+  endfunction
+
+  nnoremap <silent> <leader>x :call SendToInterpreter('last')<CR>
+  nnoremap <silent> <leader>xh :call SendToInterpreter('left')<CR>
+  nnoremap <silent> <leader>xj :call SendToInterpreter('bottom')<CR>
+  nnoremap <silent> <leader>xk :call SendToInterpreter('top')<CR>
+  nnoremap <silent> <leader>xl :call SendToInterpreter('right')<CR>
+
+  function! SendToPane(pane, cmd, clear) abort
     execute 'Tmux send-keys -t '''.a:pane.''' ''C-u'''
-    execute 'Tmux send-keys -t '''.a:pane.''' ''clear'''
-    execute 'Tmux send-keys -t '''.a:pane.''' ''Enter'''
+    if (a:clear)
+      execute 'Tmux send-keys -t '''.a:pane.''' ''clear'''
+      execute 'Tmux send-keys -t '''.a:pane.''' ''Enter'''
+    endif
     execute 'Tmux send-keys -t '''.a:pane.''' '''.a:cmd.' '' '.expand('%:p')
     execute 'Tmux send-keys -t '''.a:pane.''' ''Enter'''
   endfunction
 
   augroup long_live_tpope
     autocmd!
-    autocmd FileType python map <buffer> <leader>t :call SendToPane('bottom', 'pytest -vv')<CR>
+    autocmd FileType python map <buffer> <leader>t :call SendToPane('bottom', 'pytest -vv', 1)<CR>
   augroup END
 endif
 " }}}
