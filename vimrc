@@ -282,11 +282,9 @@ set sessionoptions+=globals
 
 " Indentation
 filetype plugin indent on
-
 set tabstop=4 " Interpret <TAB> as 4 spaces
 set softtabstop=2 " 2 columns per tab
 set shiftwidth=2 " Indent width
-
 set expandtab " Convert tabs to spaces
 set smarttab " Indent according to shiftwidth at beginning of line
 set shiftround " Round indent to multiple of shiftwidth
@@ -581,14 +579,6 @@ if has_key(g:plugs, 'coc.nvim')
   nmap <silent><leader>rn <Plug>(coc-rename)
 
   " Scroll floating window if it exists
-  nnoremap <silent><expr> <Up> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<Up>"
-  nnoremap <silent><expr> <Down> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<Down>"
-  inoremap <silent><expr> <Up> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Up>"
-  inoremap <silent><expr> <Down> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<Down>"
-  vnoremap <silent><expr> <Up> coc#float#has_scroll() ? coc#util#float_scroll_i(-1) : "\<Up>"
-  vnoremap <silent><expr> <Down> coc#float#has_scroll() ? coc#util#float_scroll_i(1) : "\<Down>"
-
-  " Make use of PageUp/PageDown somehow
   nnoremap <silent><expr> <PageUp> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<PageUp>"
   nnoremap <silent><expr> <PageDown> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<PageDown>"
   inoremap <silent><expr> <PageUp> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<PageUp>"
@@ -738,24 +728,24 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 
 " tbone {{{
 if exists('$TMUX') && has_key(g:plugs, 'vim-tbone')
-  let s:last_pane = ''
+  let s:last_known_pane = ''
   function! SendToInterpreter(pane) abort
-    if (a:pane == 'last' && s:last_pane == '')
+    if (a:pane == 'last' && s:last_known_pane == '')
       echo 'No last pane, use a direction first (hjkl)'
       return
     endif
 
-    let s:pane = ''
+    let l:pane = ''
     if (a:pane == 'last')
-      let s:pane = s:last_pane
+      let l:pane = s:last_known_pane
     else
-      let s:last_pane = a:pane
-      let s:pane = a:pane
+      let s:last_known_pane = a:pane
+      let l:pane = a:pane
     endif
 
-    execute 'Tmux send-keys -t '''.s:pane.''' ''C-u'''
-    execute 'Twrite '.s:pane.''
-    execute 'Tmux send-keys -t '''.s:pane.''' ''Enter'''
+    execute 'Tmux send-keys -t '''.l:pane.''' ''C-u'''
+    execute 'Twrite '.l:pane.''
+    execute 'Tmux send-keys -t '''.l:pane.''' ''Enter'''
   endfunction
 
   nnoremap <silent> <leader>x :call SendToInterpreter('last')<CR>
