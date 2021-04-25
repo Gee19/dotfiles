@@ -729,12 +729,14 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " tbone {{{
 if exists('$TMUX') && has_key(g:plugs, 'vim-tbone')
   let s:last_known_pane = ''
+  let s:last_indent_level = -1
   function! SendToInterpreter(pane) abort
     if (a:pane == 'last' && s:last_known_pane == '')
       echo 'No last pane, use a direction first (hjkl)'
       return
     endif
 
+    " Set pane to last_known_pane if it exists, otherwise use supplied pane
     let l:pane = ''
     if (a:pane == 'last')
       let l:pane = s:last_known_pane
@@ -743,7 +745,14 @@ if exists('$TMUX') && has_key(g:plugs, 'vim-tbone')
       let l:pane = a:pane
     endif
 
-    execute 'Tmux send-keys -t '''.l:pane.''' ''C-u'''
+    " Compare to previous indent level to close indented code
+    let l:current_indent_level = indent(line('.'))
+    if (s:last_indent_level > l:current_indent_level)
+      execute 'Tmux send-keys -t '''.l:pane.''' ''C-u'''
+    endif
+    let s:last_indent_level = l:current_indent_level
+
+    " Call Twrite then send Enter keypress
     execute 'Twrite '.l:pane.''
     execute 'Tmux send-keys -t '''.l:pane.''' ''Enter'''
   endfunction

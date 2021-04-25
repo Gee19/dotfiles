@@ -27,6 +27,11 @@
 ## TODO
 - elixir install breaks rabbitmq-server, test setup_env changes with --fix-missing
 - add cucumber tbone test mapping
+- write a tbone wrapper plugin
+  - 1 keymap for test current buffer, 1 keymap for send line to pane
+  - capture input for direction if last pane doesn't exist
+  - define test commands mapping for filetype, or auto determine if possible
+  - `let g:gbone_ft_map = {'python': 'pytest -vv', 'javascript': 'yarn test'}`
 - try unfog + unfog.vim
 - read:
   - https://iturbe.info/2017/10/the-command-line-productivity-triad-vimwiki-taskwarrior-timewarrior/
