@@ -27,6 +27,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-tbone'
 
+" me
+Plug 'Gee19/vim-gbone'
+Plug 'Gee19/indent-ignoreblank.vim'
+
 " Auto session management
 Plug 'dhruvasagar/vim-prosession'
 
@@ -60,7 +64,6 @@ Plug 'Konfekt/FastFold'
 Plug 'kalekundert/vim-coiled-snake'
 
 " viM iSn'T aN IDe
-Plug 'Gee19/indent-ignoreblank.vim' " Get the correct indent for new lines despite blank lines
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'rhysd/git-messenger.vim'
@@ -213,13 +216,14 @@ let g:lightline = {
       \ }
 
 let g:lightline#bufferline#show_number = 1
-let g:lightline#bufferline#unnamed = '[No Name]'
+let g:lightline#bufferline#smart_path = 1
+let g:lightline#bufferline#unnamed = '[Empty]'
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type = {'buffers': 'tabsel'}
 
-" Only show buffer filename
-let g:lightline#bufferline#filename_modifier = ':t'
+" Only show buffer filename (smart_path is better)
+" let g:lightline#bufferline#filename_modifier = ':t'
 
 " Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
@@ -726,56 +730,21 @@ xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " }}}
 
-" tbone {{{
-if exists('$TMUX') && has_key(g:plugs, 'vim-tbone')
-  let s:last_known_pane = ''
-  let s:last_indent_level = -1
-  function! SendToInterpreter(pane) abort
-    if (a:pane == 'last' && s:last_known_pane == '')
-      echo 'No last pane, use a direction first (hjkl)'
-      return
-    endif
-
-    " Set pane to last_known_pane if it exists, otherwise use supplied pane
-    let l:pane = ''
-    if (a:pane == 'last')
-      let l:pane = s:last_known_pane
-    else
-      let s:last_known_pane = a:pane
-      let l:pane = a:pane
-    endif
-
-    " Compare to previous indent level to close indented code
-    let l:current_indent_level = indent(line('.'))
-    if (s:last_indent_level > l:current_indent_level)
-      execute 'Tmux send-keys -t '''.l:pane.''' ''C-u'''
-    endif
-    let s:last_indent_level = l:current_indent_level
-
-    " Call Twrite then send Enter keypress
-    execute 'Twrite '.l:pane.''
-    execute 'Tmux send-keys -t '''.l:pane.''' ''Enter'''
-  endfunction
-
-  nnoremap <silent> <leader>x :call SendToInterpreter('last')<CR>
-  nnoremap <silent> <leader>xh :call SendToInterpreter('left')<CR>
-  nnoremap <silent> <leader>xj :call SendToInterpreter('bottom')<CR>
-  nnoremap <silent> <leader>xk :call SendToInterpreter('top')<CR>
-  nnoremap <silent> <leader>xl :call SendToInterpreter('right')<CR>
-
-  function! SendToPane(pane, cmd, clear) abort
-    execute 'Tmux send-keys -t '''.a:pane.''' ''C-u'''
-    if (a:clear)
-      execute 'Tmux send-keys -t '''.a:pane.''' ''clear'''
-      execute 'Tmux send-keys -t '''.a:pane.''' ''Enter'''
-    endif
-    execute 'Tmux send-keys -t '''.a:pane.''' '''.a:cmd.' '' '.expand('%:p')
-    execute 'Tmux send-keys -t '''.a:pane.''' ''Enter'''
-  endfunction
+" tbone/gbone {{{
+if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbone')
+  nmap <silent> <leader>x <Plug>(gbone-send-to-repl)
+  nmap <silent> <leader>xh <Plug>(gbone-send-to-repl-h)
+  nmap <silent> <leader>xj <Plug>(gbone-send-to-repl-j)
+  nmap <silent> <leader>xk <Plug>(gbone-send-to-repl-k)
+  nmap <silent> <leader>xl <Plug>(gbone-send-to-repl-l)
 
   augroup long_live_tpope
     autocmd!
-    autocmd FileType python map <buffer> <leader>t :call SendToPane('bottom', 'pytest -vv', 1)<CR>
+    autocmd FileType python nmap <buffer> <leader>t :call gbone#send_to_pane('last', 'pytest -vv', 1)<CR>
+    autocmd FileType python nmap <buffer> <leader>th :call gbone#send_to_pane('left', 'pytest -vv', 1)<CR>
+    autocmd FileType python nmap <buffer> <leader>tj :call gbone#send_to_pane('bottom', 'pytest -vv', 1)<CR>
+    autocmd FileType python nmap <buffer> <leader>tk :call gbone#send_to_pane('top', 'pytest -vv', 1)<CR>
+    autocmd FileType python nmap <buffer> <leader>tl :call gbone#send_to_pane('right', 'pytest -vv', 1)<CR>
   augroup END
 endif
 " }}}
