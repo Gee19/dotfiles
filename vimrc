@@ -738,6 +738,8 @@ if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbo
   nmap <silent> <leader>xk <Plug>(gbone-send-to-repl-k)
   nmap <silent> <leader>xl <Plug>(gbone-send-to-repl-l)
 
+  " cypress
+  " autocmd FileType spec nmap <buffer> <leader>t :call gbone#send_to_pane('last', 'npx cypress run --browser firefox --spec', 1)<CR>
   augroup long_live_tpope
     autocmd!
     autocmd FileType python nmap <buffer> <leader>t :call gbone#send_to_pane('last', 'pytest -vv', 1)<CR>

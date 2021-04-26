@@ -26,7 +26,7 @@
 
 ## TODO
 - elixir install breaks rabbitmq-server, test setup_env changes with --fix-missing
-- add cucumber tbone test mapping
+- add cucumber/spec tbone test mapping
 - try unfog + unfog.vim
 - read:
   - https://iturbe.info/2017/10/the-command-line-productivity-triad-vimwiki-taskwarrior-timewarrior/
