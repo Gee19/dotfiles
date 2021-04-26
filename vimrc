@@ -261,7 +261,6 @@ set scrolloff=8 " Keep X lines above/below cursor when near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
 set iskeyword+=- " treat dash-separated-words as word text object
-set lazyredraw " don't redraw when executing macro
 set synmaxcol=2048 " don't syntax color long lines
 
 " Some coc servers have issues with backup files #649
