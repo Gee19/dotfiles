@@ -444,6 +444,12 @@ let g:switch_mapping = "<leader>s"
 
 " Open a Quickfix window for the last search.
 nnoremap <silent> <leader>? :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+" Move lines up or down and fix indentation
+nnoremap <A-k> :<C-u>silent! move-2<CR>==
+nnoremap <A-j> :<C-u>silent! move+<CR>==
+xnoremap <A-k> :<C-u>silent! '<,'>move-2<CR>gv=gv
+xnoremap <A-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 " }}}
 
 " styling {{{
