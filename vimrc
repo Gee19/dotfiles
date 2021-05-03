@@ -34,9 +34,10 @@ Plug 'Gee19/indent-ignoreblank.vim'
 " Auto session management
 Plug 'dhruvasagar/vim-prosession'
 
-" Statusline and bufferline
+" Statusline, bufferline and buffers
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
+Plug 'moll/vim-bbye' " Delete buffers without affecting layout
 
 " Text Objects
 Plug 'kana/vim-textobj-user'
@@ -45,13 +46,16 @@ Plug 'glts/vim-textobj-comment'
 Plug 'lucapette/vim-textobj-underscore'
 Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 
-" Syntax highlighting
+" Syntax highlighting & language specific stuff
 Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact', 'typescript' ] }
+
 Plug 'towolf/vim-helm'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'elixir-editors/vim-elixir'
+Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'vim-python/python-syntax', { 'for': [ 'python' ] }
 let g:python_highlight_all = 1
 
@@ -65,20 +69,23 @@ Plug 'kalekundert/vim-coiled-snake'
 
 " viM iSn'T aN IDe
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'thirtythreeforty/lessspace.vim'
+Plug 'AndrewRadev/switch.vim'
+
+" neovim/neovim/issues/12587
+Plug 'antoinemadec/FixCursorHold.nvim'
+
+" git
+Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'rhysd/git-messenger.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'thirtythreeforty/lessspace.vim'
+
+" grep & quickfix improvements
+Plug 'jesseleite/vim-agriculture'
 Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
-Plug 'AndrewRadev/switch.vim'
-Plug 'alvan/vim-closetag'
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
-Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'antoinemadec/FixCursorHold.nvim'
-Plug 'jesseleite/vim-agriculture'
-Plug 'moll/vim-bbye'
 
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
