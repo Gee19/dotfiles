@@ -73,6 +73,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'thirtythreeforty/lessspace.vim'
 Plug 'AndrewRadev/switch.vim'
+Plug 'alvan/vim-closetag'
 
 " neovim/neovim/issues/12587
 Plug 'antoinemadec/FixCursorHold.nvim'
@@ -82,7 +83,7 @@ Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'rhysd/git-messenger.vim'
 Plug 'airblade/vim-gitgutter'
 
-" grep & quickfix improvements
+" grep/search & quickfix improvements
 Plug 'jesseleite/vim-agriculture'
 Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
