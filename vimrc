@@ -63,7 +63,9 @@ let g:python_highlight_all = 1
 
 " Folds
 Plug 'Konfekt/FastFold'
-Plug 'kalekundert/vim-coiled-snake'
+
+" kalekundert/vim-coiled-snake/issues/34
+" Plug 'kalekundert/vim-coiled-snake'
 
 " viM iSn'T aN IDe
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
