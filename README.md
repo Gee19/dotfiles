@@ -27,6 +27,7 @@
 ## TODO
 - elixir install breaks rabbitmq-server, test setup_env changes with --fix-missing
 - add cucumber/spec tbone test mapping
+- quickfix is OP
 - improve notes, read:
   - How to Take Smart Notes - Sönke Ahrens
   - https://iturbe.info/2017/10/the-command-line-productivity-triad-vimwiki-taskwarrior-timewarrior/

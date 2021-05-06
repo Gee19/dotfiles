@@ -407,7 +407,7 @@ inoremap <C-a> <HOME>
 nnoremap <silent><esc><esc> :nohlsearch<CR>
 
 " splitting panes and moving around in panes
-function! WinMove(key)
+function! WinMove(key) abort
     let t:curwin = winnr()
     exec "wincmd ".a:key
     if (t:curwin == winnr())
@@ -555,7 +555,7 @@ if has_key(g:plugs, 'coc.nvim')
   command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
   " Use K to show/hide documentation in preview window
-  function! s:show_documentation()
+  function! s:show_documentation() abort
     if coc#float#has_float()
       call coc#float#close_all()
     elseif (index(['vim','help'], &filetype) >= 0)
@@ -675,14 +675,14 @@ endif
 let g:fzf_buffers_jump = 1
 
 " FZF Buffer Delete
-function! s:list_buffers()
+function! s:list_buffers() abort
   redir => list
   silent ls
   redir END
   return split(list, "\n")
 endfunction
 
-function! s:delete_buffers(lines)
+function! s:delete_buffers(lines) abort
   " Use bdelete so buffers stay in locationlist
   execute 'bdelete' join(map(a:lines, {_, line -> split(line)[0]}))
 endfunction
@@ -700,6 +700,9 @@ map , <Plug>(clever-f-repeat-back)
 " }}}
 
 " quickfix (mostly vim-qf) {{{
+" TODO: Experiment with Cfilter/Lfilter (:h Cfilter)
+" TODO: Try romainl's more modern 'refresh' branch
+" TODO: :Reject mapping
 command! ClearQuickfix cexpr []
 
 nmap ]q <Plug>(qf_qf_next)
