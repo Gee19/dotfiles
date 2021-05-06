@@ -127,7 +127,7 @@ command! -nargs=0 Jsonfmt :%!python -m json.tool
 
 " Use ripgrep for vim :grep
 if executable('rg')
-  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 " }}}
@@ -201,7 +201,7 @@ augroup END
 augroup split_help
   autocmd!
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
-  " autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
 augroup END
 
 augroup yank_highlight
@@ -355,6 +355,7 @@ nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 nnoremap J mzJ`z
 
 " Don't let x and c to spoil the yank register
+" Not sure if I like this, makes character swaps take 1 extra keypress: aB -> Ba
 nnoremap x "_x
 nnoremap c "_c
 
@@ -394,10 +395,8 @@ nnoremap <silent><leader>\ :vs<CR>
 " Horizontally split screen
 nnoremap <silent><leader>- :split<CR>
 
-" beginning of the command line
+" beginning/end of the command line
 cnoremap <C-a> <Home>
-
-" end of the command line
 cnoremap <C-e> <End>
 
 " in insert mode
@@ -627,6 +626,7 @@ nnoremap <silent> <leader>gd :Gd<cr>
 nnoremap <silent> <leader><S-f> :Rg!<cr>
 
 " agriculture
+" TODO: replace this with :grep mappings
 nmap <leader><S-r> <Plug>RgRawSearch
 vmap <leader>/ <Plug>RgRawVisualSelection
 nmap <leader>* <Plug>RgRawWordUnderCursor
@@ -699,14 +699,22 @@ map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 " }}}
 
-" vim-qf {{{
+" quickfix (mostly vim-qf) {{{
+command! ClearQuickfix cexpr []
+
 nmap ]q <Plug>(qf_qf_next)
 nmap [q <Plug>(qf_qf_previous)
+nmap q] <Plug>(qf_qf_next)
+nmap q[ <Plug>(qf_qf_previous)
 nmap <C-q> <Plug>(qf_qf_toggle)
 
 nmap <leader>] <Plug>(qf_loc_next)
 nmap <leader>[ <Plug>(qf_loc_previous)
+nmap ]<leader> <Plug>(qf_loc_next)
+nmap [<leader> <Plug>(qf_loc_previous)
 nmap <leader>q <Plug>(qf_loc_toggle)
+
+let g:qf_mapping_ack_style = 1
 " }}}
 
 " vim-gitgutter {{{
