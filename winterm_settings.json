@@ -82,7 +82,10 @@
     }
   ],
   "actions": [
-    { "command": "find", "keys": "ctrl+shift+f" },
+    {
+      "command": "find",
+      "keys": "ctrl+shift+f"
+    },
     {
       "command": {
         "action": "splitPane",
@@ -91,13 +94,22 @@
       },
       "keys": "alt+d"
     },
-    { "command": "closePane", "keys": "alt+shift+w" },
     {
-      "command": { "action": "moveFocus", "direction": "left" },
+      "command": "closePane",
+      "keys": "alt+shift+w"
+    },
+    {
+      "command": {
+        "action": "moveFocus",
+        "direction": "left"
+      },
       "keys": "alt+left"
     },
     {
-      "command": { "action": "moveFocus", "direction": "right" },
+      "command": {
+        "action": "moveFocus",
+        "direction": "right"
+      },
       "keys": "alt+right"
     }
   ]

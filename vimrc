@@ -122,8 +122,9 @@ else
   set shell=/bin/sh
 endif
 
-" Format JSON (TODO: jq & find more resilient method)
-command! -nargs=0 Jsonfmt :%!python -m json.tool
+" Format JSON
+command! -nargs=0 Jsonfmt :%!jq
+command! -nargs=0 Jq :%!jq
 
 " Use ripgrep for vim :grep
 if executable('rg')

@@ -4,5 +4,7 @@
     "--config='${workspaceFolder}/.flake8'",
     "--ignore=D205,D100,D102,D105,D106,D107,E501"
   ],
-  "eslint.options": {"configFile": "/home/jhaine/dev/sdelements/sigma/.eslintrc"}
+  "eslint.options": {
+    "configFile": "/home/jhaine/dev/sdelements/sigma/.eslintrc"
+  }
 }

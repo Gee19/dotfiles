@@ -2,16 +2,13 @@
   "include": [
     "pas"
   ],
-
   "exclude": [
     "**/node_modules",
     "**/__pycache__"
   ],
-
   "ignore": [
     ""
   ],
-
   "stubPath": "",
   "venvPath": "/home/jhaine/Envs",
   "reportMissingImports": true,

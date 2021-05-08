@@ -4,8 +4,17 @@
   "suggest.removeDuplicateItems": true,
   "codeLens.enable": true,
   "coc.preferences.jumpCommand": "drop",
-  "coc.preferences.rootPatterns": [".git", ".vscode"],
-  "coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "javascriptreact", "typescriptreact", "css"],
+  "coc.preferences.rootPatterns": [
+    ".git",
+    ".vscode"
+  ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "javascript",
+    "javascriptreact",
+    "typescriptreact",
+    "css"
+  ],
   "diagnostic.checkCurrentLine": false,
   "diagnostic.messageTarget": "float",
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
