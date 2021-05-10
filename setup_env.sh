@@ -40,7 +40,6 @@ fi
 wget "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
 mv ./jq-linux64 ~/.local/bin/jq
 chmod +x ~/.local/bin/jq
-rm ./jq-linux64
 
 # EXA
 wget "https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip"
