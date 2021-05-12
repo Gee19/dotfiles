@@ -55,7 +55,6 @@ Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'vim-python/python-syntax', { 'for': [ 'python' ] }
-let g:python_highlight_all = 1
 
 " if has('nvim')
 "   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -72,8 +71,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lock
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'thirtythreeforty/lessspace.vim'
-Plug 'AndrewRadev/switch.vim'
 Plug 'alvan/vim-closetag'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+
+" AndrewRadev
+Plug 'AndrewRadev/switch.vim'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " neovim/neovim/issues/12587
 Plug 'antoinemadec/FixCursorHold.nvim'
@@ -432,8 +435,8 @@ nnoremap <silent> <leader>l :call WinMove('l')<CR>
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
-" Shift+U undo
-nnoremap U :redo<cr>
+" Shift+U redo
+nnoremap U :redo<CR>
 
 " Make Y behave like other capitals
 nnoremap Y y$
@@ -449,6 +452,12 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 " switch.vim
 let g:switch_mapping = "<leader>s"
+
+" splitjoin.vim
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+nnoremap gss :SplitjoinSplit<cr>
+nnoremap gsj :SplitjoinJoin<cr>
 
 " Open a Quickfix window for the last search.
 nnoremap <silent> <leader>? :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
@@ -472,6 +481,9 @@ let g:closetag_filetypes='html,xhtml,jsx,xml,javascriptreact,javascript,typescri
 
 " Colorful JS
 let g:vim_jsx_pretty_colorful_config = 1
+
+" Colorful Python
+let g:python_highlight_all = 1
 " }}}
 
 " NERDTree {{{
@@ -808,4 +820,9 @@ function! ToggleLessSpace() abort
 endfunction
 
 nmap <C-s> :call ToggleLessSpace()<CR>
+" }}}
+
+" undotree {{{
+let g:undotree_WindowLayout = 1
+nnoremap <C-r> :UndotreeToggle<CR>
 " }}}
