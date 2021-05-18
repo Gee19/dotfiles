@@ -721,7 +721,7 @@ map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 " }}}
 
-" quickfix (mostly vim-qf) {{{
+" async grep + quickfix (mostly vim-qf) {{{
 " TODO: Experiment with Cfilter/Lfilter (:h Cfilter)
 " TODO: Try romainl's more modern 'refresh' branch
 " TODO: :Reject mapping
@@ -740,6 +740,44 @@ nmap [<leader> <Plug>(qf_loc_previous)
 nmap <leader>q <Plug>(qf_loc_toggle)
 
 let g:qf_mapping_ack_style = 1
+
+" Disable these for async Grep
+let g:qf_auto_open_quickfix = 0
+let g:qf_auto_open_loclist = 0
+
+" https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
+
+cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
+cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
+
+augroup quickfix
+  autocmd!
+  autocmd QuickFixCmdPost cgetexpr cwindow
+  autocmd QuickFixCmdPost lgetexpr lwindow
+augroup END
+
+function! CustomExpand(val)
+  " if starts with *, don't expand it
+  if a:val =~ '^\*'
+    return a:val
+  else
+    return expand(a:val)
+  endif
+endfunction
+
+" call grepprg in a system shell instead of internal shell
+function! Grep(...)
+  " expandcmd() is only supported in regular vim or nvim-0.5
+  if has('nvim-0.5') || !has('nvim')
+    return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
+  else
+    let l:args = copy(a:000)
+    let CExp = function("CustomExpand")
+    return system(join([&grepprg] + [join(map(l:args, 'CExp(v:val)'), ' ')], ' '))
+  endif
+endfunction
 " }}}
 
 " vim-gitgutter {{{
