@@ -73,6 +73,7 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'thirtythreeforty/lessspace.vim'
 Plug 'alvan/vim-closetag'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+Plug 'farmergreg/vim-lastplace'
 
 " AndrewRadev
 Plug 'AndrewRadev/switch.vim'
