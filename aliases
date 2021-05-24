@@ -31,6 +31,15 @@ function gsd() {
     fi
 }
 
+function gcopr() {
+    if [ "$1" != "" ]
+    then
+      git fetch origin "refs/pull/$1/head:pr/$1" && git checkout "pr/$1"
+    else
+      return
+    fi
+}
+
 alias v="nvim.appimage"
 alias vi="nvim.appimage"
 alias nvim="nvim.appimage"
