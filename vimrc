@@ -454,6 +454,9 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 " switch.vim
 let g:switch_mapping = "<leader>s"
 
+" spell
+nnoremap <silent> <leader>S :setlocal spell!<CR>
+
 " splitjoin.vim
 let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
