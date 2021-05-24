@@ -170,12 +170,6 @@ if has('nvim')
   " leave updatetime untouched (and avoid unnecessary swap writes)
   let g:cursorhold_updatetime = 100
 
-  " Operator Mono OP
-  highlight Comment gui=italic
-  highlight Comment cterm=italic
-  highlight htmlArg gui=italic
-  highlight htmlArg cterm=italic
-
   " Preview substitutions
   set inccommand=nosplit
 
@@ -792,6 +786,12 @@ let g:gitgutter_preview_win_floating = 0
 highlight GitGutterAdd    guifg=#98c379 guibg=bg ctermfg=2 ctermbg=bg
 highlight GitGutterChange guifg=#e5c07b guibg=bg ctermfg=3 ctermbg=bg
 highlight GitGutterDelete guifg=#e06c75 guibg=bg ctermfg=1 ctermbg=bg
+
+" Italics (Operator Mono OP)
+highlight Comment gui=italic
+highlight Comment cterm=italic
+highlight htmlArg gui=italic
+highlight htmlArg cterm=italic
 
 " mappings
 nmap ]h <Plug>(GitGutterNextHunk)

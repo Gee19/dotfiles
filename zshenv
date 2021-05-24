@@ -50,9 +50,6 @@ if [[ $(uname -r) =~ (m|M)icrosoft ]]; then
   fi
 fi
 
-# Always set TERM to screen-256color when in tmux
-[[ $TMUX != "" ]] && export TERM="screen-256color"
-
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 export GITLAB_TOKEN=%NOPE%

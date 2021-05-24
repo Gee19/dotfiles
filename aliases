@@ -44,9 +44,6 @@ alias v="nvim.appimage"
 alias vi="nvim.appimage"
 alias nvim="nvim.appimage"
 
-# vim doesn't show colors in tmux with screen-256color
-alias vim="TERM=xterm-256color vim"
-
 alias dots="cd ~/dev/dotfiles"
 
 alias mcs="workon mcs && cd ~/dev/management_command_system && nvm use"
