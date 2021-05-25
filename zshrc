@@ -163,6 +163,10 @@ function _fzf_compgen_dir() {
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+# Use C-n C-p for up/down
+bindkey '^N' history-substring-search-down
+bindkey '^P' history-substring-search-up
+
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
