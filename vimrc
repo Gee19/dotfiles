@@ -371,10 +371,6 @@ nnoremap <C-u> <C-u>zz
 " go to end of yanked text
 vnoremap <silent> y y`]
 
-" simple sizing of splits
-map - <C-W>-
-map + <C-W>+
-
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
@@ -388,10 +384,8 @@ map <leader>p "*p
 " Toggle word wrapping
 map <leader>w :set wrap!<CR>
 
-" Vertically split screen
+" Vertically/Horizontally split screen
 nnoremap <silent><leader>\ :vs<CR>
-
-" Horizontally split screen
 nnoremap <silent><leader>- :split<CR>
 
 " beginning/end of the command line
