@@ -524,7 +524,8 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-yaml',
     \ 'coc-lua',
     \ 'coc-elixir',
-    \ 'coc-sh'
+    \ 'coc-sh',
+    \ 'coc-react-refactor'
   \ ]
 
   " use <tab> for trigger completion and navigate to the next completion item
