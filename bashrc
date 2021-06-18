@@ -119,10 +119,6 @@ fi
 export XDG_CONFIG_HOME=$HOME/.config
 export PATH=$HOME/.local/bin:$PATH
 
-if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
-  tmux new-session -A -s main
-fi
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # nvm unusable with fzf on wsl2
