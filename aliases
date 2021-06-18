@@ -19,6 +19,7 @@ alias gds="git diff --staged"
 alias gc-="git checkout -"
 alias gsl="git stash list"
 alias gsa="git stash apply"
+alias gcp="git cherry-pick"
 
 alias rdb="socat readline tcp:$1:$2"
 
