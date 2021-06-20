@@ -1,6 +1,6 @@
 " vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
 
-" disable some built-ins (might want shada/netrw) {{{
+" disable some built-ins (might want shada) {{{
 let g:loaded_shada_plugin=1
 let g:loaded_netrwPlugin=1
 let g:loaded_gzip=1
@@ -41,7 +41,6 @@ Plug 'moll/vim-bbye' " Delete buffers without affecting layout
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'glts/vim-textobj-comment'
-Plug 'lucapette/vim-textobj-underscore'
 Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 
 " Syntax highlighting & language specific stuff
@@ -862,4 +861,45 @@ nmap <C-s> :call ToggleLessSpace()<CR>
 " undotree {{{
 let g:undotree_WindowLayout = 1
 nnoremap <C-r> :UndotreeToggle<CR>
+" }}}
+
+" romainl pseudo-text objects {{{
+" https://gist.github.com/romainl/c0a8b57a36aec71a986f1120e1931f20
+
+" 22 simple pseudo-text objects (, removed for argumentative)
+" -----------------------------
+" i_ i. i: i; i| i/ i\ i* i+ i- i#
+" a_ a. a: a; a| a/ a\ a* a+ a- a#
+for char in [ '_', '.', ':', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#' ]
+	execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+	execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+	execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+	execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+endfor
+
+" line pseudo-text objects
+" ------------------------
+" il al
+xnoremap il g_o^
+onoremap il :<C-u>normal vil<CR>
+xnoremap al $o0
+onoremap al :<C-u>normal val<CR>
+
+" number pseudo-text object (integer and float)
+" ---------------------------------------------
+" in
+function! VisualNumber()
+	call search('\d\([^0-9\.]\|$\)', 'cW')
+	normal v
+	call search('\(^\|[^0-9\.]\d\)', 'becW')
+endfunction
+xnoremap in :<C-u>call VisualNumber()<CR>
+onoremap in :<C-u>normal vin<CR>
+
+" last change pseudo-text objects
+" -------------------------------
+" ik ak
+xnoremap ik `]o`[
+onoremap ik :<C-u>normal vik<CR>
+onoremap ak :<C-u>normal vikV<CR>
 " }}}
