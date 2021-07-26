@@ -55,8 +55,9 @@ Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'vim-python/python-syntax', { 'for': [ 'python' ] }
 
+" need 0.5-compat branch if on 0.5 stable
 " if has('nvim')
-"   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"   Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': ':TSUpdate'}
 " endif
 
 " Folds
@@ -84,6 +85,7 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 " git
 Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'rhysd/git-messenger.vim'
+Plug 'rhysd/committia.vim'
 Plug 'airblade/vim-gitgutter'
 
 " grep/search & quickfix improvements
@@ -771,7 +773,25 @@ function! Grep(...)
 endfunction
 " }}}
 
-" vim-gitgutter {{{
+" mostly git related {{{
+" committia.vim
+let g:committia_hooks = {}
+let g:committia_use_singlecolumn = 'fallback'
+let g:committia_min_window_width = 110
+function! g:committia_hooks.edit_open(info)
+    setlocal spell
+
+    " If no commit message, start with insert mode
+    if a:info.vcs ==# 'git' && getline(1) ==# ''
+        startinsert
+    endif
+
+    " Scroll the diff window from insert mode
+    imap <buffer><Down> <Plug>(committia-scroll-diff-down-half)
+    imap <buffer><Up> <Plug>(committia-scroll-diff-up-half)
+endfunction
+
+" vim-gitgutter
 let g:gitgutter_map_keys = 0
 let g:gitgutter_grep = 'rg'
 let g:gitgutter_preview_win_floating = 0
