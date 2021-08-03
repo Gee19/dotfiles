@@ -41,6 +41,13 @@ wget "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
 mv ./jq-linux64 ~/.local/bin/jq
 chmod +x ~/.local/bin/jq
 
+# ijq
+wget "https://git.sr.ht/~gpanders/ijq/refs/download/v0.3.6/ijq-0.3.6-linux-x86_64.tar.gz"
+tar xzvf ijq-0.3.6-linux-x86_64.tar.gz
+mv ijq-0.3.6/ijq ~/.local/bin/ijq
+rm ijq-0.3.6-linux-x86_64.tar.gz
+rm -rf ijq-0.3.6
+
 # EXA
 wget "https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip"
 unzip -o exa-linux-x86_64-0.9.0.zip
