@@ -74,6 +74,7 @@ Plug 'thirtythreeforty/lessspace.vim'
 Plug 'alvan/vim-closetag'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'farmergreg/vim-lastplace'
+Plug 'Yggdroot/indentLine'
 
 " AndrewRadev
 Plug 'AndrewRadev/switch.vim'
@@ -207,6 +208,11 @@ augroup END
 augroup yank_highlight
   autocmd!
   autocmd TextYankPost * if exists('##TextYankPost') | exe "silent! lua require'vim.highlight'.on_yank()" | endif
+augroup END
+
+augroup json_indentline
+  autocmd!
+  autocmd FileType json let g:indentLine_enabled = 0
 augroup END
 " }}}
 
