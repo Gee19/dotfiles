@@ -28,7 +28,7 @@ include = {
 }
 
 # git
-in_wsl = "WSL" in os.uname().release
+in_wsl = "release" in os.uname() and "WSL" in os.uname().release
 relevant_gitconfig = "gitconfig" if not in_wsl else "gitconfig_home"
 include[relevant_gitconfig] = "$HOME/.gitconfig"
 
