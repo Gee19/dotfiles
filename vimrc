@@ -711,11 +711,7 @@ map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 " }}}
 
-" async-grep2qf & vim-qf {{{
-vmap <leader>/ <Plug>GrepVisualSelection
-nmap <leader>* <Plug>GrepWordUnderCursor
-nnoremap <silent> <leader>? <Plug>OpenQuickfixWithLastSearch
-
+" vim-qf & other quickfix stuff {{{
 nmap ]q <Plug>(qf_qf_next)
 nmap [q <Plug>(qf_qf_previous)
 nmap q] <Plug>(qf_qf_next)
@@ -730,9 +726,16 @@ nmap <leader>q <Plug>(qf_loc_toggle)
 
 let g:qf_mapping_ack_style = 1
 
+" open quickfix with last search
+nnoremap <silent> <leader>? :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
 " Disable these for async Grep
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
+
+" async-grep2qf
+vmap <leader>/ <Plug>GrepVisualSelection
+nmap <leader>* <Plug>GrepWordUnderCursor
 " }}}
 
 " mostly git related {{{
