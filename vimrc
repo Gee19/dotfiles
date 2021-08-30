@@ -28,6 +28,7 @@ Plug 'tpope/vim-tbone'
 " me
 Plug 'Gee19/vim-gbone'
 Plug 'Gee19/indent-ignoreblank.vim'
+Plug 'Gee19/async-grep2qf'
 
 " Auto session management
 Plug 'dhruvasagar/vim-prosession'
@@ -90,7 +91,6 @@ Plug 'rhysd/committia.vim'
 Plug 'airblade/vim-gitgutter'
 
 " grep/search & quickfix improvements
-Plug 'jesseleite/vim-agriculture'
 Plug 'rhysd/clever-f.vim'
 Plug 'romainl/vim-qf'
 
@@ -458,9 +458,6 @@ let g:splitjoin_join_mapping = ''
 nnoremap gss :SplitjoinSplit<cr>
 nnoremap gsj :SplitjoinJoin<cr>
 
-" Open a Quickfix window for the last search.
-nnoremap <silent> <leader>? :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
-
 " Move lines up or down and fix indentation
 nnoremap <A-k> :<C-u>silent! move-2<CR>==
 nnoremap <A-j> :<C-u>silent! move+<CR>==
@@ -646,12 +643,6 @@ nnoremap <silent> <leader>gd :Gd<cr>
 " fullscreen ripgrep global search
 nnoremap <silent> <leader><S-f> :Rg!<cr>
 
-" agriculture
-" TODO: replace this with :grep mappings
-nmap <leader><S-r> <Plug>RgRawSearch
-vmap <leader>/ <Plug>RgRawVisualSelection
-nmap <leader>* <Plug>RgRawWordUnderCursor
-
 " fullscreen ripgrep global search current word
 nnoremap <silent> <expr> <leader>f ":Rg!\ ".expand('<cword>')."<cr>"
 
@@ -720,11 +711,10 @@ map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 " }}}
 
-" async grep + quickfix (mostly vim-qf) {{{
-" TODO: Experiment with Cfilter/Lfilter (:h Cfilter)
-" TODO: Try romainl's more modern 'refresh' branch
-" TODO: :Reject mapping
-command! ClearQuickfix cexpr []
+" async-grep2qf & vim-qf {{{
+vmap <leader>/ <Plug>GrepVisualSelection
+nmap <leader>* <Plug>GrepWordUnderCursor
+nnoremap <silent> <leader>? <Plug>OpenQuickfixWithLastSearch
 
 nmap ]q <Plug>(qf_qf_next)
 nmap [q <Plug>(qf_qf_previous)
@@ -743,40 +733,6 @@ let g:qf_mapping_ack_style = 1
 " Disable these for async Grep
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
-
-" https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
-command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
-command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
-
-cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
-cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
-
-augroup quickfix
-  autocmd!
-  autocmd QuickFixCmdPost cgetexpr cwindow
-  autocmd QuickFixCmdPost lgetexpr lwindow
-augroup END
-
-function! CustomExpand(val)
-  " if starts with *, don't expand it
-  if a:val =~ '^\*'
-    return a:val
-  else
-    return expand(a:val)
-  endif
-endfunction
-
-" call grepprg in a system shell instead of internal shell
-function! Grep(...)
-  " expandcmd() is only supported in regular vim or nvim-0.5
-  if has('nvim-0.5') || !has('nvim')
-    return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
-  else
-    let l:args = copy(a:000)
-    let CExp = function("CustomExpand")
-    return system(join([&grepprg] + [join(map(l:args, 'CExp(v:val)'), ' ')], ' '))
-  endif
-endfunction
 " }}}
 
 " mostly git related {{{
