@@ -28,7 +28,6 @@ Plug 'tpope/vim-tbone'
 " me
 Plug 'Gee19/vim-gbone'
 Plug 'Gee19/indent-ignoreblank.vim'
-Plug 'Gee19/async-grep2qf'
 
 " Auto session management
 Plug 'dhruvasagar/vim-prosession'
@@ -711,7 +710,7 @@ map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 " }}}
 
-" vim-qf & other quickfix stuff {{{
+" vim-qf {{{
 nmap ]q <Plug>(qf_qf_next)
 nmap [q <Plug>(qf_qf_previous)
 nmap q] <Plug>(qf_qf_next)
@@ -726,16 +725,89 @@ nmap <leader>q <Plug>(qf_loc_toggle)
 
 let g:qf_mapping_ack_style = 1
 
-" open quickfix with last search
-nnoremap <silent> <leader>? :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
-
 " Disable these for async Grep
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
+" }}}
 
-" async-grep2qf
-vmap <leader>/ <Plug>GrepVisualSelection
-nmap <leader>* <Plug>GrepWordUnderCursor
+" async grep: https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3{{{
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
+
+cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
+cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
+
+augroup quickfix
+  autocmd!
+  autocmd QuickFixCmdPost cgetexpr cwindow
+  autocmd QuickFixCmdPost lgetexpr lwindow
+augroup END
+
+function! CustomExpand(val)
+  " if starts with *, don't expand it
+  if a:val =~ '^\*'
+    return a:val
+  else
+    return expand(a:val)
+  endif
+endfunction
+
+" call grepprg in a system shell instead of internal shell
+function! Grep(...)
+  " expandcmd() is only supported in regular vim or nvim-0.5
+  if has('nvim-0.5') || !has('nvim')
+    return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
+  else
+    let l:args = copy(a:000)
+    let CExp = function("CustomExpand")
+    return system(join([&grepprg] + [join(map(l:args, 'CExp(v:val)'), ' ')], ' '))
+  endif
+endfunction
+
+function! TrimEscapeRegA()
+  let query = getreg('a')
+  let trimmedQuery = s:trim(query)
+  let escapedQuery = shellescape(trimmedQuery, "'#%\\")
+  call setreg('a', escapedQuery)
+endfunction
+
+function! s:trim(str)
+  if exists('*trim')
+    return trim(a:str)
+  else
+    return matchstr(a:str, '^\s*\zs.\{-}\ze\s*$')
+  endif
+endfunction
+" }}}
+
+" more quickfix {{{
+command! ClearQuickfix cexpr []
+command! RemoveQuickfixItem silent! call RemoveQuickfixItem()
+
+" When using `dd` in the quickfix list, remove the item from the quickfix list.
+" https://stackoverflow.com/questions/42905008/quickfix-list-how-to-add-and-remove-entries
+augroup custom_qf_mapping
+  autocmd!
+  autocmd FileType qf nnoremap <buffer> dd :RemoveQuickfixItem<CR>
+augroup END
+
+function! RemoveQuickfixItem()
+  let curqfidx = line('.') - 1
+  let qfall = getqflist()
+  call remove(qfall, curqfidx)
+  call setqflist(qfall, 'r')
+  execute curqfidx + 1 . "cfirst"
+  copen
+endfunction
+
+" open quickfix with last search
+nnoremap <silent> <leader>? :Grep /<CR>
+
+" async grep current visual selection
+vnoremap <leader>/ "ay:call TrimEscapeRegA()<CR>:Grep <C-r>a<CR>
+
+" async grep word under cursor
+nnoremap <leader>* "ayiw:call TrimEscapeRegA()<CR>:Grep <C-r>a<CR>
 " }}}
 
 " mostly git related {{{
