@@ -753,7 +753,7 @@ function! CustomExpand(val)
 endfunction
 
 " call grepprg in a system shell instead of internal shell
-function! Grep(...)
+function! Grep(...) abort
   " expandcmd() is only supported in regular vim or nvim-0.5
   if has('nvim-0.5') || !has('nvim')
     return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
@@ -764,14 +764,14 @@ function! Grep(...)
   endif
 endfunction
 
-function! TrimEscapeRegA()
+function! TrimEscapeRegA() abort
   let query = getreg('a')
   let trimmedQuery = s:trim(query)
   let escapedQuery = shellescape(trimmedQuery, "'#%\\")
   call setreg('a', escapedQuery)
 endfunction
 
-function! s:trim(str)
+function! s:trim(str) abort
   if exists('*trim')
     return trim(a:str)
   else
@@ -791,7 +791,7 @@ augroup custom_qf_mapping
   autocmd FileType qf nnoremap <buffer> dd :RemoveQuickfixItem<CR>
 augroup END
 
-function! RemoveQuickfixItem()
+function! RemoveQuickfixItem() abort
   let curqfidx = line('.') - 1
   let qfall = getqflist()
   call remove(qfall, curqfidx)
