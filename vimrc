@@ -74,7 +74,7 @@ Plug 'thirtythreeforty/lessspace.vim'
 Plug 'alvan/vim-closetag'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'farmergreg/vim-lastplace'
-Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
 
 " AndrewRadev
 Plug 'AndrewRadev/switch.vim'

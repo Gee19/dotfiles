@@ -8,6 +8,7 @@ local WORDCHARS='*?_[]~=&;!#$%^(){}<>'
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_find_no_dups
+setopt ignoreeof  # Same as setting IGNOREEOF=10 (Ctrl+d x10 to close shell)
 
 export HISTSIZE=100000
 export HISTFILESIZE=100000
