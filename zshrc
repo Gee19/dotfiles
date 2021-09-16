@@ -11,10 +11,10 @@ znap source "zsh-users/zsh-history-substring-search"
 znap source "agkozak/zsh-z"
 
 # virtualenvwrapper
-if [ -f ${HOME}/.local/bin/virtualenvwrapper.sh ]; then
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=~/Envs
     mkdir -p $WORKON_HOME
-    source $HOME/.local/bin/virtualenvwrapper.sh
+    source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 DISABLE_AUTO_TITLE="true"
