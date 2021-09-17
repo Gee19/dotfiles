@@ -13,6 +13,7 @@
   "venvPath": "/home/jhaine/Envs",
   "reportMissingImports": true,
   "reportMissingTypeStubs": false,
+  "reportPropertyTypeMismatch": false,
   "pythonVersion": "3.6",
   "pythonPlatform": "Linux",
   "executionEnvironments": [

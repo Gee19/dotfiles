@@ -570,6 +570,12 @@ if has_key(g:plugs, 'coc.nvim')
   " Prettier command
   command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
+  " Add `:Format` command to format current buffer
+  command! -nargs=0 Format :call CocAction('format')
+
+  " Add `:Fold` command to fold current buffer
+  command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
   " Use K to show/hide documentation in preview window
   function! s:show_documentation() abort
     if coc#float#has_float()
@@ -582,6 +588,9 @@ if has_key(g:plugs, 'coc.nvim')
       execute '!' . &keywordprg . " " . expand('<cword>')
     endif
   endfunction
+
+  " Highlight the symbol and its references when holding the cursor
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 
   " Coc Binds
   nmap <silent> gd <Plug>(coc-definition)
