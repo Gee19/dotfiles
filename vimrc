@@ -55,11 +55,6 @@ Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
 Plug 'vim-python/python-syntax', { 'for': [ 'python' ] }
 
-" need 0.5-compat branch if on 0.5 stable
-" if has('nvim')
-"   Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': ':TSUpdate'}
-" endif
-
 " Folds
 Plug 'Konfekt/FastFold'
 
