@@ -22,6 +22,7 @@ alias gsa="git stash apply"
 alias gcp="git cherry-pick"
 
 alias rdb="socat readline tcp:$1:$2"
+alias tma="tmux a -t $1"
 
 function gsd() {
     if [ "$1" != "" ]
