@@ -28,6 +28,7 @@ Plug 'tpope/vim-tbone'
 " me
 Plug 'Gee19/vim-gbone'
 Plug 'Gee19/indent-ignoreblank.vim'
+Plug 'Gee19/vim-peekaboo' " Fixes conflict with lessspace.vim
 
 " Auto session management
 Plug 'dhruvasagar/vim-prosession'
@@ -91,7 +92,6 @@ Plug 'romainl/vim-qf'
 " junegunn op
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-peekaboo'
 
 " nerd fonts broken in wsl
 let s:in_wsl = system("uname -r") =~ "WSL"
@@ -569,7 +569,7 @@ if has_key(g:plugs, 'coc.nvim')
   command! -nargs=0 Format :call CocAction('format')
 
   " Add `:Fold` command to fold current buffer
-  command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+  command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
   " Use K to show/hide documentation in preview window
   function! s:show_documentation() abort
