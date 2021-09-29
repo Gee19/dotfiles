@@ -29,6 +29,7 @@ Plug 'tpope/vim-tbone'
 Plug 'Gee19/vim-gbone'
 Plug 'Gee19/indent-ignoreblank.vim'
 Plug 'Gee19/vim-peekaboo' " Fixes conflict with lessspace.vim
+Plug 'Gee19/vim-coiled-snake' " Testing fix
 
 " Auto session management
 Plug 'dhruvasagar/vim-prosession'
