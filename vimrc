@@ -30,6 +30,7 @@ Plug 'Gee19/vim-gbone'
 Plug 'Gee19/indent-ignoreblank.vim'
 Plug 'Gee19/vim-peekaboo' " Fixes conflict with lessspace.vim
 Plug 'Gee19/vim-coiled-snake' " Testing fix
+Plug 'Gee19/lessspace.vim' " Added toggle func
 
 " Auto session management
 Plug 'dhruvasagar/vim-prosession'
@@ -67,7 +68,6 @@ Plug 'Konfekt/FastFold'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'thirtythreeforty/lessspace.vim'
 Plug 'alvan/vim-closetag'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'farmergreg/vim-lastplace'
@@ -458,6 +458,9 @@ nnoremap <A-k> :<C-u>silent! move-2<CR>==
 nnoremap <A-j> :<C-u>silent! move+<CR>==
 xnoremap <A-k> :<C-u>silent! '<,'>move-2<CR>gv=gv
 xnoremap <A-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+
+" lessspace
+nmap <C-s> :<C-u>call lessspace#Toggle()<CR>
 " }}}
 
 " styling {{{
@@ -889,23 +892,6 @@ if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbo
     autocmd FileType python nmap <buffer> <leader>tl :call gbone#send_to_pane('right', 'pytest -vv', 1)<CR>
   augroup END
 endif
-" }}}
-
-" lessspace {{{
-let s:lesspace_enabled = 1
-function! ToggleLessSpace() abort
-  if (s:lesspace_enabled)
-    exec 'LessSpace!'
-    let s:lesspace_enabled = 0
-    echo 'Disabled LessSpace'
-  else
-    exec 'LessSpace'
-    let s:lesspace_enabled = 1
-    echo 'Enabled LessSpace'
-  endif
-endfunction
-
-nmap <C-s> :call ToggleLessSpace()<CR>
 " }}}
 
 " undotree {{{
