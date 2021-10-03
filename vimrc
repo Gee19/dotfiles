@@ -876,19 +876,7 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 
 " tbone/gbone {{{
 if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbone')
-  " Normal
-  nmap <silent> <leader>x  <Plug>(gbone-send-to-repl)
-  nmap <silent> <leader>xh <Plug>(gbone-send-to-repl-h)
-  nmap <silent> <leader>xj <Plug>(gbone-send-to-repl-j)
-  nmap <silent> <leader>xk <Plug>(gbone-send-to-repl-k)
-  nmap <silent> <leader>xl <Plug>(gbone-send-to-repl-l)
-
-  " Visual
-  xnoremap <silent> <leader>x  :<C-u>'<,'>call gbone#send_to_repl('last')<CR>
-  xnoremap <silent> <leader>xh :<C-u>'<,'>call gbone#send_to_repl('left')<CR>
-  xnoremap <silent> <leader>xj :<C-u>'<,'>call gbone#send_to_repl('bottom')<CR>
-  xnoremap <silent> <leader>xk :<C-u>'<,'>call gbone#send_to_repl('top')<CR>
-  xnoremap <silent> <leader>xl :<C-u>'<,'>call gbone#send_to_repl('right')<CR>
+  let g:gbone_repl_mapping = '<leader>x'
 
   " cypress
   " autocmd FileType spec nmap <buffer> <leader>t :call gbone#send_to_pane('last', 'npx cypress run --browser firefox --spec', 1)<CR>
