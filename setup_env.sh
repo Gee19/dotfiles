@@ -75,7 +75,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs 'https://raw.githubusercontent.
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-pip3 install virtualenv virtualenvwrapper
+sudo pip3 install virtualenv virtualenvwrapper
 
 # Elixir (conflicts with rabbitmq-server for some reason)
 # wget "https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb"
