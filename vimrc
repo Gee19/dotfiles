@@ -880,17 +880,8 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " tbone/gbone {{{
 if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbone')
   let g:gbone_repl_mapping = '<leader>x'
-
-  " cypress
-  " autocmd FileType spec nmap <buffer> <leader>t :call gbone#send_to_pane('last', 'npx cypress run --browser firefox --spec', 1)<CR>
-  augroup long_live_tpope
-    autocmd!
-    autocmd FileType python nmap <buffer> <leader>t :call gbone#send_to_pane('last', 'pytest -vv', 1)<CR>
-    autocmd FileType python nmap <buffer> <leader>th :call gbone#send_to_pane('left', 'pytest -vv', 1)<CR>
-    autocmd FileType python nmap <buffer> <leader>tj :call gbone#send_to_pane('bottom', 'pytest -vv', 1)<CR>
-    autocmd FileType python nmap <buffer> <leader>tk :call gbone#send_to_pane('top', 'pytest -vv', 1)<CR>
-    autocmd FileType python nmap <buffer> <leader>tl :call gbone#send_to_pane('right', 'pytest -vv', 1)<CR>
-  augroup END
+  let g:gbone_test_mapping = '<leader>t'
+  let g:gbone_ft_map = { 'python': 'pytest -vvv', 'javascript': 'yarn test', 'elixir': 'mix test', 'spec': 'npx cypress run --browser firefox --spec' }
 endif
 " }}}
 
