@@ -9,6 +9,8 @@ znap source "zsh-users/zsh-autosuggestions"
 znap source "zsh-users/zsh-syntax-highlighting"
 znap source "zsh-users/zsh-history-substring-search"
 
+zstyle ':znap:*' git-maintenance off
+
 # virtualenvwrapper
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=~/Envs
