@@ -32,6 +32,9 @@ Plug 'Gee19/vim-peekaboo' " Fixes conflict with lessspace.vim
 Plug 'Gee19/vim-coiled-snake' " Testing fix
 Plug 'Gee19/lessspace.vim' " Added toggle func
 
+" gbone dependency
+Plug 'tyru/current-func-info.vim'
+
 " Auto session management
 Plug 'dhruvasagar/vim-prosession'
 
@@ -511,6 +514,7 @@ if has_key(g:plugs, 'coc.nvim')
     let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.16.0/bin/node'
   endif
 
+  " drop coc-elixir for now
   " coc-java requires manual install of jdt-ls
   " neoclide/coc-java/issues/99
   let g:coc_global_extensions = [
@@ -525,7 +529,6 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-java',
     \ 'coc-yaml',
     \ 'coc-lua',
-    \ 'coc-elixir',
     \ 'coc-sh',
     \ 'coc-react-refactor'
   \ ]
@@ -881,7 +884,16 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbone')
   let g:gbone_repl_mapping = '<leader>x'
   let g:gbone_test_mapping = '<leader>t'
-  let g:gbone_ft_map = { 'python': 'pytest -vvv', 'javascript': 'yarn test', 'elixir': 'mix test', 'spec': 'npx cypress run --browser firefox --spec' }
+  let g:gbone_ft_map = {
+  \ 'python': 'pytest -vvv',
+  \ 'javascript': 'yarn test',
+  \ 'elixir': 'mix test',
+  \ 'spec': 'npx cypress run --browser firefox --spec'
+  \ }
+  let g:gbone_ft_strategy = {
+  \ 'python': 'smart',
+  \ 'elixir': 'line',
+  \ }
 endif
 " }}}
 
