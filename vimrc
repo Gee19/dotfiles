@@ -50,16 +50,16 @@ Plug 'glts/vim-textobj-comment'
 Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 
 " Syntax highlighting & language specific stuff
-Plug 'pangloss/vim-javascript', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
-Plug 'maxmellon/vim-jsx-pretty', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'javascript.jsx'] }
-Plug 'HerringtonDarkholme/yats.vim', { 'for': [ 'typescriptreact', 'typescript' ] }
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim'
 
 Plug 'towolf/vim-helm'
-Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+Plug 'cespare/vim-toml'
+Plug 'elixir-editors/vim-elixir'
 
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': [ 'python' ] }
-Plug 'vim-python/python-syntax', { 'for': [ 'python' ] }
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'vim-python/python-syntax'
 
 " Folds
 Plug 'Konfekt/FastFold'
@@ -172,10 +172,6 @@ if has('nvim')
 
   " Preview substitutions
   set inccommand=nosplit
-
-  " if has_key(g:plugs, 'nvim-treesitter')
-  "   lua require'nvim-treesitter.configs'.setup{ensure_installed="maintained", ignore_install={"javascript","typescript"}, highlight={enable = true}}
-  " endif
 endif
 " }}}
 
