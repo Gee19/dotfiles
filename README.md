@@ -1,6 +1,6 @@
 ## Term
 - Ubuntu: kitty
-- Windows: winterm preview + wsl2
+- Windows: winterm + wsl2
 
 ## Shell
 - zsh + znap
@@ -26,5 +26,4 @@
 
 ## TODO
 - elixir install breaks rabbitmq-server, test setup_env changes with --fix-missing
-- add cucumber/spec tbone test mapping
 - diffsitter?
