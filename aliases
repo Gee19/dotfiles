@@ -1,4 +1,4 @@
-# Expand Alias: <Esc>x _expand_alias
+# Expand Alias: <Esc>:_expand_alias
 alias reload_zsh="znap restart"
 
 alias ..="cd .."
