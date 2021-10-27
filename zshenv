@@ -38,6 +38,9 @@ export PATH="$GOPATH/bin:$PATH"
 # Python
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
+# Cucumber
+export CUKEFILES="$HOME/dev/sdelements/cypress/integration/**/*.cucumber.ts"
+
 # Node/nvm, unusable with fzf on wsl2
 if ! [[ $(uname -r) =~ WSL$ ]]; then
   export NVM_DIR=~/.nvm

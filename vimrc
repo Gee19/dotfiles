@@ -31,6 +31,7 @@ Plug 'Gee19/indent-ignoreblank.vim'
 Plug 'Gee19/vim-peekaboo' " Fixes conflict with lessspace.vim
 Plug 'Gee19/vim-coiled-snake' " Testing fix
 Plug 'Gee19/lessspace.vim' " Added toggle func
+Plug '~/dev/vim-cucumber'
 
 " gbone dependency
 Plug 'tyru/current-func-info.vim'
