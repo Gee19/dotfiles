@@ -530,6 +530,9 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-react-refactor'
   \ ]
 
+  " wip
+  set runtimepath^=/home/jhaine/dev/coc-cucumber
+
   " use <tab> for trigger completion and navigate to the next completion item
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
