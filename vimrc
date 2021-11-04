@@ -18,6 +18,7 @@ Plug 'joshdick/onedark.vim'
 if has('nvim')
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'p00f/nvim-ts-rainbow'
 endif
 
 " tpope
@@ -67,6 +68,9 @@ Plug 'Konfekt/FastFold'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'alvan/vim-closetag'
+let g:closetag_filetypes='html,xhtml,xml,javascriptreact,typescriptreact'
+
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'farmergreg/vim-lastplace'
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
@@ -74,6 +78,8 @@ Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
 " AndrewRadev
 Plug 'AndrewRadev/switch.vim'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/tagalong.vim'
+let g:tagalong_verbose = 1
 
 " neovim/neovim/issues/12587
 Plug 'antoinemadec/FixCursorHold.nvim'
