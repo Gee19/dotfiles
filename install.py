@@ -3,6 +3,7 @@ import os
 include = {
     # Editors
     "init.vim": "$XDG_CONFIG_HOME/nvim/init.vim",
+    "ts.lua": "$XDG_CONFIG_HOME/nvim/lua/ts.lua",
     "vimrc": "$HOME/.vimrc",
     # Git
     "gitignore_global": "$HOME/.gitignore_global",

@@ -15,6 +15,10 @@ let g:loaded_zip=1
 call plug#begin('~/.vim/plugged')
 " Theme
 Plug 'joshdick/onedark.vim'
+if has('nvim')
+  Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+endif
 
 " tpope
 Plug 'tpope/vim-fugitive'
@@ -50,17 +54,8 @@ Plug 'kana/vim-textobj-indent'
 Plug 'glts/vim-textobj-comment'
 Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 
-" Syntax highlighting & language specific stuff
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'HerringtonDarkholme/yats.vim'
-
+" Whatever doesn't have a treesitter parser..
 Plug 'towolf/vim-helm'
-Plug 'cespare/vim-toml'
-Plug 'elixir-editors/vim-elixir'
-
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'vim-python/python-syntax'
 
 " Folds
 Plug 'Konfekt/FastFold'
@@ -72,7 +67,6 @@ Plug 'Konfekt/FastFold'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'alvan/vim-closetag'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'farmergreg/vim-lastplace'
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
@@ -118,8 +112,11 @@ if &term =~ '256color'
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
   set t_ut=
 endif
-
-colorscheme onedark
+if has('nvim')
+  colorscheme tokyonight
+else
+  colorscheme onedark
+endif
 
 if exists('$SHELL')
   set shell=$SHELL
@@ -173,16 +170,13 @@ if has('nvim')
 
   " Preview substitutions
   set inccommand=nosplit
+
+  " TS
+  lua require('ts')
 endif
 " }}}
 
 " autocmds {{{
-augroup filetypes
-  autocmd!
-  autocmd FileType cs setlocal tabstop=4 shiftwidth=4 " C#
-  autocmd FileType dockerfile setlocal tabstop=4 shiftwidth=4 " Docker
-augroup END
-
 augroup pysnips
   autocmd!
   autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()<Esc>
@@ -212,8 +206,12 @@ augroup END
 " }}}
 
 " Lightline + Tabline {{{
+let s:scheme = 'onedark'
+if has('nvim')
+   let s:scheme = 'tokyonight'
+endif
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': s:scheme,
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'readonly', 'tpope_op', 'filename', 'modified'] ]
@@ -230,9 +228,6 @@ let g:lightline#bufferline#unnamed = '[Empty]'
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type = {'buffers': 'tabsel'}
-
-" Only show buffer filename (smart_path is better)
-" let g:lightline#bufferline#filename_modifier = ':t'
 
 " Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
@@ -464,24 +459,29 @@ nmap <C-s> :<C-u>call lessspace#Toggle()<CR>
 " }}}
 
 " styling {{{
-" Completion menu styling
-highlight Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#373d48 gui=NONE
-highlight PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
+if !has('nvim')
+  " Completion menu styling
+  highlight Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#373d48 gui=NONE
+  highlight PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
 
-" Commit hash at 'Commit:' header with 'Special' highlight group
-highlight link gitmessengerHash Special
+  " Commit hash at 'Commit:' header with 'Special' highlight group
+  highlight link gitmessengerHash Special
 
-let g:closetag_filetypes='html,xhtml,jsx,xml,javascriptreact,javascript,typescriptreact,typescript'
+" Git gutter
+  highlight GitGutterAdd    guifg=#98c379 guibg=bg ctermfg=2 ctermbg=bg
+  highlight GitGutterChange guifg=#e5c07b guibg=bg ctermfg=3 ctermbg=bg
+  highlight GitGutterDelete guifg=#e06c75 guibg=bg ctermfg=1 ctermbg=bg
+endif
 
-" Colorful JS
-let g:vim_jsx_pretty_colorful_config = 1
-
-" Colorful Python
-let g:python_highlight_all = 1
+" Italics (Operator Mono OP)
+highlight Comment gui=italic
+highlight Comment cterm=italic
+highlight htmlArg gui=italic
+highlight htmlArg cterm=italic
 " }}}
 
 " NERDTree {{{
-let g:NERDTreeWinSize = 35
+let g:NERDTreeWinSize = 37
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 
 augroup nerdtree_fixes
@@ -843,17 +843,6 @@ endfunction
 let g:gitgutter_map_keys = 0
 let g:gitgutter_grep = 'rg'
 let g:gitgutter_preview_win_floating = 0
-
-" highlight colours
-highlight GitGutterAdd    guifg=#98c379 guibg=bg ctermfg=2 ctermbg=bg
-highlight GitGutterChange guifg=#e5c07b guibg=bg ctermfg=3 ctermbg=bg
-highlight GitGutterDelete guifg=#e06c75 guibg=bg ctermfg=1 ctermbg=bg
-
-" Italics (Operator Mono OP)
-highlight Comment gui=italic
-highlight Comment cterm=italic
-highlight htmlArg gui=italic
-highlight htmlArg cterm=italic
 
 " mappings
 nmap ]h <Plug>(GitGutterNextHunk)

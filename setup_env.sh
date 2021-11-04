@@ -24,7 +24,7 @@ sudo apt -y update && sudo apt -y install yarn
 # Znap
 git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git ~/zsh/znap-repos/zsh-snap
 
-mkdir -p ~/.config/nvim
+mkdir -p ~/.config/nvim/lua
 mkdir -p ~/.vim
 mkdir -p ~/.local/bin
 cd ~/.local/bin
