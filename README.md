@@ -6,7 +6,7 @@
 - zsh + znap
 - tmux + tpm
 
-## Editor (starts in ~35ms, notbad.jpg)
+## Editor
 - neovim/vim + coc.nvim
 
 ## Setup
