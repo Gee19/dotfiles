@@ -497,7 +497,7 @@ augroup END
 
 " coc.nvim {{{
 if has_key(g:plugs, 'coc.nvim')
-  " let g:coc_force_debug = 1
+  let g:coc_force_debug = 1
 
   " disable coc startup warning in vim
   if !has('nvim')

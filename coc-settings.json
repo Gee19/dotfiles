@@ -9,6 +9,7 @@
     ".vscode"
   ],
   "coc.preferences.formatOnSaveFiletypes": [
+    "cucumber",
     "python",
     "javascript",
     "javascriptreact",
@@ -16,6 +17,7 @@
     "typescriptreact",
     "css"
   ],
+  "cucumber.enabled": true,
   "diagnostic.checkCurrentLine": false,
   "diagnostic.messageTarget": "float",
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
