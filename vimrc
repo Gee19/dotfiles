@@ -118,17 +118,11 @@ if &term =~ '256color'
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
   set t_ut=
 endif
-if has('nvim')
-  colorscheme tokyonight
-else
-  colorscheme onedark
-endif
 
-if exists('$SHELL')
-  set shell=$SHELL
-else
-  set shell=/bin/sh
-endif
+let s:scheme = has('nvim') ? 'tokyonight' : 'onedark'
+let s:shell = exists('$SHELL') ? $SHELL : '/bin/sh'
+execute 'colorscheme ' . s:scheme
+execute 'set shell=' . s:shell
 
 " Format JSON
 command! -nargs=0 Jsonfmt :%!jq
@@ -146,6 +140,11 @@ if !has('nvim')
   syntax on
   let g:onedark_termcolors=256
   set encoding=UTF-8
+
+  " block cursor
+  let &t_SI = "\e[6 q"
+  let &t_SR = "\e[6 q"
+  let &t_EI = "\e[2 q"
 
   " Match tabline background color
   autocmd VimEnter * call SetupLightlineColors()
@@ -212,10 +211,6 @@ augroup END
 " }}}
 
 " Lightline + Tabline {{{
-let s:scheme = 'onedark'
-if has('nvim')
-   let s:scheme = 'tokyonight'
-endif
 let g:lightline = {
       \ 'colorscheme': s:scheme,
       \ 'active': {
@@ -278,12 +273,24 @@ set nobackup
 set nowritebackup
 
 " enable bracketed paste when used within tmux
-" https://vi.stackexchange.com/a/28284
-if &term =~ "screen"
-    let &t_BE = "\e[?2004h"
-    let &t_BD = "\e[?2004l"
-    exec "set t_PS=\e[200~"
-    exec "set t_PE=\e[201~"
+" :h xterm-bracketed-paste
+if !has('gui_running') && !has('nvim') && exists('$TMUX')
+  " Better mouse support, see  :help 'ttymouse'
+  set ttymouse=sgr
+
+  " Enable true colors, see  :help xterm-true-color
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+  " Enable bracketed paste mode, see  :help xterm-bracketed-paste
+  let &t_BE = "\<Esc>[?2004h"
+  let &t_BD = "\<Esc>[?2004l"
+  let &t_PS = "\<Esc>[200~"
+  let &t_PE = "\<Esc>[201~"
+
+  " Enable focus event tracking, see  :help xterm-focus-event
+  let &t_fe = "\<Esc>[?1004h"
+  let &t_fd = "\<Esc>[?1004l"
 endif
 
 set sessionoptions-=folds " Don't persist folds in sessions (FastFold docs)
