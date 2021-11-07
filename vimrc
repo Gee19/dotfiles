@@ -100,12 +100,8 @@ Plug 'romainl/vim-qf'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" nerd fonts broken in wsl
-let s:in_wsl = system("uname -r") =~ "WSL"
-if !(s:in_wsl)
-  Plug 'ryanoasis/vim-devicons' " Always load last
-endif
-
+" Always load last
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " }}}
 
@@ -235,10 +231,8 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 " Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-" Show devicons in bufferline when not in WSL
-if !(s:in_wsl)
-  let g:lightline#bufferline#enable_devicons = 1
-endif
+" Show devicons
+let g:lightline#bufferline#enable_devicons = 1
 " }}}
 
 " global vars {{{
@@ -520,7 +514,7 @@ if has_key(g:plugs, 'coc.nvim')
   endif
 
   " node paths for my separate environments
-  if (s:in_wsl)
+  if (system("uname -r") =~ "WSL")
     let g:coc_node_path = '/usr/bin/node'
   else
     let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.16.0/bin/node'
