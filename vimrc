@@ -65,7 +65,9 @@ Plug 'Konfekt/FastFold'
 " Plug 'kalekundert/vim-coiled-snake'
 
 " viM iSn'T aN IDe
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+" Switch back to upstream when neoclide/coc.nvim/pull/3456 is merged
+" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'Gee19/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'alvan/vim-closetag'
