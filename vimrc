@@ -61,7 +61,7 @@ Plug 'towolf/vim-helm'
 Plug 'Konfekt/FastFold'
 
 " viM iSn'T aN IDe
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'weirongxu:fix/extension-no-global-install', 'do': 'yarn install --frozen-lockfile'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'farmergreg/vim-lastplace'
@@ -169,6 +169,11 @@ endif
 " }}}
 
 " autocmds {{{
+augroup fold_vimrc
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
 augroup pysnips
   autocmd!
   autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()<Esc>
