@@ -572,6 +572,9 @@ if has_key(g:plugs, 'coc.nvim')
   " Add `:Fold` command to fold current buffer
   command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
+  " Add `:OR` command for organize imports of the current buffer.
+  command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
   " Use K to show/hide documentation in preview window
   function! s:show_documentation() abort
     if coc#float#has_float()
