@@ -34,9 +34,8 @@ Plug 'tpope/vim-tbone'
 Plug 'Gee19/vim-gbone'
 Plug 'Gee19/indent-ignoreblank.vim'
 Plug 'Gee19/vim-peekaboo' " Fixes conflict with lessspace.vim
-Plug 'Gee19/vim-coiled-snake' " Testing fix
+Plug 'Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
 Plug 'Gee19/lessspace.vim' " Added toggle func
-Plug '~/dev/vim-cucumber'
 
 " gbone dependency
 Plug 'tyru/current-func-info.vim'
@@ -61,27 +60,17 @@ Plug 'towolf/vim-helm'
 " Folds
 Plug 'Konfekt/FastFold'
 
-" kalekundert/vim-coiled-snake/issues/34
-" Plug 'kalekundert/vim-coiled-snake'
-
 " viM iSn'T aN IDe
-" Switch back to upstream when neoclide/coc.nvim/pull/3456 is merged
-" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'Gee19/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'alvan/vim-closetag'
-let g:closetag_filetypes='html,xhtml,xml,javascriptreact,typescriptreact'
-
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'farmergreg/vim-lastplace'
-Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
+Plug 'alvan/vim-closetag'
 
-" AndrewRadev
+" AndrewRadev / tags
 Plug 'AndrewRadev/switch.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/tagalong.vim'
-let g:tagalong_verbose = 1
 
 " neovim/neovim/issues/12587
 Plug 'antoinemadec/FixCursorHold.nvim'
@@ -200,11 +189,6 @@ augroup END
 augroup yank_highlight
   autocmd!
   autocmd TextYankPost * if exists('##TextYankPost') | exe "silent! lua require'vim.highlight'.on_yank()" | endif
-augroup END
-
-augroup json_indentline
-  autocmd!
-  autocmd FileType json let g:indentLine_enabled = 0
 augroup END
 " }}}
 
@@ -390,10 +374,6 @@ map <leader>p "*p
 " Toggle word wrapping
 map <leader>w :set wrap!<CR>
 
-" Vertically/Horizontally split screen
-nnoremap <silent><leader>\ :vs<CR>
-nnoremap <silent><leader>- :split<CR>
-
 " beginning/end of the command line
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -476,7 +456,7 @@ if !has('nvim')
   " Commit hash at 'Commit:' header with 'Special' highlight group
   highlight link gitmessengerHash Special
 
-" Git gutter
+  " Git gutter
   highlight GitGutterAdd    guifg=#98c379 guibg=bg ctermfg=2 ctermbg=bg
   highlight GitGutterChange guifg=#e5c07b guibg=bg ctermfg=3 ctermbg=bg
   highlight GitGutterDelete guifg=#e06c75 guibg=bg ctermfg=1 ctermbg=bg
@@ -895,9 +875,9 @@ if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbo
 endif
 " }}}
 
-" undotree {{{
-let g:undotree_WindowLayout = 1
-nnoremap <C-r> :UndotreeToggle<CR>
+" tagalong / closetag {{{
+let g:tagalong_verbose = 1
+let g:closetag_filetypes='html,xhtml,xml,javascriptreact,typescriptreact'
 " }}}
 
 " romainl pseudo-text objects {{{
