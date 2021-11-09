@@ -24,6 +24,10 @@ alias gcp="git cherry-pick"
 alias rdb="socat readline tcp:$1:$2"
 alias tma="tmux a -t $1"
 
+# fixes pip install smart_open[s3] in zsh
+alias pip='noglob pip'
+alias pip3='noglob pip3'
+
 function gsd() {
     if [ "$1" != "" ]
     then
@@ -90,6 +94,7 @@ alias pas_celery="COMMAND_INPUT_FILE_FOLDER=~/dev/management_command_system/dev_
 alias stopdock='docker stop $(docker ps -a -q)'
 alias rmdock='docker rm $(docker ps -a -q)'
 alias dc='docker-compose'
+alias dcrb='docker-compose down -v --remove-orphans && docker-compose build --parallel'
 
 alias l="exa"
 alias ll="exa -la"
