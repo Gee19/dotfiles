@@ -1,8 +1,5 @@
 #!/bin/bash
 set -e
-echo "Updating to latest neovim nightly.."
-# echo "Updating to latest neovim stable.."
-
 if pidof "nvim"; then
   echo "Found nvim PID(s), aborting.."
   exit 1
@@ -19,7 +16,10 @@ if [ -f "nvim.appimage" ]; then
   mv nvim.appimage nvim.old
 fi
 
-wget "https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage"
+echo "Updating to latest neovim nightly.."
+# echo "Updating to latest neovim stable.."
+
+wget "https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage"
 # wget "https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage"
 
 chmod u+x nvim.appimage

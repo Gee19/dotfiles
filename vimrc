@@ -61,7 +61,7 @@ Plug 'towolf/vim-helm'
 Plug 'Konfekt/FastFold'
 
 " viM iSn'T aN IDe
-Plug 'neoclide/coc.nvim', {'branch': 'weirongxu:fix/extension-no-global-install', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'farmergreg/vim-lastplace'
@@ -505,7 +505,7 @@ if has_key(g:plugs, 'coc.nvim')
     let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.16.0/bin/node'
   endif
 
-  " drop coc-elixir for now
+  " drop coc-elixir, coc-lua for now
   " coc-java requires manual install of jdt-ls
   " neoclide/coc-java/issues/99
   let g:coc_global_extensions = [
@@ -519,7 +519,6 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-rls',
     \ 'coc-java',
     \ 'coc-yaml',
-    \ 'coc-lua',
     \ 'coc-sh',
     \ 'coc-react-refactor'
   \ ]
