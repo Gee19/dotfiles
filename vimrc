@@ -74,6 +74,7 @@ Plug 'AndrewRadev/tagalong.vim'
 
 " neovim/neovim/issues/12587
 Plug 'antoinemadec/FixCursorHold.nvim'
+let g:cursorhold_updatetime = 100 " leave updatetime untouched (and avoid unnecessary swap writes)
 
 " git
 Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
@@ -156,10 +157,6 @@ endif
 
 " neovim only {{{
 if has('nvim')
-  " https://github.com/neovim/neovim/issues/12587
-  " leave updatetime untouched (and avoid unnecessary swap writes)
-  let g:cursorhold_updatetime = 100
-
   " Preview substitutions
   set inccommand=nosplit
 
