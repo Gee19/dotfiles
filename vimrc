@@ -133,6 +133,9 @@ if !has('nvim')
   let &t_SR = "\e[6 q"
   let &t_EI = "\e[2 q"
 
+  " Fix GitGutter CursorHold
+  autocmd VimEnter * call gitgutter#process_buffer(bufnr(''), 0)
+
   " Match tabline background color
   autocmd VimEnter * call SetupLightlineColors()
   function SetupLightlineColors() abort
