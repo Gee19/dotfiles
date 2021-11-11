@@ -1,7 +1,6 @@
 " vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
 
 " disable some built-ins (might want shada) {{{
-let g:loaded_shada_plugin=1
 let g:loaded_netrwPlugin=1
 let g:loaded_gzip=1
 let g:loaded_man=1
@@ -222,6 +221,7 @@ let g:lightline#bufferline#enable_devicons = 1
 " }}}
 
 " global vars {{{
+set clipboard+=unnamedplus " Trying system clipboard
 set hidden " New buffers with unsaved changes
 set noswapfile " No swap file on buffer load
 set autoread " Auto read files changed outside of vim
@@ -230,7 +230,7 @@ set cmdheight=2 " Better display for messages
 set signcolumn=yes " Show left sidebar
 set updatetime=100 " Fix coc diagnostic messages
 set colorcolumn=120 " Long line warning
-set timeoutlen=1500 ttimeoutlen=0 " Mapping and keycode delays
+set timeoutlen=1000 ttimeoutlen=0 " Mapping and keycode delays
 set showmatch " When a bracket is inserted, briefly jump to the matching one
 set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
@@ -248,7 +248,11 @@ set scrolloff=8 " Keep X lines above/below cursor when near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
 set iskeyword+=- " treat dash-separated-words as word text object
-set synmaxcol=2048 " don't syntax color long lines
+
+" don't syntax color long lines
+set synmaxcol=250
+syntax sync minlines=256
+syntax sync maxlines=256
 
 " Some coc servers have issues with backup files #649
 set nobackup
