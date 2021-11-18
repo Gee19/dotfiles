@@ -524,8 +524,15 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-java',
     \ 'coc-yaml',
     \ 'coc-sh',
-    \ 'coc-react-refactor'
+    \ 'coc-react-refactor',
+    \ 'coc-vimlsp'
   \ ]
+
+  " coc-vimlsp highlighting
+  let g:markdown_fenced_languages = [
+      \ 'vim',
+      \ 'help'
+      \]
 
   " wip
   set runtimepath^=/home/jhaine/dev/coc-cucumber

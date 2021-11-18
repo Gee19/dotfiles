@@ -161,6 +161,10 @@ function _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
+# ctrl + space for accept suggestion
+bindkey '^ ' autosuggest-accept
+
+# up/down for fuzzy history search (should use C-r more)
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
