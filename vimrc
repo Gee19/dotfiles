@@ -10,6 +10,9 @@ let g:loaded_zipPlugin=1
 let g:loaded_zip=1
 " }}}
 
+" enable built-in cfilter plugin
+packadd cfilter
+
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
 " Theme
@@ -341,6 +344,9 @@ cabbrev PI PlugInstall
 cabbrev PU PlugUpdate
 cabbrev CU CocUpdate
 cabbrev CL CocList
+
+" Quickfix
+cabbrev cf Cfilter
 " }}}
 
 " mappings {{{
@@ -583,6 +589,7 @@ if has_key(g:plugs, 'coc.nvim')
   command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
   " Add `:OR` command for organize imports of the current buffer.
+  " TODO: override this in python, use isort
   command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
   " Use K to show/hide documentation in preview window
@@ -648,7 +655,7 @@ let g:fzf_preview_window = ''
 let $BAT_THEME = 'TwoDark'
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --no-heading --line-number --color=always --glob "!{*.lock}" '.shellescape(<q-args>), 1,
+  \   'rg --column --no-heading --line-number --color=always -g "!*.lock" -g "!package-lock.json" '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview({'options':'--layout=default --delimiter : --nth 4..', 'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'up:70%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..', 'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
   \ <bang>0)
@@ -746,6 +753,27 @@ let g:qf_mapping_ack_style = 1
 " Disable these for async Grep
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
+" }}}
+
+" auto resize qf {{{
+function! AdjustWindowHeight(minheight, maxheight)
+    let l = 1
+    let n_lines = 0
+    let w_width = winwidth(0)
+    while l <= line('$')
+        " number to float for division
+        let l_len = strlen(getline(l)) + 0.0
+        let line_width = l_len/w_width
+        let n_lines += float2nr(ceil(line_width))
+        let l += 1
+    endw
+    execute max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
+augroup qf_resize
+  autocmd!
+  au FileType qf call AdjustWindowHeight(3, 10)
+augroup END
 " }}}
 
 " async grep: https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3{{{
