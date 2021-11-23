@@ -236,7 +236,7 @@ set cmdheight=2 " Better display for messages
 set signcolumn=yes " Show left sidebar
 set updatetime=100 " Fix coc diagnostic messages
 set colorcolumn=120 " Long line warning
-set timeoutlen=1000 ttimeoutlen=0 " Mapping and keycode delays
+set timeoutlen=500 ttimeoutlen=0 " Mapping and keycode delays
 set showmatch " When a bracket is inserted, briefly jump to the matching one
 set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
