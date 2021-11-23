@@ -362,6 +362,8 @@ nnoremap J mzJ`z
 " Not sure if I like this, makes character swaps take 1 extra keypress: aB -> Ba
 nnoremap x "_x
 nnoremap c "_c
+vnoremap x "_x
+vnoremap c "_c
 
 " Don't jump to next occurrence of search when using */g* (doesn't pollute registers/jump list)
 nnoremap <silent><expr> * v:count ? '*'
