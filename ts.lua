@@ -21,6 +21,7 @@ require'nvim-treesitter.configs'.setup {
     'cmake'
   },
   highlight = { enable = true },
+  indent = { enable = false },
   incremental_selection = { enable = true },
   textobjects = { enable = true },
     rainbow = {
