@@ -382,6 +382,10 @@ vnoremap <silent> y y`]
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 
+" Format pasted text - use ]p instead
+" nnoremap p p=`]
+" nnoremap P P=`]
+
 " Yank to global clipboard (requires vim +clipboard)
 map <leader>y "+y
 
