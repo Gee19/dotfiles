@@ -49,25 +49,32 @@ rm ijq-0.3.6-linux-x86_64.tar.gz
 rm -rf ijq-0.3.6
 
 # EXA
-wget "https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip"
-unzip -o exa-linux-x86_64-0.9.0.zip
-mv ./exa-linux-x86_64 ~/.local/bin/exa
-rm ./exa-linux-x86_64-0.9.0.zip
+wget "https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip"
+unzip -o exa-linux-x86_64-v0.10.1.zip
+mv ./bin/exa ~/.local/bin/exa
+rm ./exa-linux-x86_64-v0.10.1.zip
+
+# Should probably install man pages/completions
+sudo mv ./completions/exa.zsh /usr/local/share/zsh/site-functions/_exa
+sudo mv ./man/exa.1 /usr/share/man/man1/exa.1
+rm -rf ./completions/
+rm -rf ./man/
+rm -rf ./bin/
 
 # BAT
-wget "https://github.com/sharkdp/bat/releases/download/v0.17.1/bat_0.17.1_amd64.deb"
-sudo dpkg -i bat_0.17.1_amd64.deb
-rm bat_0.17.1_amd64.deb
+wget "https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb"
+sudo dpkg -i bat_0.18.3_amd64.deb
+rm bat_0.18.3_amd64.deb
 
 # FD
-wget "https://github.com/sharkdp/fd/releases/download/v8.2.1/fd_8.2.1_amd64.deb"
-sudo dpkg -i fd_8.2.1_amd64.deb
-rm fd_8.2.1_amd64.deb
+wget "https://github.com/sharkdp/fd/releases/download/v8.3.0/fd_8.3.0_amd64.deb"
+sudo dpkg -i fd_8.3.0_amd64.deb
+rm fd_8.3.0_amd64.deb
 
 # RG
-wget "https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb"
-sudo dpkg -i ripgrep_12.1.1_amd64.deb
-rm ripgrep_12.1.1_amd64.deb
+wget "https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb"
+sudo dpkg -i ripgrep_13.0.0_amd64.deb
+rm ripgrep_13.0.0_amd64.deb
 
 echo "Installing vim-plug for vim/nvim.."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
