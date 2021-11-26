@@ -8,6 +8,7 @@ include = {
     # Git
     "gitignore_global": "$HOME/.gitignore_global",
     "stCommitMsg": "$HOME/.stCommitMsg",
+    "git-jump": "$HOME/.local/bin/git-jump",
     # coc.nvim
     "coc-settings.json": [
         "$XDG_CONFIG_HOME/nvim/coc-settings.json",
@@ -29,7 +30,7 @@ include = {
 }
 
 # git
-in_wsl = "release" in os.uname() and "WSL" in os.uname().release
+in_wsl = "WSL" in os.uname().release
 relevant_gitconfig = "gitconfig" if not in_wsl else "gitconfig_home"
 include[relevant_gitconfig] = "$HOME/.gitconfig"
 

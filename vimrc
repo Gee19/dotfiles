@@ -835,6 +835,7 @@ endfunction
 " more quickfix {{{
 command! ClearQuickfix cexpr []
 command! RemoveQuickfixItem silent! call RemoveQuickfixItem()
+command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
 
 " When using `dd` in the quickfix list, remove the item from the quickfix list.
 " https://stackoverflow.com/questions/42905008/quickfix-list-how-to-add-and-remove-entries
