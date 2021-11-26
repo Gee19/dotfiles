@@ -254,6 +254,7 @@ set scrolloff=8 " Keep X lines above/below cursor when near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
 set iskeyword+=- " treat dash-separated-words as word text object
+set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
 
 " don't syntax color long lines
 set synmaxcol=250
@@ -361,9 +362,13 @@ nnoremap J mzJ`z
 " Don't let x and c to spoil the yank register
 " Not sure if I like this, makes character swaps take 1 extra keypress: aB -> Ba
 nnoremap x "_x
+nnoremap X "_X
 nnoremap c "_c
+nnoremap C "_C
 vnoremap x "_x
+vnoremap X "_X
 vnoremap c "_c
+vnoremap C "_C
 
 " Don't jump to next occurrence of search when using */g* (doesn't pollute registers/jump list)
 nnoremap <silent><expr> * v:count ? '*'
@@ -684,6 +689,8 @@ nnoremap <silent> <C-f> :Files<cr>
 
 " buffers
 nnoremap <silent> <leader>b :Buffers<cr>
+" nnoremap <leader>b :buffer *
+" nnoremap <leader>b :buffer<Space><C-R>=nr2char(&wildcharm)<CR><S-Tab>
 
 " marks
 nnoremap <silent> <leader>m :Marks<cr>
@@ -834,24 +841,17 @@ endfunction
 
 " more quickfix {{{
 command! ClearQuickfix cexpr []
-command! RemoveQuickfixItem silent! call RemoveQuickfixItem()
 command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
 
-" When using `dd` in the quickfix list, remove the item from the quickfix list.
-" https://stackoverflow.com/questions/42905008/quickfix-list-how-to-add-and-remove-entries
+" Normal: `dd` removes item from the quickfix list.
+" Visual: `d` removes all selected items, gk keeps all selected items
 augroup custom_qf_mapping
   autocmd!
-  autocmd FileType qf nnoremap <buffer> dd :RemoveQuickfixItem<CR>
+  autocmd FileType qf nnoremap <buffer> dd :.Reject<CR>
+  autocmd FileType qf vnoremap <buffer> d :'<,'>Reject<CR>
+  autocmd FileType qf nnoremap <buffer> gk :.Keep<CR>
+  autocmd FileType qf vnoremap <buffer> gk :'<,'>Keep<CR>
 augroup END
-
-function! RemoveQuickfixItem() abort
-  let curqfidx = line('.') - 1
-  let qfall = getqflist()
-  call remove(qfall, curqfidx)
-  call setqflist(qfall, 'r')
-  execute curqfidx + 1 . "cfirst"
-  copen
-endfunction
 
 " open quickfix with last search
 nnoremap <silent> <leader>? :Grep /<CR>
