@@ -331,10 +331,13 @@ endif
 set undofile
 
 " Yank absolute path to system clipboard
-cabbrev fp let @+=expand("%:p")<CR>
+cabbrev yfp let @+=expand("%:p")<CR>
 
 " Yank file name to system clipboard
-cabbrev fn let @+=expand("%:t")<CR>
+cabbrev yfn let @+=expand("%:t")<CR>
+
+" Yank last cmd to system clipboard
+cabbrev ycmd let @+=':'.@:
 
 " Bbye
 cabbrev Bd Bdelete
@@ -381,7 +384,7 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
 " go to end of yanked text
-vnoremap <silent> y y`]
+" vnoremap <silent> y y`]
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
