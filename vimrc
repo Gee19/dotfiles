@@ -38,11 +38,12 @@ Plug 'Gee19/indent-ignoreblank.vim'
 Plug 'Gee19/vim-peekaboo' " Fixes conflict with lessspace.vim
 Plug 'Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
 Plug 'Gee19/lessspace.vim' " Added toggle func
+Plug 'Gee19/vim-prosession' " vim-prosession/issues/84
 
 " gbone dependency
 Plug 'tyru/current-func-info.vim'
 
-" Auto session management - vim-prosession/issues/84
+" Auto session management
 " Plug 'dhruvasagar/vim-prosession'
 
 " Statusline, bufferline and buffers
