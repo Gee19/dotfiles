@@ -1,6 +1,6 @@
 " vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
 
-" disable some built-ins (might want shada) {{{
+" built-ins  {{{
 let g:loaded_netrwPlugin=1
 let g:loaded_gzip=1
 let g:loaded_man=1
@@ -8,10 +8,10 @@ let g:loaded_tarPlugin=1
 let g:loaded_tar=1
 let g:loaded_zipPlugin=1
 let g:loaded_zip=1
-" }}}
 
-" enable built-in cfilter plugin
+" enable cfilter plugin
 packadd cfilter
+" }}}
 
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
@@ -42,8 +42,8 @@ Plug 'Gee19/lessspace.vim' " Added toggle func
 " gbone dependency
 Plug 'tyru/current-func-info.vim'
 
-" Auto session management
-Plug 'dhruvasagar/vim-prosession'
+" Auto session management - vim-prosession/issues/84
+" Plug 'dhruvasagar/vim-prosession'
 
 " Statusline, bufferline and buffers
 Plug 'itchyny/lightline.vim'
@@ -740,6 +740,19 @@ function! s:delete_buffers(lines) abort
 endfunction
 
 command! BD call fzf#run(fzf#wrap({ 'source': s:list_buffers(), 'sink*': { lines -> s:delete_buffers(lines) }, 'options': '--multi --reverse --bind ctrl-a:select-all+accept' }))
+" }}}
+
+" FZF Session Picker
+let s:session_dir = '$HOME/.vim/session/'
+function! s:list_sessions() abort
+  return systemlist('ls ' . s:session_dir)
+endfunction
+
+function! s:source_session(line) abort
+  exec 'source ' . s:session_dir . substitute(a:line[0], '%', '\\%', 'g')
+endfunction
+
+command! SP call fzf#run(fzf#wrap({ 'source': s:list_sessions(),'sink*': { line -> s:source_session(line) }, 'options': '--reverse' }))
 " }}}
 
 " clever-f {{{
