@@ -127,6 +127,26 @@ function _dsh(){
 
 compdef _dsh dsh
 
+# git stash diff
+function gsd() {
+    if [ "$1" != "" ]
+    then
+        git stash show -p stash@{$1}
+    else
+        git stash show -p stash@{0}
+    fi
+}
+
+# git checkout pr
+function gcopr() {
+    if [ "$1" != "" ]
+    then
+      git fetch origin "refs/pull/$1/head:pr/$1" && git checkout "pr/$1"
+    else
+      return
+    fi
+}
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export BAT_THEME='TwoDark'

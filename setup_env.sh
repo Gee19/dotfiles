@@ -76,6 +76,11 @@ wget "https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.
 sudo dpkg -i ripgrep_13.0.0_amd64.deb
 rm ripgrep_13.0.0_amd64.deb
 
+# Bottom
+wget "https://github.com/ClementTsang/bottom/releases/download/0.6.4/bottom_0.6.4_amd64.deb"
+sudo dpkg -i bottom_0.6.4_amd64.deb
+rm bottom_0.6.4_amd64.deb
+
 echo "Installing vim-plug for vim/nvim.."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
