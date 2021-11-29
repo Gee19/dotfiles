@@ -104,6 +104,29 @@ done
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# Colored output in man pages
+function man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
+
+# Shell into docker container
+function dsh () {
+  docker exec -i -t $1 /bin/bash
+}
+
+function _dsh(){
+  containers=("${(@f)$(docker ps --format '{{.Names}}')}")
+  compadd $containers
+}
+
+compdef _dsh dsh
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export BAT_THEME='TwoDark'
