@@ -385,7 +385,7 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
 " go to end of yanked text
-" vnoremap <silent> y y`]
+vnoremap <silent> y y`]
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
