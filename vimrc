@@ -123,6 +123,9 @@ command! -nargs=0 Jq :%!jq
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
+else
+  set grepprg=grep\ -nrH\ --exclude=tags\ --exclude-dir=.git\ --exclude-dir=node_modules
+  set grepformat=%f:%l:%m
 endif
 " }}}
 
