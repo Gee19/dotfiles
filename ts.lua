@@ -22,7 +22,7 @@ require'nvim-treesitter.configs'.setup {
   },
   highlight = { enable = true },
   indent = { enable = false },
-  incremental_selection = { enable = true },
+  incremental_selection = { enable = false },
   textobjects = { enable = true },
     rainbow = {
     enable = true,

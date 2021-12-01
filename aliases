@@ -84,6 +84,9 @@ alias htop="btm -b"
 alias l="exa"
 alias ll="exa -la"
 
-alias d="kitty +kitten diff"
+alias gjm="git jump merge"
+alias gjd="git jump diff"
+alias gjds="git jump diff --staged"
+alias gjg="git jump grep"
 
 alias sudo='sudo '

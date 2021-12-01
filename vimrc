@@ -417,25 +417,6 @@ inoremap <C-a> <HOME>
 " Clear search highlighting with escape x2
 nnoremap <silent><esc><esc> :nohlsearch<CR>
 
-" splitting panes and moving around in panes
-function! WinMove(key) abort
-    let t:curwin = winnr()
-    exec "wincmd ".a:key
-    if (t:curwin == winnr())
-        if (match(a:key,'[jk]'))
-            wincmd v
-        else
-            wincmd s
-        endif
-        exec "wincmd ".a:key
-    endif
-endfunction
-
-nnoremap <silent> <leader>h :call WinMove('h')<CR>
-nnoremap <silent> <leader>j :call WinMove('j')<CR>
-nnoremap <silent> <leader>k :call WinMove('k')<CR>
-nnoremap <silent> <leader>l :call WinMove('l')<CR>
-
 " Insert newline above or below and stay in normal mode
 " No insert mode, doesn't move the cursor, and allows you to use a counter to append several lines at once
 " Add 3 lines above: 3-leader-O
@@ -532,7 +513,7 @@ if has_key(g:plugs, 'coc.nvim')
     let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.16.0/bin/node'
   endif
 
-  " drop coc-elixir, coc-lua for now
+  " dropped coc-elixir,
   " coc-java requires manual install of jdt-ls
   " neoclide/coc-java/issues/99
   let g:coc_global_extensions = [
@@ -548,7 +529,8 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-yaml',
     \ 'coc-sh',
     \ 'coc-react-refactor',
-    \ 'coc-vimlsp'
+    \ 'coc-vimlsp',
+    \ 'coc-sumneko-lua'
   \ ]
 
   " coc-vimlsp highlighting
@@ -633,7 +615,7 @@ if has_key(g:plugs, 'coc.nvim')
   nmap <silent> gr <Plug>(coc-references)
   nmap <silent> K :call <SID>show_documentation()<CR>
 
-  " Use `[c` and `]c` to navigate diagnostics
+  " Use `[d` and `]d` to navigate diagnostics
   nmap <silent> [d <Plug>(coc-diagnostic-prev)
   nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
@@ -739,10 +721,17 @@ endfunction
 
 function! s:delete_buffers(lines) abort
   " Use bdelete so buffers stay in locationlist
+  " TODO: echo what was deleted?
   execute 'bdelete' join(map(a:lines, {_, line -> split(line)[0]}))
 endfunction
 
-command! BD call fzf#run(fzf#wrap({ 'source': s:list_buffers(), 'sink*': { lines -> s:delete_buffers(lines) }, 'options': '--multi --reverse --bind ctrl-a:select-all+accept' }))
+command! BD call fzf#run(fzf#wrap({
+  \ 'source': s:list_buffers(),
+  \ 'sink*': {
+  \   lines -> s:delete_buffers(lines)
+  \ },
+  \ 'options': '--prompt="Delete Buffer(s):" --multi --reverse --bind ctrl-a:select-all+accept'
+  \ }))
 " }}}
 
 " FZF Session Picker {{{
@@ -755,7 +744,12 @@ function! s:source_session(line) abort
   exec 'source ' . s:session_dir . substitute(a:line[0], '%', '\\%', 'g')
 endfunction
 
-command! SP call fzf#run(fzf#wrap({ 'source': s:list_sessions(),'sink*': { line -> s:source_session(line) }, 'options': '--reverse' }))
+" TODO: Add ctrl-x to delete, ctrl-e to edit
+command! SessionPicker call fzf#run(fzf#wrap({
+  \ 'source': s:list_sessions(),
+  \ 'sink*': { line -> s:source_session(line) },
+  \ 'options': '--prompt="Source Session:" --reverse'
+  \ }))
 " }}}
 
 " clever-f {{{
