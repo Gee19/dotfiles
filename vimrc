@@ -743,7 +743,7 @@ endfunction
 command! BD call fzf#run(fzf#wrap({ 'source': s:list_buffers(), 'sink*': { lines -> s:delete_buffers(lines) }, 'options': '--multi --reverse --bind ctrl-a:select-all+accept' }))
 " }}}
 
-" FZF Session Picker
+" FZF Session Picker {{{
 let s:session_dir = '$HOME/.vim/session/'
 function! s:list_sessions() abort
   return systemlist('ls ' . s:session_dir)
