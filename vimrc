@@ -947,7 +947,12 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 
 " tbone/gbone {{{
 if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbone')
-  let g:gbone_repl_mapping = '<leader>x'
+  let g:gbone_run_mapping = '<leader>x'
+  let g:gbone_run_ft_map = {
+  \ 'python': 'python3.8',
+  \ 'javascript': 'node',
+  \ }
+  let g:gbone_repl_mapping = '<leader>rl'
   let g:gbone_test_mapping = '<leader>t'
   let g:gbone_ft_map = {
   \ 'python': 'pytest -vvv',
