@@ -59,6 +59,7 @@ Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 
 " Whatever doesn't have a treesitter parser..
 Plug 'towolf/vim-helm'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 " Folds
 Plug 'Konfekt/FastFold'
