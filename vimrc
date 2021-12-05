@@ -111,6 +111,7 @@ if &term =~ '256color'
   set t_ut=
 endif
 
+let g:tokyonight_style = "night"
 let s:scheme = has('nvim') ? 'tokyonight' : 'onedark'
 let s:shell = exists('$SHELL') ? $SHELL : '/bin/sh'
 execute 'colorscheme ' . s:scheme
