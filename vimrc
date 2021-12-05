@@ -418,6 +418,25 @@ inoremap <C-a> <HOME>
 " Clear search highlighting with escape x2
 nnoremap <silent><esc><esc> :nohlsearch<CR>
 
+" splitting panes and moving around in panes
+function! WinMove(key) abort
+    let t:curwin = winnr()
+    exec "wincmd ".a:key
+    if (t:curwin == winnr())
+        if (match(a:key,'[jk]'))
+            wincmd v
+        else
+            wincmd s
+        endif
+        exec "wincmd ".a:key
+    endif
+endfunction
+
+nnoremap <silent> <C-w>h :call WinMove('h')<CR>
+nnoremap <silent> <C-w>j :call WinMove('j')<CR>
+nnoremap <silent> <C-w>k :call WinMove('k')<CR>
+nnoremap <silent> <C-w>l :call WinMove('l')<CR>
+
 " Insert newline above or below and stay in normal mode
 " No insert mode, doesn't move the cursor, and allows you to use a counter to append several lines at once
 " Add 3 lines above: 3-leader-O
