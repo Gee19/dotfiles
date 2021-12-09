@@ -673,10 +673,15 @@ endif
 let g:fzf_preview_window = ''
 
 " ripgrep preview
+" Ignoring filetypes here is annoying
 let $BAT_THEME = 'TwoDark'
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --no-heading --line-number --color=always -g "!*.lock" -g "!package-lock.json" '.shellescape(<q-args>), 1,
+  \   'rg --column --no-heading --line-number --color=always
+  \   -g "!*.lock"
+  \   -g "!*.sql"
+  \   -g "!*.xml"
+  \   -g "!package-lock.json" '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview({'options':'--layout=default --delimiter : --nth 4..', 'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'up:70%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..', 'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, 'right:50%:hidden', '?'),
   \ <bang>0)
