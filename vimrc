@@ -206,15 +206,25 @@ augroup END
 " }}}
 
 " Lightline + Tabline {{{
+function FilenameWithMethod() abort
+  let filename = expand('%')
+  let cfunc = cfi#format('%s', '')
+  if len(cfunc) > 0
+    return filename . ' > ' . substitute(cfunc, '\.', ' > ', '')
+  endif
+  return filename
+endfunction
+
 let g:lightline = {
       \ 'colorscheme': s:scheme,
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'tpope_op', 'filename', 'modified'] ]
+      \             [ 'cocstatus', 'readonly', 'tpope_op', 'file_with_method', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
-      \   'tpope_op': 'FugitiveHead'
+      \   'tpope_op': 'FugitiveHead',
+      \   'file_with_method': 'FilenameWithMethod',
       \ },
       \ }
 
