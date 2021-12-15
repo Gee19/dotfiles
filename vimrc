@@ -166,12 +166,8 @@ if !has('nvim')
 endif
 " }}}
 
-" neovim only {{{
+" treesitter {{{
 if has('nvim')
-  " Preview substitutions
-  set inccommand=nosplit
-
-  " TS
   lua require('ts')
 endif
 " }}}
@@ -273,6 +269,7 @@ set iskeyword+=- " treat dash-separated-words as word text object
 set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
 
 " don't syntax color long lines
+" pretty sure this doesn't work with treesitter (vim only)
 set synmaxcol=250
 syntax sync minlines=256
 syntax sync maxlines=256
