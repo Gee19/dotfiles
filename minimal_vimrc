@@ -1,0 +1,187 @@
+packadd cfilter
+
+if has('termguicolors')
+  set termguicolors
+endif
+
+if &term =~ '256color'
+  set t_ut=
+endif
+
+let s:shell = exists('$SHELL') ? $SHELL : '/bin/sh'
+execute 'set shell=' . s:shell
+
+set grepprg=grep\ -nrH\ --exclude=tags\ --exclude-dir=.git\ --exclude-dir=node_modules
+set grepformat=%f:%l:%m
+
+augroup pysnips
+  autocmd!
+  autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()<Esc>
+  autocmd FileType python :iabbrev <buffer> rdb from celery.contrib import rdb; rdb.set_trace()<Esc>
+augroup END
+
+augroup newline_formatting
+  autocmd!
+  autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
+
+augroup split_help
+  autocmd!
+  autocmd VimResized * wincmd =
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+augroup END
+
+if !has('gui_running') && !has('nvim') && exists('$TMUX')
+  set ttymouse=sgr
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  let &t_BE = "\<Esc>[?2004h"
+  let &t_BD = "\<Esc>[?2004l"
+  let &t_PS = "\<Esc>[200~"
+  let &t_PE = "\<Esc>[201~"
+  let &t_fe = "\<Esc>[?1004h"
+  let &t_fd = "\<Esc>[?1004l"
+endif
+
+if !has('nvim')
+  if !isdirectory($HOME . "/.vim/undodir")
+    call mkdir($HOME . "/.vim/undodir", "p")
+  endif
+  set undodir=~/.vim/undodir
+endif
+set undofile
+
+cabbrev yfp let @+=expand("%:p")<CR>
+cabbrev yfn let @+=expand("%:t")<CR>
+cabbrev ycmd let @+=':'.@:
+cabbrev cf Cfilter
+
+filetype plugin indent on
+set tabstop=4
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
+set shiftround
+set autoindent
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set backspace=indent,eol,start
+set virtualedit+=block
+set hidden
+set noswapfile
+set autoread
+set gdefault
+set cmdheight=2
+set signcolumn=yes
+set updatetime=100
+set colorcolumn=120
+set timeoutlen=500 ttimeoutlen=0
+set showmatch
+set splitright
+set laststatus=2
+set showtabline=2
+set linebreak
+set showbreak=↪
+set foldlevelstart=2
+set foldmethod=indent
+set nofoldenable
+set shortmess+=c
+set number
+set relativenumber
+set scrolloff=8
+set mouse=a
+set wildignorecase
+set iskeyword+=-
+set wildcharm=<C-z>
+set synmaxcol=250
+syntax sync minlines=256
+syntax sync maxlines=256
+
+let mapleader = "\<Space>"
+map <leader>y "+y
+map <leader>p "*p
+map <leader>w :set wrap!<CR>
+nnoremap <silent> <leader>S :setlocal spell!<CR>
+nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+
+nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
+nnoremap J mzJ`z
+nnoremap x "_x
+nnoremap X "_X
+nnoremap c "_c
+nnoremap C "_C
+vnoremap x "_x
+vnoremap X "_X
+vnoremap c "_c
+vnoremap C "_C
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+vnoremap <silent> y y`]
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+inoremap <C-e> <END>
+inoremap <C-a> <HOME>
+nnoremap <silent><esc><esc> :nohlsearch<CR>
+nnoremap U :redo<CR>
+nnoremap Y y$
+nnoremap Q <Nop>
+inoremap jk <Esc>
+
+nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+
+nnoremap <silent><expr> * v:count ? '*'
+      \ : ':execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+nnoremap <silent><expr> g* v:count ? 'g*'
+      \ : ':execute "keepjumps normal! g*" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+
+nnoremap <A-k> :<C-u>silent! move-2<CR>==
+nnoremap <A-j> :<C-u>silent! move+<CR>==
+xnoremap <A-k> :<C-u>silent! '<,'>move-2<CR>gv=gv
+xnoremap <A-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+
+function! WinMove(key) abort
+    let t:curwin = winnr()
+    exec "wincmd ".a:key
+    if (t:curwin == winnr())
+        if (match(a:key,'[jk]'))
+            wincmd v
+        else
+            wincmd s
+        endif
+        exec "wincmd ".a:key
+    endif
+endfunction
+
+nnoremap <silent> <C-w>h :call WinMove('h')<CR>
+nnoremap <silent> <C-w>j :call WinMove('j')<CR>
+nnoremap <silent> <C-w>k :call WinMove('k')<CR>
+nnoremap <silent> <C-w>l :call WinMove('l')<CR>
+
+for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#' ]
+	execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+	execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+	execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+	execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+endfor
+
+xnoremap il g_o^
+onoremap il :<C-u>normal vil<CR>
+xnoremap al $o0
+onoremap al :<C-u>normal val<CR>
+
+function! VisualNumber()
+	call search('\d\([^0-9\.]\|$\)', 'cW')
+	normal v
+	call search('\(^\|[^0-9\.]\d\)', 'becW')
+endfunction
+xnoremap in :<C-u>call VisualNumber()<CR>
+onoremap in :<C-u>normal vin<CR>
+
+xnoremap ik `]o`[
+onoremap ik :<C-u>normal vik<CR>
+onoremap ak :<C-u>normal vikV<CR>
