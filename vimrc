@@ -487,6 +487,9 @@ xnoremap <A-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 
 " lessspace
 nmap <C-s> :<C-u>call lessspace#Toggle()<CR>
+
+" finally
+inoremap jk <Esc>
 " }}}
 
 " styling {{{
