@@ -490,6 +490,9 @@ nmap <C-s> :<C-u>call lessspace#Toggle()<CR>
 
 " finally
 inoremap jk <Esc>
+
+" i disable netrw (wsl-open handles WSL)
+nnoremap <silent> gx :<C-U>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
 " }}}
 
 " styling {{{
