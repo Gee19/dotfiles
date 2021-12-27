@@ -30,6 +30,8 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-tbone'
 
 " me
@@ -377,6 +379,7 @@ nnoremap J mzJ`z
 
 " Don't let x and c to spoil the yank register
 " Not sure if I like this, makes character swaps take 1 extra keypress: aB -> Ba
+" Only seems to make sense with clipboard=unnamedplus
 nnoremap x "_x
 nnoremap X "_X
 nnoremap c "_c
