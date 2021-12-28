@@ -81,6 +81,12 @@ wget "https://github.com/ClementTsang/bottom/releases/download/0.6.4/bottom_0.6.
 sudo dpkg -i bottom_0.6.4_amd64.deb
 rm bottom_0.6.4_amd64.deb
 
+# NVM again
+mkdir -p ~/.nvm
+wget "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh"
+sh install.sh
+rm install.sh
+
 echo "Installing vim-plug for vim/nvim.."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 

@@ -25,5 +25,6 @@
 `chsh -s /usr/bin/zsh`
 
 ## TODO
-- elixir install breaks rabbitmq-server, test setup_env changes with --fix-missing
-- diffsitter?
+- fix elixir env. install breaks rabbitmq-server
+- update coc-settings and vimrc node paths on xps
+
