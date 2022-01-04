@@ -121,12 +121,9 @@ export PATH=$HOME/.local/bin:$PATH
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# nvm unusable with fzf on wsl2
-if ! [[ $(uname -r) =~ WSL$ ]]; then
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion ]
-fi
+# Node/nvm, unusable with fzf on wsl2 without --no-use
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 
 # Adding wsl-open as a browser for Bash for Windows
 if [[ $(uname -r) =~ (m|M)icrosoft ]]; then

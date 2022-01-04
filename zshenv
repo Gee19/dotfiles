@@ -42,10 +42,8 @@ export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 export CUKEFILES="$HOME/dev/sdelements/cypress/integration/**/*.cucumber.ts"
 
 # Node/nvm, unusable with fzf on wsl2 without --no-use
-# if ! [[ $(uname -r) =~ WSL$ ]]; then
-# fi
 export NVM_DIR=~/.nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 
 # Adding wsl-open as a browser for Windows
 if [[ $(uname -r) =~ (m|M)icrosoft ]]; then

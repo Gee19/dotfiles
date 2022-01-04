@@ -544,12 +544,7 @@ if has_key(g:plugs, 'coc.nvim')
     let g:coc_disable_startup_warning = 1
   endif
 
-  " node paths for my separate environments
-  if (system("uname -r") =~ "WSL")
-    let g:coc_node_path = '/usr/bin/node'
-  else
-    let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.16.0/bin/node'
-  endif
+  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.18.2/bin/node'
 
   " dropped coc-elixir,
   " coc-java requires manual install of jdt-ls
