@@ -9,8 +9,9 @@ let g:loaded_tar=1
 let g:loaded_zipPlugin=1
 let g:loaded_zip=1
 
-" enable cfilter plugin
+" enable cfilter and matchit plugins
 packadd cfilter
+packadd matchit
 " }}}
 
 " vim-plug {{{
@@ -57,6 +58,7 @@ Plug 'moll/vim-bbye' " Delete buffers without affecting layout
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'glts/vim-textobj-comment'
+Plug 'kana/vim-textobj-function'
 Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 
 " Whatever doesn't have a treesitter parser..
