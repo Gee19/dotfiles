@@ -382,14 +382,14 @@ nnoremap J mzJ`z
 " Don't let x and c to spoil the yank register
 " Not sure if I like this, makes character swaps take 1 extra keypress: aB -> Ba
 " Only seems to make sense with clipboard=unnamedplus
+" nnoremap c "_c
+" nnoremap C "_C
+" vnoremap c "_c
+" vnoremap C "_C
 nnoremap x "_x
 nnoremap X "_X
-nnoremap c "_c
-nnoremap C "_C
 vnoremap x "_x
 vnoremap X "_X
-vnoremap c "_c
-vnoremap C "_C
 
 " Don't jump to next occurrence of search when using */g* (doesn't pollute registers/jump list)
 nnoremap <silent><expr> * v:count ? '*'
