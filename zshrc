@@ -127,6 +127,21 @@ function _dsh(){
 
 compdef _dsh dsh
 
+# what if.. we were to go even further beyond
+function dcsh() {
+  local git_dir_folder
+  git_dir_folder=$(echo "${$(git rev-parse --show-toplevel)##*/}_")
+
+  local cons=$(docker-compose ps | rg $git_dir_folder | awk '{print $1}' | sed -e "s/$(echo $git_dir_folder)//" | sed -e 's/_1//')
+
+  local selected_container
+  selected_container=$(echo $cons | fzf)
+  if [ -n "$selected_container" ]; then
+    docker-compose exec $selected_container bash
+  fi
+  return
+}
+
 # git stash diff
 function gsd() {
     if [ "$1" != "" ]
