@@ -219,11 +219,10 @@ let g:lightline = {
       \ 'colorscheme': s:scheme,
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'tpope_op', 'file_with_method', 'modified' ] ]
+      \             [ 'cocstatus', 'readonly', 'file_with_method', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
-      \   'tpope_op': 'FugitiveHead',
       \   'file_with_method': 'FilenameWithMethod',
       \ },
       \ }
