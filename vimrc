@@ -383,8 +383,8 @@ nnoremap J mzJ`z
 " Makes character swaps take 1 extra keypress: aB -> Ba
 nnoremap x "_x
 nnoremap X "_X
-vnoremap x "_x
-vnoremap X "_X
+xnoremap x "_x
+xnoremap X "_X
 
 " Don't touch unnamed register when pasting over visual selection
 xnoremap <expr> p 'pgv"' . v:register . 'y'
@@ -400,7 +400,7 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
 " go to end of yanked text
-vnoremap <silent> y y`]
+xnoremap <silent> y y`]
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
@@ -671,8 +671,8 @@ if has_key(g:plugs, 'coc.nvim')
   nnoremap <silent><expr> <PageDown> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<PageDown>"
   inoremap <silent><expr> <PageUp> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<PageUp>"
   inoremap <silent><expr> <PageDown> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<PageDown>"
-  vnoremap <silent><expr> <PageUp> coc#float#has_scroll() ? coc#util#float_scroll_i(-1) : "\<PageUp>"
-  vnoremap <silent><expr> <PageDown> coc#float#has_scroll() ? coc#util#float_scroll_i(1) : "\<PageDown>"
+  xnoremap <silent><expr> <PageUp> coc#float#has_scroll() ? coc#util#float_scroll_i(-1) : "\<PageUp>"
+  xnoremap <silent><expr> <PageDown> coc#float#has_scroll() ? coc#util#float_scroll_i(1) : "\<PageDown>"
 endif
 " }}}
 
@@ -896,16 +896,16 @@ command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
 augroup custom_qf_mapping
   autocmd!
   autocmd FileType qf nnoremap <buffer> dd :.Reject<CR>
-  autocmd FileType qf vnoremap <buffer> d :'<,'>Reject<CR>
+  autocmd FileType qf xnoremap <buffer> d :'<,'>Reject<CR>
   autocmd FileType qf nnoremap <buffer> gk :.Keep<CR>
-  autocmd FileType qf vnoremap <buffer> gk :'<,'>Keep<CR>
+  autocmd FileType qf xnoremap <buffer> gk :'<,'>Keep<CR>
 augroup END
 
 " open quickfix with last search
 nnoremap <silent> <leader>? :Grep /<CR>
 
 " async grep current visual selection
-vnoremap <leader>/ "ay:call TrimEscapeRegA()<CR>:Grep <C-r>a<CR>
+xnoremap <leader>/ "ay:call TrimEscapeRegA()<CR>:Grep <C-r>a<CR>
 
 " async grep word under cursor
 nnoremap <leader>* "ayiw:call TrimEscapeRegA()<CR>:Grep <C-r>a<CR>

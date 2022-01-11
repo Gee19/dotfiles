@@ -112,15 +112,11 @@ nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 nnoremap J mzJ`z
 nnoremap x "_x
 nnoremap X "_X
-nnoremap c "_c
-nnoremap C "_C
-vnoremap x "_x
-vnoremap X "_X
-vnoremap c "_c
-vnoremap C "_C
+xnoremap x "_x
+xnoremap X "_X
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
-vnoremap <silent> y y`]
+xnoremap <silent> y y`]
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 inoremap <C-e> <END>
