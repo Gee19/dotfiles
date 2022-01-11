@@ -243,7 +243,7 @@ let g:lightline#bufferline#enable_devicons = 1
 " }}}
 
 " global vars {{{
-set clipboard+=unnamedplus " Trying system clipboard
+" set clipboard+=unnamedplus " Trying system clipboard
 set hidden " New buffers with unsaved changes
 set noswapfile " No swap file on buffer load
 set autoread " Auto read files changed outside of vim
@@ -379,17 +379,15 @@ nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-" Don't let x and c to spoil the yank register
-" Not sure if I like this, makes character swaps take 1 extra keypress: aB -> Ba
-" Only seems to make sense with clipboard=unnamedplus
-" nnoremap c "_c
-" nnoremap C "_C
-" vnoremap c "_c
-" vnoremap C "_C
+" Don't let x spoil the yank register
+" Makes character swaps take 1 extra keypress: aB -> Ba
 nnoremap x "_x
 nnoremap X "_X
 vnoremap x "_x
 vnoremap X "_X
+
+" Don't touch unnamed register when pasting over visual selection
+xnoremap <expr> p 'pgv"' . v:register . 'y'
 
 " Don't jump to next occurrence of search when using */g* (doesn't pollute registers/jump list)
 nnoremap <silent><expr> * v:count ? '*'
@@ -492,9 +490,6 @@ xnoremap <A-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 
 " lessspace
 nmap <C-s> :<C-u>call lessspace#Toggle()<CR>
-
-" finally
-inoremap jk <Esc>
 
 " i disable netrw (wsl-open handles WSL)
 nnoremap <silent> gx :<C-U>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
