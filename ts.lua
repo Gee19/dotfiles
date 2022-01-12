@@ -3,7 +3,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'javascript',
     'typescript',
-    'vim',
+    -- 'vim',
     'yaml',
     'regex',
     'toml',
