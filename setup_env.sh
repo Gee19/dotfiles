@@ -2,8 +2,14 @@
 set -e
 sudo apt -y update && sudo apt -y dist-upgrade
 
+# add-apt-repository / curl / wget / xdg-open / fuse
+sudo apt -y install software-properties-common curl wget xdg-utils fuse
+
+# Conflicts with nodejs on debian
+sudo apt remove nodejs-doc
+
 # Vim 8.2
-sudo add-apt-repository -y ppa:jonathonf/vim
+sudo add-apt-repository -y -r ppa:jonathonf/vim
 sudo apt -y update
 
 # Remove system vim (might need vim.tiny here)
@@ -14,7 +20,11 @@ curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt -y install zsh unzip nodejs python3-pip tmux mosh vim-gtk3
 
 # TPM
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [[ -d "~/.tmux/plugins/tpm" ]]
+then
+  echo "Skipping tpm.."
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 # Yarn
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -22,7 +32,11 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt -y update && sudo apt -y install yarn
 
 # Znap
-git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git ~/zsh/znap-repos/zsh-snap
+if [[ -d "~/zsh/znap-repos/zsh-snap" ]]
+then
+  echo "Skipping znap.."
+  git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git ~/zsh/znap-repos/zsh-snap
+fi
 
 mkdir -p ~/.config/nvim/lua
 mkdir -p ~/.vim
@@ -30,7 +44,7 @@ mkdir -p ~/.local/bin
 cd ~/.local/bin
 
 # wsl-open
-if [[ $(uname -r) =~ WSL$ ]]; then
+if [[ $(uname -r) =~ WSL2$ ]]; then
   wget "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
   mv wsl-open.sh wsl-open
   chmod +x wsl-open

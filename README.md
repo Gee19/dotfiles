@@ -1,6 +1,6 @@
 ## Term
 - Ubuntu: kitty
-- Windows: winterm + wsl2
+- Windows (WSL2): winterm + ubuntu/debian
 
 ## Shell
 - zsh + znap
@@ -10,7 +10,9 @@
 - neovim/vim + coc.nvim
 
 ## Setup
-`ssh key magic`
+`ssh/gpg key magic`
+
+`sudo apt install git`
 
 `mkdir -p ~/dev && cd ~/dev`
 
@@ -20,7 +22,7 @@
 
 `./update_nvim.sh`
 
-`python3 install.py`
+`XDG_CONFIG_HOME=/home/jhaine/.config python3 install.py`
 
 `chsh -s /usr/bin/zsh`
 
