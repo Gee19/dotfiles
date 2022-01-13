@@ -1,4 +1,5 @@
 packadd cfilter
+packadd matchit
 
 if has('termguicolors')
   set termguicolors
@@ -56,6 +57,8 @@ cabbrev yfn let @+=expand("%:t")<CR>
 cabbrev ycmd let @+=':'.@:
 cabbrev cf Cfilter
 
+set path+=**
+
 filetype plugin indent on
 set tabstop=4
 set softtabstop=2
@@ -95,6 +98,7 @@ set scrolloff=8
 set mouse=a
 set wildignorecase
 set iskeyword+=-
+set wildmenu
 set wildcharm=<C-z>
 set synmaxcol=250
 syntax sync minlines=256
@@ -107,6 +111,7 @@ map <leader>w :set wrap!<CR>
 nnoremap <silent> <leader>S :setlocal spell!<CR>
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+nnoremap <leader>b :buffer<Space><C-R>=nr2char(&wildcharm)<CR><S-Tab>
 
 nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 nnoremap J mzJ`z

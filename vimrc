@@ -242,7 +242,8 @@ let g:lightline#bufferline#enable_devicons = 1
 " }}}
 
 " global vars {{{
-" set clipboard+=unnamedplus " Trying system clipboard
+set clipboard+=unnamedplus " Trying system clipboard
+set path+=** " Search all directories recursively, * for fuzzy
 set hidden " New buffers with unsaved changes
 set noswapfile " No swap file on buffer load
 set autoread " Auto read files changed outside of vim
@@ -269,6 +270,7 @@ set scrolloff=8 " Keep X lines above/below cursor when near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
 set iskeyword+=- " treat dash-separated-words as word text object
+set wildmenu " Enhanced tabline completion
 set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
 
 " don't syntax color long lines
