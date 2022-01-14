@@ -540,6 +540,7 @@ augroup END
 if has_key(g:plugs, 'coc.nvim')
   let g:coc_force_debug = 1
 
+  set tagfunc=CocTagFunc
   set formatexpr=CocActionAsync('formatSelected')
 
   " disable coc startup warning in vim
@@ -644,23 +645,23 @@ if has_key(g:plugs, 'coc.nvim')
   autocmd CursorHold * silent call CocActionAsync('highlight')
 
   " Coc Binds
-  " mimic builtin lsp use of tagstack with gd
-  set tagfunc=CocTagFunc
-  nmap <silent> gd <C-]>
-
-  " nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gD :call CocAction('jumpDefinition', 'vsplit')<CR>
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gD <cmd>call CocAction('jumpDefinition', 'vsplit')<CR>
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
-  nmap <silent> K :call <SID>show_documentation()<CR>
+  nmap <silent> K <cmd>call <SID>show_documentation()<CR>
 
   " Use `[d` and `]d` to navigate diagnostics
   nmap <silent> [d <Plug>(coc-diagnostic-prev)
   nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
   " Show all diagnostics
-  nnoremap <silent><leader>d :<C-u>CocList diagnostics<cr>
+  nnoremap <silent><leader>d <cmd>CocList diagnostics<cr>
+
+  " Show symbols in workspace
+  nnoremap <silent><expr> <leader>fs "<cmd>CocList -I --input=".expand('<cword>')." symbols<cr>"
+  nnoremap <silent><expr> <leader>fc "<cmd>CocList -I --input=".expand('<cword>')." symbols -kind Class<cr>"
 
   " Applying codeAction to the selected region.
   " Example: `<leader>aap` for current paragraph
@@ -706,39 +707,29 @@ command! -bang -nargs=* Rg
 
 " files in git repo with changes, fullscreen if called with bang
 command! -bang -nargs=* Gd call fzf#vim#gitfiles('?', {'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, <bang>0)
-nnoremap <silent> <leader>gd :Gd<cr>
 
 " fullscreen ripgrep global search
 nnoremap <silent> <leader><S-f> :Rg!<cr>
 
 " fullscreen ripgrep global search current word
-nnoremap <silent> <expr> <leader>f ":Rg!\ ".expand('<cword>')."<cr>"
+nnoremap <silent> <expr> <leader>f "<cmd>Rg!\ ".expand('<cword>')."<cr>"
 
 " all files in repo
-nnoremap <silent> <C-p> :GitFiles<cr>
+nnoremap <silent> <C-p> <cmd>GitFiles<cr>
 
 " files in cwd
-nnoremap <silent> <C-f> :Files<cr>
+nnoremap <silent> <C-f> <cmd>Files<cr>
 
 " buffers
-nnoremap <silent> <leader>b :Buffers<cr>
+nnoremap <silent> <leader>b <cmd>Buffers<cr>
 " nnoremap <leader>b :buffer *
 " nnoremap <leader>b :buffer<Space><C-R>=nr2char(&wildcharm)<CR><S-Tab>
 
 " marks
-nnoremap <silent> <leader>m :Marks<cr>
+nnoremap <silent> <leader>m <cmd>Marks<cr>
 
 " commits of current buffer - kinda requires fugitive
-nnoremap <silent> <leader>gl :BCommits!<cr>
-
-" most recently updated files
-nnoremap <silent> <leader>H :History<cr>
-
-" help
-nnoremap <silent> <leader>H :Helptags<cr>
-
-" commands
-nnoremap <silent> <leader>c :Commands<cr>
+nnoremap <silent> <leader>gl <cmd>BCommits!<cr>
 
 " Reverse layout for floating windows
 let $FZF_DEFAULT_OPTS .= ' --inline-info --layout=reverse'
@@ -912,7 +903,7 @@ augroup custom_qf_mapping
 augroup END
 
 " open quickfix with last search
-nnoremap <silent> <leader>? :Grep /<CR>
+nnoremap <silent> <leader>? :Grep <C-r>/<CR>
 
 " async grep current visual selection
 xnoremap <leader>/ "ay:call TrimEscapeRegA()<CR>:Grep <C-r>a<CR>
