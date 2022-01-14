@@ -32,18 +32,6 @@ augroup split_help
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
 
-if !has('gui_running') && !has('nvim') && exists('$TMUX')
-  set ttymouse=sgr
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  let &t_BE = "\<Esc>[?2004h"
-  let &t_BD = "\<Esc>[?2004l"
-  let &t_PS = "\<Esc>[200~"
-  let &t_PE = "\<Esc>[201~"
-  let &t_fe = "\<Esc>[?1004h"
-  let &t_fd = "\<Esc>[?1004l"
-endif
-
 if !has('nvim')
   if !isdirectory($HOME . "/.vim/undodir")
     call mkdir($HOME . "/.vim/undodir", "p")
@@ -186,3 +174,6 @@ onoremap in :<C-u>normal vin<CR>
 xnoremap ik `]o`[
 onoremap ik :<C-u>normal vik<CR>
 onoremap ak :<C-u>normal vikV<CR>
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/

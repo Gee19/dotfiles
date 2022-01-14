@@ -380,12 +380,15 @@ nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-" Don't let x spoil the yank register
-" Makes character swaps take 1 extra keypress: aB -> Ba
+" Don't let x or c spoil the yank register
 nnoremap x "_x
 nnoremap X "_X
 xnoremap x "_x
 xnoremap X "_X
+nnoremap c "_c
+nnoremap C "_C
+xnoremap c "_c
+xnoremap C "_C
 
 " Don't touch unnamed register when pasting over visual selection
 xnoremap <expr> p 'pgv"' . v:register . 'y'
@@ -537,6 +540,8 @@ augroup END
 if has_key(g:plugs, 'coc.nvim')
   let g:coc_force_debug = 1
 
+  set formatexpr=CocActionAsync('formatSelected')
+
   " disable coc startup warning in vim
   if !has('nvim')
     let g:coc_disable_startup_warning = 1
@@ -639,7 +644,11 @@ if has_key(g:plugs, 'coc.nvim')
   autocmd CursorHold * silent call CocActionAsync('highlight')
 
   " Coc Binds
-  nmap <silent> gd <Plug>(coc-definition)
+  " mimic builtin lsp use of tagstack with gd
+  set tagfunc=CocTagFunc
+  nmap <silent> gd <C-]>
+
+  " nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gD :call CocAction('jumpDefinition', 'vsplit')<CR>
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)

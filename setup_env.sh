@@ -101,6 +101,11 @@ wget "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh"
 sh install.sh
 rm install.sh
 
+# FZF
+wget "https://github.com/junegunn/fzf/releases/download/0.29.0/fzf-0.29.0-linux_amd64.tar.gz"
+tar xzvf fzf-0.29.0-linux_amd64.tar.gz
+rm fzf-0.29.0-linux_amd64.tar.gz
+
 echo "Installing vim-plug for vim/nvim.."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 

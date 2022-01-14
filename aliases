@@ -38,20 +38,15 @@ alias nvim="nvim.appimage"
 alias dots="cd ~/dev/dotfiles"
 
 alias mcs="workon mcs && cd ~/dev/management_command_system && nvm use"
-
-alias ebank="workon exploitmebank && cd ~/dev/exploitmebank/ExploitMe_Bank"
-alias ebank3="workon ebank3 && cd ~/dev/exploitmebank/ExploitMe_Bank"
-
-alias csec="workon checksec2 && cd ~/dev/checksec"
-alias cdsec="workon djangosec && cd ~/dev/django-security"
-
+alias ebank="workon exploitmebank && cd ~/dev/exploitmebank/ExploitMe_Bank && nvm use"
+alias ebank3="workon ebank3 && cd ~/dev/exploitmebank/ExploitMe_Bank && nvm use"
+alias csec="workon checksec2 && cd ~/dev/checksec && nvm use"
+alias cdsec="workon djangosec && cd ~/dev/django-security && nvm use"
 alias csd="workon sde3 && cd ~/dev/sdelements/sigma && nvm use"
 alias csd2="workon sde2 && cd ~/dev/sde2/sigma && nvm use"
-
-alias cst="workon sdetools3 && cd ~/dev/sdetools"
-alias cst2="workon sdetools2 && cd ~/dev/sdetools2"
-
-alias cpca="workon pca && cd ~/dev/project-creation-automation"
+alias cst="workon sdetools3 && cd ~/dev/sdetools && nvm use"
+alias cst2="workon sdetools2 && cd ~/dev/sdetools2 && nvm use"
+alias cpca="workon pca && cd ~/dev/project-creation-automation && nvm use"
 alias cpkg="cd /home/jhaine/Envs/sde3/lib/python3.6/site-packages"
 
 alias nds="node devServer.js"
@@ -64,14 +59,13 @@ alias djrs="./manage.py runserver 0.0.0.0:8000"
 alias djm="./manage.py migrate"
 alias djmk="./manage.py makemigrations"
 alias djc="./manage.py collectstatic --noinput"
-
 alias djsh="./manage.py shell_plus"
 
 alias tst="./manage.py test $1 --settings=test_local_settings --nomigrations"
 alias tstci="./manage.py test $1 --settings=test_local_settings --failfast --noinput -v 2 --parallel 2"
 alias pytst="pytest --no-migrations $1"
 
-alias mailserv="python -m smtpd -n -c DebuggingServer localhost:1025"
+alias mailserv="python3 -m smtpd -n -c DebuggingServer localhost:1025"
 
 alias start_celery="celery -A . worker --app=celery_mod -l debug"
 alias pas_celery="COMMAND_INPUT_FILE_FOLDER=~/dev/management_command_system/dev_test_folder/input COMMAND_OUTPUT_FILE_FOLDER=~/dev/management_command_system/dev_test_folder/output celery worker --app=pas_celery_mod -l info -Q command_worker.run_command -Q command_worker.delete_sde_custom_plugin -n pas_command_worker@%h"
