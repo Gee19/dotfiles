@@ -170,38 +170,30 @@ if !has('nvim')
 endif
 " }}}
 
-" treesitter {{{
+" neovim only {{{
 if has('nvim')
+  set jumpoptions=stack " Make the jumplist behave like the tagstack
   lua require('ts')
 endif
 " }}}
 
 " autocmds {{{
-augroup fold_vimrc
+augroup common
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-augroup pysnips
-  autocmd!
   autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()<Esc>
   autocmd FileType python :iabbrev <buffer> rdb from celery.contrib import rdb; rdb.set_trace()<Esc>
-augroup END
 
-augroup newline_formatting
-  autocmd!
-  autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o
-augroup END
-
-augroup split_help
-  autocmd!
+  autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o " newline formatting
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
-augroup END
-
-augroup yank_highlight
-  autocmd!
   autocmd TextYankPost * if exists('##TextYankPost') | exe "silent! lua require'vim.highlight'.on_yank()" | endif
+
+  " set up default omnifunc
+  autocmd FileType *
+        \ if &omnifunc == "" |
+        \    setlocal omnifunc=syntaxcomplete#Complete |
+        \ endif
 augroup END
 " }}}
 
@@ -272,6 +264,8 @@ set wildignorecase " Ignore case when completing file names and directories
 set iskeyword+=- " treat dash-separated-words as word text object
 set wildmenu " Enhanced tabline completion
 set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
+set matchtime=2 " Time to show matching pair
+set matchpairs+=<:> " Add <> to matchpairs
 
 " don't syntax color long lines
 " pretty sure this doesn't work with treesitter (vim only)
@@ -478,7 +472,7 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 let g:switch_mapping = "<leader>s"
 
 " spell
-nnoremap <silent> <leader>S :setlocal spell!<CR>
+nnoremap <silent> <leader>S <cmd>setlocal spell!<CR>
 
 " splitjoin.vim
 let g:splitjoin_split_mapping = ''
@@ -493,10 +487,10 @@ xnoremap <A-k> :<C-u>silent! '<,'>move-2<CR>gv=gv
 xnoremap <A-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 
 " lessspace
-nmap <C-s> :<C-u>call lessspace#Toggle()<CR>
+nmap <C-s> <cmd>call lessspace#Toggle()<CR>
 
 " i disable netrw (wsl-open handles WSL)
-nnoremap <silent> gx :<C-U>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
+nnoremap <silent> gx <cmd>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
 " }}}
 
 " styling {{{
@@ -539,7 +533,6 @@ augroup END
 " coc.nvim {{{
 if has_key(g:plugs, 'coc.nvim')
   let g:coc_force_debug = 1
-
   set tagfunc=CocTagFunc
   set formatexpr=CocActionAsync('formatSelected')
 
@@ -644,12 +637,28 @@ if has_key(g:plugs, 'coc.nvim')
   " Highlight the symbol and its references when holding the cursor
   autocmd CursorHold * silent call CocActionAsync('highlight')
 
+  " Append to tagstack when jumping to definition, implementation or reference
+  function! s:goto_tag(tagkind) abort
+    let tagname = expand('<cword>')
+    let winnr = winnr()
+    let pos = getcurpos()
+    let pos[0] = bufnr()
+
+    if CocAction('jump' . a:tagkind)
+      call settagstack(winnr, {
+            \ 'curidx': gettagstack()['curidx'],
+            \ 'items': [{'tagname': tagname, 'from': pos}]
+            \ }, 't')
+    endif
+  endfunction
+
   " Coc Binds
-  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gd <cmd>call <SID>goto_tag("Definition")<CR>
+  nmap <silent> gi <cmd>call <SID>goto_tag("Implementation")<CR>
+  nmap <silent> gr <cmd>call <SID>goto_tag("References")<CR>
+
   nmap <silent> gD <cmd>call CocAction('jumpDefinition', 'vsplit')<CR>
   nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
-  nmap <silent> gr <Plug>(coc-references)
   nmap <silent> K <cmd>call <SID>show_documentation()<CR>
 
   " Use `[d` and `]d` to navigate diagnostics
@@ -851,25 +860,9 @@ augroup quickfix
   autocmd QuickFixCmdPost lgetexpr lwindow
 augroup END
 
-function! CustomExpand(val)
-  " if starts with *, don't expand it
-  if a:val =~ '^\*'
-    return a:val
-  else
-    return expand(a:val)
-  endif
-endfunction
-
-" call grepprg in a system shell instead of internal shell
+" call grepprg in a system shell instead of internal shell (async but loading into qf is synchronous)
 function! Grep(...) abort
-  " expandcmd() is only supported in regular vim or nvim-0.5
-  if has('nvim-0.5') || !has('nvim')
     return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
-  else
-    let l:args = copy(a:000)
-    let CExp = function("CustomExpand")
-    return system(join([&grepprg] + [join(map(l:args, 'CExp(v:val)'), ' ')], ' '))
-  endif
 endfunction
 
 function! TrimEscapeRegA() abort
