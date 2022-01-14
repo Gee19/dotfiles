@@ -1,5 +1,4 @@
 " vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
-
 " built-ins  {{{
 let g:loaded_netrwPlugin=1
 let g:loaded_gzip=1
@@ -10,10 +9,9 @@ let g:loaded_zipPlugin=1
 let g:loaded_zip=1
 
 " enable cfilter and matchit plugins
-packadd cfilter
-packadd matchit
+packadd! cfilter
+packadd! matchit
 " }}}
-
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
 " Theme
@@ -102,7 +100,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " }}}
-
 " shell/colorscheme/grepprg {{{
 if has('termguicolors')
   set termguicolors " Use true colours
@@ -134,7 +131,6 @@ else
   set grepformat=%f:%l:%m
 endif
 " }}}
-
 " vim only {{{
 if !has('nvim')
   syntax on
@@ -169,14 +165,12 @@ if !has('nvim')
   augroup END
 endif
 " }}}
-
 " neovim only {{{
 if has('nvim')
   set jumpoptions=stack " Make the jumplist behave like the tagstack
   lua require('ts')
 endif
 " }}}
-
 " autocmds {{{
 augroup common
   autocmd!
@@ -196,7 +190,6 @@ augroup common
         \ endif
 augroup END
 " }}}
-
 " Lightline + Tabline {{{
 function FilenameWithMethod() abort
   let filename = expand('%')
@@ -232,7 +225,6 @@ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 " Show devicons
 let g:lightline#bufferline#enable_devicons = 1
 " }}}
-
 " global vars {{{
 set clipboard+=unnamedplus " Trying system clipboard
 set path+=** " Search all directories recursively, * for fuzzy
@@ -364,7 +356,6 @@ cabbrev CL CocList
 " Quickfix
 cabbrev cf Cfilter
 " }}}
-
 " mappings {{{
 let mapleader = "\<Space>"
 
@@ -492,7 +483,6 @@ nmap <C-s> <cmd>call lessspace#Toggle()<CR>
 " i disable netrw (wsl-open handles WSL)
 nnoremap <silent> gx <cmd>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
 " }}}
-
 " styling {{{
 if !has('nvim')
   " Completion menu styling
@@ -514,7 +504,6 @@ highlight Comment cterm=italic
 highlight htmlArg gui=italic
 highlight htmlArg cterm=italic
 " }}}
-
 " NERDTree {{{
 let g:NERDTreeWinSize = 37
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
@@ -529,7 +518,6 @@ augroup nerdtree_fixes
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 " }}}
-
 " coc.nvim {{{
 if has_key(g:plugs, 'coc.nvim')
   let g:coc_force_debug = 1
@@ -695,7 +683,6 @@ if has_key(g:plugs, 'coc.nvim')
   xnoremap <silent><expr> <PageDown> coc#float#has_scroll() ? coc#util#float_scroll_i(1) : "\<PageDown>"
 endif
 " }}}
-
 " FZF {{{
 " Default preview off, only in fullscreen (Rg!)
 let g:fzf_preview_window = ''
@@ -778,7 +765,6 @@ command! BD call fzf#run(fzf#wrap({
   \ 'options': '--prompt="Delete Buffer(s):" --multi --reverse --bind ctrl-a:select-all+accept'
   \ }))
 " }}}
-
 " FZF Session Picker {{{
 let s:session_dir = '$HOME/.vim/session/'
 function! s:list_sessions() abort
@@ -796,7 +782,6 @@ command! SessionPicker call fzf#run(fzf#wrap({
   \ 'options': '--prompt="Source Session:" --reverse'
   \ }))
 " }}}
-
 " clever-f {{{
 let g:clever_f_across_no_line = 1 " only span 1 line
 let g:clever_f_fix_key_direction = 1 " always force f->forward F->backward
@@ -805,7 +790,6 @@ let g:clever_f_fix_key_direction = 1 " always force f->forward F->backward
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 " }}}
-
 " vim-qf {{{
 nmap ]q <Plug>(qf_qf_next)
 nmap [q <Plug>(qf_qf_previous)
@@ -825,7 +809,6 @@ let g:qf_mapping_ack_style = 1
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
 " }}}
-
 " auto resize qf {{{
 function! AdjustWindowHeight(minheight, maxheight)
     let l = 1
@@ -846,7 +829,6 @@ augroup qf_resize
   au FileType qf call AdjustWindowHeight(3, 10)
 augroup END
 " }}}
-
 " async grep: https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3{{{
 command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
 command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
@@ -880,7 +862,6 @@ function! s:trim(str) abort
   endif
 endfunction
 " }}}
-
 " more quickfix {{{
 command! ClearQuickfix cexpr []
 command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
@@ -904,7 +885,6 @@ xnoremap <leader>/ "ay:call TrimEscapeRegA()<CR>:Grep <C-r>a<CR>
 " async grep word under cursor
 nnoremap <leader>* "ayiw:call TrimEscapeRegA()<CR>:Grep <C-r>a<CR>
 " }}}
-
 " mostly git related {{{
 " committia.vim
 let g:committia_hooks = {}
@@ -952,7 +932,6 @@ omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " }}}
-
 " tbone/gbone {{{
 if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbone')
   let g:gbone_run_mapping = '<leader>x'
@@ -974,12 +953,10 @@ if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbo
   \ }
 endif
 " }}}
-
 " tagalong / closetag {{{
 let g:tagalong_verbose = 1
 let g:closetag_filetypes='html,xhtml,xml,javascriptreact,typescriptreact'
 " }}}
-
 " romainl pseudo-text objects {{{
 " https://gist.github.com/romainl/c0a8b57a36aec71a986f1120e1931f20
 

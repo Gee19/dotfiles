@@ -1,5 +1,5 @@
-packadd cfilter
-packadd matchit
+packadd! cfilter
+packadd! matchit
 
 if has('termguicolors')
   set termguicolors
@@ -19,15 +19,7 @@ augroup pysnips
   autocmd!
   autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()<Esc>
   autocmd FileType python :iabbrev <buffer> rdb from celery.contrib import rdb; rdb.set_trace()<Esc>
-augroup END
-
-augroup newline_formatting
-  autocmd!
   autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o
-augroup END
-
-augroup split_help
-  autocmd!
   autocmd VimResized * wincmd =
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
@@ -88,6 +80,8 @@ set wildignorecase
 set iskeyword+=-
 set wildmenu
 set wildcharm=<C-z>
+set matchtime=2
+set matchpairs+=<:>
 set synmaxcol=250
 syntax sync minlines=256
 syntax sync maxlines=256
@@ -107,6 +101,10 @@ nnoremap x "_x
 nnoremap X "_X
 xnoremap x "_x
 xnoremap X "_X
+nnoremap c "_c
+nnoremap C "_C
+xnoremap c "_c
+xnoremap C "_C
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 xnoremap <silent> y y`]
@@ -119,6 +117,8 @@ nnoremap U :redo<CR>
 nnoremap Y y$
 nnoremap Q <Nop>
 inoremap jk <Esc>
+
+xnoremap <expr> p 'pgv"' . v:register . 'y'
 
 nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
