@@ -14,12 +14,12 @@
   "reportMissingImports": true,
   "reportMissingTypeStubs": false,
   "reportPropertyTypeMismatch": false,
-  "pythonVersion": "3.6",
+  "pythonVersion": "3.8",
   "pythonPlatform": "Linux",
   "executionEnvironments": [
     {
       "root": "pas",
-      "pythonVersion": "3.6",
+      "pythonVersion": "3.8",
       "extraPaths": [
         ""
       ],
