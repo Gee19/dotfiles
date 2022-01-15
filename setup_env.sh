@@ -17,7 +17,7 @@ sudo apt -y remove vim
 
 # Node unzip zsh py3-pip tmux mosh vim
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-sudo apt -y install zsh unzip nodejs python3-pip tmux mosh vim-gtk3
+sudo apt -y install zsh unzip nodejs python3-pip tmux mosh vim-gtk3 gettext-base
 
 # TPM
 if [[ -d "~/.tmux/plugins/tpm" ]]
