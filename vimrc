@@ -35,10 +35,9 @@ Plug 'tpope/vim-tbone'
 
 " me
 Plug 'Gee19/vim-gbone'
-" Plug 'Gee19/indent-ignoreblank.vim'
 Plug 'Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
 Plug 'Gee19/lessspace.vim' " Added toggle func
-Plug 'Gee19/vim-peekaboo'
+Plug 'Gee19/vim-peekaboo' " Fixes conflict with lessspace
 let g:peekaboo_window='vert bo 40new'
 
 " gbone dependency
@@ -227,7 +226,7 @@ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 let g:lightline#bufferline#enable_devicons = 1
 " }}}
 " global vars {{{
-set clipboard+=unnamedplus " Trying system clipboard
+set clipboard^=unnamed,unnamedplus " Trying system clipboard & linux 'selection' clipboard
 set path+=** " Search all directories recursively, * for fuzzy
 set hidden " New buffers with unsaved changes
 set noswapfile " No swap file on buffer load
@@ -341,9 +340,6 @@ cabbrev yfp let @+=expand("%:p")<CR>
 " Yank file name to system clipboard
 cabbrev yfn let @+=expand("%:t")<CR>
 
-" Yank last cmd to system clipboard
-cabbrev ycmd let @+=':'.@:
-
 " Bbye
 cabbrev Bd Bdelete
 
@@ -389,22 +385,9 @@ nnoremap <silent><expr> g* v:count ? 'g*'
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
-" go to end of yanked text
-xnoremap <silent> y y`]
-
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
-
-" Format pasted text - use ]p instead
-" nnoremap p p=`]
-" nnoremap P P=`]
-
-" Yank to global clipboard (requires vim +clipboard)
-map <leader>y "+y
-
-" Paste from global clipboard (requires vim +clipboard)
-map <leader>p "*p
 
 " Toggle word wrapping
 map <leader>w :set wrap!<CR>
@@ -522,8 +505,12 @@ augroup END
 " coc.nvim {{{
 if has_key(g:plugs, 'coc.nvim')
   let g:coc_force_debug = 1
+
+  " try to use lang serv when tag jumping <C-]>
   set tagfunc=CocTagFunc
-  set formatexpr=CocActionAsync('formatSelected')
+
+  " Use lang serv to format if available (! silences errors)
+  set formatexpr=!CocActionAsync('formatSelected')
 
   " disable coc startup warning in vim
   if !has('nvim')
@@ -571,9 +558,7 @@ if has_key(g:plugs, 'coc.nvim')
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
   " enter selects the first completion item and confirm the completion when no item has been selected
-  " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-
-  " same as above but fixes coc + endwise conflict
+  " fixes coc + endwise conflict
   " tpope/vim-endwise/issues/125
   inoremap <silent> <CR> <C-r>=<SID>coc_confirm()<CR>
   function! s:coc_confirm() abort
