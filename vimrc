@@ -72,6 +72,12 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'farmergreg/vim-lastplace'
 Plug 'alvan/vim-closetag'
 
+" inkarkat
+" {register}-gr-{motion} dot repeatable
+Plug 'inkarkat/vim-ReplaceWithRegister'
+Plug 'inkarkat/vim-ReplaceWithSameIndentRegister'
+Plug 'inkarkat/vim-visualrepeat'
+
 " AndrewRadev / tags
 Plug 'AndrewRadev/switch.vim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -625,7 +631,7 @@ if has_key(g:plugs, 'coc.nvim')
   " Coc Binds
   nmap <silent> gd <cmd>call <SID>goto_tag("Definition")<CR>
   nmap <silent> gi <cmd>call <SID>goto_tag("Implementation")<CR>
-  nmap <silent> gr <cmd>call <SID>goto_tag("References")<CR>
+  nmap <silent> gR <cmd>call <SID>goto_tag("References")<CR>
 
   nmap <silent> gD <cmd>call CocAction('jumpDefinition', 'vsplit')<CR>
   nmap <silent> gy <Plug>(coc-type-definition)
