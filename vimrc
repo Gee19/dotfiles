@@ -362,15 +362,11 @@ nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-" Don't let x or c spoil the yank register
-nnoremap x "_x
-nnoremap X "_X
-xnoremap x "_x
-xnoremap X "_X
-nnoremap c "_c
-nnoremap C "_C
-xnoremap c "_c
-xnoremap C "_C
+" Don't let x, c or s spoil the yank register
+for char in [ 'x', 'c', 's', 'X', 'C', 'S' ]
+	execute 'nnoremap ' . char . ' "_' . char
+	execute 'xnoremap ' . char . ' "_' . char
+endfor
 
 " Don't touch unnamed register when pasting over visual selection
 xnoremap <expr> p 'pgv"' . v:register . 'y'
