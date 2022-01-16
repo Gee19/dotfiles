@@ -843,7 +843,8 @@ augroup quickfix
   autocmd QuickFixCmdPost lgetexpr lwindow
 augroup END
 
-" call grepprg in a system shell instead of internal shell (async but loading into qf is synchronous)
+" call grepprg in a system shell instead of internal shell
+" async but loading into qf is synchronous =[
 function! Grep(...) abort
     return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
 endfunction
@@ -962,7 +963,6 @@ let g:closetag_filetypes='html,xhtml,xml,javascriptreact,typescriptreact'
 " https://gist.github.com/romainl/c0a8b57a36aec71a986f1120e1931f20
 
 " 22 simple pseudo-text objects (, removed for argumentative)
-" -----------------------------
 " i_ i. i: i; i| i/ i\ i* i+ i- i#
 " a_ a. a: a; a| a/ a\ a* a+ a- a#
 for char in [ '_', '.', ':', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#' ]
@@ -972,17 +972,13 @@ for char in [ '_', '.', ':', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#' ]
 	execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
-" line pseudo-text objects
-" ------------------------
-" il al
+" line pseudo-text objects | il al
 xnoremap il g_o^
 onoremap il :<C-u>normal vil<CR>
 xnoremap al $o0
 onoremap al :<C-u>normal val<CR>
 
-" number pseudo-text object (integer and float)
-" ---------------------------------------------
-" in
+" number pseudo-text object (integer and float) | in
 function! VisualNumber()
 	call search('\d\([^0-9\.]\|$\)', 'cW')
 	normal v
@@ -991,9 +987,7 @@ endfunction
 xnoremap in :<C-u>call VisualNumber()<CR>
 onoremap in :<C-u>normal vin<CR>
 
-" last change pseudo-text objects
-" -------------------------------
-" ik ak
+" last change pseudo-text objects | ik ak
 xnoremap ik `]o`[
 onoremap ik :<C-u>normal vik<CR>
 onoremap ak :<C-u>normal vikV<CR>
