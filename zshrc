@@ -242,4 +242,8 @@ bindkey -M viins '\e\e[C' forward-word
 bindkey -M viins '\e\e[D' backward-word
 bindkey -M viins '^[^?' backward-kill-word
 
+function gpip() {
+  PIP_REQUIRE_VIRTUALENV=false pip "$@"
+}
+
 # zprof

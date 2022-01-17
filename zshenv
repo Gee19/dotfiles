@@ -58,4 +58,6 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 # Fix GitGutter CursorHold in vim
 export VIM_GITGUTTER_TEST=1
 
-export GITLAB_TOKEN=%NOPE%
+# prevent the dreaded pip install -r requirements.txt in system python
+# use gpip() instead
+export PIP_REQUIRE_VIRTUALENV=true
