@@ -126,6 +126,7 @@ execute 'set shell=' . s:shell
 " Format JSON
 command! -nargs=0 Jsonfmt :%!jq
 command! -nargs=0 Jq :%!jq
+command! D smile
 
 " Use ripgrep for vim :grep
 if executable('rg')
