@@ -44,7 +44,8 @@ let g:peekaboo_window='vert bo 40new'
 Plug 'tyru/current-func-info.vim'
 
 " Auto session management
-Plug 'dhruvasagar/vim-prosession'
+" Plug 'dhruvasagar/vim-prosession'
+Plug 'Gee19/vim-prosession'
 
 " Statusline, bufferline and buffers
 Plug 'itchyny/lightline.vim'
