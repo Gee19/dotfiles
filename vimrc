@@ -67,7 +67,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'Konfekt/FastFold'
 
 " viM iSn'T aN IDe
-Plug 'neoclide/coc.nvim', {'branch': 'feat/use-ts-hi-group', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'farmergreg/vim-lastplace'
