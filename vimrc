@@ -470,6 +470,14 @@ nmap <C-s> <cmd>call lessspace#Toggle()<CR>
 
 " i disable netrw (wsl-open handles WSL)
 nnoremap <silent> gx <cmd>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
+
+" Use a bunch of standard UNIX commands for quick an dirty whitespace-based alignment
+function! Align() abort
+	'<,'>!column -t|sed 's/  \(\S\)/ \1/g'
+	normal gv=
+endfunction
+
+xnoremap <silent> <leader>a :<C-u>silent call Align()<CR>
 " }}}
 " styling {{{
 if !has('nvim')
@@ -652,14 +660,14 @@ if has_key(g:plugs, 'coc.nvim')
 
   " Applying codeAction to the selected region.
   " Example: `<leader>aap` for current paragraph
-  xmap <silent><leader>a  <Plug>(coc-codeaction-selected)
-  nmap <silent><leader>a  <Plug>(coc-codeaction-selected)
+  xmap <silent><leader>c  <Plug>(coc-codeaction-selected)
+  nmap <silent><leader>c  <Plug>(coc-codeaction-selected)
 
   " Remap keys for applying codeAction to the current buffer.
-  nmap <silent><leader>ac  <Plug>(coc-codeaction)
+  nmap <silent><leader>cG  <Plug>(coc-codeaction)
 
   " Fix autofix problem of current line
-  nmap <silent><leader>al <Plug>(coc-fix-current)
+  nmap <silent><leader>cl <Plug>(coc-fix-current)
 
   " Remap for rename current word
   nmap <silent><leader>rn <Plug>(coc-rename)
