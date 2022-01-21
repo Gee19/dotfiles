@@ -530,7 +530,7 @@ if has_key(g:plugs, 'coc.nvim')
 
   let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.18.2/bin/node'
 
-  " dropped coc-elixir,
+  " dropped coc-elixir
   " coc-java requires manual install of jdt-ls
   " neoclide/coc-java/issues/99
   let g:coc_global_extensions = [
@@ -547,7 +547,9 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-sh',
     \ 'coc-react-refactor',
     \ 'coc-vimlsp',
-    \ 'coc-sumneko-lua'
+    \ 'coc-sumneko-lua',
+    \ 'coc-snippets',
+    \ 'https://github.com/rafamadriz/friendly-snippets@main'
   \ ]
 
   " coc-vimlsp highlighting
