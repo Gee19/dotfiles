@@ -181,7 +181,6 @@ endif
 augroup common
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
-  autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()<Esc>
   autocmd FileType python :iabbrev <buffer> rdb from celery.contrib import rdb; rdb.set_trace()<Esc>
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
 
