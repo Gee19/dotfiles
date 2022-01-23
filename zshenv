@@ -53,7 +53,9 @@ if [[ $(uname -r) =~ WSL2$ ]]; then
   fi
 fi
 
+# big brother
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export NEXT_TELEMETRY_DISABLED=1
 
 # Fix GitGutter CursorHold in vim
 export VIM_GITGUTTER_TEST=1
