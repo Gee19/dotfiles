@@ -170,8 +170,13 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d"
 
+function is_in_git_repo() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
+
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
 function fbr() {
+  is_in_git_repo || return
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
   branch=$(echo "$branches" |
@@ -193,18 +198,6 @@ function vzf() {
     return
 }
 bindkey -s '^o' 'vzf\n'
-
-# fzf venvs
-function ezf() {
-  local selected_env
-  selected_env=$(ls $WORKON_HOME | fzf)
-
-  if [ -n "$selected_env" ]; then
-    source "$WORKON_HOME/$selected_env/bin/activate"
-  fi
-  return
-}
-bindkey -s '^[v' 'ezf\n'
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.
