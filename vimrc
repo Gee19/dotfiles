@@ -181,6 +181,7 @@ endif
 " autocmds {{{
 augroup common
   autocmd!
+  autocmd BufWrite *.py call CocAction('format')
   autocmd FileType vim setlocal foldmethod=marker
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
 

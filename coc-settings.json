@@ -10,7 +10,6 @@
   ],
   "coc.preferences.formatOnSaveFiletypes": [
     "cucumber",
-    "python",
     "javascript",
     "javascriptreact",
     "typescript",
