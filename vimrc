@@ -469,13 +469,21 @@ nmap <C-s> <cmd>call lessspace#Toggle()<CR>
 " i disable netrw (wsl-open handles WSL)
 nnoremap <silent> gx <cmd>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
 
-" Use a bunch of standard UNIX commands for quick an dirty whitespace-based alignment
+" Use a bunch of standard UNIX commands for quick and dirty whitespace-based alignment
 function! Align() abort
 	'<,'>!column -t|sed 's/  \(\S\)/ \1/g'
 	normal gv=
 endfunction
 
 xnoremap <silent> <leader>a :<C-u>silent call Align()<CR>
+
+" Fix wildmenu arrow keys in neovim
+" https://vi.stackexchange.com/a/22628
+let edit_re = 'e\%[dit] '
+cnoremap <expr> <up> getcmdline() =~# edit_re && wildmenumode() ? "\<left>" : "\<up>"
+cnoremap <expr> <down> getcmdline() =~# edit_re && wildmenumode() ? "\<right>" : "\<down>"
+cnoremap <expr> <left> getcmdline() =~# edit_re && wildmenumode() ? "\<up>" : "\<left>"
+cnoremap <expr> <right> getcmdline() =~# edit_re && wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 " }}}
 " styling {{{
 if !has('nvim')
