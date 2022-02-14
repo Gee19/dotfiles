@@ -63,3 +63,7 @@ export VIM_GITGUTTER_TEST=1
 # prevent the dreaded pip install -r requirements.txt in system python
 # use gpip() instead
 export PIP_REQUIRE_VIRTUALENV=true
+
+# postgres local db
+export PGUSER=sdlc
+export PGPASSWORD=sdlc
