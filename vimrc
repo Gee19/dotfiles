@@ -85,8 +85,10 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/tagalong.vim'
 
 " neovim/neovim/issues/12587
-Plug 'antoinemadec/FixCursorHold.nvim'
-let g:cursorhold_updatetime = 100 " leave updatetime untouched (and avoid unnecessary swap writes)
+if !has('gui')
+  Plug 'antoinemadec/FixCursorHold.nvim'
+  let g:cursorhold_updatetime = 100 " leave updatetime untouched (and avoid unnecessary swap writes)
+endif
 
 " git
 Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
