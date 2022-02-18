@@ -3,7 +3,7 @@ set -e
 sudo apt -y update && sudo apt -y dist-upgrade
 
 # add-apt-repository / curl / wget / xdg-open / fuse
-sudo apt -y install software-properties-common curl wget xdg-utils fuse
+sudo apt -y install software-properties-common curl wget xdg-utils fuse git-lfs
 
 # Conflicts with nodejs on debian
 sudo apt remove nodejs-doc
@@ -17,8 +17,9 @@ sudo apt -y remove vim
 
 # Node unzip zsh py3-pip tmux mosh vim
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-sudo apt -y install zsh unzip nodejs python3-pip tmux mosh vim-gtk3 gettext-base
+sudo apt -y install zsh unzip nodejs python3-pip tmux mosh vim-gtk3 gettext-base xclip
 
+# TODO: fix this?
 # TPM
 if [[ -d "~/.tmux/plugins/tpm" ]]
 then
@@ -112,6 +113,11 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 sudo pip3 install virtualenv virtualenvwrapper
+
+# go
+# echo "Installing go.."
+# wget "https://go.dev/dl/go1.17.7.linux-amd64.tar.gz"
+# tar xzvf go1.17.7.linux-amd64.tar.gz
 
 # Elixir (conflicts with rabbitmq-server for some reason)
 # wget "https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb"

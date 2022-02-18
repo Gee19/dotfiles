@@ -36,6 +36,7 @@ alias vi="nvim.appimage"
 alias nvim="nvim.appimage"
 
 alias dots="cd ~/dev/dotfiles"
+alias dev="cd ~/dev"
 
 alias mcs="workon mcs && cd ~/dev/management_command_system"
 alias ebank="workon exploitmebank && cd ~/dev/exploitmebank/ExploitMe_Bank"
