@@ -50,33 +50,33 @@ export RPROMPT=""
 
 # Callback for vim mode change
 function zle-keymap-select () {
-    # Only supported in these terminals
-    if [ "$TERM" = "xterm-256color" ] || [ "$TERM" = "xterm-kitty" ] || [ "$TERM" = "screen-256color" ]; then
-        if [ $KEYMAP = vicmd ]; then
-            # Command mode
-            # export RPROMPT="%{$fg[green]%}[NORMAL]%{$reset_color%}"
+  # Only supported in these terminals
+  if [ "$TERM" = "xterm-256color" ] || [ "$TERM" = "xterm-kitty" ] || [ "$TERM" = "screen-256color" ]; then
+    if [ $KEYMAP = vicmd ]; then
+      # Command mode
+      # export RPROMPT="%{$fg[green]%}[NORMAL]%{$reset_color%}"
 
-            # Set block cursor
-            echo -ne '\e[1 q'
-        else
-            # Insert mode
-            # export RPROMPT="%{$fg[blue]%}[INSERT]%{$reset_color%}"
+      # Set block cursor
+      echo -ne '\e[1 q'
+    else
+      # Insert mode
+      # export RPROMPT="%{$fg[blue]%}[INSERT]%{$reset_color%}"
 
-            # Set beam cursor
-            echo -ne '\e[5 q'
-        fi
+      # Set beam cursor
+      echo -ne '\e[5 q'
     fi
+  fi
 
-    if typeset -f prompt_pure_update_vim_prompt_widget > /dev/null; then
-        # Refresh prompt and call Pure super function
-        prompt_pure_update_vim_prompt_widget
-    fi
+  if typeset -f prompt_pure_update_vim_prompt_widget > /dev/null; then
+    # Refresh prompt and call Pure super function
+    prompt_pure_update_vim_prompt_widget
+  fi
 }
 
 zle -N zle-keymap-select
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
+  zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+  echo -ne "\e[5 q"
 }
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
@@ -106,13 +106,13 @@ bindkey '^e' edit-command-line
 
 # Colored output in man pages
 function man() {
-    LESS_TERMCAP_md=$'\e[01;31m' \
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;44;33m' \
-    LESS_TERMCAP_ue=$'\e[0m' \
-    LESS_TERMCAP_us=$'\e[01;32m' \
-    command man "$@"
+  LESS_TERMCAP_md=$'\e[01;31m' \
+  LESS_TERMCAP_me=$'\e[0m' \
+  LESS_TERMCAP_se=$'\e[0m' \
+  LESS_TERMCAP_so=$'\e[01;44;33m' \
+  LESS_TERMCAP_ue=$'\e[0m' \
+  LESS_TERMCAP_us=$'\e[01;32m' \
+  command man "$@"
 }
 
 # Shell into docker container
@@ -144,22 +144,22 @@ function dcsh() {
 
 # git stash diff
 function gsd() {
-    if [ "$1" != "" ]
-    then
-        git stash show -p stash@{$1}
-    else
-        git stash show -p stash@{0}
-    fi
+  if [ "$1" != "" ]
+  then
+    git stash show -p stash@{$1}
+  else
+    git stash show -p stash@{0}
+  fi
 }
 
 # git checkout pr
 function gcopr() {
-    if [ "$1" != "" ]
-    then
-      git fetch origin "refs/pull/$1/head:pr/$1" && git checkout "pr/$1"
-    else
-      return
-    fi
+  if [ "$1" != "" ]
+  then
+    git fetch origin "refs/pull/$1/head:pr/$1" && git checkout "pr/$1"
+  else
+    return
+  fi
 }
 
 # fzf
@@ -189,13 +189,13 @@ bindkey -s '^b' 'fbr\n'
 # pipe fzf output to vim if non-zero exit code
 # TODO: not possible to use --exit-0 and --select-1 in interactive mode?
 function vzf() {
-    local fname
-    fname=$(fzf)
+  local fname
+  fname=$(fzf)
 
-    if [ -n "$fname" ]; then
-      nvim.appimage "$fname"
-    fi
-    return
+  if [ -n "$fname" ]; then
+    nvim.appimage "$fname"
+  fi
+  return
 }
 bindkey -s '^o' 'vzf\n'
 
@@ -237,6 +237,14 @@ bindkey -M viins '^[^?' backward-kill-word
 
 function gpip() {
   PIP_REQUIRE_VIRTUALENV=false pip "$@"
+}
+
+function rzsh() {
+  if [ -n "$VIRTUAL_ENV" ]; then
+    deactivate
+  fi
+  znap restart
+  return
 }
 
 # zprof

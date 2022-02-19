@@ -2,8 +2,6 @@
 # Normal: <Esc>:_expand_alias
 # Insert: <C-x>a
 
-alias reload_zsh="deactivate; znap restart"
-
 alias ..="cd .."
 
 alias gs="git status"
@@ -37,18 +35,18 @@ alias nvim="nvim.appimage"
 
 alias dots="cd ~/dev/dotfiles"
 alias dev="cd ~/dev"
+alias docs="cd ~/Documents"
+alias dls="cd ~/Downloads"
 
 alias mcs="workon mcs && cd ~/dev/management_command_system"
 alias ebank="workon exploitmebank && cd ~/dev/exploitmebank/ExploitMe_Bank"
 alias ebank3="workon ebank3 && cd ~/dev/exploitmebank/ExploitMe_Bank"
 alias csec="workon checksec2 && cd ~/dev/checksec"
-alias cdsec="workon djangosec && cd ~/dev/django-security"
+alias djsec="workon djangosec && cd ~/dev/django-security"
 alias csd="workon sde3 && cd ~/dev/sdelements/sigma"
-alias csd2="workon sde2 && cd ~/dev/sde2/sigma"
 alias cst="workon sdetools3 && cd ~/dev/sdetools"
-alias cst2="workon sdetools2 && cd ~/dev/sdetools2"
 alias cpca="workon pca && cd ~/dev/project-creation-automation"
-alias cpkg="cd /home/jhaine/Envs/sde3/lib/python3.6/site-packages"
+alias cpkg="cd /home/jhaine/Envs/sde3/lib/python3.8/site-packages"
 
 alias nds="node devServer.js"
 alias yd="yarn dev"
