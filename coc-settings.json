@@ -16,7 +16,13 @@
     "typescriptreact",
     "css"
   ],
-  "cucumber.enabled": true,
+  "cucumber.enable": true,
+  "cucumber.glue": [
+    "cypress/integration/**/*.cucumber.ts"
+  ],
+  "cucumber.features": [
+    "cypress/integration/**/*.feature"
+  ],
   "diagnostic.checkCurrentLine": true,
   "diagnostic.messageTarget": "float",
   "diagnostic.separateRelatedInformationAsDiagnostics": true,

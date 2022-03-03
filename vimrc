@@ -569,7 +569,7 @@ if has_key(g:plugs, 'coc.nvim')
       \]
 
   " wip
-  set runtimepath^=/home/jhaine/dev/coc-cucumber
+  set runtimepath^=/home/jhaine/dev/coc-cucumber-new
 
   " use <tab> for trigger completion and navigate to the next completion item
   inoremap <silent><expr> <TAB>
