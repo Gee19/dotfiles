@@ -26,5 +26,7 @@
 
 `chsh -s /usr/bin/zsh`
 
+`sudo cp /home/jhaine/.local/kitty.app/lib/kitty/terminfo/x/xterm-kitty /usr/share/terminfo/x/`
+
 ## TODO
 - fix elixir env. install breaks rabbitmq-server
