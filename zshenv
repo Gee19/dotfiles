@@ -38,9 +38,6 @@ export PATH="$GOPATH/bin:$PATH"
 # Python
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
-# Cucumber
-export CUKEFILES="$HOME/dev/sdelements/cypress/integration/**/*.cucumber.ts"
-
 # Node/nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
