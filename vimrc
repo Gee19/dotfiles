@@ -105,6 +105,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 " Always load last
+Plug 'lambdalisue/glyph-palette.vim'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " }}}
@@ -516,11 +517,14 @@ let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
 augroup nerdtree_fixes
   autocmd!
 
+  " colored glyphs
+  autocmd FileType nerdtree call glyph_palette#apply()
+
   " Never open in NERDTree buffer
   autocmd BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
 
   " Close vi if NERDTree is last and only buffer
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 " }}}
 " coc.nvim {{{
