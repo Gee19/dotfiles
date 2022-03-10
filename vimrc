@@ -184,8 +184,8 @@ endif
 " autocmds {{{
 augroup common
   autocmd!
-  autocmd BufWrite *.py call CocAction('format')
-  autocmd FileType vim setlocal foldmethod=marker
+  autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441
+  autocmd FileType vim setlocal foldmethod=marker " manual folds in vimrc
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
 
   autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o " newline formatting
