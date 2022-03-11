@@ -1,0 +1,2 @@
+sudo systemctl cancel
+sudo systemctl stop systemd-suspend.service
