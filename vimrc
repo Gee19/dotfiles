@@ -32,6 +32,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-tbone'
 
 " me
