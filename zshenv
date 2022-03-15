@@ -12,8 +12,8 @@ setopt ignoreeof  # Same as setting IGNOREEOF=10 (Ctrl+d x10 to close shell)
 
 export HISTSIZE=100000
 export HISTFILESIZE=100000
-export EDITOR="nvim.appimage"
-export VISUAL="nvim.appimage"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/.ripgreprc"

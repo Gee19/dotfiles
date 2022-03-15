@@ -193,7 +193,7 @@ function vzf() {
   fname=$(fzf)
 
   if [ -n "$fname" ]; then
-    nvim.appimage "$fname"
+    nvim "$fname"
   fi
   return
 }

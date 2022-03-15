@@ -5,7 +5,7 @@
 	signingkey = 0CBAF74277601D93
 [core]
 	excludesfile = /home/jhaine/.gitignore_global
-	editor = nvim.appimage
+	editor = nvim
 [commit]
 	template = /home/jhaine/.stCommitMsg
 	gpgsign = true
@@ -23,7 +23,7 @@
 	keepBackup = false
 [mergetool "fugitive"]
 	; open neovim and invoke :Git mergetool
-	cmd = nvim.appimage -c \"Git mergetool\"
+	cmd = nvim -c \"Git mergetool\"
 [pull]
 	rebase = false
 [init]

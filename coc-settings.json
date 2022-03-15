@@ -28,6 +28,7 @@
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
   "diagnostic.virtualText": false,
   "diagnostic.virtualTextCurrentLineOnly": false,
+  "Lua.telemetry.enable": false,
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,

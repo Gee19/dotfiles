@@ -19,6 +19,9 @@ sudo apt -y remove vim
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt -y install zsh unzip nodejs python3-pip tmux mosh vim-gtk3 gettext-base xclip
 
+# Neovim build deps
+sudo apt -y install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config doxygen
+
 # TODO: fix this?
 # TPM
 if [[ -d "~/.tmux/plugins/tpm" ]]
