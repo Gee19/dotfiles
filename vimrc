@@ -265,6 +265,11 @@ set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
 set iskeyword+=- " treat dash-separated-words as word text object
 set wildmenu " Enhanced tabline completion
+
+if has('patch-8.2.4325')
+  set wildoptions=pum " Use popupmenu for wildmenu in vim
+endif
+
 set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
 set matchtime=2 " Time to show matching pair
 set matchpairs+=<:> " Add <> to matchpairs
