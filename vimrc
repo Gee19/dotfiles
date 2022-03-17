@@ -550,8 +550,6 @@ if has_key(g:plugs, 'coc.nvim')
   let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.18.2/bin/node'
 
   " dropped coc-elixir
-  " coc-java requires manual install of jdt-ls
-  " neoclide/coc-java/issues/99
   let g:coc_global_extensions = [
     \ 'coc-prettier',
     \ 'coc-pyright',
@@ -1003,9 +1001,4 @@ function! VisualNumber()
 endfunction
 xnoremap in :<C-u>call VisualNumber()<CR>
 onoremap in :<C-u>normal vin<CR>
-
-" last change pseudo-text objects | ik ak
-xnoremap ik `]o`[
-onoremap ik :<C-u>normal vik<CR>
-onoremap ak :<C-u>normal vikV<CR>
 " }}}
