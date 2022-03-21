@@ -550,7 +550,7 @@ if has_key(g:plugs, 'coc.nvim')
     let g:coc_disable_startup_warning = 1
   endif
 
-  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.18.2/bin/node'
+  let g:coc_node_path = '/home/jhaine/.nvm/versions/node/v14.19.1/bin/node'
 
   " dropped coc-elixir
   let g:coc_global_extensions = [

@@ -67,7 +67,7 @@
   "python.formatting.blackPath": "~/.local/bin/black",
   "python.venvPath": "~/Envs",
   "snippets.ultisnips.enable": false,
-  "tsserver.npm": "/home/jhaine/.nvm/versions/node/v14.18.2/bin/npm",
+  "tsserver.npm": "/home/jhaine/.nvm/versions/node/v14.19.1/bin/npm",
   "javascript.referencesCodeLens.enable": false,
   "javascript.implementationsCodeLens.enable": false,
   "typescript.referencesCodeLens.enable": false,
