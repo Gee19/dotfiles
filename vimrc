@@ -156,6 +156,14 @@ if !has('nvim')
   let &t_SR = "\e[4 q"
   let &t_EI = "\e[2 q"
 
+  " WSL yank support
+  if executable("clip.exe")
+      augroup WSLYank
+          autocmd!
+          autocmd TextYankPost * if v:event.operator ==# 'y' | call system('clip.exe', @0) | endif
+      augroup END
+  endif
+
   " Fix GitGutter CursorHold
   autocmd VimEnter * call gitgutter#process_buffer(bufnr(''), 0)
 
@@ -406,6 +414,10 @@ nnoremap <C-u> <C-u>zz
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
+
+" System clipboard
+map <leader>y "+y
+map <leader>p "*p
 
 " Toggle word wrapping
 map <leader>w :set wrap!<CR>
