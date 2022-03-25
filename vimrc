@@ -615,7 +615,7 @@ if has_key(g:plugs, 'coc.nvim')
     if pumvisible()
       return coc#_select_confirm()
     else
-      return "\<C-g>u\<CR>"
+      return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>\<c-r>=EndwiseDiscretionary()\<CR>"
     endif
   endfunction
 
