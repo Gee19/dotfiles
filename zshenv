@@ -35,6 +35,9 @@ export PATH="${M2_HOME}/bin:${PATH}"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
+# Rust
+export PATH="$HOME/.cargo/env:$PATH"
+
 # Python
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
