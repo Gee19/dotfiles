@@ -37,6 +37,7 @@ export PATH="$GOPATH/bin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/env:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Python
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
