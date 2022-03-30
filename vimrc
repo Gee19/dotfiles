@@ -255,7 +255,7 @@ set noswapfile " No swap file on buffer load
 set autoread " Auto read files changed outside of vim
 set gdefault " Substitute all matches in a line
 set cmdheight=2 " Better display for messages
-set signcolumn=yes " Show left sidebar
+set signcolumn=number " Always show & merge signcolumn/number column
 set updatetime=100 " Fix coc diagnostic messages
 set colorcolumn=120 " Long line warning
 set timeoutlen=500 ttimeoutlen=0 " Mapping and keycode delays
