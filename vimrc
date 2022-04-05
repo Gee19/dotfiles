@@ -255,7 +255,7 @@ set noswapfile " No swap file on buffer load
 set autoread " Auto read files changed outside of vim
 set gdefault " Substitute all matches in a line
 set cmdheight=2 " Better display for messages
-set signcolumn=number " Always show & merge signcolumn/number column
+set signcolumn=yes " Always show signcolumn
 set updatetime=100 " Fix coc diagnostic messages
 set colorcolumn=120 " Long line warning
 set timeoutlen=500 ttimeoutlen=0 " Mapping and keycode delays
@@ -973,16 +973,16 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbone')
   let g:gbone_run_mapping = '<leader>x'
   let g:gbone_run_ft_map = {
-  \ 'python': 'python3.8',
+  \ 'python': 'python3',
   \ 'javascript': 'node',
   \ }
-  let g:gbone_repl_mapping = '<leader>rl'
+  let g:gbone_repl_mapping = '<leader>r'
   let g:gbone_test_mapping = '<leader>t'
   let g:gbone_ft_map = {
   \ 'python': 'pytest -vvv',
   \ 'javascript': 'yarn test',
   \ 'elixir': 'mix test',
-  \ 'spec': 'npx cypress run --browser firefox --spec'
+  \ 'cucumber': 'csd && cd ../cypress && yarn cypress:ci --spec'
   \ }
   let g:gbone_ft_strategy = {
   \ 'python': 'smart',
