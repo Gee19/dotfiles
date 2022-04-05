@@ -36,6 +36,15 @@ fi
 bindkey -v
 export KEYTIMEOUT=1
 
+# Yank to the system clipboard
+function vi-yank-xclip {
+  zle vi-yank
+  echo "$CUTBUFFER" | xclip -in -selection clipboard
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
 # Dependencies for vim status + colours
 zmodload zsh/zle
 autoload -U colors && colors
