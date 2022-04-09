@@ -99,6 +99,12 @@ wget "https://github.com/ClementTsang/bottom/releases/download/0.6.4/bottom_0.6.
 sudo dpkg -i bottom_0.6.4_amd64.deb
 rm bottom_0.6.4_amd64.deb
 
+# Golang
+wget "https://go.dev/dl/go1.18.linux-amd64.tar.gz"
+rm -rf ~/go
+rm -rf /usr/local/go && tar -C $HOME -xzf go1.18.linux-amd64.tar.gz
+rm go1.18.linux-amd64.tar.gz
+
 # NVM again
 mkdir -p ~/.nvm
 wget "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh"
@@ -116,11 +122,6 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 sudo pip3 install virtualenv virtualenvwrapper
-
-# go
-# echo "Installing go.."
-# wget "https://go.dev/dl/go1.17.7.linux-amd64.tar.gz"
-# tar xzvf go1.17.7.linux-amd64.tar.gz
 
 # Elixir (conflicts with rabbitmq-server for some reason)
 # wget "https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb"
