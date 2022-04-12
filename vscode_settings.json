@@ -1,0 +1,14 @@
+{
+    "workbench.colorTheme": "Tokyo Night Storm",
+     "files.exclude": {
+      "**/node_modules/**": true
+    },
+    "files.watcherExclude": {
+      "**/node_modules/**": true
+    },
+    "telemetry.telemetryLevel": "off",
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
+    "vscode-neovim.mouseSelectionStartVisualMode": true,
+    "redhat.telemetry.enabled": false,
+    "window.menuBarVisibility": "toggle"
+}
