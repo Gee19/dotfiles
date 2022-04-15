@@ -193,6 +193,8 @@ endif
 " neovim only {{{
 if has('nvim')
   set jumpoptions=stack " Make the jumplist behave like the tagstack
+  let g:do_filetype_lua = 1 " Use new filetype.lua detection
+  let g:did_load_filetypes = 0 " Disable filetype.vim in favour of the above
   lua require('ts')
 endif
 " }}}
