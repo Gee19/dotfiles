@@ -22,9 +22,12 @@ if has('nvim')
   Plug 'p00f/nvim-ts-rainbow'
 endif
 
+" i cant believe you've done this
+Plug 'machakann/vim-sandwich'
+
 " tpope
+" Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -1039,4 +1042,28 @@ let g:dbs = [
 \ { 'name': 'sdlc', 'url': s:sdlc_connection_string },
 \ { 'name': 'sdlc2', 'url': s:sdlc2_connection_string},
 \ ]
+" }}}
+" {{{ sandwich
+if has_key(g:plugs, 'vim-sandwich')
+  " Use surround mappings
+  runtime macros/sandwich/keymap/surround.vim
+
+  " Disable highlight completely
+  " call operator#sandwich#set('all', 'all', 'highlight', 0)
+
+  " Toggle highlight
+  let s:sandwich_highlight_on = 1
+  function! s:sandwich_highlight_toggle() abort
+    if s:sandwich_highlight_on
+      call operator#sandwich#set('all', 'all', 'highlight', 0)
+      let s:sandwich_highlight_on = 0
+      echo 'sandwich: highlight OFF'
+    else
+      call operator#sandwich#set('all', 'all', 'highlight', 3)
+      let s:sandwich_highlight_on = 1
+      echo 'sandwich: highlight ON'
+    endif
+  endfunction
+  command! -nargs=0 SandwichHighlightToggle call s:sandwich_highlight_toggle()
+endif
 " }}}
