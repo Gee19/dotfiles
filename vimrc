@@ -20,6 +20,7 @@ if has('nvim')
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'p00f/nvim-ts-rainbow'
+  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 endif
 
 " i cant believe you've done this
