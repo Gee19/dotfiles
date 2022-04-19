@@ -1,9 +1,10 @@
 bluetooth-quick-connect@bjarosze.gmail.com
-dash-to-dock@micxgx.gmail.com
+ding@rastersoft.com
 disable-workspace-switcher-popup@github.com
-no-title-bar@franglais125.gmail.com
 remove-alt-tab-delay@tetrafox.pw
+sound-output-device-chooser@kgshank.net
 switcher@landau.fi
 unite@hardpixel.eu
+useless-gaps@pimsnel.com
 user-theme@gnome-shell-extensions.gcampax.github.com
 workspace-switcher@tomha.github.com
