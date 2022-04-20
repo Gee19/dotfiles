@@ -166,10 +166,10 @@ if !has('nvim')
 
   " WSL yank support
   if executable("clip.exe")
-      augroup WSLYank
-          autocmd!
-          autocmd TextYankPost * if v:event.operator ==# 'y' | call system('clip.exe', @0) | endif
-      augroup END
+    augroup WSLYank
+      autocmd!
+      autocmd TextYankPost * if v:event.operator ==# 'y' | call system('clip.exe', @0) | endif
+    augroup END
   endif
 
   " Fix GitGutter CursorHold
