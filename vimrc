@@ -15,110 +15,110 @@ packadd! matchit
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
 " Theme
-Plug 'joshdick/onedark.vim'
+Plug 'https://github.com/joshdick/onedark.vim'
 if has('nvim')
-  Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'p00f/nvim-ts-rainbow'
-  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+  Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
+  Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'https://github.com/p00f/nvim-ts-rainbow'
+  Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
 endif
 
 " i cant believe you've done this
-Plug 'machakann/vim-sandwich'
+Plug 'https://github.com/machakann/vim-sandwich'
 
 " tpope
-" Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-scriptease'
-Plug 'tpope/vim-dadbod'
-Plug 'tpope/vim-tbone'
+" Plug 'https://github.com/tpope/vim-surround'
+Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'https://github.com/tpope/vim-endwise'
+Plug 'https://github.com/tpope/vim-commentary'
+Plug 'https://github.com/tpope/vim-repeat'
+Plug 'https://github.com/tpope/vim-obsession'
+Plug 'https://github.com/tpope/vim-eunuch'
+Plug 'https://github.com/tpope/vim-scriptease'
+Plug 'https://github.com/tpope/vim-dadbod'
+Plug 'https://github.com/tpope/vim-tbone'
 
 " dadbod ui
 " autocomplete handled by coc-db
-Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'https://github.com/kristijanhusak/vim-dadbod-ui'
 
 " me
-Plug 'Gee19/vim-gbone'
-Plug 'Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
-Plug 'Gee19/lessspace.vim' " Added toggle func
-Plug 'Gee19/vim-peekaboo' " Fixes conflict with lessspace + floating window
+Plug 'https://github.com/Gee19/vim-gbone'
+Plug 'https://github.com/Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
+Plug 'https://github.com/Gee19/lessspace.vim' " Added toggle func
+Plug 'https://github.com/Gee19/vim-peekaboo' " Fixes conflict with lessspace + floating window
 let g:peekaboo_window="float"
 
 " gbone dependency
-Plug 'tyru/current-func-info.vim'
+Plug 'https://github.com/tyru/current-func-info.vim'
 
 " Auto session management
-Plug 'dhruvasagar/vim-prosession'
+Plug 'https://github.com/dhruvasagar/vim-prosession'
 
 " Statusline, bufferline and buffers
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug 'moll/vim-bbye' " Delete buffers without affecting layout
+Plug 'https://github.com/itchyny/lightline.vim'
+Plug 'https://github.com/mengelbrecht/lightline-bufferline'
+Plug 'https://github.com/moll/vim-bbye' " Delete buffers without affecting layout
 
 " Text Objects
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-indent'
-Plug 'glts/vim-textobj-comment'
-Plug 'kana/vim-textobj-function'
-Plug 'PeterRincker/vim-argumentative' " Argument text objects i, a, >,
+Plug 'https://github.com/kana/vim-textobj-user'
+Plug 'https://github.com/kana/vim-textobj-indent'
+Plug 'https://github.com/glts/vim-textobj-comment'
+Plug 'https://github.com/kana/vim-textobj-function'
+Plug 'https://github.com/PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 
 " Whatever doesn't have a treesitter parser..
-Plug 'towolf/vim-helm'
-Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'https://github.com/towolf/vim-helm'
+Plug 'https://github.com/Vimjas/vim-python-pep8-indent'
 
 " Folds
-Plug 'Konfekt/FastFold'
+Plug 'https://github.com/Konfekt/FastFold'
 
 " viM iSn'T aN IDe
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'farmergreg/vim-lastplace'
-Plug 'alvan/vim-closetag'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'wsdjeg/vim-fetch'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase && cp ./hexokinase/hexokinase ${GOPATH}/bin/hexokinase' }
+Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'https://github.com/christoomey/vim-tmux-navigator'
+Plug 'https://github.com/scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'https://github.com/farmergreg/vim-lastplace'
+Plug 'https://github.com/alvan/vim-closetag'
+Plug 'https://github.com/editorconfig/editorconfig-vim'
+Plug 'https://github.com/wsdjeg/vim-fetch'
+Plug 'https://github.com/rrethy/vim-hexokinase', { 'do': 'make hexokinase && cp ./hexokinase/hexokinase ${GOPATH}/bin/hexokinase' }
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba', 'hsl', 'hsla', 'colour_names']
 
 " inkarkat
 " {register}-gr-{motion} dot repeatable
-Plug 'inkarkat/vim-ReplaceWithRegister'
-Plug 'inkarkat/vim-ReplaceWithSameIndentRegister'
-Plug 'inkarkat/vim-visualrepeat'
+Plug 'https://github.com/inkarkat/vim-ReplaceWithRegister'
+Plug 'https://github.com/inkarkat/vim-ReplaceWithSameIndentRegister'
+Plug 'https://github.com/inkarkat/vim-visualrepeat'
 
 " AndrewRadev / tags
-Plug 'AndrewRadev/switch.vim'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'AndrewRadev/tagalong.vim'
+Plug 'https://github.com/AndrewRadev/switch.vim'
+Plug 'https://github.com/AndrewRadev/splitjoin.vim'
+Plug 'https://github.com/AndrewRadev/tagalong.vim'
 
 " neovim/neovim/issues/12587
 if !has('gui')
-  Plug 'antoinemadec/FixCursorHold.nvim'
+  Plug 'https://github.com/antoinemadec/FixCursorHold.nvim'
   let g:cursorhold_updatetime = 100 " leave updatetime untouched (and avoid unnecessary swap writes)
 endif
 
 " git
-Plug 'rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
-Plug 'rhysd/git-messenger.vim'
-Plug 'rhysd/committia.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'https://github.com/rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
+Plug 'https://github.com/rhysd/git-messenger.vim'
+Plug 'https://github.com/rhysd/committia.vim'
+Plug 'https://github.com/airblade/vim-gitgutter'
 
 " grep/search & quickfix improvements
-Plug 'rhysd/clever-f.vim'
-Plug 'romainl/vim-qf'
+Plug 'https://github.com/rhysd/clever-f.vim'
+Plug 'https://github.com/romainl/vim-qf'
 
 " junegunn op
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'https://github.com/junegunn/fzf'
+Plug 'https://github.com/junegunn/fzf.vim'
 
 " Always load last
-Plug 'lambdalisue/glyph-palette.vim'
-Plug 'ryanoasis/vim-devicons'
+Plug 'https://github.com/lambdalisue/glyph-palette.vim'
+Plug 'https://github.com/ryanoasis/vim-devicons'
 call plug#end()
 " }}}
 " shell/colorscheme/grepprg {{{
@@ -207,8 +207,10 @@ endif
 augroup common
   autocmd!
   autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441
-  autocmd FileType vim setlocal foldmethod=marker " manual folds in vimrc
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
+
+  autocmd FileType vim setlocal foldmethod=marker conceallevel=2
+  autocmd FileType vim :call matchadd('Conceal', 'https://github.com/', 10, -1, {'conceal': ''})
 
   autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o " newline formatting
   autocmd VimResized * wincmd = " Automatically equalize splits when resized

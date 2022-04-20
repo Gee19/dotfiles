@@ -3,7 +3,7 @@ require'nvim-treesitter.configs'.setup {
     'javascript',
     'typescript',
     'tsx',
-    -- 'vim',
+    'vim',
     'yaml',
     'regex',
     'toml',
@@ -20,7 +20,11 @@ require'nvim-treesitter.configs'.setup {
     'html',
     'cmake'
   },
-  highlight = { enable = true },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = { 'vim' },
+    max_file_lines = 10000,
+  },
   indent = { enable = false },
   incremental_selection = { enable = false },
   textobjects = { enable = true },
