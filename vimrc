@@ -23,7 +23,7 @@ if has('nvim')
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
 endif
 
-" i cant believe you've done this
+" surround replacement
 Plug 'https://github.com/machakann/vim-sandwich'
 
 " tpope
@@ -195,12 +195,56 @@ if !has('nvim')
   augroup END
 endif
 " }}}
-" neovim only {{{
+" neovim only + lua {{{
 if has('nvim')
-  set jumpoptions=stack " Make the jumplist behave like the tagstack
-  let g:do_filetype_lua = 1 " Use new filetype.lua detection
-  let g:did_load_filetypes = 0 " Disable filetype.vim in favour of the above
-  lua require('ts')
+set jumpoptions=stack " Make the jumplist behave like the tagstack
+let g:do_filetype_lua = 1 " Use new filetype.lua detection
+let g:did_load_filetypes = 0 " Disable filetype.vim in favour of the above
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {
+    'javascript',
+    'typescript',
+    'tsx',
+    'vim',
+    'yaml',
+    'regex',
+    'toml',
+    'lua',
+    'css',
+    'scss',
+    'json',
+    'c_sharp',
+    'bash',
+    'elixir',
+    'python',
+    'dockerfile',
+    'go',
+    'html',
+    'cmake'
+  },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = { 'vim' },
+    max_file_lines = 10000,
+    use_languagetree = true,
+  },
+  indent = { enable = false },
+  incremental_selection = { enable = false },
+  textobjects = { enable = true },
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = 5000,
+  }
+}
+
+require'nvim-treesitter.configs'.setup {
+  context_commentstring = {
+    enable = true
+  }
+}
+EOF
 endif
 " }}}
 " autocmds {{{
@@ -209,6 +253,7 @@ augroup common
   autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
 
+  " Conceal full github URL to keep 'gx' functionality
   autocmd FileType vim setlocal foldmethod=marker conceallevel=2
   autocmd FileType vim :call matchadd('Conceal', 'https://github.com/', 10, -1, {'conceal': ''})
 
@@ -594,18 +639,11 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-yaml',
     \ 'coc-sh',
     \ 'coc-react-refactor',
-    \ 'coc-vimlsp',
     \ 'coc-sumneko-lua',
     \ 'coc-snippets',
     \ 'coc-db',
     \ 'https://github.com/rafamadriz/friendly-snippets@main'
   \ ]
-
-  " coc-vimlsp highlighting
-  let g:markdown_fenced_languages = [
-      \ 'vim',
-      \ 'help'
-      \]
 
   " wip
   set runtimepath^=/home/jhaine/dev/coc-cucumber
