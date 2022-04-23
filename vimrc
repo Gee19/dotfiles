@@ -52,8 +52,9 @@ let g:peekaboo_window="float"
 " gbone dependency
 Plug 'https://github.com/tyru/current-func-info.vim'
 
-" Auto session management
-Plug 'https://github.com/dhruvasagar/vim-prosession'
+" dhruvasagar
+Plug 'https://github.com/dhruvasagar/vim-prosession' " Auto session management
+Plug 'https://github.com/dhruvasagar/vim-zoom' " Split zoom like tmux
 
 " Statusline, bufferline and buffers
 Plug 'https://github.com/itchyny/lightline.vim'
@@ -283,11 +284,12 @@ let g:lightline = {
       \ 'colorscheme': s:scheme,
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'file_with_method', 'modified' ] ]
+      \             [ 'cocstatus', 'readonly', 'file_with_method', 'zoom_status', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
       \   'file_with_method': 'FilenameWithMethod',
+      \   'zoom_status': 'zoom#statusline'
       \ },
       \ }
 
