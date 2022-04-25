@@ -127,7 +127,7 @@ if has('termguicolors')
   set termguicolors " Use true colours
 endif
 
-if &term =~ '256color'
+if $TERM =~ '256color'
   " disable Background Color Erase (BCE) so that color schemes
   " render properly when inside 256-color tmux and GNU screen.
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
@@ -360,7 +360,7 @@ set nowritebackup
 
 " enable bracketed paste when used within tmux
 " :h xterm-bracketed-paste
-if !has('gui_running') && !has('nvim') && exists('$TMUX')
+if !has('gui_running') && !has('nvim') && $TERM =~ '^\%(screen\|tmux\)'
   " Better mouse support, see  :help 'ttymouse'
   set ttymouse=sgr
 
@@ -1022,11 +1022,11 @@ xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " }}}
 " tbone/gbone {{{
-if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbone')
+if $TERM =~ '^\%(screen\|tmux\)' && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbone')
   let g:gbone_run_mapping = '<leader>x'
   let g:gbone_run_ft_map = {
   \ 'python': 'python3',
-  \ 'javascript': 'node',
+  \ 'javascript': 'node'
   \ }
   let g:gbone_repl_mapping = '<leader>r'
   let g:gbone_test_mapping = '<leader>t'
@@ -1038,7 +1038,7 @@ if exists('$TMUX') && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbo
   \ }
   let g:gbone_ft_strategy = {
   \ 'python': 'smart',
-  \ 'elixir': 'line',
+  \ 'elixir': 'line'
   \ }
 endif
 " }}}
