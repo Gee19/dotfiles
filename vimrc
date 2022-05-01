@@ -147,10 +147,10 @@ command! D smile
 
 " Use ripgrep for vim :grep
 if executable('rg')
-  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepprg=rg\ --vimgrep\ --no-heading\ --color=never\ --smart-case
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 else
-  set grepprg=grep\ -nrH\ --exclude=tags\ --exclude-dir=.git\ --exclude-dir=node_modules
+  set grepprg=grep\ -nrH\ --exclude-dir=tags\ --exclude-dir=.git\ --exclude-dir=node_modules
   set grepformat=%f:%l:%m
 endif
 " }}}
