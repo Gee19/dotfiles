@@ -45,7 +45,7 @@
     "typescriptreact",
     "css"
   ],
-  "cucumber.enable": true,
+  "cucumber.enable": false,
   "cucumber.glue": [
     "cypress/integration/**/*.cucumber.ts"
   ],
