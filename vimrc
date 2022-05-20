@@ -1,5 +1,6 @@
 " vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
 " built-ins  {{{
+" disable some plugins
 let g:loaded_netrwPlugin=1
 let g:loaded_gzip=1
 let g:loaded_man=1
@@ -35,12 +36,7 @@ Plug 'https://github.com/tpope/vim-repeat'
 Plug 'https://github.com/tpope/vim-obsession'
 Plug 'https://github.com/tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-scriptease'
-Plug 'https://github.com/tpope/vim-dadbod'
 Plug 'https://github.com/tpope/vim-tbone'
-
-" dadbod ui
-" autocomplete handled by coc-db
-Plug 'https://github.com/kristijanhusak/vim-dadbod-ui'
 
 " me
 Plug 'https://github.com/Gee19/vim-gbone'
@@ -53,8 +49,9 @@ let g:peekaboo_window="float"
 Plug 'https://github.com/tyru/current-func-info.vim'
 
 " dhruvasagar
-Plug 'https://github.com/dhruvasagar/vim-prosession' " Auto session management
+Plug 'https://github.com/dhruvasagar/vim-prosession' " Auto session management, requires obsession
 Plug 'https://github.com/dhruvasagar/vim-zoom' " Split zoom like tmux
+nmap <C-w>z <Plug>(zoom-toggle)
 
 " Statusline, bufferline and buffers
 Plug 'https://github.com/itchyny/lightline.vim'
@@ -646,7 +643,6 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-react-refactor',
     \ 'coc-sumneko-lua',
     \ 'coc-snippets',
-    \ 'coc-db',
     \ 'https://github.com/rafamadriz/friendly-snippets@main'
   \ ]
 
@@ -1076,18 +1072,6 @@ function! VisualNumber()
 endfunction
 xnoremap in :<C-u>call VisualNumber()<CR>
 onoremap in :<C-u>normal vin<CR>
-" }}}
-" dadbod ui {{{
-let g:db_ui_auto_execute_table_helpers = 1
-let g:db_ui_show_database_icon=1
-let g:db_ui_use_nerd_fonts=1
-let g:db_ui_show_help=0
-let s:sdlc_connection_string = 'postgres://'.$PGUSER.':'.$PGPASSWORD.'@localhost:5432/'.$PGUSER
-let s:sdlc2_connection_string = 'postgres://'.$PGUSER.'2:'.$PGPASSWORD.'2@localhost:5432/'.$PGUSER.'2'
-let g:dbs = [
-\ { 'name': 'sdlc', 'url': s:sdlc_connection_string },
-\ { 'name': 'sdlc2', 'url': s:sdlc2_connection_string},
-\ ]
 " }}}
 " {{{ sandwich
 if has_key(g:plugs, 'vim-sandwich')
