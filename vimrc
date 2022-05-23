@@ -24,9 +24,6 @@ if has('nvim')
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
 endif
 
-" surround replacement
-Plug 'https://github.com/machakann/vim-sandwich'
-
 " tpope
 " Plug 'https://github.com/tpope/vim-surround'
 Plug 'https://github.com/tpope/vim-fugitive'
@@ -40,6 +37,7 @@ Plug 'https://github.com/tpope/vim-tbone'
 
 " me
 Plug 'https://github.com/Gee19/vim-gbone'
+Plug 'https://github.com/Gee19/vim-sandwich' " Add insert mappings from surround
 Plug 'https://github.com/Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
 Plug 'https://github.com/Gee19/lessspace.vim' " Added toggle func
 Plug 'https://github.com/Gee19/vim-peekaboo' " Fixes conflict with lessspace + floating window
@@ -549,9 +547,6 @@ nnoremap <A-k> :<C-u>silent! move-2<CR>==
 nnoremap <A-j> :<C-u>silent! move+<CR>==
 xnoremap <A-k> :<C-u>silent! '<,'>move-2<CR>gv=gv
 xnoremap <A-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
-
-" lessspace
-nmap <C-s> <cmd>call lessspace#Toggle()<CR>
 
 " i disable netrw (wsl-open handles WSL)
 nnoremap <silent> gx <cmd>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
