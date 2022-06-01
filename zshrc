@@ -202,7 +202,7 @@ function vzf() {
   fname=$(fzf)
 
   if [ -n "$fname" ]; then
-    nvim "$fname"
+    $EDITOR "$fname"
   fi
   return
 }
