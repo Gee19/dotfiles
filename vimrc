@@ -217,7 +217,8 @@ require'nvim-treesitter.configs'.setup {
     'dockerfile',
     'go',
     'html',
-    'cmake'
+    'cmake',
+    'graphql'
   },
   highlight = {
     enable = true,
