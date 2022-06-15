@@ -256,4 +256,7 @@ function rzsh() {
   return
 }
 
+# flan autocomplete setup
+FLAN_AC_ZSH_SETUP_PATH=$HOME/.cache/@sdelements/flan/autocomplete/zsh_setup && test -f $FLAN_AC_ZSH_SETUP_PATH && source $FLAN_AC_ZSH_SETUP_PATH
+
 # zprof
