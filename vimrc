@@ -22,7 +22,6 @@ if has('nvim')
   Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'https://github.com/p00f/nvim-ts-rainbow'
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
-  Plug 'https://gitlab.com/yorickpeterse/nvim-pqf'
 endif
 
 " tpope
@@ -38,6 +37,7 @@ Plug 'https://github.com/tpope/vim-tbone'
 
 " me
 Plug 'https://github.com/Gee19/vim-gbone'
+Plug 'https://github.com/gee19/vim-pqf'
 Plug 'https://github.com/Gee19/vim-sandwich' " Add insert mappings from surround
 Plug 'https://github.com/Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
 Plug 'https://github.com/Gee19/lessspace.vim' " Added toggle func
@@ -198,7 +198,6 @@ set jumpoptions=stack " Make the jumplist behave like the tagstack
 let g:do_filetype_lua = 1 " Use new filetype.lua detection
 let g:did_load_filetypes = 0 " Disable filetype.vim in favour of the above
 lua << EOF
-require('pqf').setup()
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'javascript',
@@ -258,7 +257,6 @@ augroup common
   " Conceal full github URL to keep 'gx' functionality
   autocmd FileType vim setlocal foldmethod=marker conceallevel=2
   autocmd FileType vim :call matchadd('Conceal', 'https://github.com/', 10, -1, {'conceal': ''})
-  autocmd FileType vim :call matchadd('Conceal', 'https://gitlab.com/', 10, -1, {'conceal': ''})
 
   autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o " newline formatting
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
