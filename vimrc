@@ -195,8 +195,6 @@ endif
 " neovim only + lua {{{
 if has('nvim')
 set jumpoptions=stack " Make the jumplist behave like the tagstack
-let g:do_filetype_lua = 1 " Use new filetype.lua detection
-let g:did_load_filetypes = 0 " Disable filetype.vim in favour of the above
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
