@@ -316,6 +316,10 @@ if has('patch-8.2.4325')
   set wildoptions=pum " Use popupmenu for wildmenu in vim
 endif
 
+if has('vim9script') && v:version >= 900
+  set wildoptions+=fuzzy " Use fuzzy-matching to find completion matches
+endif
+
 set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
 set matchtime=2 " Time to show matching pair
 set matchpairs+=<:> " Add <> to matchpairs
