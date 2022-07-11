@@ -136,7 +136,14 @@ sudo pip3 install virtualenv virtualenvwrapper
 # sudo apt install -y redis
 
 # Vim from source
+# Ubuntu:
 # Check sources checkbox in software updates
+# sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
+
+# Debian
+# deb-src http://deb.debian.org/debian buster main
+
+# sudo apt update
 # sudo apt build-dep vim-gtk
 
 exit 0
