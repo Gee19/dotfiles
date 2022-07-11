@@ -123,13 +123,6 @@ if has('termguicolors')
   set termguicolors " Use true colours
 endif
 
-if $TERM =~ '256color'
-  " disable Background Color Erase (BCE) so that color schemes
-  " render properly when inside 256-color tmux and GNU screen.
-  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-  set t_ut=
-endif
-
 let g:tokyonight_style = "night"
 let s:scheme = has('nvim') ? 'tokyonight' : 'onedark'
 let s:shell = exists('$SHELL') ? $SHELL : '/bin/sh'
@@ -171,25 +164,6 @@ if !has('nvim')
 
   " Fix GitGutter CursorHold
   autocmd VimEnter * call gitgutter#process_buffer(bufnr(''), 0)
-
-  " Match tabline background color
-  autocmd VimEnter * call SetupLightlineColors()
-  function SetupLightlineColors() abort
-    " transparent background in statusbar
-    let l:palette = lightline#palette()
-
-    let l:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-    let l:palette.inactive.middle = l:palette.normal.middle
-    let l:palette.tabline.middle = l:palette.normal.middle
-
-    call lightline#colorscheme()
-  endfunction
-
-  augroup vim_scroll_fix
-    " Fix bg color on scroll
-    autocmd!
-    autocmd VimEnter * highlight Normal ctermbg=none
-  augroup END
 endif
 " }}}
 " neovim only + lua {{{
@@ -304,7 +278,7 @@ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 " Show devicons
 let g:lightline#bufferline#enable_devicons = 1
 " }}}
-" global vars {{{
+" globals {{{
 set clipboard^=unnamed,unnamedplus " Trying system clipboard & linux 'selection' clipboard
 set path+=** " Search all directories recursively, * for fuzzy
 set hidden " New buffers with unsaved changes
@@ -439,6 +413,13 @@ cabbrev CL CocList
 
 " Quickfix
 cabbrev cf Cfilter
+
+" Commit hash at 'Commit:' header with 'Special' highlight group
+highlight link gitmessengerHash Special
+
+" Italics (Operator Mono OP)
+highlight Comment gui=italic cterm=italic
+highlight htmlArg gui=italic cterm=italic
 " }}}
 " mappings {{{
 let mapleader = "\<Space>"
@@ -566,27 +547,6 @@ cnoremap <expr> <up> getcmdline() =~# edit_re && wildmenumode() ? "\<left>" : "\
 cnoremap <expr> <down> getcmdline() =~# edit_re && wildmenumode() ? "\<right>" : "\<down>"
 cnoremap <expr> <left> getcmdline() =~# edit_re && wildmenumode() ? "\<up>" : "\<left>"
 cnoremap <expr> <right> getcmdline() =~# edit_re && wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
-" }}}
-" styling {{{
-if !has('nvim')
-  " Completion menu styling
-  highlight Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#373d48 gui=NONE
-  highlight PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
-
-  " Commit hash at 'Commit:' header with 'Special' highlight group
-  highlight link gitmessengerHash Special
-
-  " Git gutter
-  highlight GitGutterAdd    guifg=#98c379 guibg=bg ctermfg=2 ctermbg=bg
-  highlight GitGutterChange guifg=#e5c07b guibg=bg ctermfg=3 ctermbg=bg
-  highlight GitGutterDelete guifg=#e06c75 guibg=bg ctermfg=1 ctermbg=bg
-endif
-
-" Italics (Operator Mono OP)
-highlight Comment gui=italic
-highlight Comment cterm=italic
-highlight htmlArg gui=italic
-highlight htmlArg cterm=italic
 " }}}
 " NERDTree {{{
 let g:NERDTreeWinSize = 37
@@ -1072,23 +1032,5 @@ onoremap in :<C-u>normal vin<CR>
 if has_key(g:plugs, 'vim-sandwich')
   " Use surround mappings
   runtime macros/sandwich/keymap/surround.vim
-
-  " Disable highlight completely
-  " call operator#sandwich#set('all', 'all', 'highlight', 0)
-
-  " Toggle highlight
-  let s:sandwich_highlight_on = 1
-  function! s:sandwich_highlight_toggle() abort
-    if s:sandwich_highlight_on
-      call operator#sandwich#set('all', 'all', 'highlight', 0)
-      let s:sandwich_highlight_on = 0
-      echo 'sandwich: highlight OFF'
-    else
-      call operator#sandwich#set('all', 'all', 'highlight', 3)
-      let s:sandwich_highlight_on = 1
-      echo 'sandwich: highlight ON'
-    endif
-  endfunction
-  command! -nargs=0 SandwichHighlightToggle call s:sandwich_highlight_toggle()
 endif
 " }}}
