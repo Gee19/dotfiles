@@ -135,4 +135,8 @@ sudo pip3 install virtualenv virtualenvwrapper
 # sudo apt install -y rabbitmq-server --fix-missing
 # sudo apt install -y redis
 
+# Vim from source
+# Check sources checkbox in software updates
+# sudo apt build-dep vim-gtk
+
 exit 0
