@@ -21,6 +21,7 @@ alias gsl="git stash list"
 alias gsa="git stash apply"
 alias gcp="git cherry-pick"
 alias got="git"
+alias gcmb="git branch --merged | grep -Ev '(^\*|master)' | xargs git branch -d"
 
 alias rdb="socat readline tcp:"
 alias tma="tmux a -t"
