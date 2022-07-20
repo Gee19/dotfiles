@@ -894,19 +894,24 @@ function! Grep(...) abort
     return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
 endfunction
 
-function! TrimEscapeRegA() abort
-  let query = getreg('a')
-  let trimmedQuery = s:trim(query)
-  let escapedQuery = shellescape(trimmedQuery, "'#%\\")
-  call setreg('a', escapedQuery)
-endfunction
+" https://learnvimscriptthehardway.stevelosh.com/chapters/34.html
+nnoremap <leader>g :set operatorfunc=GrepOperator<cr>g@
+vnoremap <leader>g :<c-u>call GrepOperator(visualmode())<cr>
 
-function! s:trim(str) abort
-  if exists('*trim')
-    return trim(a:str)
-  else
-    return matchstr(a:str, '^\s*\zs.\{-}\ze\s*$')
-  endif
+function! GrepOperator(type)
+    let saved_unnamed_register = @@
+
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[y`]
+    else
+        return
+    endif
+
+    silent execute "Grep " . shellescape(@@) . " ."
+
+    let @@ = saved_unnamed_register
 endfunction
 " }}}
 " more quickfix {{{
@@ -922,15 +927,6 @@ augroup custom_qf_mapping
   autocmd FileType qf nnoremap <buffer> gk :.Keep<CR>
   autocmd FileType qf xnoremap <buffer> gk :'<,'>Keep<CR>
 augroup END
-
-" open quickfix with last search
-nnoremap <silent> <leader>? :Grep <C-r>/<CR>
-
-" async grep current visual selection
-xnoremap <leader>/ "ay:call TrimEscapeRegA()<CR>:Grep <C-r>a<CR>
-
-" async grep word under cursor
-nnoremap <leader>* "ayiw:call TrimEscapeRegA()<CR>:Grep <C-r>a<CR>
 " }}}
 " mostly git related {{{
 " committia.vim
