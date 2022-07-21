@@ -527,11 +527,17 @@ let g:splitjoin_join_mapping = ''
 nnoremap gss :SplitjoinSplit<cr>
 nnoremap gsj :SplitjoinJoin<cr>
 
+" Fix meta keys in vim
+if !has('nvim')
+  set <M-k>=k
+  set <M-j>=j
+endif
+
 " Move lines up or down and fix indentation
-nnoremap <A-k> :<C-u>silent! move-2<CR>==
-nnoremap <A-j> :<C-u>silent! move+<CR>==
-xnoremap <A-k> :<C-u>silent! '<,'>move-2<CR>gv=gv
-xnoremap <A-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+nnoremap <M-k> :<C-u>silent! move-2<CR>==
+nnoremap <M-j> :<C-u>silent! move+<CR>==
+xnoremap <M-k> :<C-u>silent! '<,'>move-2<CR>gv=gv
+xnoremap <M-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 
 " i disable netrw (wsl-open handles WSL)
 nnoremap <silent> gx <cmd>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
