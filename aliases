@@ -47,7 +47,7 @@ alias csd="cd ~/dev/sdelements/sigma && poetry_activate"
 alias csd2="workon sde2 && cd ~/dev/sde2/sigma"
 alias cst="workon sdetools3 && cd ~/dev/sdetools"
 alias cpca="workon pca && cd ~/dev/project-creation-automation"
-alias cpkg="cd /home/jhaine/Envs/sde3/lib/python3.8/site-packages"
+alias cpkg="cd /home/jhaine/.cache/pypoetry/virtualenvs/sdelements-FOqhXTaE-py3.8/lib/python3.8/site-packages"
 
 alias nds="node devServer.js"
 alias yd="yarn dev"
