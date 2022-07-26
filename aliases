@@ -86,6 +86,6 @@ alias gjd="git jump diff"
 alias gjds="git jump diff --staged"
 alias gjg="git jump grep"
 
-alias poetry_activate='source "$( poetry env info --path )/bin/activate"'
+alias pactivate='source "$( poetry env info --path )/bin/activate"'
 
 alias sudo='sudo '

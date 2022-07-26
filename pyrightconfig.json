@@ -10,7 +10,7 @@
     ""
   ],
   "stubPath": "",
-  "venvPath": "/home/jhaine/Envs",
+  "venvPath": "/home/jhaine/.cache/pypoetry/virtualenvs/",
   "reportMissingImports": true,
   "reportMissingTypeStubs": false,
   "reportPropertyTypeMismatch": false,
