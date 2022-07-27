@@ -227,8 +227,8 @@ augroup common
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
 
   " Conceal full github URL to keep 'gx' functionality
-  autocmd FileType vim setlocal foldmethod=marker conceallevel=2
-  autocmd FileType vim :call matchadd('Conceal', 'https://github.com/', 10, -1, {'conceal': ''})
+  autocmd FileType vim,tmux setlocal foldmethod=marker conceallevel=2
+  autocmd FileType vim,tmux :call matchadd('Conceal', 'https://github.com/', 10, -1, {'conceal': ''})
 
   autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o " newline formatting
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
