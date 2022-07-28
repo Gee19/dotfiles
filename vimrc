@@ -617,7 +617,7 @@ if has_key(g:plugs, 'coc.nvim')
   " use <tab> for trigger completion and navigate to the next completion item
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
+        \ CheckBackspace ? "\<TAB>" :
         \ coc#refresh()
 
   " use shift-<tab> to navigate to previous completion item
@@ -636,7 +636,7 @@ if has_key(g:plugs, 'coc.nvim')
   endfunction
 
   " neoclide/coc.nvim/issues/28
-  function! s:check_back_space() abort
+  function! CheckBackspace() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
@@ -662,12 +662,12 @@ if has_key(g:plugs, 'coc.nvim')
   command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
   " Use K to show/hide documentation in preview window
-  function! s:show_documentation() abort
+  function! ShowDocumentation() abort
     if coc#float#has_float()
       call coc#float#close_all()
     elseif (index(['vim','help'], &filetype) >= 0)
       execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
+    elseif (CocAction('hasProvider', 'hover'))
       call CocActionAsync('doHover')
     else
       execute '!' . &keywordprg . " " . expand('<cword>')
@@ -699,7 +699,7 @@ if has_key(g:plugs, 'coc.nvim')
 
   nmap <silent> gD <cmd>call CocAction('jumpDefinition', 'vsplit')<CR>
   nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> K <cmd>call <SID>show_documentation()<CR>
+  nmap <silent> K <cmd>call ShowDocumentation()<CR>
 
   " Use `[d` and `]d` to navigate diagnostics
   nmap <silent> [d <Plug>(coc-diagnostic-prev)
