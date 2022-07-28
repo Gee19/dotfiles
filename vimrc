@@ -280,7 +280,7 @@ let g:lightline#bufferline#enable_devicons = 1
 " }}}
 " globals {{{
 set clipboard^=unnamed,unnamedplus " Trying system clipboard & linux 'selection' clipboard
-set path+=** " Search all directories recursively, * for fuzzy
+set path=.,,** " Search all directories recursively, * for fuzzy, drop /usr/include
 set hidden " New buffers with unsaved changes
 set noswapfile " No swap file on buffer load
 set autoread " Auto read files changed outside of vim
