@@ -631,10 +631,10 @@ if has_key(g:plugs, 'coc.nvim')
   " enter selects the first completion item and confirm the completion when no item has been selected
   " fixes coc + endwise conflict
   " tpope/vim-endwise/issues/125
-  inoremap <silent> <CR> <C-r>=<SID>coc_confirm()<CR>
+  inoremap <expr> <cr> <SID>coc_confirm()
   function! s:coc_confirm() abort
-    if pumvisible()
-      return coc#_select_confirm()
+    if coc#pum#visible()
+      return coc#pum#confirm()
     else
       return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>\<c-r>=EndwiseDiscretionary()\<CR>"
     endif
