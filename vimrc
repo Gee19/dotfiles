@@ -616,12 +616,17 @@ if has_key(g:plugs, 'coc.nvim')
 
   " use <tab> for trigger completion and navigate to the next completion item
   inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ CheckBackspace ? "\<TAB>" :
-        \ coc#refresh()
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
 
   " use shift-<tab> to navigate to previous completion item
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
   " enter selects the first completion item and confirm the completion when no item has been selected
   " fixes coc + endwise conflict
@@ -633,12 +638,6 @@ if has_key(g:plugs, 'coc.nvim')
     else
       return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>\<c-r>=EndwiseDiscretionary()\<CR>"
     endif
-  endfunction
-
-  " neoclide/coc.nvim/issues/28
-  function! CheckBackspace() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
 
   " Use <c-space> to trigger completion.
