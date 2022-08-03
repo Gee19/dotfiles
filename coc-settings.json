@@ -1,6 +1,5 @@
 {
   "suggest.noselect": false,
-  "suggest.enablePreview": true,
   "suggest.removeDuplicateItems": true,
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
@@ -52,9 +51,9 @@
   "cucumber.features": [
     "cypress/integration/**/*.feature"
   ],
-  "diagnostic.checkCurrentLine": true,
+  "diagnostic.checkCurrentLine": false,
   "diagnostic.messageTarget": "float",
-  "diagnostic.separateRelatedInformationAsDiagnostics": true,
+  "diagnostic.separateRelatedInformationAsDiagnostics": false,
   "diagnostic.virtualText": false,
   "diagnostic.virtualTextCurrentLineOnly": false,
   "Lua.telemetry.enable": false,

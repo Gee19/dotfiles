@@ -32,6 +32,7 @@ alias pip3='noglob pip3'
 
 alias v="nvim"
 alias vi="nvim"
+alias prov="v --cmd 'profile start vim_profile.log' --cmd 'profile func *' --cmd 'profile file *'"
 
 alias dots="cd ~/dev/dotfiles"
 alias dev="cd ~/dev"

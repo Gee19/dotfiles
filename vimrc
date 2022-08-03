@@ -37,7 +37,7 @@ Plug 'https://github.com/tpope/vim-tbone'
 
 " me
 Plug 'https://github.com/Gee19/vim-gbone'
-Plug 'https://github.com/gee19/vim-pqf'
+Plug 'https://github.com/Gee19/vim-pqf'
 Plug 'https://github.com/Gee19/vim-sandwich' " Add insert mappings from surround
 Plug 'https://github.com/Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
 Plug 'https://github.com/Gee19/lessspace.vim' " Added toggle func
