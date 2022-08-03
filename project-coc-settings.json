@@ -2,7 +2,7 @@
   "python.pythonPath": "/home/jhaine/.cache/pypoetry/virtualenvs/sdelements-FOqhXTaE-py3.8/bin/python",
   "python.linting.flake8Args": [
     "--config='${workspaceFolder}/.common_configurations/python/lint/.flake8'",
-    "--ignore=S101,D200,D202,D205,D100,D101,D103,D102,D105,D106,D107,E501,D401,W503"
+    "--ignore=S101,D200,D202,D205,D100,D101,D103,D102,D105,D106,D107,E501,D400,D401,W503"
   ],
   "eslint.options": {
     "configFile": "/home/jhaine/dev/sdelements/.common_configurations/js/lint/.eslintrc"

@@ -14,6 +14,7 @@
   "reportMissingImports": true,
   "reportMissingTypeStubs": false,
   "reportPropertyTypeMismatch": false,
+  "reportGeneralTypeIssues": false,
   "pythonVersion": "3.8",
   "pythonPlatform": "Linux",
   "executionEnvironments": [
