@@ -79,6 +79,7 @@ Plug 'https://github.com/farmergreg/vim-lastplace'
 Plug 'https://github.com/alvan/vim-closetag'
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/wsdjeg/vim-fetch'
+Plug 'https://github.com/neoclide/jsonc.vim'
 Plug 'https://github.com/rrethy/vim-hexokinase', { 'do': 'make hexokinase && cp ./hexokinase/hexokinase ${GOPATH}/bin/hexokinase' }
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba', 'hsl', 'hsla', 'colour_names']
 
