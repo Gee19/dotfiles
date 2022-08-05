@@ -441,8 +441,8 @@ for char in [ 'x', 'c', 's', 'X', 'C', 'S' ]
 	execute 'xnoremap ' . char . ' "_' . char
 endfor
 
-" Don't touch unnamed register when pasting over visual selection
-xnoremap <expr> p 'pgv"' . v:register . 'y'
+" Don't unnamed unnamed register when pasting over visual selection (use 'P' instead)
+" xnoremap <expr> p 'pgv"' . v:register . 'y'
 
 " Don't jump to next occurrence of search when using */g* (doesn't pollute registers/jump list)
 nnoremap <silent><expr> * v:count ? '*'
