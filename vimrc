@@ -82,6 +82,7 @@ Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
 Plug 'https://github.com/rrethy/vim-hexokinase', { 'do': 'make hexokinase && cp ./hexokinase/hexokinase ${GOPATH}/bin/hexokinase' }
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba', 'hsl', 'hsla', 'colour_names']
+let g:Hexokinase_ftOptOutPatterns = {'text': ['colour_names']}
 
 " inkarkat
 " {register}-gr-{motion} dot repeatable
