@@ -68,7 +68,7 @@ alias pytst="pytest --no-migrations"
 
 alias mailserv="python3 -m smtpd -n -c DebuggingServer localhost:1025"
 
-alias start_celery="celery -A . worker --app=celery_mod -l debug"
+alias start_celery="celery -A celery_mod worker -l debug"
 alias pas_celery="COMMAND_INPUT_FILE_FOLDER=~/dev/management_command_system/dev_test_folder/input COMMAND_OUTPUT_FILE_FOLDER=~/dev/management_command_system/dev_test_folder/output celery worker --app=pas_celery_mod -l info -Q command_worker.run_command -Q command_worker.delete_sde_custom_plugin -n pas_command_worker@%h"
 
 alias stopdock='docker stop $(docker ps -a -q)'
