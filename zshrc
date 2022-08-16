@@ -199,7 +199,7 @@ bindkey -s '^b' 'fbr\n'
 # TODO: not possible to use --exit-0 and --select-1 in interactive mode?
 function vzf() {
   local fname
-  fname=$(fzf)
+  fname=$(fzf-tmux -d 15)
 
   if [ -n "$fname" ]; then
     $EDITOR "$fname"
