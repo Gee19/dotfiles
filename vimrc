@@ -709,6 +709,9 @@ if has_key(g:plugs, 'coc.nvim')
   " Show all diagnostics
   nnoremap <silent><leader>d <cmd>CocList diagnostics<cr>
 
+  " Toggle diagnostics
+  nnoremap <leader>D <cmd>call CocAction('diagnosticToggle')<CR>
+
   " Show symbols in workspace
   nnoremap <silent><expr> <leader>fs "<cmd>CocList -I --input=".expand('<cword>')." symbols<cr>"
   nnoremap <silent><expr> <leader>fc "<cmd>CocList -I --input=".expand('<cword>')." symbols -kind Class<cr>"
@@ -770,7 +773,7 @@ nnoremap <silent> <C-p> <cmd>GitFiles<cr>
 nnoremap <silent> <C-f> <cmd>Files<cr>
 
 " buffers
-nnoremap <silent> <leader>b <cmd>Buffers<cr>
+nnoremap <silent> <C-b> <cmd>Buffers<cr>
 " nnoremap <leader>b :buffer *
 " nnoremap <leader>b :buffer<Space><C-R>=nr2char(&wildcharm)<CR><S-Tab>
 
