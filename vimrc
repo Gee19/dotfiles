@@ -712,6 +712,7 @@ if has_key(g:plugs, 'coc.nvim')
   " Toggle diagnostics
   nnoremap <leader>D <cmd>call CocAction('diagnosticToggle')<CR>
 
+  " TODO: use operatorfunc to make this work in visual mode (see GrepOperator)
   " Show symbols in workspace
   nnoremap <silent><expr> <leader>fs "<cmd>CocList -I --input=".expand('<cword>')." symbols<cr>"
   nnoremap <silent><expr> <leader>fc "<cmd>CocList -I --input=".expand('<cword>')." symbols -kind Class<cr>"
@@ -763,6 +764,7 @@ command! -bang -nargs=* Gd call fzf#vim#gitfiles('?', {'dir': system('git rev-pa
 " fullscreen ripgrep global search
 nnoremap <silent> <leader><S-f> :Rg!<cr>
 
+" TODO: use operatorfunc to make this work in visual mode (see GrepOperator)
 " fullscreen ripgrep global search current word
 nnoremap <silent> <expr> <leader>f "<cmd>Rg!\ ".expand('<cword>')."<cr>"
 

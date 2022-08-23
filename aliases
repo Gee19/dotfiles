@@ -89,4 +89,8 @@ alias gjg="git jump grep"
 
 alias pactivate='source "$( poetry env info --path )/bin/activate"'
 
+# i'll forget
+alias build_nvim='cd ~/dev/neovim && git pull && make clean && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install'
+alias build_vim='cd ~/dev/vim && git pull && make clean && make && sudo make install'
+
 alias sudo='sudo '
