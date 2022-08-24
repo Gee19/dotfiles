@@ -175,7 +175,7 @@ function gcopr() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export BAT_THEME='TwoDark'
 export FZF_COMPLETION_OPTS='--info=inline'
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .yarn --exclude .firebase'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .yarn --exclude .firebase --exclude sde-content'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d"
 
