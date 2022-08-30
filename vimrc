@@ -245,7 +245,7 @@ augroup common
 augroup END
 " }}}
 " Lightline + Tabline {{{
-function FilenameWithMethod() abort
+function! FilenameWithMethod() abort
   let filename = expand('%')
   let cfunc = cfi#format('%s', '')
   if len(cfunc) > 0
@@ -311,7 +311,6 @@ set relativenumber " Show line numbers from current location
 set scrolloff=8 " Keep X lines above/below cursor when near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
-set iskeyword+=- " treat dash-separated-words as word text object
 set wildmenu " Enhanced tabline completion
 
 if has('patch-8.2.4325')
@@ -465,6 +464,8 @@ map <leader>p "*p
 
 " Toggle word wrapping
 map <leader>w :set wrap!<CR>
+
+map <leader>v :source $MYVIMRC<CR>
 
 " beginning/end of the command line
 cnoremap <C-a> <Home>
