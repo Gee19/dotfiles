@@ -22,6 +22,7 @@ if has('nvim')
   Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'https://github.com/p00f/nvim-ts-rainbow'
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
+  Plug 'https://github.com/lewis6991/impatient.nvim'
 endif
 
 " tpope
@@ -172,6 +173,7 @@ endif
 if has('nvim')
 set jumpoptions=stack " Make the jumplist behave like the tagstack
 lua << EOF
+require'impatient'
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'javascript',
