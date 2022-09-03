@@ -50,6 +50,7 @@ Plug 'https://github.com/tyru/current-func-info.vim'
 
 " dhruvasagar
 Plug 'https://github.com/dhruvasagar/vim-prosession' " Auto session management, requires obsession
+let g:prosession_per_branch = 1
 Plug 'https://github.com/dhruvasagar/vim-zoom' " Split zoom like tmux
 nmap <C-w>z <Plug>(zoom-toggle)
 
