@@ -23,10 +23,12 @@ if has('nvim')
   Plug 'https://github.com/p00f/nvim-ts-rainbow'
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'https://github.com/lewis6991/impatient.nvim'
+  Plug 'https://github.com/levouh/tint.nvim'
+  Plug 'https://github.com/SmiteshP/nvim-gps'
+  Plug 'https://github.com/fgheng/winbar.nvim'
 endif
 
 " tpope
-" Plug 'https://github.com/tpope/vim-surround'
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'https://github.com/tpope/vim-endwise'
 Plug 'https://github.com/tpope/vim-commentary'
@@ -34,10 +36,8 @@ Plug 'https://github.com/tpope/vim-repeat'
 Plug 'https://github.com/tpope/vim-obsession'
 Plug 'https://github.com/tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-scriptease'
-Plug 'https://github.com/tpope/vim-tbone'
 
 " me
-Plug 'https://github.com/Gee19/vim-gbone'
 Plug 'https://github.com/Gee19/vim-pqf'
 Plug 'https://github.com/Gee19/vim-sandwich' " Add insert mappings from surround
 Plug 'https://github.com/Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
@@ -54,9 +54,8 @@ let g:prosession_per_branch = 1
 Plug 'https://github.com/dhruvasagar/vim-zoom' " Split zoom like tmux
 nmap <C-w>z <Plug>(zoom-toggle)
 
-" Statusline, bufferline and buffers
+" Statusline and buffers
 Plug 'https://github.com/itchyny/lightline.vim'
-Plug 'https://github.com/mengelbrecht/lightline-bufferline'
 Plug 'https://github.com/moll/vim-bbye' " Delete buffers without affecting layout
 
 " Text Objects
@@ -175,6 +174,16 @@ if has('nvim')
 set jumpoptions=stack " Make the jumplist behave like the tagstack
 lua << EOF
 require('impatient')
+require('winbar').setup({
+  enabled = true,
+  exclude_filetype = {
+    'help',
+    'qf',
+    'nerdtree'
+  }
+})
+require('nvim-gps').setup()
+require('tint').setup({ amt = -47, ignore = { 'WinSeparator', 'Status.*', 'LineNr.*', 'WinBar.*'}})
 require('nvim-treesitter.configs').setup{
   ensure_installed = { -- {{{
     'javascript',
@@ -225,6 +234,7 @@ endif
 " autocmds {{{
 augroup common
   autocmd!
+  autocmd BufLeave *#FZF :bd! " autoclose fzf buffer
   autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
 
@@ -244,16 +254,7 @@ augroup common
         \ endif
 augroup END
 " }}}
-" Lightline + Tabline {{{
-function! FilenameWithMethod() abort
-  let filename = expand('%')
-  let cfunc = cfi#format('%s', '')
-  if len(cfunc) > 0
-    return filename . ' > ' . substitute(cfunc, '\.', ' > ', '')
-  endif
-  return filename
-endfunction
-
+" Lightline {{{
 let g:lightline = {
       \ 'colorscheme': s:scheme,
       \ 'active': {
@@ -262,23 +263,12 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
-      \   'file_with_method': 'FilenameWithMethod',
       \   'zoom_status': 'zoom#statusline'
       \ },
       \ }
 
-let g:lightline#bufferline#show_number = 1
-let g:lightline#bufferline#smart_path = 1
-let g:lightline#bufferline#unnamed = '[Empty]'
-let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type = {'buffers': 'tabsel'}
-
 " Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
-" Show devicons
-let g:lightline#bufferline#enable_devicons = 1
 " }}}
 " globals {{{
 set clipboard^=unnamed,unnamedplus " Trying system clipboard & linux 'selection' clipboard
@@ -298,7 +288,6 @@ set laststatus=2 " Always show statusline
 if has('nvim')
   set laststatus=3 " Global statusline
 endif
-set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
 set showbreak=↪ " Show this char when wrapping
 set foldlevelstart=2 " Fold class methods
@@ -776,9 +765,9 @@ nnoremap <silent> <C-p> <cmd>GitFiles<cr>
 nnoremap <silent> <C-f> <cmd>Files<cr>
 
 " buffers
-nnoremap <silent> <C-b> <cmd>Buffers<cr>
-" nnoremap <leader>b :buffer *
-" nnoremap <leader>b :buffer<Space><C-R>=nr2char(&wildcharm)<CR><S-Tab>
+nnoremap <silent> <leader>b <cmd>Buffers<cr>
+nnoremap <C-b> :buffer<Space><C-R>=nr2char(&wildcharm)<CR><S-Tab>
+" nnoremap <C-b> :buffer *
 
 " marks
 nnoremap <silent> <leader>m <cmd>Marks<cr>
@@ -987,27 +976,6 @@ omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
-" }}}
-" tbone/gbone {{{
-if $TERM =~ '^\%(screen\|tmux\)' && has_key(g:plugs, 'vim-tbone') && has_key(g:plugs, 'vim-gbone')
-  let g:gbone_run_mapping = '<leader>x'
-  let g:gbone_run_ft_map = {
-  \ 'python': 'python3',
-  \ 'javascript': 'node'
-  \ }
-  let g:gbone_repl_mapping = '<leader>r'
-  let g:gbone_test_mapping = '<leader>t'
-  let g:gbone_ft_map = {
-  \ 'python': 'pytest -vvv',
-  \ 'javascript': 'yarn test',
-  \ 'elixir': 'mix test',
-  \ 'cucumber': 'csd && cd ../cypress && yarn cypress:ci --spec'
-  \ }
-  let g:gbone_ft_strategy = {
-  \ 'python': 'smart',
-  \ 'elixir': 'line'
-  \ }
-endif
 " }}}
 " tagalong / closetag {{{
 let g:tagalong_verbose = 1

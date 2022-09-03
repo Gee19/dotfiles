@@ -80,9 +80,9 @@ rm -rf ./man/
 rm -rf ./bin/
 
 # BAT
-wget "https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb"
-sudo dpkg -i bat_0.18.3_amd64.deb
-rm bat_0.18.3_amd64.deb
+wget "https://github.com/sharkdp/bat/releases/download/v0.21.0/bat_0.21.0_amd64.deb"
+sudo dpkg -i bat_0.21.0_amd64.deb
+rm bat_0.21.0_amd64.deb
 
 # FD
 wget "https://github.com/sharkdp/fd/releases/download/v8.3.0/fd_8.3.0_amd64.deb"
@@ -112,8 +112,8 @@ sh install.sh
 rm install.sh
 
 # FZF
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --all
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/dev/fzf
+~/dev/fzf/install --all
 
 echo "Installing vim-plug for vim/nvim.."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
