@@ -37,13 +37,17 @@ bindkey -v
 export KEYTIMEOUT=1
 
 # Yank to the system clipboard
-function vi-yank-xclip {
+function vi-yank-os-agnostic () {
   zle vi-yank
-  echo "$CUTBUFFER" | xclip -in -selection clipboard
+  if [ -n "$WSLENV" ]; then
+    echo "$CUTBUFFER" | clip.exe
+  else
+    echo "$CUTBUFFER" | xclip -in -selection clipboard
+  fi
 }
 
-zle -N vi-yank-xclip
-bindkey -M vicmd 'y' vi-yank-xclip
+zle -N vi-yank-os-agnostic
+bindkey -M vicmd 'y' vi-yank-os-agnostic
 
 # Dependencies for vim status + colours
 zmodload zsh/zle

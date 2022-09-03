@@ -179,7 +179,8 @@ require('winbar').setup({
   exclude_filetype = {
     'help',
     'qf',
-    'nerdtree'
+    'nerdtree',
+    'fzf'
   }
 })
 require('nvim-gps').setup()
