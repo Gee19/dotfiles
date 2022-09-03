@@ -173,9 +173,9 @@ endif
 if has('nvim')
 set jumpoptions=stack " Make the jumplist behave like the tagstack
 lua << EOF
-require'impatient'
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = {
+require('impatient')
+require('nvim-treesitter.configs').setup{
+  ensure_installed = { -- {{{
     'javascript',
     'typescript',
     'tsx',
@@ -208,18 +208,15 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = { enable = false },
   incremental_selection = { enable = false },
+  context_commentstring = {
+    enable = true
+  },
   textobjects = { enable = true },
     rainbow = {
       enable = true,
       extended_mode = true,
       max_file_lines = 5000,
-  }
-}
-
-require'nvim-treesitter.configs'.setup {
-  context_commentstring = {
-    enable = true
-  }
+  } -- }}}
 }
 EOF
 endif
