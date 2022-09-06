@@ -263,4 +263,30 @@ function rzsh() {
 # flan autocomplete setup
 FLAN_AC_ZSH_SETUP_PATH=$HOME/.cache/@sdelements/flan/autocomplete/zsh_setup && test -f $FLAN_AC_ZSH_SETUP_PATH && source $FLAN_AC_ZSH_SETUP_PATH
 
+# i'll forget
+function _fetch_build_install_editor() {
+  if pidof $1; then
+    echo "Found $1 PID(s), aborting.."
+    exit 1
+  fi
+
+  cd "~/dev/$1" && git pull
+  make clean && make distclean
+  if [ "$1" == "nvim" ]
+  then
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
+  else
+    make
+  fi
+  sudo make install
+  cd -
+}
+
+function build_nvim() {
+  _fetch_build_install_editor("nvim")
+}
+
+function build_vim() {
+  _fetch_build_install_editor("vim")
+}
 # zprof

@@ -1,6 +1,6 @@
 {
   "include": [
-    "pas"
+    ""
   ],
   "exclude": [
     "**/node_modules",
@@ -19,12 +19,12 @@
   "pythonPlatform": "Linux",
   "executionEnvironments": [
     {
-      "root": "pas",
+      "root": "",
       "pythonVersion": "3.8",
       "extraPaths": [
         ""
       ],
-      "venv": "mcs"
+      "venv": "name-uid-py3.8"
     }
   ]
 }
