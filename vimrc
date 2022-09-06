@@ -54,8 +54,9 @@ let g:prosession_per_branch = 1
 Plug 'https://github.com/dhruvasagar/vim-zoom' " Split zoom like tmux
 nmap <C-w>z <Plug>(zoom-toggle)
 
-" Statusline and buffers
+" Statusline, bufferline and buffers
 Plug 'https://github.com/itchyny/lightline.vim'
+Plug 'https://github.com/mengelbrecht/lightline-bufferline'
 Plug 'https://github.com/moll/vim-bbye' " Delete buffers without affecting layout
 
 " Text Objects
@@ -255,7 +256,7 @@ augroup common
         \ endif
 augroup END
 " }}}
-" Lightline {{{
+" Lightline + Tabline {{{
 let g:lightline = {
       \ 'colorscheme': s:scheme,
       \ 'active': {
@@ -268,8 +269,18 @@ let g:lightline = {
       \ },
       \ }
 
+let g:lightline#bufferline#show_number = 1
+let g:lightline#bufferline#smart_path = 1
+let g:lightline#bufferline#unnamed = '[Empty]'
+let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type = {'buffers': 'tabsel'}
+
 " Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
+" Show devicons
+let g:lightline#bufferline#enable_devicons = 1
 " }}}
 " globals {{{
 set clipboard^=unnamed,unnamedplus " Trying system clipboard & linux 'selection' clipboard
@@ -289,6 +300,7 @@ set laststatus=2 " Always show statusline
 if has('nvim')
   set laststatus=3 " Global statusline
 endif
+set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
 set showbreak=↪ " Show this char when wrapping
 set foldlevelstart=2 " Fold class methods
