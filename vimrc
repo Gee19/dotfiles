@@ -181,11 +181,27 @@ require('winbar').setup({
     'help',
     'qf',
     'nerdtree',
-    'fzf'
+    -- 'fzf'
   }
 })
 require('nvim-gps').setup()
-require('tint').setup({ amt = -47, ignore = { 'WinSeparator', 'Status.*', 'LineNr.*', 'WinBar.*'}})
+require('tint').setup({
+  tint = -37,
+  highlight_ignore_patterns = {
+    'WinSeparator',
+    'Status.*',
+    'LineNr.*',
+    'WinBar.*'
+  },
+  window_ignore_function = function(winid)
+    local bufid = vim.api.nvim_win_get_buf(winid)
+    local buftype = vim.api.nvim_buf_get_option(bufid, "buftype")
+    local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
+
+    -- Do not tint `terminal` or floating windows, tint everything else
+    return buftype == "terminal" or floating or "fzf"
+  end
+})
 require('nvim-treesitter.configs').setup{
   ensure_installed = { -- {{{
     'javascript',
@@ -236,6 +252,9 @@ endif
 " autocmds {{{
 augroup common
   autocmd!
+  if has('nvim')
+    autocmd FileType fzf set winbar= " Workaround to hide winbar on fzf windows
+  endif
   autocmd BufLeave *#FZF :bd! " autoclose fzf buffer
   autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';

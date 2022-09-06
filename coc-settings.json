@@ -73,5 +73,6 @@
   "typescript.referencesCodeLens.enable": false,
   "typescript.implementationsCodeLens.enable": false,
   "notification.disabledProgressSources": ["*"],
-  "pyright.inlayHints.enable": false
+  "pyright.inlayHints.enable": false,
+  "inlayHint.enableParameter": false
 }
