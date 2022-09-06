@@ -123,6 +123,8 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 sudo pip3 install virtualenv virtualenvwrapper
 
+curl -sSL https://install.python-poetry.org | python3 -
+
 # Elixir (conflicts with rabbitmq-server for some reason)
 # wget "https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb"
 # sudo dpkg -i erlang-solutions_2.0_all.deb
