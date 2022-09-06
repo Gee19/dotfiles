@@ -105,11 +105,10 @@ rm -rf ~/go
 rm -rf /usr/local/go && tar -C $HOME -xzf go1.18.linux-amd64.tar.gz
 rm go1.18.linux-amd64.tar.gz
 
-# NVM again
-mkdir -p ~/.nvm
-wget "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh"
-sh install.sh
-rm install.sh
+# fast node manager
+curl -fsSL https://fnm.vercel.app/install | bash
+fnm completions --shell zsh >> /tmp/_fnm
+sudo mv /tmp/_fnm /usr/local/share/zsh/site-functions/_fnm
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/dev/fzf

@@ -25,6 +25,10 @@ export PYTHONPATH=.
 export sde_admin_repo_path="$HOME/dev/sde-admin/"
 export sde_build_repo_path="$HOME/dev/sde-build/"
 
+# fnm
+export PATH=/home/jhaine/.fnm:$PATH
+eval "`fnm env`"
+
 # Yava
 export M2_HOME=/opt/maven
 export MAVEN_HOME=/opt/maven
@@ -41,11 +45,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # Python
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-
-# Node/nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Adding wsl-open as a browser for Windows
 if [[ $(uname -r) =~ WSL2$ ]]; then

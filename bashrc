@@ -126,10 +126,6 @@ export PATH=$HOME/.cargo/bin:$PATH
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Node/nvm
-export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
 # Adding wsl-open as a browser for Bash for Windows
 if [[ $(uname -r) =~ (m|M)icrosoft ]]; then
   if [[ -z $BROWSER ]]; then
