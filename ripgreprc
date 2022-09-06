@@ -9,10 +9,15 @@ web:*.{html,css,js,jsx,ts,tsx}*
 # ignore
 --glob=!.git/*
 --glob=!node_modules/*
+--glob=!sde-content/*
 --glob=!static_common/*
+
 --glob=!*.dll
---glob=!.cache"
---glob=!.sql"
+--glob=!*.cache
+--glob=!*.sql
+--glob=!*.xml
+--glob=!*.csv
+--glob=!*.nessus
 
 --colors=line:none
 --colors=line:style:bold
