@@ -73,7 +73,7 @@ mv ./bin/exa ~/.local/bin/exa
 rm ./exa-linux-x86_64-v0.10.1.zip
 
 # Should probably install man pages/completions
-sudo mv ./completions/exa.zsh /usr/local/share/zsh/site-functions/_exa
+sudo mv ./completions/exa.zsh /usr/share/zsh/vendor-completions/_exa
 sudo mv ./man/exa.1 /usr/share/man/man1/exa.1
 rm -rf ./completions/
 rm -rf ./man/
@@ -106,9 +106,9 @@ rm -rf /usr/local/go && tar -C $HOME -xzf go1.18.linux-amd64.tar.gz
 rm go1.18.linux-amd64.tar.gz
 
 # fast node manager
-curl -fsSL https://fnm.vercel.app/install | bash
+curl -fsSL https://fnm.vercel.app/install | bash --skip-shell
 fnm completions --shell zsh >> /tmp/_fnm
-sudo mv /tmp/_fnm /usr/local/share/zsh/site-functions/_fnm
+sudo mv /tmp/_fnm /usr/share/zsh/vendor-completions/_fnm
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/dev/fzf
