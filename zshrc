@@ -264,16 +264,20 @@ function rzsh() {
 FLAN_AC_ZSH_SETUP_PATH=$HOME/.cache/@sdelements/flan/autocomplete/zsh_setup && test -f $FLAN_AC_ZSH_SETUP_PATH && source $FLAN_AC_ZSH_SETUP_PATH
 
 # i'll forget
-function _fetch_build_install_editor() {
+function buildv() {
   if pidof $1; then
     echo "Found $1 PID(s), aborting.."
     exit 1
   fi
 
-  cd "~/dev/$1" && git pull
+  if [[ "$1" == "nvim" ]]; then
+    cd "$HOME/dev/neovim" && git pull
+  else
+    cd "$HOME/dev/$1" && git pull
+  fi
+
   make clean && make distclean
-  if [ "$1" == "nvim" ]
-  then
+  if [[ "$1" == "nvim" ]]; then
     make CMAKE_BUILD_TYPE=RelWithDebInfo
   else
     make
@@ -282,11 +286,4 @@ function _fetch_build_install_editor() {
   cd -
 }
 
-function build_nvim() {
-  _fetch_build_install_editor("nvim")
-}
-
-function build_vim() {
-  _fetch_build_install_editor("vim")
-}
 # zprof
