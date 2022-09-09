@@ -132,10 +132,12 @@ if has('termguicolors')
   set termguicolors " Use true colours
 endif
 
-let g:tokyonight_style = "night"
-let s:scheme = has('nvim') ? 'tokyonight' : 'onedark'
-let s:shell = exists('$SHELL') ? $SHELL : '/bin/sh'
+" let g:tokyonight_style = "night"
+let s:scheme = has('nvim') ? 'tokyonight-night' : 'onedark'
+let s:lightline_scheme = has('nvim') ? 'tokyonight' : 'onedark'
 execute 'colorscheme ' . s:scheme
+
+let s:shell = exists('$SHELL') ? $SHELL : '/bin/sh'
 execute 'set shell=' . s:shell
 
 " Format JSON
@@ -204,7 +206,7 @@ require('tint').setup({
     local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
 
     -- Do not tint `terminal` or floating windows, tint everything else
-    return buftype == "terminal" or floating or "fzf"
+    return buftype == "terminal" or floating
   end
 })
 require('nvim-treesitter.configs').setup{
@@ -285,7 +287,7 @@ augroup END
 " }}}
 " Lightline + Tabline {{{
 let g:lightline = {
-      \ 'colorscheme': s:scheme,
+      \ 'colorscheme': s:lightline_scheme,
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'readonly', 'file_with_method', 'zoom_status', 'modified' ] ]
