@@ -260,7 +260,7 @@ augroup common
   if has('nvim')
     autocmd FileType fzf set winbar= " Workaround to hide winbar on fzf windows
     autocmd FileType jsonc,json :IndentLinesDisable " Workaround concealed quotes
-    autocmd BufLeave,BufUnload,BufDelete,BufHidden jsonc,json :IndentLinesReset
+    autocmd BufLeave,BufUnload,BufDelete,BufHidden jsonc,json :IndentLinesEnable
   endif
   autocmd BufLeave *#FZF :bd! " autoclose fzf buffer
   autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441
