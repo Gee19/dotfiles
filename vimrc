@@ -408,19 +408,17 @@ set backspace=indent,eol,start
 set virtualedit+=block
 
 " undofiles are incompatible between vim & neovim..
-" also can't set this to a variable for some reason..
-if !has('nvim')
-  if !isdirectory($HOME . "/.vim/undodir")
-    call mkdir($HOME . "/.vim/undodir", "p")
+if has('persistent_undo')
+  if has('nvim')
+    set undodir=~/.config/nvim/undodir
+  else
+    set undodir=~/.vim/undodir
   endif
-  set undodir=~/.vim/undodir
-else
-  if !isdirectory($HOME . "/.config/nvim/undodir")
-    call mkdir($HOME . "/.config/nvim/undodir", "p")
+  if !isdirectory(expand(&undodir))
+    call mkdir(&undodir, 'p')
   endif
-  set undodir=~/.config/nvim/undodir
+  set undofile
 endif
-set undofile
 
 " Yank absolute path to system clipboard
 cabbrev yfp let @+=expand("%:p")<CR>
@@ -574,6 +572,11 @@ function! Align() abort
 endfunction
 
 xnoremap <silent> <leader>a :<C-u>silent call Align()<CR>
+
+" Show the syntax highlight group under cursor
+nnoremap <F10> <cmd>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+                             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+                             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
 
 " Fix wildmenu arrow keys in neovim
 " https://vi.stackexchange.com/a/22628
