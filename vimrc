@@ -82,6 +82,11 @@ Plug 'https://github.com/alvan/vim-closetag'
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
+Plug 'https://github.com/Yggdroot/indentLine'
+let g:vim_json_conceal=0
+let g:indentLine_char_list = ['¦', '┆', '┊']
+
+" Inline colours
 Plug 'https://github.com/rrethy/vim-hexokinase', { 'do': 'make hexokinase && cp ./hexokinase/hexokinase ${GOPATH}/bin/hexokinase' }
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba', 'hsl', 'hsla', 'colour_names']
 let g:Hexokinase_ftOptOutPatterns = {'text': ['colour_names']}
@@ -254,6 +259,8 @@ augroup common
   autocmd!
   if has('nvim')
     autocmd FileType fzf set winbar= " Workaround to hide winbar on fzf windows
+    autocmd FileType jsonc,json :IndentLinesDisable " Workaround concealed quotes
+    autocmd BufLeave,BufUnload,BufDelete,BufHidden jsonc,json :IndentLinesReset
   endif
   autocmd BufLeave *#FZF :bd! " autoclose fzf buffer
   autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441
@@ -504,9 +511,9 @@ function! WinMove(key) abort
     exec "wincmd ".a:key
     if (t:curwin == winnr())
         if (match(a:key,'[jk]'))
-            wincmd v
+          wincmd v
         else
-            wincmd s
+          wincmd s
         endif
         exec "wincmd ".a:key
     endif
