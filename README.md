@@ -1,6 +1,6 @@
 ## Term
 - Ubuntu: kitty
-- Windows (WSL2): winterm + ubuntu/debian
+- Windows (WSL2): winterm + debian
 
 ## Shell
 - zsh + znap
