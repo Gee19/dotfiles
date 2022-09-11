@@ -24,8 +24,9 @@ if has('nvim')
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'https://github.com/lewis6991/impatient.nvim'
   Plug 'https://github.com/levouh/tint.nvim'
-  Plug 'https://github.com/SmiteshP/nvim-gps'
   Plug 'https://github.com/fgheng/winbar.nvim'
+  Plug 'https://github.com/SmiteshP/nvim-gps'
+  Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 endif
 
 " tpope
@@ -82,9 +83,6 @@ Plug 'https://github.com/alvan/vim-closetag'
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
-Plug 'https://github.com/Yggdroot/indentLine'
-let g:vim_json_conceal=0
-let g:indentLine_char_list = ['¦', '┆', '┊']
 
 " Inline colours
 Plug 'https://github.com/rrethy/vim-hexokinase', { 'do': 'make hexokinase && cp ./hexokinase/hexokinase ${GOPATH}/bin/hexokinase' }
@@ -261,8 +259,6 @@ augroup common
   autocmd!
   if has('nvim')
     autocmd FileType fzf set winbar= " Workaround to hide winbar on fzf windows
-    autocmd FileType jsonc,json :IndentLinesDisable " Workaround concealed quotes
-    autocmd BufLeave,BufUnload,BufDelete,BufHidden jsonc,json :IndentLinesEnable
   endif
   autocmd BufLeave *#FZF :bd! " autoclose fzf buffer
   autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441
@@ -298,6 +294,7 @@ let g:lightline = {
       \ },
       \ }
 
+let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#show_number = 1
 let g:lightline#bufferline#smart_path = 1
 let g:lightline#bufferline#unnamed = '[Empty]'
@@ -309,7 +306,6 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 " Show devicons
-let g:lightline#bufferline#enable_devicons = 1
 " }}}
 " globals {{{
 set clipboard^=unnamed,unnamedplus " Trying system clipboard & linux 'selection' clipboard
