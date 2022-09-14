@@ -21,6 +21,12 @@ alias gsl="git stash list"
 alias gsa="git stash apply"
 alias gcp="git cherry-pick"
 alias got="git"
+
+# edit git diff
+alias egd="git diff --name-only | xargs $EDITOR"
+alias egds="git diff --staged --name-only | xargs $EDITOR"
+
+# git clear merged branches
 alias gcmb="git branch --merged | grep -Ev '(^\*|master)' | xargs git branch -d"
 
 alias rdb="socat readline tcp:"
