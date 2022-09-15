@@ -191,7 +191,7 @@ require('winbar').setup({
 })
 require('nvim-gps').setup()
 require('tint').setup({
-  tint = -37,
+  tint = -25,
   highlight_ignore_patterns = {
     'WinSeparator',
     'Status.*',
