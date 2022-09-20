@@ -1020,7 +1020,8 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " }}}
 " tagalong / closetag {{{
 let g:tagalong_verbose = 1
-let g:closetag_filetypes='html,xhtml,xml,javascriptreact,typescriptreact'
+let g:closetag_filetypes='html,xhtml,xml,jsx,tsx'
+let g:closetag_enable_react_fragment = 1
 " }}}
 " romainl pseudo-text objects {{{
 " https://gist.github.com/romainl/c0a8b57a36aec71a986f1120e1931f20
