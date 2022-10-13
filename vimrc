@@ -541,17 +541,8 @@ nnoremap Q <Nop>
 nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
-" switch.vim
-let g:switch_mapping = "<leader>s"
-
 " spell
 nnoremap <silent> <leader>S <cmd>setlocal spell!<CR>
-
-" splitjoin.vim
-let g:splitjoin_split_mapping = ''
-let g:splitjoin_join_mapping = ''
-nnoremap gss :SplitjoinSplit<cr>
-nnoremap gsj :SplitjoinJoin<cr>
 
 " Fix meta keys in vim
 if !has('nvim')
