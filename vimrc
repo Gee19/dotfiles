@@ -542,7 +542,7 @@ nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 " spell
-nnoremap <silent> <leader>S <cmd>setlocal spell!<CR>
+nnoremap <silent> <leader>s <cmd>setlocal spell!<CR>
 
 " Fix meta keys in vim
 if !has('nvim')
@@ -986,8 +986,8 @@ let g:gitgutter_preview_win_floating = 0
 " mappings
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
-nmap gsh <Plug>(GitGutterStageHunk)
-nmap guh <Plug>(GitGutterUndoHunk)
+nmap <leader>gs <Plug>(GitGutterStageHunk)
+nmap <leader>gu <Plug>(GitGutterUndoHunk)
 
 function! PreviewExists() abort
   for winnum in range(1, winnr('$'))
