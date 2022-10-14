@@ -7,7 +7,6 @@
 	excludesfile = /home/jhaine/.gitignore_global
 	editor = nvim
 [commit]
-	template = /home/jhaine/.stCommitMsg
 	gpgsign = true
 [submodule]
 	recurse = true

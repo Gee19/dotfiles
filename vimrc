@@ -130,7 +130,6 @@ if has('termguicolors')
   set termguicolors " Use true colours
 endif
 
-" let g:tokyonight_style = "night"
 let s:scheme = has('nvim') ? 'tokyonight-night' : 'onedark'
 let s:lightline_scheme = has('nvim') ? 'tokyonight' : 'onedark'
 execute 'colorscheme ' . s:scheme

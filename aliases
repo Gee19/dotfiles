@@ -95,6 +95,7 @@ alias gjd="git jump diff"
 alias gjds="git jump diff --staged"
 alias gjg="git jump grep"
 
+alias python='python3'
 alias pactivate='source "$( poetry env info --path )/bin/activate"'
 
 alias sudo='sudo '
