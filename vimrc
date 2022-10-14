@@ -172,6 +172,7 @@ if !has('nvim')
 
   " Fix GitGutter CursorHold
   autocmd VimEnter * call gitgutter#process_buffer(bufnr(''), 0)
+
 endif
 " }}}
 " autocmds {{{
@@ -240,6 +241,7 @@ set updatetime=100 " Fix coc diagnostic messages
 set colorcolumn=120 " Long line warning
 set timeoutlen=500 ttimeoutlen=0 " Mapping and keycode delays
 set showmatch " When a bracket is inserted, briefly jump to the matching one
+set splitbelow " Put new window below current
 set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
 if has('nvim')
@@ -331,6 +333,12 @@ set backspace=indent,eol,start
 
 " Move cursor by display lines when wrapping
 set virtualedit+=block
+
+" Best method for EN spelling suggestions, only show 5
+set spellsuggest=best,5
+
+" builtin dictionary autocomplete Ctrl_X+Ctrl_K
+set dictionary+=/usr/share/dict/words
 
 " undofiles are incompatible between vim & neovim..
 if has('persistent_undo')
@@ -643,6 +651,13 @@ if has_key(g:plugs, 'coc.nvim')
   nmap <silent> gD <cmd>call CocAction('jumpDefinition', 'vsplit')<CR>
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> K <cmd>call ShowDocumentation()<CR>
+
+  " Function text object
+  " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+  xmap if <Plug>(coc-funcobj-i)
+  xmap af <Plug>(coc-funcobj-a)
+  omap if <Plug>(coc-funcobj-i)
+  omap af <Plug>(coc-funcobj-a)
 
   " Use `[d` and `]d` to navigate diagnostics
   nmap <silent> [d <Plug>(coc-diagnostic-prev)
