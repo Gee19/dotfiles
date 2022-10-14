@@ -174,83 +174,6 @@ if !has('nvim')
   autocmd VimEnter * call gitgutter#process_buffer(bufnr(''), 0)
 endif
 " }}}
-" neovim only + lua {{{
-if has('nvim')
-set jumpoptions=stack " Make the jumplist behave like the tagstack
-lua << EOF
-require('impatient')
-require('winbar').setup({
-  enabled = true,
-  exclude_filetype = {
-    'help',
-    'qf',
-    'nerdtree',
-    -- 'fzf'
-  }
-})
-require('nvim-gps').setup()
-require('tint').setup({
-  tint = -25,
-  highlight_ignore_patterns = {
-    'WinSeparator',
-    'Status.*',
-    'LineNr.*',
-    'WinBar.*'
-  },
-  window_ignore_function = function(winid)
-    local bufid = vim.api.nvim_win_get_buf(winid)
-    local buftype = vim.api.nvim_buf_get_option(bufid, "buftype")
-    local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
-
-    -- Do not tint `terminal` or floating windows, tint everything else
-    return buftype == "terminal" or floating
-  end
-})
-require('nvim-treesitter.configs').setup{
-  ensure_installed = { -- {{{
-    'javascript',
-    'typescript',
-    'tsx',
-    'yaml',
-    'regex',
-    'toml',
-    'css',
-    'scss',
-    'json',
-    'c_sharp',
-    'bash',
-    'elixir',
-    'python',
-    'dockerfile',
-    'go',
-    'html',
-    'cmake',
-    'graphql'
-  },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = { 'vim' },
-    max_file_lines = 10000,
-    use_languagetree = true,
-    disable = function(lang, bufnr)
-      return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1048576
-    end,
-  },
-  indent = { enable = false },
-  incremental_selection = { enable = false },
-  context_commentstring = {
-    enable = true
-  },
-  textobjects = { enable = true },
-    rainbow = {
-      enable = true,
-      extended_mode = true,
-      max_file_lines = 5000,
-  } -- }}}
-}
-EOF
-endif
-" }}}
 " autocmds {{{
 augroup common
   autocmd!
@@ -1043,5 +966,81 @@ onoremap in :<C-u>normal vin<CR>
 if has_key(g:plugs, 'vim-sandwich')
   " Use surround mappings
   runtime macros/sandwich/keymap/surround.vim
+endif
+" }}}
+" neovim only + lua {{{
+if has('nvim')
+set jumpoptions=stack " Make the jumplist behave like the tagstack
+lua << EOF
+require('impatient')
+require('winbar').setup({
+  enabled = true,
+  exclude_filetype = {
+    'help',
+    'qf',
+    'nerdtree',
+  }
+})
+require('nvim-gps').setup()
+require('tint').setup({
+  tint = -25,
+  highlight_ignore_patterns = {
+    'WinSeparator',
+    'Status.*',
+    'LineNr.*',
+    'WinBar.*'
+  },
+  window_ignore_function = function(winid)
+    local bufid = vim.api.nvim_win_get_buf(winid)
+    local buftype = vim.api.nvim_buf_get_option(bufid, "buftype")
+    local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
+
+    -- Do not tint `terminal` or floating windows, tint everything else
+    return buftype == "terminal" or floating
+  end
+})
+require('nvim-treesitter.configs').setup{
+  ensure_installed = { -- {{{
+    'javascript',
+    'typescript',
+    'tsx',
+    'yaml',
+    'regex',
+    'toml',
+    'css',
+    'scss',
+    'json',
+    'c_sharp',
+    'bash',
+    'elixir',
+    'python',
+    'dockerfile',
+    'go',
+    'html',
+    'cmake',
+    'graphql'
+  },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = { 'vim' },
+    max_file_lines = 10000,
+    use_languagetree = true,
+    disable = function(lang, bufnr)
+      return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1048576
+    end,
+  },
+  indent = { enable = false },
+  incremental_selection = { enable = false },
+  context_commentstring = {
+    enable = true
+  },
+  textobjects = { enable = true },
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = 5000,
+  } -- }}}
+}
+EOF
 endif
 " }}}
