@@ -58,6 +58,7 @@
   "diagnostic.virtualTextCurrentLineOnly": false,
   "Lua.telemetry.enable": false,
   "Lua.window.statusBar": false,
+  "prettier.disableLanguages": ["yaml"],
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
