@@ -478,6 +478,8 @@ nnoremap <silent> <leader>s <cmd>setlocal spell!<CR>
 if !has('nvim')
   set <M-k>=k
   set <M-j>=j
+  set <M-o>=o
+  set <M-i>=i
 endif
 
 " Move lines up or down and fix indentation
