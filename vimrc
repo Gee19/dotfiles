@@ -95,10 +95,11 @@ Plug 'https://github.com/inkarkat/vim-ReplaceWithRegister'
 Plug 'https://github.com/inkarkat/vim-ReplaceWithSameIndentRegister'
 Plug 'https://github.com/inkarkat/vim-visualrepeat'
 
-" AndrewRadev / tags
+" AndrewRadev / tags & friends
 Plug 'https://github.com/AndrewRadev/switch.vim'
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 Plug 'https://github.com/AndrewRadev/tagalong.vim'
+Plug 'https://github.com/flwyd/vim-conjoin' " Must come AFTER splitjoin
 
 " neovim/neovim/issues/12587
 if !has('gui')
