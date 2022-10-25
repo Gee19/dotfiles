@@ -564,6 +564,7 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-react-refactor',
     \ 'coc-sumneko-lua',
     \ 'coc-snippets',
+    \ 'coc-vimlsp',
     \ 'https://github.com/rafamadriz/friendly-snippets@main'
   \ ]
 
