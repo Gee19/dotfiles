@@ -369,6 +369,7 @@ cabbrev PI PlugInstall
 cabbrev PU PlugUpdate
 cabbrev CU CocUpdate
 cabbrev CL CocList
+cabbrev CC CocClean
 
 " Quickfix
 cabbrev cf Cfilter
@@ -547,7 +548,6 @@ if has_key(g:plugs, 'coc.nvim')
 
   let g:coc_node_path = '/home/jhaine/.fnm/node-versions/v14.20.0/installation/bin/node'
 
-  " dropped coc-elixir
   let g:coc_global_extensions = [
     \ 'coc-prettier',
     \ 'coc-pyright',
@@ -565,6 +565,20 @@ if has_key(g:plugs, 'coc.nvim')
     \ 'coc-snippets',
     \ 'https://github.com/rafamadriz/friendly-snippets@main'
   \ ]
+
+  " Remove plugins not explicitly defined in g:coc_global_extensions
+  " Ignore special case: friendly-snippets
+  function! CocClean() abort
+    let g:extensions_to_clean = CocAction("loadedExtensions")
+        \ ->filter({idx, extension -> extension !~ 'friendly-snippets'})
+        \ ->filter({idx, extension -> index(g:coc_global_extensions, extension) == -1})
+    if len(g:extensions_to_clean)
+      exe 'CocUninstall' join(map(g:extensions_to_clean, {_, line -> split(line)[0]}))
+    else
+      echo 'Nothing to clean'
+    endif
+  endfunction
+  command! -nargs=0 CocClean :call CocClean()
 
   " wip
   " set runtimepath^=/home/jhaine/dev/coc-cucumber
