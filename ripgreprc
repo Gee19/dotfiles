@@ -1,5 +1,5 @@
-# --after-context=1
-# --before-context=1
+--after-context=1
+--before-context=1
 --max-columns=150
 --max-columns-preview
 
