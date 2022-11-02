@@ -144,9 +144,8 @@ command! -nargs=0 Jq :%!jq
 command! D smile
 
 " Use ripgrep for vim :grep
-" Override after/before context from ./ripgreprc
 if executable('rg')
-  set grepprg=rg\ --vimgrep\ --no-heading\ --color=never\ --smart-case\ --after-context=0\ --before-context=0
+  set grepprg=rg\ --vimgrep\ --no-heading\ --color=never\ --smart-case
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 else
   set grepprg=grep\ -nrH\ --exclude-dir=tags\ --exclude-dir=.git\ --exclude-dir=node_modules
