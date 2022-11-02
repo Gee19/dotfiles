@@ -409,6 +409,9 @@ nnoremap <silent><expr> g* v:count ? 'g*'
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
+" calculator
+xnoremap <leader>= c<C-R>=<C-R>"<CR><esc>
+
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
