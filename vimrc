@@ -39,15 +39,11 @@ Plug 'https://github.com/tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-scriptease'
 
 " me
-Plug 'https://github.com/Gee19/vim-pqf'
 Plug 'https://github.com/Gee19/vim-sandwich' " Add insert mappings from surround
 Plug 'https://github.com/Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
 Plug 'https://github.com/Gee19/lessspace.vim' " Added toggle func
 Plug 'https://github.com/Gee19/vim-peekaboo' " Fixes conflict with lessspace + floating window
 let g:peekaboo_window="float"
-
-" gbone dependency
-Plug 'https://github.com/tyru/current-func-info.vim'
 
 " dhruvasagar
 Plug 'https://github.com/dhruvasagar/vim-prosession' " Auto session management, requires obsession
@@ -116,6 +112,7 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 " grep/search & quickfix improvements
 Plug 'https://github.com/rhysd/clever-f.vim'
 Plug 'https://github.com/romainl/vim-qf'
+Plug 'https://github.com/xuanduc987/prettier_qf'
 
 " junegunn op
 Plug 'https://github.com/junegunn/fzf'
