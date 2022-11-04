@@ -79,6 +79,7 @@ Plug 'https://github.com/alvan/vim-closetag'
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
+Plug 'https://github.com/Raimondi/delimitMate'
 
 " Inline colours
 Plug 'https://github.com/rrethy/vim-hexokinase', { 'do': 'make hexokinase && cp ./hexokinase/hexokinase ${GOPATH}/bin/hexokinase' }
