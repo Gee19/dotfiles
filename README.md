@@ -20,8 +20,6 @@
 
 `./setup_env.sh`
 
-`./update_nvim.sh`
-
 `XDG_CONFIG_HOME=/home/jhaine/.config python3 install.py`
 
 `chsh -s /usr/bin/zsh`
