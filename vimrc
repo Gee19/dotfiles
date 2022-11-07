@@ -91,9 +91,7 @@ let g:Hexokinase_ftOptOutPatterns = {'text': ['colour_names']}
 Plug 'https://github.com/inkarkat/vim-ReplaceWithRegister'
 Plug 'https://github.com/inkarkat/vim-ReplaceWithSameIndentRegister'
 Plug 'https://github.com/inkarkat/vim-visualrepeat'
-
-" Remove when nvim PR is merged
-Plug 'https://github.com/Gee19/vim-RelativeNumberCurrentWindow'
+Plug 'https://github.com/inkarkat/vim-RelativeNumberCurrentWindow'
 
 " AndrewRadev / tags & friends
 Plug 'https://github.com/AndrewRadev/switch.vim'
