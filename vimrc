@@ -99,7 +99,8 @@ Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 Plug 'https://github.com/AndrewRadev/tagalong.vim'
 Plug 'https://github.com/flwyd/vim-conjoin' " Must come AFTER splitjoin
 
-" neovim/neovim/issues/12587
+" Deprecated / fixed in neovim 0.8
+" Decoupling updatetime from CursorHold & CursorHoldI might still be useful
 if !has('gui')
   Plug 'https://github.com/antoinemadec/FixCursorHold.nvim'
   let g:cursorhold_updatetime = 100 " leave updatetime untouched (and avoid unnecessary swap writes)

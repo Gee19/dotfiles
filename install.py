@@ -35,7 +35,6 @@ include[relevant_gitconfig] = "$HOME/.gitconfig"
 
 if not in_wsl:
     include["kitty.conf"] = "$HOME/.config/kitty/kitty.conf"
-    include["diff.conf"] = "$HOME/.config/kitty/diff.conf"
 
 # home = os.path.expanduser('~')
 here = os.path.abspath(".")

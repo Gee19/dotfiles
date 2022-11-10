@@ -5,7 +5,7 @@
     "--ignore=S101,D200,D202,D205,D100,D101,D103,D102,D105,D106,D107,E501,D400,D401,W503"
   ],
   "eslint.options": {
-    "configFile": "/home/jhaine/dev/sdelements/.common_configurations/js/lint/.eslintrc"
+    "configFile": "${workspaceFolder}/.common_configurations/js/lint/.eslintrc"
   },
   "python.formatting.blackPath": "black"
 }
