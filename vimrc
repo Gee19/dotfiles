@@ -81,6 +81,11 @@ Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
 Plug 'https://github.com/Raimondi/delimitMate'
 
+" Instant markdown preview (Only accessible on localhost / blocks scripts by default)
+Plug 'https://github.com/instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do':'yarn install'}
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_allow_external_content = 0
+
 " Inline colours
 Plug 'https://github.com/rrethy/vim-hexokinase', { 'do': 'make hexokinase && cp ./hexokinase/hexokinase ${GOPATH}/bin/hexokinase' }
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba', 'hsl', 'hsla', 'colour_names']
@@ -541,8 +546,8 @@ if has_key(g:plugs, 'coc.nvim')
   " try to use lang serv when tag jumping <C-]>
   set tagfunc=CocTagFunc
 
-  " Use lang serv to format if available (! silences errors)
-  set formatexpr=!CocActionAsync('formatSelected')
+  " Use lang serv to format if available (! silences errors? jk)
+  set formatexpr=!CocAction('formatSelected')
 
   " disable coc startup warning in vim
   if !has('nvim')
