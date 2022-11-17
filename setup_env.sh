@@ -15,9 +15,8 @@ sudo apt -y update
 # Remove system vim (might need vim.tiny here)
 sudo apt -y remove vim
 
-# Node unzip zsh py3-pip tmux mosh vim
-curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-sudo apt -y install zsh unzip nodejs python3-pip tmux mosh vim-gtk3 gettext-base xclip
+# unzip zsh py3-pip tmux mosh vim
+sudo apt -y install zsh unzip python3-pip tmux mosh vim-gtk3 gettext-base xclip
 
 # Neovim build deps
 sudo apt -y install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config doxygen
@@ -109,6 +108,8 @@ rm go1.18.linux-amd64.tar.gz
 curl -fsSL https://fnm.vercel.app/install | bash --skip-shell
 fnm completions --shell zsh >> /tmp/_fnm
 sudo mv /tmp/_fnm /usr/share/zsh/vendor-completions/_fnm
+fnm install v18.12.1
+fnm default v18.12.1
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/dev/fzf

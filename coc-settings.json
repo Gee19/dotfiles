@@ -32,10 +32,7 @@
   "codeLens.enable": true,
   "codeLens.separator": "🔍",
   "coc.preferences.jumpCommand": "drop",
-  "coc.preferences.rootPatterns": [
-    ".git",
-    ".vscode"
-  ],
+  "coc.preferences.rootPatterns": [".git", ".vscode"],
   "coc.preferences.formatOnSaveFiletypes": [
     "cucumber",
     "javascript",
@@ -67,8 +64,8 @@
   "python.formatting.blackPath": "~/.local/bin/black",
   "python.venvPath": "/home/jhaine/.cache/pypoetry/virtualenvs/",
   "snippets.ultisnips.enable": false,
-  "tsserver.npm": "/home/jhaine/.fnm/node-versions/v14.20.0/installation/bin/npm",
-  "npm.binPath": "/home/jhaine/.fnm/node-versions/v14.20.0/installation/bin/npm",
+  "tsserver.npm": "/home/jhaine/.fnm/node-versions/v18.12.1/installation/bin/npm",
+  "npm.binPath": "/home/jhaine/.fnm/node-versions/v18.12.1/installation/bin/npm",
   "javascript.referencesCodeLens.enable": false,
   "javascript.implementationsCodeLens.enable": false,
   "typescript.referencesCodeLens.enable": false,

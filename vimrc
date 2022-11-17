@@ -549,7 +549,7 @@ if has_key(g:plugs, 'coc.nvim')
     let g:coc_disable_startup_warning = 1
   endif
 
-  let g:coc_node_path = '/home/jhaine/.fnm/node-versions/v14.20.0/installation/bin/node'
+  let g:coc_node_path = '/home/jhaine/.fnm/node-versions/v18.12.1/installation/bin/node'
 
   let g:coc_global_extensions = [
     \ 'coc-prettier',
