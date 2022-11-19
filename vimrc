@@ -1,5 +1,11 @@
 " vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
-" built-ins  {{{
+" built-in / startup  {{{
+if v:version < 600 | finish | endif
+if $NORC || $CLEAN || $norc || $clean
+  setglobal noloadplugins
+  finish
+endif
+
 " disable some plugins
 let g:loaded_netrwPlugin=1
 let g:loaded_gzip=1

@@ -98,4 +98,7 @@ alias gjg="git jump grep"
 alias python='python3'
 alias pactivate='source "$( poetry env info --path )/bin/activate"'
 
+# wsl2 reclaim memory, see issue #4166 on microsoft/WSL repo
+alias wsl_mem_fix="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'\""
+
 alias sudo='sudo '
