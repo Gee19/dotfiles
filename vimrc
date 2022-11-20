@@ -527,6 +527,11 @@ cnoremap <expr> <up> getcmdline() =~# edit_re && wildmenumode() ? "\<left>" : "\
 cnoremap <expr> <down> getcmdline() =~# edit_re && wildmenumode() ? "\<right>" : "\<down>"
 cnoremap <expr> <left> getcmdline() =~# edit_re && wildmenumode() ? "\<up>" : "\<left>"
 cnoremap <expr> <right> getcmdline() =~# edit_re && wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
+
+" Default <C-r> to repeatable behaviour for text changes
+inoremap <C-r> <C-r><C-o>
+" Seems useful based on:
+" https://reddit.com/r/vim/comments/yu0iu7/how_would_i_wrap_a_word_prefix_it_and_finally/iw6zs0o/
 " }}}
 " NERDTree {{{
 let g:NERDTreeWinSize = 37
