@@ -530,8 +530,9 @@ cnoremap <expr> <right> getcmdline() =~# edit_re && wildmenumode() ? " \<bs>\<C-
 
 " Default <C-r> to repeatable behaviour for text changes
 inoremap <C-r> <C-r><C-o>
-" Seems useful based on:
-" https://reddit.com/r/vim/comments/yu0iu7/how_would_i_wrap_a_word_prefix_it_and_finally/iw6zs0o/
+
+" * in visual mode
+vnoremap * "zy/\V<C-r>=escape(@z, '\/')<CR><CR>
 " }}}
 " NERDTree {{{
 let g:NERDTreeWinSize = 37
