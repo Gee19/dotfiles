@@ -185,6 +185,9 @@ if !has('nvim')
   " Fix GitGutter CursorHold
   autocmd VimEnter * call gitgutter#process_buffer(bufnr(''), 0)
 
+  " Add undo points
+  inoremap <C-W> <C-G>u<C-W>
+  inoremap <C-U> <C-G>u<C-U>
 endif
 " }}}
 " autocmds {{{
