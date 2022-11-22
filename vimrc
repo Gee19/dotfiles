@@ -32,6 +32,7 @@ if has('nvim')
   Plug 'https://github.com/levouh/tint.nvim'
   Plug 'https://github.com/fgheng/winbar.nvim'
   Plug 'https://github.com/SmiteshP/nvim-gps'
+  Plug 'https://github.com/lukas-reineke/indent-blankline.nvim'
   Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 endif
 
@@ -45,6 +46,7 @@ Plug 'https://github.com/tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-scriptease'
 
 " me
+Plug 'https://github.com/Gee19/indent-ignoreblank.vim' " Get correct indent for new lines despite blank lines
 Plug 'https://github.com/Gee19/vim-sandwich' " Add insert mappings from surround
 Plug 'https://github.com/Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
 Plug 'https://github.com/Gee19/lessspace.vim' " Added toggle func
@@ -85,11 +87,6 @@ Plug 'https://github.com/alvan/vim-closetag'
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
-Plug 'https://github.com/Yggdroot/indentLine'
-let g:vim_json_conceal=0
-let g:markdown_syntax_conceal=0
-let g:indentLine_setColors = 0
-let g:indentLine_char_list = ['¦', '┆', '┊']
 
 " Instant markdown preview (Only accessible on localhost / blocks scripts by default)
 Plug 'https://github.com/instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do':'yarn install'}
@@ -199,8 +196,6 @@ augroup common
   autocmd!
   if has('nvim')
     autocmd FileType fzf set winbar= " Workaround to hide winbar on fzf windows
-    autocmd FileType jsonc,json,vim,help,nerdtree IndentLinesDisable
-    autocmd BufLeave,BufUnload,BufDelete,BufHidden jsonc,json IndentLinesReset
   endif
   autocmd BufLeave *#FZF :bd! " autoclose fzf buffer
   autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441
@@ -1073,6 +1068,11 @@ require('winbar').setup({
   }
 })
 require('nvim-gps').setup()
+require("indent_blankline").setup {
+    show_current_context = true,
+    show_trailing_blankline_indent = false,
+    indent_blankline_use_treesitter = true
+}
 require('tint').setup({
   tint = -25,
   highlight_ignore_patterns = {
