@@ -85,7 +85,11 @@ Plug 'https://github.com/alvan/vim-closetag'
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
-Plug 'https://github.com/Raimondi/delimitMate'
+Plug 'https://github.com/Yggdroot/indentLine'
+let g:vim_json_conceal=0
+let g:markdown_syntax_conceal=0
+let g:indentLine_setColors = 0
+let g:indentLine_char_list = ['¦', '┆', '┊']
 
 " Instant markdown preview (Only accessible on localhost / blocks scripts by default)
 Plug 'https://github.com/instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do':'yarn install'}
@@ -195,6 +199,8 @@ augroup common
   autocmd!
   if has('nvim')
     autocmd FileType fzf set winbar= " Workaround to hide winbar on fzf windows
+    autocmd FileType jsonc,json,vim,help,nerdtree IndentLinesDisable
+    autocmd BufLeave,BufUnload,BufDelete,BufHidden jsonc,json IndentLinesReset
   endif
   autocmd BufLeave *#FZF :bd! " autoclose fzf buffer
   autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441

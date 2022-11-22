@@ -51,4 +51,4 @@ for f, install_path in include.items():
 
 for cmd in cmds:
     print(cmd)
-    os.system(cmd)
+    # os.system(cmd)

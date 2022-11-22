@@ -56,6 +56,7 @@ alias cst="workon sdetools3 && cd ~/dev/sdetools"
 alias cpca="workon pca && cd ~/dev/project-creation-automation"
 alias cpkg="cd ~/.cache/pypoetry/virtualenvs/sdelements-FOqhXTaE-py3.8/lib/python3.8/site-packages"
 alias cperft="cd ~/dev/perft"
+alias ec="cd ~/dev/EquipmentCloud"
 
 alias nds="node devServer.js"
 alias yd="yarn dev"
