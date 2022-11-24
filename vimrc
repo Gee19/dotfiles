@@ -1071,7 +1071,10 @@ require('nvim-gps').setup()
 require("indent_blankline").setup {
     show_current_context = true,
     show_trailing_blankline_indent = false,
-    indent_blankline_use_treesitter = true
+    indent_blankline_use_treesitter = true,
+    filetype_exclude = {
+      'gitcommit'
+    }
 }
 require('tint').setup({
   tint = -25,
