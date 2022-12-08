@@ -537,6 +537,9 @@ inoremap <C-r> <C-r><C-o>
 
 " * in visual mode
 vnoremap * "zy/\V<C-r>=escape(@z, '\/')<CR><CR>
+
+" gotfile in vert split
+nnoremap gfv :vertical wincmd f<CR>
 " }}}
 " NERDTree {{{
 let g:NERDTreeWinSize = 37
@@ -1074,7 +1077,8 @@ require("indent_blankline").setup {
     indent_blankline_use_treesitter = true,
     filetype_exclude = {
       'gitcommit',
-      'help'
+      'help',
+      'text'
     }
 }
 require('tint').setup({
