@@ -1073,7 +1073,8 @@ require("indent_blankline").setup {
     show_trailing_blankline_indent = false,
     indent_blankline_use_treesitter = true,
     filetype_exclude = {
-      'gitcommit'
+      'gitcommit',
+      'help'
     }
 }
 require('tint').setup({
