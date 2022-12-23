@@ -16,7 +16,7 @@ EOF
 open_editor() {
 	if test -t 1; then
 		editor=`git var GIT_EDITOR`
-		eval "$editor -q \$1" # This is broken
+		eval "$editor -q \$1"
 	else
 		eval "cat \$1"
 	fi
