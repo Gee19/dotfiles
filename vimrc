@@ -26,7 +26,11 @@ Plug 'https://github.com/joshdick/onedark.vim'
 if has('nvim')
   Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'https://github.com/p00f/nvim-ts-rainbow'
+
+  Plug 'https://github.com/p00f/nvim-ts-rainbow' " Deprecated
+  " https://github.com/mrjones2014/nvim-ts-rainbow
+  " https://gitlab.com/HiPhish/nvim-ts-rainbow2
+
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'https://github.com/lewis6991/impatient.nvim'
   Plug 'https://github.com/levouh/tint.nvim'
@@ -205,6 +209,7 @@ augroup common
   " Conceal full github URL to keep 'gx' functionality
   autocmd FileType vim,tmux setlocal foldmethod=marker conceallevel=2
   autocmd FileType vim,tmux :call matchadd('Conceal', 'https://github.com/', 10, -1, {'conceal': ''})
+  autocmd FileType vim,tmux :call matchadd('Conceal', 'https://gitlab.com/', 10, -1, {'conceal': ''})
 
   autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o " newline formatting
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
