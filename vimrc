@@ -8,6 +8,7 @@ endif
 
 " disable some plugins
 let g:loaded_netrwPlugin=1
+let g:loaded_netrw = 1
 let g:loaded_gzip=1
 let g:loaded_man=1
 let g:loaded_tarPlugin=1
@@ -48,6 +49,7 @@ Plug 'https://github.com/tpope/vim-repeat'
 Plug 'https://github.com/tpope/vim-obsession'
 Plug 'https://github.com/tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-scriptease'
+Plug 'https://github.com/tpope/vim-unimpaired'
 
 " me
 Plug 'https://github.com/Gee19/indent-ignoreblank.vim' " Get correct indent for new lines despite blank lines
@@ -87,7 +89,6 @@ Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn in
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
 Plug 'https://github.com/scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'https://github.com/farmergreg/vim-lastplace'
-Plug 'https://github.com/alvan/vim-closetag'
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
@@ -112,8 +113,12 @@ Plug 'https://github.com/inkarkat/vim-RelativeNumberCurrentWindow'
 " AndrewRadev / tags & friends
 Plug 'https://github.com/AndrewRadev/switch.vim'
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'
-Plug 'https://github.com/AndrewRadev/tagalong.vim'
 Plug 'https://github.com/flwyd/vim-conjoin' " Must come AFTER splitjoin
+Plug 'https://github.com/AndrewRadev/tagalong.vim'
+let g:tagalong_verbose = 1
+Plug 'https://github.com/alvan/vim-closetag'
+let g:closetag_filetypes='html,xhtml,xml,jsx,tsx'
+let g:closetag_enable_react_fragment = 1
 
 " Deprecated / fixed in neovim 0.8
 " Decoupling updatetime from CursorHold & CursorHoldI might still be useful
@@ -246,8 +251,6 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 
 " Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
-" Show devicons
 " }}}
 " globals {{{
 set clipboard^=unnamed,unnamedplus " Trying system clipboard & linux 'selection' clipboard
@@ -404,9 +407,6 @@ highlight htmlArg gui=italic cterm=italic
 " mappings {{{
 let mapleader = "\<Space>"
 
-" Toggle between no numbers -> absolute -> relative with absolute on cursor line
-nnoremap <C-n> :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
-
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
@@ -439,9 +439,6 @@ map <leader>e :NERDTreeFind<CR>
 " System clipboard
 map <leader>y "+y
 map <leader>p "*p
-
-" Toggle word wrapping
-map <leader>w :set wrap!<CR>
 
 map <leader>v :source $MYVIMRC<CR>
 
@@ -477,7 +474,8 @@ nnoremap <silent> <C-w>l :call WinMove('l')<CR>
 
 " Insert newline above or below and stay in normal mode
 " No insert mode, doesn't move the cursor, and allows you to use a counter to append several lines at once
-" Add 3 lines above: 3-leader-O
+" Add 3 lines above: 3<leader>O
+" or via vim-unimpaired: 3[<Space>
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
@@ -495,9 +493,6 @@ nnoremap Q <Nop>
 " so that you can use <c-o>/<c-i> to jump to the previous position
 nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
-
-" spell
-nnoremap <silent> <leader>s <cmd>setlocal spell!<CR>
 
 " Fix meta keys in vim
 if !has('nvim')
@@ -830,23 +825,6 @@ command! BD call fzf#run(fzf#wrap({
   \ 'options': '--prompt="Delete Buffer(s):" --multi --reverse --bind ctrl-a:select-all+accept'
   \ }))
 " }}}
-" FZF Session Picker {{{
-let s:session_dir = '$HOME/.vim/session/'
-function! s:list_sessions() abort
-  return systemlist('ls ' . s:session_dir)
-endfunction
-
-function! s:source_session(line) abort
-  exec 'source ' . s:session_dir . substitute(a:line[0], '%', '\\%', 'g')
-endfunction
-
-" TODO: Add ctrl-x to delete, ctrl-e to edit
-command! SessionPicker call fzf#run(fzf#wrap({
-  \ 'source': s:list_sessions(),
-  \ 'sink*': { line -> s:source_session(line) },
-  \ 'options': '--prompt="Source Session:" --reverse'
-  \ }))
-" }}}
 " clever-f {{{
 let g:clever_f_across_no_line = 1 " only span 1 line
 let g:clever_f_fix_key_direction = 1 " always force f->forward F->backward
@@ -856,19 +834,21 @@ map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 " }}}
 " vim-qf {{{
-nmap ]q <Plug>(qf_qf_next)
-nmap [q <Plug>(qf_qf_previous)
-nmap q] <Plug>(qf_qf_next)
-nmap q[ <Plug>(qf_qf_previous)
 nmap <C-q> <Plug>(qf_qf_toggle)
-
-nmap <leader>] <Plug>(qf_loc_next)
-nmap <leader>[ <Plug>(qf_loc_previous)
-nmap ]<leader> <Plug>(qf_loc_next)
-nmap [<leader> <Plug>(qf_loc_previous)
 nmap <leader>q <Plug>(qf_loc_toggle)
 
+" Makes ]q spammable, compliments vim-unimpaired
+nmap q] <Plug>(qf_qf_next)
+nmap q[ <Plug>(qf_qf_previous)
+
+" Ack inspired mappings only in loc/qf windows
 let g:qf_mapping_ack_style = 1
+" s - open entry in a new horizontal window
+" v - open entry in a new vertical window
+" t - open entry in a new tab
+" o - open entry and come back
+" O - open entry and close the loc/qf window
+" p - open entry in a preview window
 
 " Disable these for async Grep
 let g:qf_auto_open_quickfix = 0
@@ -993,11 +973,6 @@ omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
-" }}}
-" tagalong / closetag {{{
-let g:tagalong_verbose = 1
-let g:closetag_filetypes='html,xhtml,xml,jsx,tsx'
-let g:closetag_enable_react_fragment = 1
 " }}}
 " romainl pseudo-text objects {{{
 " https://gist.github.com/romainl/c0a8b57a36aec71a986f1120e1931f20
