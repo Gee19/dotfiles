@@ -1038,6 +1038,7 @@ nnoremap <M-i> <cmd>execute 'normal ' . JumpFileComputeNext() . "\<c-i>"<cr>
 " }}}
 " neovim only + lua {{{
 if has('nvim')
+let g:editorconfig_enable = 0 " Disable builtin editorconfig, plugin works fine across vim/neovim
 set diffopt+=linematch:60
 set jumpoptions=stack " Make the jumplist behave like the tagstack
 lua << EOF
