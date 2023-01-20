@@ -720,7 +720,7 @@ if has_key(g:plugs, 'coc.nvim')
   nnoremap <silent><expr> <leader>fc "<cmd>CocList -I --input=".expand('<cword>')." symbols -kind Class<cr>"
 
   " Applying codeAction to the selected region.
-  " Example: `<leader>aap` for current paragraph
+  " Example: `<leader>cap` for current paragraph
   xmap <silent><leader>c  <Plug>(coc-codeaction-selected)
   nmap <silent><leader>c  <Plug>(coc-codeaction-selected)
 
@@ -728,7 +728,7 @@ if has_key(g:plugs, 'coc.nvim')
   nmap <silent><leader>cG  <Plug>(coc-codeaction)
 
   " Fix autofix problem of current line
-  nmap <silent><leader>cl <Plug>(coc-fix-current)
+  nmap <silent><leader><leader> <Plug>(coc-fix-current)
 
   " Remap for rename current word
   nmap <silent><leader>rn <Plug>(coc-rename)
