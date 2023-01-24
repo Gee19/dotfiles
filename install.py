@@ -4,6 +4,8 @@ include = {
     # Editors
     "init.vim": "$XDG_CONFIG_HOME/nvim/init.vim",
     "vimrc": "$HOME/.vimrc",
+    # kitty
+    "kitty.conf": "$HOME/.config/kitty/kitty.conf",
     # Git
     "gitignore_global": "$HOME/.gitignore_global",
     "git-jump": "$HOME/.local/bin/git-jump",
@@ -33,10 +35,6 @@ in_wsl = "WSL" in os.uname().release
 relevant_gitconfig = "gitconfig" if not in_wsl else "gitconfig_home"
 include[relevant_gitconfig] = "$HOME/.gitconfig"
 
-if not in_wsl:
-    include["kitty.conf"] = "$HOME/.config/kitty/kitty.conf"
-
-# home = os.path.expanduser('~')
 here = os.path.abspath(".")
 
 cmds = []
