@@ -7,8 +7,10 @@ if $NORC || $CLEAN || $norc || $clean
 endif
 
 " disable some plugins
+let g:loaded_netrw=1
 let g:loaded_netrwPlugin=1
-let g:loaded_netrw = 1
+let g:loaded_netrwSettings=1
+let g:loaded_netrwFileHandlers=1
 let g:loaded_gzip=1
 let g:loaded_man=1
 let g:loaded_tarPlugin=1
@@ -94,7 +96,6 @@ Plug 'https://github.com/neoclide/jsonc.vim'
 
 " Fern
 Plug 'https://github.com/lambdalisue/fern.vim'
-Plug 'https://github.com/lambdalisue/fern-hijack.vim'
 Plug 'https://github.com/lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'https://github.com/lambdalisue/fern-git-status.vim'
 Plug 'https://github.com/lambdalisue/nerdfont.vim'
@@ -388,6 +389,9 @@ cabbrev yfn let @+=expand("%:t")<CR>
 
 " Bbye
 cabbrev Bd Bdelete
+cabbrev bd Bdelete
+cabbrev Bw Bwipeout
+cabbrev bw Bwipeout
 
 " Plug
 cabbrev PC PlugClean
@@ -434,10 +438,6 @@ nnoremap <C-u> <C-u>zz
 
 " calculator
 xnoremap <leader>= c<C-R>=<C-R>"<CR><esc>
-
-" Fern
-map <C-e> :Fern . -drawer -toggle<CR>
-map <leader>e :Fern . -reveal=%<CR>
 
 " System clipboard
 map <leader>y "+y
@@ -545,10 +545,56 @@ vnoremap * "zy/\V<C-r>=escape(@z, '\/')<CR><CR>
 nnoremap gfv :vertical wincmd f<CR>
 " }}}
 " Fern {{{
+augroup fern-hijack
+  autocmd!
+  autocmd BufEnter * ++nested call s:hijack_directory()
+augroup END
+
+function! s:hijack_directory() abort
+  let path = expand('%:p')
+  if !isdirectory(path)
+    return
+  endif
+  Bwipeout %
+  execute printf('Fern %s', fnameescape(path))
+endfunction
+
+" devicons
 let g:fern#renderer = "nerdfont"
+
+" mappings
+let g:fern#disable_default_mappings = 1
+map <C-e> :Fern . -drawer -toggle<CR><C-w>=
+map <leader>e :Fern . -reveal=%<CR>
+
+function! FernInit() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-expand-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+  nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> o <Plug>(fern-action-new-path)
+  nmap <buffer> O <Plug>(fern-action-new-path)
+  nmap <buffer> dd <Plug>(fern-action-remove)
+  nmap <buffer> cc <Plug>(fern-action-move)
+  nmap <buffer> M <Plug>(fern-action-rename)
+  nmap <buffer> gh <Plug>(fern-action-hidden:toggle)
+  nmap <buffer> gr <Plug>(fern-action-reload)
+  nmap <buffer> gm <Plug>(fern-action-mark:clear)
+  nmap <buffer> <TAB> <Plug>(fern-action-mark:toggle)
+  nmap <buffer> <C-x> <Plug>(fern-action-open:split)
+  nmap <buffer> <C-v> <Plug>(fern-action-open:vsplit)
+  nmap <buffer><nowait> < <Plug>(fern-action-leave)
+  nmap <buffer><nowait> > <Plug>(fern-action-enter)
+endfunction
+
 augroup fern_stuff
   autocmd!
-
+  autocmd FileType fern call FernInit()
   " colored glyphs
   autocmd FileType fern call glyph_palette#apply()
 augroup END
