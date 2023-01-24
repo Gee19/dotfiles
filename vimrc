@@ -98,6 +98,7 @@ Plug 'https://github.com/lambdalisue/fern-hijack.vim'
 Plug 'https://github.com/lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'https://github.com/lambdalisue/fern-git-status.vim'
 Plug 'https://github.com/lambdalisue/nerdfont.vim'
+Plug 'https://github.com/lambdalisue/glyph-palette.vim'
 
 " Instant markdown preview (Only accessible on localhost / blocks scripts by default)
 Plug 'https://github.com/instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do':'yarn install'}
@@ -147,10 +148,6 @@ Plug 'https://github.com/xuanduc987/prettier_qf'
 " junegunn op
 Plug 'https://github.com/junegunn/fzf'
 Plug 'https://github.com/junegunn/fzf.vim'
-
-" Always load last
-Plug 'https://github.com/lambdalisue/glyph-palette.vim'
-Plug 'https://github.com/ryanoasis/vim-devicons'
 call plug#end()
 " }}}
 " shell/colorscheme/grepprg {{{
