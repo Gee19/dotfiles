@@ -23,7 +23,7 @@ packadd! matchit
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
 " Theme
-Plug 'https://github.com/joshdick/onedark.vim'
+Plug 'https://github.com/NLKNguyen/papercolor-theme'
 if has('nvim')
   Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -158,8 +158,9 @@ if has('termguicolors')
   set termguicolors " Use true colours
 endif
 
-let s:scheme = has('nvim') ? 'tokyonight-night' : 'onedark'
-let s:lightline_scheme = has('nvim') ? 'tokyonight' : 'onedark'
+set background=dark
+let s:scheme = has('nvim') ? 'tokyonight-night' : 'PaperColor'
+let s:lightline_scheme = has('nvim') ? 'tokyonight' : 'PaperColor'
 execute 'colorscheme ' . s:scheme
 
 let s:shell = exists('$SHELL') ? $SHELL : '/bin/sh'
@@ -182,7 +183,6 @@ endif
 " vim only {{{
 if !has('nvim')
   syntax on
-  let g:onedark_termcolors=256
   set encoding=UTF-8
 
   " block cursor
