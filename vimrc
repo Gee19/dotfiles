@@ -87,11 +87,17 @@ Plug 'https://github.com/Konfekt/FastFold'
 " viM iSn'T aN IDe
 Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
-Plug 'https://github.com/scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'https://github.com/farmergreg/vim-lastplace'
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
+
+" Fern
+Plug 'https://github.com/lambdalisue/fern.vim'
+Plug 'https://github.com/lambdalisue/fern-hijack.vim'
+Plug 'https://github.com/lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'https://github.com/lambdalisue/fern-git-status.vim'
+Plug 'https://github.com/lambdalisue/nerdfont.vim'
 
 " Instant markdown preview (Only accessible on localhost / blocks scripts by default)
 Plug 'https://github.com/instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do':'yarn install'}
@@ -432,9 +438,9 @@ nnoremap <C-u> <C-u>zz
 " calculator
 xnoremap <leader>= c<C-R>=<C-R>"<CR><esc>
 
-" NERDTree
-map <C-e> :NERDTreeToggle<CR>
-map <leader>e :NERDTreeFind<CR>
+" Fern
+map <C-e> :Fern . -drawer -toggle<CR>
+map <leader>e :Fern . -reveal=%<CR>
 
 " System clipboard
 map <leader>y "+y
@@ -541,21 +547,13 @@ vnoremap * "zy/\V<C-r>=escape(@z, '\/')<CR><CR>
 " gotfile in vert split
 nnoremap gfv :vertical wincmd f<CR>
 " }}}
-" NERDTree {{{
-let g:NERDTreeWinSize = 37
-let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '^node_modules$']
-
-augroup nerdtree_fixes
+" Fern {{{
+let g:fern#renderer = "nerdfont"
+augroup fern_stuff
   autocmd!
 
   " colored glyphs
-  autocmd FileType nerdtree call glyph_palette#apply()
-
-  " Never open in NERDTree buffer
-  autocmd BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
-
-  " Close vi if NERDTree is last and only buffer
-  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  autocmd FileType fern call glyph_palette#apply()
 augroup END
 " }}}
 " coc.nvim {{{
