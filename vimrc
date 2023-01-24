@@ -562,7 +562,7 @@ endfunction
 " devicons
 let g:fern#renderer = "nerdfont"
 
-" mappings
+" mappings inspired by nerdtree & dirvish
 let g:fern#disable_default_mappings = 1
 map <C-e> :Fern . -drawer -toggle<CR><C-w>=
 map <leader>e :Fern . -reveal=%<CR>
@@ -582,10 +582,10 @@ function! FernInit() abort
   nmap <buffer> dd <Plug>(fern-action-remove)
   nmap <buffer> cc <Plug>(fern-action-move)
   nmap <buffer> M <Plug>(fern-action-rename)
+  nmap <buffer> m <Plug>(fern-action-mark:toggle)
+  nmap <buffer> gm <Plug>(fern-action-mark:clear)
   nmap <buffer> gh <Plug>(fern-action-hidden:toggle)
   nmap <buffer> gr <Plug>(fern-action-reload)
-  nmap <buffer> gm <Plug>(fern-action-mark:clear)
-  nmap <buffer> <TAB> <Plug>(fern-action-mark:toggle)
   nmap <buffer> <C-x> <Plug>(fern-action-open:split)
   nmap <buffer> <C-v> <Plug>(fern-action-open:vsplit)
   nmap <buffer><nowait> < <Plug>(fern-action-leave)
