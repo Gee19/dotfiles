@@ -389,9 +389,7 @@ cabbrev yfn let @+=expand("%:t")<CR>
 
 " Bbye
 cabbrev Bd Bdelete
-cabbrev bd Bdelete
 cabbrev Bw Bwipeout
-cabbrev bw Bwipeout
 
 " Plug
 cabbrev PC PlugClean
@@ -555,7 +553,7 @@ function! s:hijack_directory() abort
   if !isdirectory(path)
     return
   endif
-  Bwipeout %
+  bwipeout %
   execute printf('Fern %s', fnameescape(path))
 endfunction
 
