@@ -560,10 +560,11 @@ endfunction
 " devicons
 let g:fern#renderer = "nerdfont"
 
-" mappings inspired by nerdtree & dirvish
+" mappings inspired dirvish
 let g:fern#disable_default_mappings = 1
 map <C-e> :Fern . -drawer -toggle<CR><C-w>=
-map <leader>e :Fern . -reveal=%<CR>
+map <leader>e :Fern . -drawer -toggle -reveal=%<CR><C-w>=
+map <leader>. :Fern .<CR>
 
 function! FernInit() abort
   nmap <buffer><expr>
