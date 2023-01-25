@@ -512,14 +512,6 @@ xnoremap <M-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 " i disable netrw (wsl-open handles WSL)
 nnoremap <silent> gx <cmd>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
 
-" Use a bunch of standard UNIX commands for quick and dirty whitespace-based alignment
-function! Align() abort
-	'<,'>!column -t|sed 's/  \(\S\)/ \1/g'
-	normal gv=
-endfunction
-
-xnoremap <silent> <leader>a :<C-u>silent call Align()<CR>
-
 " Show the syntax highlight group under cursor
 nnoremap <F10> <cmd>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
                              \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
