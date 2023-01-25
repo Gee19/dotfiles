@@ -29,11 +29,7 @@ Plug 'https://github.com/NLKNguyen/papercolor-theme'
 if has('nvim')
   Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-  Plug 'https://github.com/p00f/nvim-ts-rainbow' " Deprecated
-  " https://github.com/mrjones2014/nvim-ts-rainbow
-  " https://gitlab.com/HiPhish/nvim-ts-rainbow2
-
+  Plug 'https://gitlab.com/HiPhish/nvim-ts-rainbow2'
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'https://github.com/lewis6991/impatient.nvim'
   Plug 'https://github.com/levouh/tint.nvim'
@@ -1150,6 +1146,8 @@ require('nvim-treesitter.configs').setup{
     rainbow = {
       enable = true,
       extended_mode = true,
+      query = 'rainbow-parens',
+      strategy = require 'ts-rainbow.strategy.global',
       max_file_lines = 5000,
   } -- }}}
 }
