@@ -92,10 +92,12 @@ Plug 'https://github.com/neoclide/jsonc.vim'
 
 " Fern
 Plug 'https://github.com/lambdalisue/fern.vim'
-Plug 'https://github.com/lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'https://github.com/lambdalisue/fern-hijack.vim'
 Plug 'https://github.com/lambdalisue/fern-git-status.vim'
+Plug 'https://github.com/lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'https://github.com/lambdalisue/nerdfont.vim'
 Plug 'https://github.com/lambdalisue/glyph-palette.vim'
+" }}}
 
 " Instant markdown preview (Only accessible on localhost / blocks scripts by default)
 Plug 'https://github.com/instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do':'yarn install'}
@@ -531,22 +533,7 @@ vnoremap * "zy/\V<C-r>=escape(@z, '\/')<CR><CR>
 nnoremap gfv :vertical wincmd f<CR>
 " }}}
 " Fern {{{
-augroup fern-hijack
-  autocmd!
-  autocmd BufEnter * ++nested call s:hijack_directory()
-augroup END
-
-function! s:hijack_directory() abort
-  let path = expand('%:p')
-  if !isdirectory(path)
-    return
-  endif
-  bwipeout %
-  execute printf('Fern %s', fnameescape(path))
-endfunction
-
-" devicons
-let g:fern#renderer = "nerdfont"
+let g:fern#renderer = "nerdfont" " devicons
 
 " mappings inspired dirvish
 let g:fern#disable_default_mappings = 1
