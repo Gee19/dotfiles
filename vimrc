@@ -97,7 +97,6 @@ Plug 'https://github.com/lambdalisue/fern-git-status.vim'
 Plug 'https://github.com/lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'https://github.com/lambdalisue/nerdfont.vim'
 Plug 'https://github.com/lambdalisue/glyph-palette.vim'
-" }}}
 
 " Instant markdown preview (Only accessible on localhost / blocks scripts by default)
 Plug 'https://github.com/instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do':'yarn install'}
@@ -197,9 +196,22 @@ if !has('nvim')
   " Fix GitGutter CursorHold
   autocmd VimEnter * call gitgutter#process_buffer(bufnr(''), 0)
 
+  " Fix meta keys
+  set <M-k>=k
+  set <M-j>=j
+  set <M-o>=o
+  set <M-i>=i
+
+  " (nvim -> :h default-mappings)
   " Add undo points
   inoremap <C-W> <C-G>u<C-W>
   inoremap <C-U> <C-G>u<C-U>
+
+  " Make Y behave like other capitals
+  nnoremap Y y$
+
+  " * in visual mode
+  xnoremap * y/\V<C-R>"<CR>
 endif
 " }}}
 " autocmds {{{
@@ -213,7 +225,7 @@ augroup common
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
   autocmd FileType jsonc,json setlocal commentstring=//\ %s
 
-  " Conceal full github URL to keep 'gx' functionality
+  " Conceal full github/gitlab URLs to keep 'gx' functionality
   autocmd FileType vim,tmux setlocal foldmethod=marker conceallevel=2
   autocmd FileType vim,tmux :call matchadd('Conceal', 'https://github.com/', 10, -1, {'conceal': ''})
   autocmd FileType vim,tmux :call matchadd('Conceal', 'https://gitlab.com/', 10, -1, {'conceal': ''})
@@ -419,7 +431,7 @@ for char in [ 'x', 'c', 's', 'X', 'C', 'S' ]
 	execute 'xnoremap ' . char . ' "_' . char
 endfor
 
-" Don't unnamed unnamed register when pasting over visual selection (use 'P' instead)
+" Don't clobber yank register when pasting over visual selection (use 'P' instead)
 xnoremap <expr> p 'pgv"' . v:register . 'y'
 
 " Don't jump to next occurrence of search when using */g* (doesn't pollute registers/jump list)
@@ -481,9 +493,6 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 " Shift+U redo
 nnoremap U :redo<CR>
 
-" Make Y behave like other capitals
-nnoremap Y y$
-
 " Disable ex mode
 nnoremap Q <Nop>
 
@@ -492,14 +501,6 @@ nnoremap Q <Nop>
 " so that you can use <c-o>/<c-i> to jump to the previous position
 nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
-
-" Fix meta keys in vim
-if !has('nvim')
-  set <M-k>=k
-  set <M-j>=j
-  set <M-o>=o
-  set <M-i>=i
-endif
 
 " Move lines up or down and fix indentation
 nnoremap <M-k> :<C-u>silent! move-2<CR>==
@@ -526,12 +527,10 @@ cnoremap <expr> <right> getcmdline() =~# edit_re && wildmenumode() ? " \<bs>\<C-
 " Default <C-r> to repeatable behaviour for text changes
 inoremap <C-r> <C-r><C-o>
 
-" * in visual mode
-vnoremap * "zy/\V<C-r>=escape(@z, '\/')<CR><CR>
-
 " gotfile in vert split
 nnoremap gfv :vertical wincmd f<CR>
 " }}}
+" Plugins {{{
 " Fern {{{
 let g:fern#renderer = "nerdfont" " devicons
 
@@ -793,7 +792,8 @@ nnoremap <silent> <C-f> <cmd>Files<cr>
 
 " buffers
 nnoremap <silent> <leader>b <cmd>Buffers<cr>
-nnoremap <C-b> :buffer<Space><C-R>=nr2char(&wildcharm)<CR><S-Tab>
+nnoremap <silent> <C-b> <cmd>Buffers<cr>
+" nnoremap <C-b> :buffer<Space><C-R>=nr2char(&wildcharm)<CR><S-Tab>
 " nnoremap <C-b> :buffer *
 
 " marks
@@ -848,28 +848,7 @@ let g:clever_f_fix_key_direction = 1 " always force f->forward F->backward
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 " }}}
-" vim-qf {{{
-nmap <C-q> <Plug>(qf_qf_toggle)
-nmap <leader>q <Plug>(qf_loc_toggle)
-
-" Makes ]q spammable, compliments vim-unimpaired
-nmap q] <Plug>(qf_qf_next)
-nmap q[ <Plug>(qf_qf_previous)
-
-" Ack inspired mappings only in loc/qf windows
-let g:qf_mapping_ack_style = 1
-" s - open entry in a new horizontal window
-" v - open entry in a new vertical window
-" t - open entry in a new tab
-" o - open entry and come back
-" O - open entry and close the loc/qf window
-" p - open entry in a preview window
-
-" Disable these for async Grep
-let g:qf_auto_open_quickfix = 0
-let g:qf_auto_open_loclist = 0
-" }}}
-" auto resize qf {{{
+" quickfix {{{
 function! AdjustWindowHeight(minheight, maxheight)
     let l = 1
     let n_lines = 0
@@ -888,6 +867,9 @@ augroup qf_resize
   autocmd!
   au FileType qf call AdjustWindowHeight(3, 10)
 augroup END
+
+command! ClearQuickfix cexpr []
+command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
 " }}}
 " async grep: https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3{{{
 command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
@@ -928,9 +910,26 @@ function! GrepOperator(type)
     let @@ = saved_unnamed_register
 endfunction
 " }}}
-" more quickfix {{{
-command! ClearQuickfix cexpr []
-command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
+" vim-qf {{{
+nmap <C-q> <Plug>(qf_qf_toggle)
+nmap <leader>q <Plug>(qf_loc_toggle)
+
+" Makes ]q spammable, compliments vim-unimpaired
+nmap q] <Plug>(qf_qf_next)
+nmap q[ <Plug>(qf_qf_previous)
+
+" Ack inspired mappings only in loc/qf windows
+let g:qf_mapping_ack_style = 1
+" s - open entry in a new horizontal window
+" v - open entry in a new vertical window
+" t - open entry in a new tab
+" o - open entry and come back
+" O - open entry and close the loc/qf window
+" p - open entry in a preview window
+
+" Disable these for async Grep
+let g:qf_auto_open_quickfix = 0
+let g:qf_auto_open_loclist = 0
 
 " Normal: `dd` removes item from the quickfix list.
 " Visual: `d` removes all selected items, gk keeps all selected items
@@ -942,8 +941,7 @@ augroup custom_qf_mapping
   autocmd FileType qf xnoremap <buffer> gk :'<,'>Keep<CR>
 augroup END
 " }}}
-" mostly git related {{{
-" committia.vim
+" committia.vim {{{
 let g:committia_hooks = {}
 let g:committia_use_singlecolumn = 'fallback'
 let g:committia_min_window_width = 110
@@ -959,8 +957,8 @@ function! g:committia_hooks.edit_open(info)
     imap <buffer><Down> <Plug>(committia-scroll-diff-down-half)
     imap <buffer><Up> <Plug>(committia-scroll-diff-up-half)
 endfunction
-
-" vim-gitgutter
+" }}}
+" vim-gitgutter {{{
 let g:gitgutter_map_keys = 0
 let g:gitgutter_grep = 'rg'
 let g:gitgutter_preview_win_floating = 0
@@ -1050,6 +1048,7 @@ function! JumpFileComputeNext()
 endfunction
 nnoremap <M-o> <cmd>execute 'normal ' . JumpFileComputePrevious() . "\<c-o>"<cr>
 nnoremap <M-i> <cmd>execute 'normal ' . JumpFileComputeNext() . "\<c-i>"<cr>
+" }}}
 " }}}
 " neovim only + lua {{{
 if has('nvim')
