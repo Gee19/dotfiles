@@ -242,30 +242,6 @@ augroup common
         \ endif
 augroup END
 " }}}
-" Lightline + Tabline {{{
-let g:lightline = {
-      \ 'colorscheme': s:lightline_scheme,
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'file_with_method', 'zoom_status', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'zoom_status': 'zoom#statusline'
-      \ },
-      \ }
-
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#show_number = 1
-let g:lightline#bufferline#smart_path = 1
-let g:lightline#bufferline#unnamed = '[Empty]'
-let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type = {'buffers': 'tabsel'}
-
-" Use autocmd to force lightline update.
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-" }}}
 " globals {{{
 set clipboard^=unnamed,unnamedplus " Trying system clipboard & linux 'selection' clipboard
 set path=.,,** " Search all directories recursively, * for fuzzy, drop /usr/include
@@ -531,6 +507,30 @@ inoremap <C-r> <C-r><C-o>
 nnoremap gfv :vertical wincmd f<CR>
 " }}}
 " Plugins {{{
+" Lightline + Tabline {{{
+let g:lightline = {
+      \ 'colorscheme': s:lightline_scheme,
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'file_with_method', 'zoom_status', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'zoom_status': 'zoom#statusline'
+      \ },
+      \ }
+
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#show_number = 1
+let g:lightline#bufferline#smart_path = 1
+let g:lightline#bufferline#unnamed = '[Empty]'
+let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type = {'buffers': 'tabsel'}
+
+" Use autocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+" }}}
 " Fern {{{
 let g:fern#renderer = "nerdfont" " devicons
 
