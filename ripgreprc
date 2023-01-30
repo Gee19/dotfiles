@@ -18,6 +18,7 @@ web:*.{html,css,js,jsx,ts,tsx}*
 --glob=!*.xml
 --glob=!*.csv
 --glob=!*.nessus
+--glob=!*.cjs
 
 --colors=line:none
 --colors=line:style:bold
