@@ -225,6 +225,10 @@ augroup common
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
   autocmd FileType jsonc,json setlocal commentstring=//\ %s
 
+  " Python requirements.txt syntax highlighting
+  " TODO: Better regex, optional patterns (*[-]requirements[.txt])
+  autocmd BufNewFile,BufRead *requirements* set syntax=config
+
   " Conceal full github/gitlab URLs to keep 'gx' functionality
   autocmd FileType vim,tmux setlocal foldmethod=marker conceallevel=2
   autocmd FileType vim,tmux :call matchadd('Conceal', 'https://github.com/', 10, -1, {'conceal': ''})
