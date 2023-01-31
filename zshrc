@@ -6,7 +6,7 @@ znap prompt "sindresorhus/pure"
 znap source "mafredri/zsh-async"
 znap source "zsh-users/zsh-completions"
 znap source "zsh-users/zsh-autosuggestions"
-znap source "zsh-users/zsh-syntax-highlighting"
+znap source "zdharma-continuum/fast-syntax-highlighting"
 znap source "zsh-users/zsh-history-substring-search"
 
 zstyle ':znap:*' git-maintenance off
@@ -29,7 +29,11 @@ zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files
 
 if [ "$TERM" = "xterm-kitty" ]; then
-  kitty + complete setup zsh | source /dev/stdin
+  if test -n "$KITTY_INSTALLATION_DIR"; then
+      autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+      kitty-integration
+      unfunction kitty-integration
+  fi
 fi
 
 # vi mode
