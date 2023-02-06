@@ -437,6 +437,10 @@ map <leader>v :source $MYVIMRC<CR>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
+" tab/s-tab in addition to c-g/c-t to traverse matches while searching
+cnoremap <expr> <Tab> getcmdtype() =~ "[/?]" ? "<C-g>" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() =~ "[/?]" ? "<C-t>" : "<S-Tab>"
+
 " in insert mode
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
