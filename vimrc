@@ -36,6 +36,7 @@ if has('nvim')
   Plug 'https://github.com/fgheng/winbar.nvim'
   Plug 'https://github.com/SmiteshP/nvim-gps'
   Plug 'https://github.com/lukas-reineke/indent-blankline.nvim'
+  Plug 'https://github.com/windwp/nvim-ts-autotag'
   Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 endif
 
@@ -115,15 +116,10 @@ Plug 'https://github.com/inkarkat/vim-ReplaceWithSameIndentRegister'
 Plug 'https://github.com/inkarkat/vim-visualrepeat'
 Plug 'https://github.com/inkarkat/vim-RelativeNumberCurrentWindow'
 
-" AndrewRadev / tags & friends
+" AndrewRadev & friends, extend join/split (gS/gJ)
 Plug 'https://github.com/AndrewRadev/switch.vim'
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 Plug 'https://github.com/flwyd/vim-conjoin' " Must come AFTER splitjoin
-Plug 'https://github.com/AndrewRadev/tagalong.vim'
-let g:tagalong_verbose = 1
-Plug 'https://github.com/alvan/vim-closetag'
-let g:closetag_filetypes='html,xhtml,xml,jsx,tsx'
-let g:closetag_enable_react_fragment = 1
 
 " Deprecated / fixed in neovim 0.8
 " Decoupling updatetime from CursorHold & CursorHoldI might still be useful
@@ -1134,6 +1130,9 @@ require('nvim-treesitter.configs').setup{
     disable = function(lang, bufnr)
       return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1048576
     end,
+  },
+  autotag = {
+    enable = true,
   },
   indent = { enable = false },
   incremental_selection = { enable = false },
