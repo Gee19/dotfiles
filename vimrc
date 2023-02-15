@@ -70,6 +70,7 @@ Plug 'https://github.com/mengelbrecht/lightline-bufferline'
 Plug 'https://github.com/moll/vim-bbye' " Delete buffers without affecting layout
 
 " Text Objects
+" TODO: Experiment with treesitter-text-objects to replace these
 Plug 'https://github.com/kana/vim-textobj-user'
 Plug 'https://github.com/kana/vim-textobj-indent'
 Plug 'https://github.com/glts/vim-textobj-comment'
@@ -129,6 +130,7 @@ if !has('gui')
 endif
 
 " git
+"TODO: Drop this for unimpaired, override unimpaired mappings
 Plug 'https://github.com/rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'https://github.com/rhysd/git-messenger.vim'
 Plug 'https://github.com/rhysd/committia.vim'
@@ -510,8 +512,8 @@ inoremap <C-r> <C-r><C-o>
 " gotfile in vert split
 nnoremap gfv :vertical wincmd f<CR>
 " }}}
-" Plugins {{{
-" Lightline + Tabline {{{
+" plugins {{{
+" lightline + tabline {{{
 let g:lightline = {
       \ 'colorscheme': s:lightline_scheme,
       \ 'active': {
@@ -535,7 +537,7 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 " Use autocmd to force lightline update.
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 " }}}
-" Fern {{{
+" fern {{{
 let g:fern#renderer = "nerdfont" " devicons
 
 " mappings inspired dirvish
@@ -760,7 +762,7 @@ if has_key(g:plugs, 'coc.nvim')
   xnoremap <silent><expr> <PageDown> coc#float#has_scroll() ? coc#util#float_scroll_i(1) : "\<PageDown>"
 endif
 " }}}
-" FZF {{{
+" fzf {{{
 " Default preview off, only in fullscreen (Rg!)
 let g:fzf_preview_window = ''
 
