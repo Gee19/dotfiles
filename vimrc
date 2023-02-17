@@ -1150,6 +1150,10 @@ require('nvim-treesitter.configs').setup{
       max_file_lines = 5000,
   } -- }}}
 }
+vim.treesitter.set_query("javascript", "injections", "")
+vim.treesitter.set_query("typescript", "injections", "")
+vim.treesitter.set_query("tsx", "injections", "")
+vim.treesitter.set_query("lua", "injections", "")
 EOF
 endif
 " }}}
