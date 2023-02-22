@@ -75,6 +75,7 @@ Plug 'https://github.com/kana/vim-textobj-user'
 Plug 'https://github.com/kana/vim-textobj-indent'
 Plug 'https://github.com/glts/vim-textobj-comment'
 Plug 'https://github.com/kana/vim-textobj-function'
+Plug 'https://github.com/kana/vim-textobj-indent'
 Plug 'https://github.com/PeterRincker/vim-argumentative' " Argument text objects i, a, >,
 
 " Whatever doesn't have a treesitter parser..
