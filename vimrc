@@ -211,6 +211,32 @@ if !has('nvim')
 
   " * in visual mode
   xnoremap * y/\V<C-R>"<CR>
+
+  if has('vim9script') && v:version >= 900
+    set wildoptions+=fuzzy " Use fuzzy-matching to find completion matches
+    set smoothscroll " Scroll with screen lines
+  endif
+
+  " enable bracketed paste when used within tmux
+  " :h xterm-bracketed-paste
+  if !has('gui_running') && $TERM =~ '^\%(screen\|tmux\)'
+    " Better mouse support, see  :help 'ttymouse'
+    set ttymouse=sgr
+
+    " Enable true colors, see  :help xterm-true-color
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+    " Enable bracketed paste mode, see  :help xterm-bracketed-paste
+    let &t_BE = "\<Esc>[?2004h"
+    let &t_BD = "\<Esc>[?2004l"
+    let &t_PS = "\<Esc>[200~"
+    let &t_PE = "\<Esc>[201~"
+
+    " Enable focus event tracking, see  :help xterm-focus-event
+    let &t_fe = "\<Esc>[?1004h"
+    let &t_fd = "\<Esc>[?1004l"
+  endif
 endif
 " }}}
 " autocmds {{{
@@ -261,9 +287,6 @@ set showmatch " When a bracket is inserted, briefly jump to the matching one
 set splitbelow " Put new window below current
 set splitright " Open vplit buffer to the right
 set laststatus=2 " Always show statusline
-if has('nvim')
-  set laststatus=3 " Global statusline
-endif
 set showtabline=2 " Always show tabline
 set linebreak " Avoid wrapping in middle of word
 set showbreak=↪ " Show this char when wrapping
@@ -283,10 +306,6 @@ if has('patch-8.2.4325')
   set wildoptions=pum " Use popupmenu for wildmenu in vim
 endif
 
-if has('vim9script') && v:version >= 900
-  set wildoptions+=fuzzy " Use fuzzy-matching to find completion matches
-endif
-
 set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
 set matchtime=2 " Time to show matching pair
 set matchpairs+=<:> " Add <> to matchpairs
@@ -300,27 +319,6 @@ syntax sync maxlines=256
 " Some coc servers have issues with backup files #649
 set nobackup
 set nowritebackup
-
-" enable bracketed paste when used within tmux
-" :h xterm-bracketed-paste
-if !has('gui_running') && !has('nvim') && $TERM =~ '^\%(screen\|tmux\)'
-  " Better mouse support, see  :help 'ttymouse'
-  set ttymouse=sgr
-
-  " Enable true colors, see  :help xterm-true-color
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-  " Enable bracketed paste mode, see  :help xterm-bracketed-paste
-  let &t_BE = "\<Esc>[?2004h"
-  let &t_BD = "\<Esc>[?2004l"
-  let &t_PS = "\<Esc>[200~"
-  let &t_PE = "\<Esc>[201~"
-
-  " Enable focus event tracking, see  :help xterm-focus-event
-  let &t_fe = "\<Esc>[?1004h"
-  let &t_fd = "\<Esc>[?1004l"
-endif
 
 set sessionoptions-=folds " Don't persist folds in sessions (FastFold docs)
 let g:fastfold_savehook = 0 " folds are only updated manually but not when saving the buffer
@@ -1063,6 +1061,7 @@ nnoremap <M-i> <cmd>execute 'normal ' . JumpFileComputeNext() . "\<c-i>"<cr>
 " }}}
 " neovim only + lua {{{
 if has('nvim')
+set laststatus=3 " Global statusline
 let g:editorconfig_enable = 0 " Disable builtin editorconfig, plugin works fine across vim/neovim
 set diffopt+=linematch:60
 set jumpoptions=stack " Make the jumplist behave like the tagstack
