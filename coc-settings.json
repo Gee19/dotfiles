@@ -29,7 +29,7 @@
     "typeParameter": "\uf728",
     "default": "\uf29c"
   },
-  "codeLens.enable": true,
+  "codeLens.enable": false,
   "codeLens.separator": "🔍",
   "coc.preferences.jumpCommand": "drop",
   "coc.preferences.rootPatterns": [".git", ".vscode"],
