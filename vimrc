@@ -1150,12 +1150,6 @@ require('nvim-treesitter.configs').setup{
       max_file_lines = 5000,
   } -- }}}
 }
--- Optimizations
-vim.treesitter.set_query("javascript", "injections", "")
-vim.treesitter.set_query("typescript", "injections", "")
-vim.treesitter.set_query("tsx", "injections", "")
-vim.treesitter.set_query("lua", "injections", "")
-
 -- Use builtin treesitter for these filetypes, this is annoying
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'lua', 'c', 'vim', 'help' },
