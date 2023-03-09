@@ -1,6 +1,7 @@
+# vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
 # zmodload zsh/zprof
 
-# znap
+# znap plugins {{{
 source ~/zsh/znap-repos/zsh-snap/znap.zsh
 znap prompt "sindresorhus/pure"
 znap source "mafredri/zsh-async"
@@ -10,14 +11,9 @@ znap source "zdharma-continuum/fast-syntax-highlighting"
 znap source "zsh-users/zsh-history-substring-search"
 
 zstyle ':znap:*' git-maintenance off
+# }}}
 
-# virtualenvwrapper
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    export WORKON_HOME=~/Envs
-    mkdir -p $WORKON_HOME
-    source /usr/local/bin/virtualenvwrapper.sh
-fi
-
+# globals {{{
 DISABLE_AUTO_TITLE="true"
 PURE_CMD_MAX_EXEC_TIME=10
 ZSH_AUTOSUGGEST_USE_ASYNC='true'
@@ -36,7 +32,22 @@ if [ "$TERM" = "xterm-kitty" ]; then
   fi
 fi
 
-# vi mode
+# Colored output in man pages
+function man() {
+  LESS_TERMCAP_md=$'\e[01;31m' \
+  LESS_TERMCAP_me=$'\e[0m' \
+  LESS_TERMCAP_se=$'\e[0m' \
+  LESS_TERMCAP_so=$'\e[01;44;33m' \
+  LESS_TERMCAP_ue=$'\e[0m' \
+  LESS_TERMCAP_us=$'\e[01;32m' \
+  command man "$@"
+}
+
+# flan autocomplete setup
+FLAN_AC_ZSH_SETUP_PATH=$HOME/.cache/@sdelements/flan/autocomplete/zsh_setup && test -f $FLAN_AC_ZSH_SETUP_PATH && source $FLAN_AC_ZSH_SETUP_PATH
+# }}}
+
+# vi mode {{{
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -120,88 +131,15 @@ done
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+# }}}
 
-# Colored output in man pages
-function man() {
-  LESS_TERMCAP_md=$'\e[01;31m' \
-  LESS_TERMCAP_me=$'\e[0m' \
-  LESS_TERMCAP_se=$'\e[0m' \
-  LESS_TERMCAP_so=$'\e[01;44;33m' \
-  LESS_TERMCAP_ue=$'\e[0m' \
-  LESS_TERMCAP_us=$'\e[01;32m' \
-  command man "$@"
-}
-
-# Shell into docker container
-function dsh () {
-  docker exec -i -t $1 /bin/bash
-}
-
-function _dsh(){
-  containers=("${(@f)$(docker ps --format '{{.Names}}')}")
-  compadd $containers
-}
-
-compdef _dsh dsh
-
-# what if.. we were to go even further beyond
-function dcsh() {
-  local git_dir_folder
-  git_dir_folder=$(echo "${$(git rev-parse --show-toplevel)##*/}_")
-
-  local cons=$(docker-compose ps | rg $git_dir_folder | awk '{print $1}' | sed -e "s/$(echo $git_dir_folder)//" | sed -e 's/_1//')
-
-  local selected_container
-  selected_container=$(echo $cons | fzf)
-  if [ -n "$selected_container" ]; then
-    docker-compose exec $selected_container bash
-  fi
-  return
-}
-
-# git stash diff
-function gsd() {
-  if [ "$1" != "" ]
-  then
-    git stash show -p stash@{$1}
-  else
-    git stash show -p stash@{0}
-  fi
-}
-
-# git checkout pr
-function gcopr() {
-  if [ "$1" != "" ]
-  then
-    git fetch origin "refs/pull/$1/head:pr/$1" && git checkout "pr/$1"
-  else
-    return
-  fi
-}
-
-# fzf
+# fzf {{{
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export BAT_THEME='TwoDark'
 export FZF_COMPLETION_OPTS='--info=inline'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .yarn --exclude .firebase --exclude sde-content'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d"
-
-function is_in_git_repo() {
-  git rev-parse HEAD > /dev/null 2>&1
-}
-
-# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
-function fbr() {
-  is_in_git_repo || return
-  local branches branch
-  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-bindkey -s '^b' 'fbr\n'
 
 # pipe fzf output to vim if non-zero exit code
 # TODO: not possible to use --exit-0 and --select-1 in interactive mode?
@@ -229,6 +167,99 @@ function _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
+# docker {{{
+# Shell into docker container
+function dsh () {
+  docker exec -i -t $1 /bin/bash
+}
+
+function _dsh(){
+  containers=("${(@f)$(docker ps --format '{{.Names}}')}")
+  compadd $containers
+}
+
+compdef _dsh dsh
+
+# what if.. we were to go even further beyond
+function dcsh() {
+  local git_dir_folder
+  git_dir_folder=$(echo "${$(git rev-parse --show-toplevel)##*/}_")
+
+  local cons=$(docker-compose ps | rg $git_dir_folder | awk '{print $1}' | sed -e "s/$(echo $git_dir_folder)//" | sed -e 's/_1//')
+
+  local selected_container
+  selected_container=$(echo $cons | fzf)
+  if [ -n "$selected_container" ]; then
+    docker-compose exec $selected_container bash
+  fi
+  return
+}
+
+# Select a running docker container to stop
+function ds() {
+  local cid
+  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker stop "$cid"
+}
+
+# Select docker container(s) to remove
+function drm() {
+  docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm
+}
+
+# Select docker image(s) to remove
+function drmi() {
+  docker images | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $3 }' | xargs -r docker rmi
+}
+
+# Select docker image to start bash tty
+function drun() {
+  image_id=$(docker image ls | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $3 }')
+  docker run -i -t --rm --user root $image_id bash
+}
+# }}}
+
+# git {{{
+function is_in_git_repo() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
+
+# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
+function fbr() {
+  is_in_git_repo || return
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+bindkey -s '^b' 'fbr\n'
+
+# git stash diff
+function gsd() {
+  if [ "$1" != "" ]
+  then
+    git stash show -p stash@{$1}
+  else
+    git stash show -p stash@{0}
+  fi
+}
+
+# git checkout pr
+function gcopr() {
+  if [ "$1" != "" ]
+  then
+    git fetch origin "refs/pull/$1/head:pr/$1" && git checkout "pr/$1"
+  else
+    return
+  fi
+}
+# }}}
+# }}}
+
+# keybinds {{{
 # ctrl + space for accept suggestion
 bindkey '^ ' autosuggest-accept
 
@@ -251,11 +282,22 @@ bindkey -v '^?' backward-delete-char
 bindkey -M viins '\e\e[C' forward-word
 bindkey -M viins '\e\e[D' backward-word
 bindkey -M viins '^[^?' backward-kill-word
+# }}}
+
+# python {{{
+# virtualenvwrapper
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=~/Envs
+    mkdir -p $WORKON_HOME
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 function gpip() {
   PIP_REQUIRE_VIRTUALENV=false pip "$@"
 }
+# }}}
 
+# custom functions {{{
 function rzsh() {
   if [ -n "$VIRTUAL_ENV" ]; then
     deactivate
@@ -263,9 +305,6 @@ function rzsh() {
   znap restart
   return
 }
-
-# flan autocomplete setup
-FLAN_AC_ZSH_SETUP_PATH=$HOME/.cache/@sdelements/flan/autocomplete/zsh_setup && test -f $FLAN_AC_ZSH_SETUP_PATH && source $FLAN_AC_ZSH_SETUP_PATH
 
 # i'll forget
 function buildv() {
@@ -302,5 +341,6 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+# }}}
 
 # zprof
