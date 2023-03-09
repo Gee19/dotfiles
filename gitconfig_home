@@ -1,8 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
-    name = Jordan Haine
-    email = gee19haine@gmail.com
-    signingkey = B32CD52FB1BD7F2F071C7BD59D4442BD6D5DEFC4
+	name = Jordan Haine
+	email = gee19haine@gmail.com
+	signingkey = 6892B707C894CBED409CC5A0D5DA698DE558077F
 [core]
 	excludesfile = /home/jhaine/.gitignore_global
 	editor = nvim
@@ -28,4 +28,4 @@
 [init]
 	defaultBranch = master
 [jump]
-    grepCmd = rg --vimgrep --no-heading
+	grepCmd = rg --vimgrep --no-heading

@@ -19,6 +19,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/.ripgreprc"
 export PATH="$HOME/.local/bin:$PATH"
 
+# gpg tty, passphrases prob
+export GPG_TTY=$(tty)
+
 # Work
 export DJANGO_SETTINGS_MODULE=settings
 export PYTHONPATH=.

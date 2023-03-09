@@ -119,6 +119,9 @@ fi
 export XDG_CONFIG_HOME=$HOME/.config
 export PATH=$HOME/.local/bin:$PATH
 
+# gpg tty, passphrases prob
+export GPG_TTY=$(tty)
+
 # Rust
 export PATH=$HOME/.cargo/env:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
