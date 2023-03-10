@@ -301,6 +301,7 @@ set scrolloff=8 " Keep X lines above/below cursor when near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
 set wildmenu " Enhanced tabline completion
+set isfname-== " Open paths like foo=/tmp/foo with 'gf'
 
 if has('patch-8.2.4325')
   set wildoptions=pum " Use popupmenu for wildmenu in vim
