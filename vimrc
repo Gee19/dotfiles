@@ -845,6 +845,19 @@ command! BD call fzf#run(fzf#wrap({
   \ },
   \ 'options': '--prompt="Delete Buffer(s):" --multi --reverse --bind ctrl-a:select-all+accept'
   \ }))
+
+" FZF Session Picker
+let s:session_dir = '$HOME/.vim/session/'
+function! s:list_sessions() abort
+  return systemlist('ls ' . s:session_dir)
+endfunction
+
+function! s:source_session(line) abort
+  exec 'source ' . s:session_dir . substitute(a:line[0], '%', '\\%', 'g')
+endfunction
+
+command! SP call fzf#run(fzf#wrap({ 'source': s:list_sessions(),'sink*': { line -> s:source_session(line) }, 'options': '--reverse' }))
+" }}}
 " }}}
 " clever-f {{{
 let g:clever_f_across_no_line = 1 " only span 1 line
