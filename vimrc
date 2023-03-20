@@ -560,6 +560,9 @@ function! FernInit() abort
   nmap <buffer> O <Plug>(fern-action-new-path)
   nmap <buffer> dd <Plug>(fern-action-remove)
   nmap <buffer> cc <Plug>(fern-action-move)
+  " TODO: copy filename/path too
+  nmap <buffer> yy <Plug>(fern-action-clipboard-copy)
+  nmap <buffer> p <Plug>(fern-action-clipboard-paste)
   nmap <buffer> M <Plug>(fern-action-rename)
   nmap <buffer> m <Plug>(fern-action-mark:toggle)
   nmap <buffer> gm <Plug>(fern-action-mark:clear)
