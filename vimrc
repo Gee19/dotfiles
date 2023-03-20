@@ -542,10 +542,8 @@ function! FernInit() abort
   nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
   nmap <buffer> o <Plug>(fern-action-new-path)
   nmap <buffer> O <Plug>(fern-action-new-path)
-  " TODO: convert to function, set mark, return to mark to keep position
   nmap <buffer> dd <Plug>(fern-action-remove)
   nmap <buffer> cc <Plug>(fern-action-move)
-  " TODO: copy filename/path too
   nmap <buffer> yy <Plug>(fern-action-clipboard-copy)
   nmap <buffer> p <Plug>(fern-action-clipboard-paste)
   nmap <buffer> M <Plug>(fern-action-rename)
