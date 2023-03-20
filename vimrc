@@ -92,6 +92,8 @@ Plug 'https://github.com/farmergreg/vim-lastplace'
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
+Plug 'https://github.com/machakann/vim-highlightedyank'
+let g:highlightedyank_highlight_duration = 200
 
 " Fern
 Plug 'https://github.com/lambdalisue/fern.vim'
@@ -254,7 +256,6 @@ augroup common
   autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o " newline formatting
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
-  autocmd TextYankPost * if exists('##TextYankPost') | exe "silent! lua require'vim.highlight'.on_yank()" | endif
 
   " set up default omnifunc
   autocmd FileType *
@@ -264,7 +265,7 @@ augroup common
 augroup END
 " }}}
 " globals {{{
-set clipboard^=unnamed,unnamedplus " Trying system clipboard & linux 'selection' clipboard
+set clipboard^=unnamed,unnamedplus " System clipboard & linux 'selection' clipboard
 set path=.,,** " Search all directories recursively, * for fuzzy, drop /usr/include
 set hidden " New buffers with unsaved changes
 set noswapfile " No swap file on buffer load
@@ -294,17 +295,12 @@ set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
 set wildmenu " Enhanced tabline completion
 set isfname-== " Open paths like foo=/tmp/foo with 'gf'
-
-if has('patch-8.2.4325')
-  set wildoptions=pum " Use popupmenu for wildmenu in vim
-endif
-
+set wildoptions=pum " Use popupmenu for wildmenu in vim
 set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
 set matchtime=2 " Time to show matching pair
 set matchpairs+=<:> " Add <> to matchpairs
 
-" don't syntax color long lines
-" pretty sure this doesn't work with treesitter (vim only)
+" don't syntax color long lines, doesn't work with treesitter (vim only)
 set synmaxcol=250
 syntax sync minlines=256
 syntax sync maxlines=256
@@ -416,10 +412,6 @@ nnoremap <C-u> <C-u>zz
 
 " calculator
 xnoremap <leader>= c<C-R>=<C-R>"<CR><esc>
-
-" System clipboard
-map <leader>y "+y
-map <leader>p "*p
 
 map <leader>v :source $MYVIMRC<CR>
 
@@ -550,6 +542,7 @@ function! FernInit() abort
   nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
   nmap <buffer> o <Plug>(fern-action-new-path)
   nmap <buffer> O <Plug>(fern-action-new-path)
+  " TODO: convert to function, set mark, return to mark to keep position
   nmap <buffer> dd <Plug>(fern-action-remove)
   nmap <buffer> cc <Plug>(fern-action-move)
   " TODO: copy filename/path too
