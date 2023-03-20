@@ -184,14 +184,6 @@ if !has('nvim')
   let &t_SR = "\e[4 q"
   let &t_EI = "\e[2 q"
 
-  " WSL yank support
-  if executable("clip.exe")
-    augroup WSLYank
-      autocmd!
-      autocmd TextYankPost * if v:event.operator ==# 'y' | call system('clip.exe', @0) | endif
-    augroup END
-  endif
-
   " Fix GitGutter CursorHold
   autocmd VimEnter * call gitgutter#process_buffer(bufnr(''), 0)
 
