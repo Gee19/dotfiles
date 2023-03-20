@@ -123,7 +123,7 @@ Plug 'https://github.com/inkarkat/vim-RelativeNumberCurrentWindow'
 " AndrewRadev & friends, extend join/split (gS/gJ)
 Plug 'https://github.com/AndrewRadev/switch.vim'
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'
-Plug 'https://github.com/flwyd/vim-conjoin' " Must come AFTER splitjoin
+Plug 'https://github.com/flwyd/vim-conjoin' " Must come AFTER splitjoin (broken for vim comments in vim)
 
 " Deprecated / fixed in neovim 0.8
 " Decoupling updatetime from CursorHold & CursorHoldI might still be useful
