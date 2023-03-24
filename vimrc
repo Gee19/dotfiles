@@ -87,12 +87,10 @@ Plug 'https://github.com/Konfekt/FastFold'
 " viM iSn'T aN IDe
 Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
-Plug 'https://github.com/farmergreg/vim-lastplace'
+Plug 'https://github.com/farmergreg/vim-lastplace' " broken in vim + windows terminal :(
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/wsdjeg/vim-fetch'
 Plug 'https://github.com/neoclide/jsonc.vim'
-Plug 'https://github.com/machakann/vim-highlightedyank'
-let g:highlightedyank_highlight_duration = 200
 
 " Fern
 Plug 'https://github.com/lambdalisue/fern.vim'
@@ -246,6 +244,7 @@ augroup common
   autocmd BufNewFile,BufRead * set formatoptions-=c formatoptions-=r formatoptions-=o " newline formatting
   autocmd VimResized * wincmd = " Automatically equalize splits when resized
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif " vsplit new help buffers
+  autocmd TextYankPost * if exists('##TextYankPost') | exe "silent! lua require'vim.highlight'.on_yank()" | endif
 
   " set up default omnifunc
   autocmd FileType *
