@@ -11,21 +11,18 @@ let g:loaded_netrw=1
 let g:loaded_netrwPlugin=1
 let g:loaded_netrwSettings=1
 let g:loaded_netrwFileHandlers=1
-let g:loaded_gzip=1
 let g:loaded_man=1
+let g:loaded_gzip=1
 let g:loaded_tarPlugin=1
 let g:loaded_tar=1
 let g:loaded_zipPlugin=1
 let g:loaded_zip=1
 
-" enable cfilter and matchit plugins
+" enable cfilter (sensible enables matchit)
 packadd! cfilter
-packadd! matchit
 " }}}
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
-" Theme
-Plug 'https://github.com/NLKNguyen/papercolor-theme'
 if has('nvim')
   Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -41,6 +38,7 @@ if has('nvim')
 endif
 
 " tpope
+Plug 'https://github.com/tpope/vim-sensible'
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'https://github.com/tpope/vim-endwise'
 Plug 'https://github.com/tpope/vim-commentary'
@@ -156,12 +154,9 @@ if has('termguicolors')
 endif
 
 set background=dark
-let s:scheme = has('nvim') ? 'tokyonight-night' : 'PaperColor'
-let s:lightline_scheme = has('nvim') ? 'tokyonight' : 'PaperColor'
+let s:scheme = has('nvim') ? 'tokyonight-night' : 'habamax'
+let s:lightline_scheme = has('nvim') ? 'tokyonight' : 'wombat'
 execute 'colorscheme ' . s:scheme
-
-let s:shell = exists('$SHELL') ? $SHELL : '/bin/sh'
-execute 'set shell=' . s:shell
 
 " Format JSON
 command! -nargs=0 Jsonfmt :%!jq
@@ -179,7 +174,6 @@ endif
 " }}}
 " vim only {{{
 if !has('nvim')
-  syntax on
   set encoding=UTF-8
 
   " block cursor
@@ -195,11 +189,6 @@ if !has('nvim')
   set <M-j>=j
   set <M-o>=o
   set <M-i>=i
-
-  " (nvim -> :h default-mappings)
-  " Add undo points
-  inoremap <C-W> <C-G>u<C-W>
-  inoremap <C-U> <C-G>u<C-U>
 
   " Make Y behave like other capitals
   nnoremap Y y$
@@ -270,7 +259,6 @@ set clipboard^=unnamed,unnamedplus " System clipboard & linux 'selection' clipbo
 set path=.,,** " Search all directories recursively, * for fuzzy, drop /usr/include
 set hidden " New buffers with unsaved changes
 set noswapfile " No swap file on buffer load
-set autoread " Auto read files changed outside of vim
 set gdefault " Substitute all matches in a line
 set cmdheight=2 " Better display for messages
 set signcolumn=yes " Always show signcolumn
@@ -291,11 +279,8 @@ set noshowmode " Hide mode, handled by lightline
 set shortmess+=c " don't give ins-completion-menu messages
 set number " Line numbers
 set relativenumber " Show line numbers from current location
-set scrolloff=8 " Keep X lines above/below cursor when near edge of screen
-set sidescrolloff=5 " Keep X chars left/right of the cursor near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
-set wildmenu " Enhanced tabline completion
 set isfname-== " Open paths like foo=/tmp/foo with 'gf'
 set wildoptions=pum " Use popupmenu for wildmenu in vim
 set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
@@ -319,12 +304,10 @@ let g:fastfold_fold_command_suffixes = [] " folds are not updated when closing o
 set sessionoptions+=globals
 
 " Indentation
-filetype plugin indent on
 set tabstop=8 softtabstop=0
 if exists('*shiftwidth')
   set shiftwidth=0 softtabstop=-1
 endif
-set smarttab " Indent according to shiftwidth at beginning of line
 set shiftround " Round indent to multiple of shiftwidth
 set autoindent " Copy indent from current line when starting a new line
 
@@ -332,10 +315,6 @@ set autoindent " Copy indent from current line when starting a new line
 set ignorecase " Ignore case in search pattern
 set smartcase " Override ignorecase if search contains uppercase
 set hlsearch " Highlight previous search results
-set incsearch " Match search terms incrementally
-
-" Backspace in insert mode
-set backspace=indent,eol,start
 
 " Move cursor by display lines when wrapping
 set virtualedit+=block

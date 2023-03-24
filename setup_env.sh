@@ -48,7 +48,7 @@ cd ~/.local/bin
 
 # wsl-open
 if [[ $(uname -r) =~ WSL2$ ]]; then
-  wget "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
+  wget "https://gitlab.com/4U6U57/wsl-open/-/raw/develop/wsl-open.sh"
   mv wsl-open.sh wsl-open
   chmod +x wsl-open
 fi
