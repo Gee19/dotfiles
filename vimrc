@@ -49,6 +49,7 @@ Plug 'https://github.com/tpope/vim-obsession'
 Plug 'https://github.com/tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-scriptease'
 Plug 'https://github.com/tpope/vim-unimpaired'
+Plug 'https://github.com/tpope/vim-sleuth'
 
 " me
 Plug 'https://github.com/Gee19/indent-ignoreblank.vim' " Get correct indent for new lines despite blank lines
@@ -291,6 +292,7 @@ set shortmess+=c " don't give ins-completion-menu messages
 set number " Line numbers
 set relativenumber " Show line numbers from current location
 set scrolloff=8 " Keep X lines above/below cursor when near edge of screen
+set sidescrolloff=5 " Keep X chars left/right of the cursor near edge of screen
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
 set wildmenu " Enhanced tabline completion
@@ -318,10 +320,10 @@ set sessionoptions+=globals
 
 " Indentation
 filetype plugin indent on
-set tabstop=4 " Interpret <TAB> as 4 spaces
-set softtabstop=2 " 2 columns per tab
-set shiftwidth=2 " Indent width
-set expandtab " Convert tabs to spaces
+set tabstop=8 softtabstop=0
+if exists('*shiftwidth')
+  set shiftwidth=0 softtabstop=-1
+endif
 set smarttab " Indent according to shiftwidth at beginning of line
 set shiftround " Round indent to multiple of shiftwidth
 set autoindent " Copy indent from current line when starting a new line
