@@ -7,10 +7,6 @@ if $NORC || $CLEAN || $norc || $clean
 endif
 
 " disable some plugins
-let g:loaded_netrw=1
-let g:loaded_netrwPlugin=1
-let g:loaded_netrwSettings=1
-let g:loaded_netrwFileHandlers=1
 let g:loaded_man=1
 let g:loaded_gzip=1
 let g:loaded_tarPlugin=1
@@ -48,6 +44,7 @@ Plug 'https://github.com/tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-scriptease'
 Plug 'https://github.com/tpope/vim-unimpaired'
 Plug 'https://github.com/tpope/vim-sleuth'
+Plug 'https://github.com/tpope/vim-vinegar'
 
 " me
 Plug 'https://github.com/Gee19/indent-ignoreblank.vim' " Get correct indent for new lines despite blank lines
@@ -69,7 +66,6 @@ Plug 'https://github.com/mengelbrecht/lightline-bufferline'
 Plug 'https://github.com/moll/vim-bbye' " Delete buffers without affecting layout
 
 " Text Objects
-" TODO: Experiment with treesitter-text-objects to replace these
 Plug 'https://github.com/kana/vim-textobj-user'
 Plug 'https://github.com/kana/vim-textobj-indent'
 Plug 'https://github.com/glts/vim-textobj-comment'
@@ -364,6 +360,16 @@ highlight link gitmessengerHash Special
 " Italics (Operator Mono OP)
 highlight Comment gui=italic cterm=italic
 highlight htmlArg gui=italic cterm=italic
+
+" Marks
+noremap ` '
+noremap ' `
+noremap '' ``
+noremap `` ''
+sunmap '
+sunmap `
+sunmap ''
+sunmap ``
 " }}}
 " mappings {{{
 let mapleader = "\<Space>"
@@ -453,9 +459,6 @@ nnoremap <M-k> :<C-u>silent! move-2<CR>==
 nnoremap <M-j> :<C-u>silent! move+<CR>==
 xnoremap <M-k> :<C-u>silent! '<,'>move-2<CR>gv=gv
 xnoremap <M-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
-
-" i disable netrw (wsl-open handles WSL)
-nnoremap <silent> gx <cmd>silent execute '!xdg-open ' . shellescape(expand('<cfile>'), 1)<CR>
 
 " Show the syntax highlight group under cursor
 nnoremap <F10> <cmd>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -824,7 +827,6 @@ endfunction
 
 command! SP call fzf#run(fzf#wrap({ 'source': s:list_sessions(),'sink*': { line -> s:source_session(line) }, 'options': '--reverse' }))
 " }}}
-" }}}
 " clever-f {{{
 let g:clever_f_across_no_line = 1 " only span 1 line
 let g:clever_f_fix_key_direction = 1 " always force f->forward F->backward
@@ -974,11 +976,8 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " }}}
 " romainl pseudo-text objects {{{
 " https://gist.github.com/romainl/c0a8b57a36aec71a986f1120e1931f20
-
-" 22 simple pseudo-text objects (, removed for argumentative)
-" i_ i. i: i; i| i/ i\ i* i+ i- i#
-" a_ a. a: a; a| a/ a\ a* a+ a- a#
-for char in [ '_', '.', ':', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#' ]
+" 24 simple pseudo-text objects (, removed for argumentative)
+for char in [ '_', '.', ':', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#', '`' ]
 	execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
 	execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
 	execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
