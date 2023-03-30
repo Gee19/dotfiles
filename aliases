@@ -3,6 +3,7 @@
 # Insert: <C-x>a
 
 alias ..="cd .."
+alias fix_suspend="sudo systemctl cancel; sudo systemctl stop systemd-suspend.service"
 
 alias gs="git status || ll"
 alias gp="git pull"

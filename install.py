@@ -9,7 +9,6 @@ include = {
     # Git
     "gitignore_global": "$HOME/.gitignore_global",
     "git-jump": "$HOME/.local/bin/git-jump",
-    "suspend-fix": "$HOME/.local/bin/,suspend-fix",
     # coc.nvim
     "coc-settings.json": [
         "$XDG_CONFIG_HOME/nvim/coc-settings.json",
