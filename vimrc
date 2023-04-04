@@ -24,7 +24,6 @@ if has('nvim')
   Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'https://gitlab.com/HiPhish/nvim-ts-rainbow2'
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
-  Plug 'https://github.com/lewis6991/impatient.nvim'
   Plug 'https://github.com/levouh/tint.nvim'
   Plug 'https://github.com/fgheng/winbar.nvim'
   Plug 'https://github.com/SmiteshP/nvim-gps'
@@ -1045,7 +1044,7 @@ let g:editorconfig_enable = 0 " Disable builtin editorconfig, plugin works fine 
 set diffopt+=linematch:60
 set jumpoptions=stack " Make the jumplist behave like the tagstack
 lua << EOF
-require('impatient')
+vim.loader.enable()
 require('winbar').setup({
   enabled = true,
   exclude_filetype = {
@@ -1055,7 +1054,7 @@ require('winbar').setup({
   }
 })
 require('nvim-gps').setup()
-require("indent_blankline").setup {
+require("indent_blankline").setup({
     show_current_context = true,
     show_trailing_blankline_indent = false,
     indent_blankline_use_treesitter = true,
@@ -1064,7 +1063,7 @@ require("indent_blankline").setup {
       'help',
       'text'
     }
-}
+})
 require('tint').setup({
   tint = -25,
   highlight_ignore_patterns = {
@@ -1082,7 +1081,7 @@ require('tint').setup({
     return buftype == "terminal" or floating
   end
 })
-require('nvim-treesitter.configs').setup{
+require('nvim-treesitter.configs').setup({
   ensure_installed = { -- {{{
     'javascript',
     'typescript',
@@ -1128,7 +1127,7 @@ require('nvim-treesitter.configs').setup{
       strategy = require 'ts-rainbow.strategy.global',
       max_file_lines = 5000,
   } -- }}}
-}
+})
 -- Use builtin treesitter for these filetypes, this is annoying
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'lua', 'c', 'vim', 'help' },
