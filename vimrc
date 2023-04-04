@@ -485,7 +485,7 @@ let g:lightline = {
       \ 'colorscheme': s:lightline_scheme,
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'file_with_method', 'zoom_status', 'modified' ] ]
+      \             [ 'cocstatus', 'readonly', 'zoom_status', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
