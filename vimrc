@@ -280,6 +280,7 @@ set wildoptions=pum " Use popupmenu for wildmenu in vim
 set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
 set matchtime=2 " Time to show matching pair
 set matchpairs+=<:> " Add <> to matchpairs
+set scrolloff=5 " Minimum number of lines to keep above/below cursor
 
 " don't syntax color long lines, doesn't work with treesitter (vim only)
 set synmaxcol=250
