@@ -26,7 +26,7 @@ if has('nvim')
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'https://github.com/levouh/tint.nvim'
   Plug 'https://github.com/fgheng/winbar.nvim'
-  Plug 'https://github.com/SmiteshP/nvim-gps'
+  Plug 'https://github.com/Gee19/nvim-gps'
   Plug 'https://github.com/lukas-reineke/indent-blankline.nvim'
   Plug 'https://github.com/windwp/nvim-ts-autotag'
   Plug 'https://github.com/kyazdani42/nvim-web-devicons'
