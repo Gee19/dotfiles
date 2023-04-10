@@ -1101,7 +1101,8 @@ require('nvim-treesitter.configs').setup({
     'go',
     'html',
     'cmake',
-    'graphql'
+    'graphql',
+    'vimdoc'
   },
   highlight = {
     enable = true,
