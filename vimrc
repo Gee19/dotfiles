@@ -223,7 +223,6 @@ augroup common
     autocmd FileType fzf set winbar= " Workaround to hide winbar on fzf windows
   endif
   autocmd BufLeave *#FZF :bd! " autoclose fzf buffer
-  autocmd BufWrite *.py call CocAction('format') " neoclide/coc.nvim/issues/3441
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
   autocmd FileType jsonc,json setlocal commentstring=//\ %s
 

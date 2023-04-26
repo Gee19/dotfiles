@@ -1,4 +1,6 @@
+// vim: set tabstop=2 shiftwidth=2 foldmethod=marker:
 {
+  // Global {{{
   "suggest.noselect": false,
   "suggest.removeDuplicateItems": true,
   "suggest.completionItemKindLabels": {
@@ -29,33 +31,23 @@
     "typeParameter": "\uf728",
     "default": "\uf29c"
   },
-  "codeLens.enable": false,
+  "codeLens.enable": true,
   "codeLens.separator": "🔍",
   "coc.preferences.jumpCommand": "drop",
   "coc.preferences.rootPatterns": [".git", ".vscode"],
-  "coc.preferences.formatOnSaveFiletypes": [
-    "cucumber",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "css"
-  ],
-  // "cucumber.enable": false,
-  // "cucumber.glue": [
-  //   "cypress/integration/**/*.cucumber.ts"
-  // ],
-  // "cucumber.features": [
-  //   "cypress/integration/**/*.feature"
-  // ],
+  "coc.preferences.formatOnSave": true,
   "diagnostic.checkCurrentLine": false,
   "diagnostic.messageTarget": "float",
   "diagnostic.separateRelatedInformationAsDiagnostics": false,
   "diagnostic.virtualText": false,
   "diagnostic.virtualTextCurrentLineOnly": false,
-  "Lua.telemetry.enable": false,
-  "Lua.window.statusBar": false,
-  "prettier.disableLanguages": ["yaml"],
+  // }}}
+  // Python {{{
+  "[python]": {
+    "coc.preferences.formatOnSaveTimeout": 5000,
+    "inlayHint.enable": false,
+    "inlayHint.enableParameter": false
+  },
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
@@ -63,6 +55,9 @@
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "~/.local/bin/black",
   "python.venvPath": "/home/jhaine/.cache/pypoetry/virtualenvs/",
+  // }}}
+  // TS/JS {{{
+  "prettier.disableLanguages": ["yaml"],
   "snippets.ultisnips.enable": false,
   "tsserver.npm": "/home/jhaine/.fnm/node-versions/v18.12.1/installation/bin/npm",
   "npm.binPath": "/home/jhaine/.fnm/node-versions/v18.12.1/installation/bin/npm",
@@ -70,7 +65,18 @@
   "javascript.implementationsCodeLens.enable": false,
   "typescript.referencesCodeLens.enable": false,
   "typescript.implementationsCodeLens.enable": false,
-  // "notification.disabledProgressSources": ["*"],
-  "inlayHint.enable": false,
-  "inlayHint.enableParameter": false
+  // }}}
+  // Lua {{{
+  "Lua.telemetry.enable": false,
+  "Lua.window.statusBar": false
+  // }}}
+  // Cucumber {{{
+  // "cucumber.enable": false,
+  // "cucumber.glue": [
+  //   "cypress/integration/**/*.cucumber.ts"
+  // ],
+  // "cucumber.features": [
+  //   "cypress/integration/**/*.feature"
+  // ],
+  // }}}
 }
