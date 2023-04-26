@@ -147,8 +147,8 @@ if has('termguicolors')
 endif
 
 set background=dark
-let s:scheme = has('nvim') ? 'tokyonight-night' : 'habamax'
-let s:lightline_scheme = has('nvim') ? 'tokyonight' : 'wombat'
+let s:scheme = has('nvim') ? 'tokyonight-night' : 'retrobox'
+let s:lightline_scheme = has('nvim') ? 'tokyonight' : 'solarized'
 execute 'colorscheme ' . s:scheme
 
 " Format JSON
