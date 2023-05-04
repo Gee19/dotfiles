@@ -118,14 +118,13 @@ Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 Plug 'https://github.com/flwyd/vim-conjoin' " Must come AFTER splitjoin (broken for vim comments in vim)
 
 " Deprecated / fixed in neovim 0.8
-" Decoupling updatetime from CursorHold & CursorHoldI might still be useful
+" Decoupling updatetime from CursorHold & CursorHoldI is still useful
 if !has('gui')
   Plug 'https://github.com/antoinemadec/FixCursorHold.nvim'
   let g:cursorhold_updatetime = 100 " leave updatetime untouched (and avoid unnecessary swap writes)
 endif
 
 " git
-"TODO: Drop this for unimpaired, override unimpaired mappings
 Plug 'https://github.com/rhysd/conflict-marker.vim' " [x ]x to navigate merge conflicts
 Plug 'https://github.com/rhysd/git-messenger.vim'
 Plug 'https://github.com/rhysd/committia.vim'
@@ -437,9 +436,8 @@ nnoremap <silent> <C-w>l :call WinMove('l')<CR>
 " Insert newline above or below and stay in normal mode
 " No insert mode, doesn't move the cursor, and allows you to use a counter to append several lines at once
 " Add 3 lines above: 3<leader>O
-" or via vim-unimpaired: 3[<Space>
-nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+nnoremap <silent> <leader>o <Plug>(unimpaired-blank-down)
+nnoremap <silent> <leader>O <Plug>(unimpaired-blank-up)
 
 " Shift+U redo
 nnoremap U :redo<CR>
