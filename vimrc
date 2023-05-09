@@ -853,7 +853,7 @@ augroup qf_resize
 augroup END
 
 command! ClearQuickfix cexpr []
-command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
+command! -bar -nargs=* Jump cexpr system('git jump --stdout ' . expand(<q-args>))
 " }}}
 " async grep: https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3{{{
 command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
