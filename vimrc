@@ -25,8 +25,7 @@ if has('nvim')
   Plug 'https://gitlab.com/HiPhish/nvim-ts-rainbow2'
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'https://github.com/levouh/tint.nvim'
-  Plug 'https://github.com/fgheng/winbar.nvim'
-  Plug 'https://github.com/Gee19/nvim-gps'
+  Plug 'https://github.com/Bekaboo/dropbar.nvim'
   Plug 'https://github.com/lukas-reineke/indent-blankline.nvim'
   Plug 'https://github.com/windwp/nvim-ts-autotag'
   Plug 'https://github.com/kyazdani42/nvim-web-devicons'
@@ -218,9 +217,6 @@ endif
 " autocmds {{{
 augroup common
   autocmd!
-  if has('nvim')
-    autocmd FileType fzf set winbar= " Workaround to hide winbar on fzf windows
-  endif
   autocmd BufLeave *#FZF :bd! " autoclose fzf buffer
   autocmd FileType css :iabbrev <buffer> centerme display: 'flex';<cr>justify-content: 'center';<cr>align-items: 'center';
   autocmd FileType jsonc,json setlocal commentstring=//\ %s
@@ -1043,15 +1039,6 @@ set diffopt+=linematch:60
 set jumpoptions=stack " Make the jumplist behave like the tagstack
 lua << EOF
 vim.loader.enable()
-require('winbar').setup({
-  enabled = true,
-  exclude_filetype = {
-    'help',
-    'qf',
-    'nerdtree',
-  }
-})
-require('nvim-gps').setup()
 require("indent_blankline").setup({
     show_current_context = true,
     show_trailing_blankline_indent = false,
