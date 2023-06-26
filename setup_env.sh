@@ -108,8 +108,8 @@ rm go1.18.linux-amd64.tar.gz
 curl -fsSL https://fnm.vercel.app/install | bash --skip-shell
 fnm completions --shell zsh >> /tmp/_fnm
 sudo mv /tmp/_fnm /usr/share/zsh/vendor-completions/_fnm
-fnm install v18.12.1
-fnm default v18.12.1
+fnm install v18.13.0
+fnm default v18.13.0
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/dev/fzf
