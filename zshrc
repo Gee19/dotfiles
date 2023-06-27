@@ -339,7 +339,7 @@ function buildv() {
   if [[ "$1" == "nvim" ]]; then
     cd "$HOME/dev/neovim" && git pull
   else
-    cd "$HOME/dev/$1" && git pull
+    cd "$HOME/dev/vim" && git pull
   fi
 
   make clean && make distclean
