@@ -22,11 +22,11 @@ call plug#begin('~/.vim/plugged')
 if has('nvim')
   Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'https://gitlab.com/HiPhish/nvim-ts-rainbow2'
+  Plug 'https://github.com/hiphish/rainbow-delimiters.nvim'
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'https://github.com/levouh/tint.nvim'
   Plug 'https://github.com/Bekaboo/dropbar.nvim'
-  Plug 'https://github.com/lukas-reineke/indent-blankline.nvim'
+  Plug 'https://github.com/lukas-reineke/indent-blankline.nvim', { 'tag': 'v2.20.8' }
   Plug 'https://github.com/windwp/nvim-ts-autotag'
   Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 endif
@@ -1106,14 +1106,29 @@ require('nvim-treesitter.configs').setup({
     enable = true
   },
   textobjects = { enable = true },
-    rainbow = {
-      enable = true,
-      extended_mode = true,
-      query = 'rainbow-parens',
-      strategy = require 'ts-rainbow.strategy.global',
-      max_file_lines = 5000,
-  } -- }}}
+  -- }}}
 })
+local rainbow_delimiters = require 'rainbow-delimiters'
+
+vim.g.rainbow_delimiters = {
+    strategy = {
+        [''] = rainbow_delimiters.strategy['global'],
+        vim = rainbow_delimiters.strategy['local'],
+    },
+    query = {
+        [''] = 'rainbow-delimiters',
+        lua = 'rainbow-blocks',
+    },
+    highlight = {
+        'RainbowDelimiterRed',
+        'RainbowDelimiterYellow',
+        'RainbowDelimiterBlue',
+        'RainbowDelimiterOrange',
+        'RainbowDelimiterGreen',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterCyan',
+    },
+}
 -- Use builtin treesitter for these filetypes, this is annoying
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'lua', 'c', 'vim', 'help' },
