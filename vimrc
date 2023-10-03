@@ -1086,7 +1086,10 @@ require('nvim-treesitter.configs').setup({
     'html',
     'cmake',
     'graphql',
-    'vimdoc'
+    'vimdoc',
+    'c',
+    'lua',
+    'vim'
   },
   highlight = {
     enable = true,
@@ -1129,11 +1132,6 @@ vim.g.rainbow_delimiters = {
         'RainbowDelimiterCyan',
     },
 }
--- Use builtin treesitter for these filetypes, this is annoying
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'lua', 'c', 'vim', 'help' },
-  callback = function() vim.treesitter.start() end,
-})
 EOF
 endif
 " }}}
