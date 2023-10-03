@@ -351,7 +351,7 @@ cabbrev cf Cfilter
 " Commit hash at 'Commit:' header with 'Special' highlight group
 highlight link gitmessengerHash Special
 
-" Italics (Operator Mono OP)
+" Italics
 highlight Comment gui=italic cterm=italic
 highlight htmlArg gui=italic cterm=italic
 

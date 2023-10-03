@@ -12,12 +12,12 @@
       "bellStyle": "none",
       "colorScheme": "TokyoNight",
       "font": {
-        "face": "OperatorMono Nerd Font",
+        "face": "JetBrainsMonoNL Nerd Font Mono",
         "features": {
           "ital": 1,
           "liga": 0
         },
-        "size": 12,
+        "size": 11.5,
         "weight": 330
       },
       "historySize": 0,
