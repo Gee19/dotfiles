@@ -309,10 +309,10 @@ bindkey -M viins '^[^?' backward-kill-word
 
 # python {{{
 # virtualenvwrapper
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+if [ -f ~/.local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=~/Envs
     mkdir -p $WORKON_HOME
-    source /usr/local/bin/virtualenvwrapper.sh
+    source ~/.local/bin/virtualenvwrapper.sh
 fi
 
 function gpip() {
