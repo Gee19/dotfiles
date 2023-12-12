@@ -315,6 +315,12 @@ if [ -f ~/.local/bin/virtualenvwrapper.sh ]; then
     source ~/.local/bin/virtualenvwrapper.sh
 fi
 
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=~/Envs
+    mkdir -p $WORKON_HOME
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
 function gpip() {
   PIP_REQUIRE_VIRTUALENV=false pip "$@"
 }
