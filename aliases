@@ -46,7 +46,7 @@ alias dev="cd ~/dev"
 alias docs="cd ~/Documents"
 alias dls="cd ~/Downloads"
 
-alias mcs="workon mcs && cd ~/dev/management_command_system"
+alias mcs="workon mcs && cd ~/dev/management_command_system && fnm use v18.13.0"
 alias ebank="workon exploitmebank && cd ~/dev/exploitmebank/ExploitMe_Bank"
 alias ebank3="workon ebank3 && cd ~/dev/exploitmebank/ExploitMe_Bank"
 alias csec="workon csec && cd ~/dev/checksec"
