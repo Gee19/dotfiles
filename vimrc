@@ -364,6 +364,11 @@ sunmap '
 sunmap `
 sunmap ''
 sunmap ``
+
+" Macros
+" Turn grype findings into grype ignore entries
+let @g = '0WdtGWDFGdBiI  - vulnerability: j'
+
 " }}}
 " mappings {{{
 let mapleader = "\<Space>"
