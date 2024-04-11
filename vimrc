@@ -1044,6 +1044,7 @@ set diffopt+=linematch:60
 set jumpoptions=stack " Make the jumplist behave like the tagstack
 lua << EOF
 vim.loader.enable()
+vim.g.skip_ts_context_commentstring_module = true
 require("indent_blankline").setup({
     show_current_context = true,
     show_trailing_blankline_indent = false,
@@ -1091,6 +1092,9 @@ vim.g.rainbow_delimiters = {
         'RainbowDelimiterCyan',
     },
 }
+require('ts_context_commentstring').setup {
+  enable_autocmd = false,
+}
 require('nvim-treesitter.configs').setup({
   ensure_installed = { -- {{{
     'javascript',
@@ -1130,9 +1134,6 @@ require('nvim-treesitter.configs').setup({
   },
   indent = { enable = false },
   incremental_selection = { enable = false },
-  context_commentstring = {
-    enable = true
-  },
   textobjects = { enable = true },
   -- }}}
 })
