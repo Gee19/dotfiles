@@ -79,7 +79,7 @@ Plug 'https://github.com/Vimjas/vim-python-pep8-indent'
 Plug 'https://github.com/Konfekt/FastFold'
 
 " viM iSn'T aN IDe
-Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
 Plug 'https://github.com/farmergreg/vim-lastplace' " broken in vim + windows terminal :(
 Plug 'https://github.com/editorconfig/editorconfig-vim'
