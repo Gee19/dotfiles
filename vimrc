@@ -1110,7 +1110,6 @@ require('nvim-treesitter.configs').setup({
     'bash',
     'elixir',
     'python',
-    'dockerfile',
     'go',
     'html',
     'cmake',
