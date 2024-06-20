@@ -24,7 +24,7 @@ export GPG_TTY=$(tty)
 
 # Work
 export DJANGO_SETTINGS_MODULE=settings
-export PYTHONPATH=.
+# export PYTHONPATH=.
 export sde_admin_repo_path="$HOME/dev/sde-admin/"
 export sde_build_repo_path="$HOME/dev/sde-build/"
 

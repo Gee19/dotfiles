@@ -52,9 +52,8 @@ alias ebank3="workon ebank3 && cd ~/dev/exploitmebank/ExploitMe_Bank"
 alias csec="workon csec && cd ~/dev/checksec"
 alias djsec="workon djangosec && cd ~/dev/django-security"
 alias csd="cd ~/dev/sdelements/sigma && pactivate && fnm use v18.13.0"
-alias csd2="workon sde2 && cd ~/dev/sde2/sigma && fnm use v18.13.0"
 alias cst="cd ~/dev/sdetools && pactivate"
-alias cpca="workon pca && cd ~/dev/project-creation-automation"
+alias cpca="cd ~/dev/project-creation-automation && pactivate"
 alias cpkg="cd ~/.cache/pypoetry/virtualenvs/sdelements-FOqhXTaE-py3.8/lib/python3.8/site-packages"
 alias cperft="cd ~/dev/perft"
 alias ec="cd ~/dev/EquipmentCloud"
@@ -98,7 +97,7 @@ alias gjds="git jump diff --staged"
 alias gjg="git jump grep"
 
 alias python='python3'
-alias pactivate='source "$( poetry env info --path )/bin/activate"'
+alias pactivate='source $(poetry env info --path)/bin/activate'
 
 # wsl2 reclaim memory, see issue #4166 on microsoft/WSL repo
 alias wsl_mem_fix="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'\""
