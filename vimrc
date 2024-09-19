@@ -49,6 +49,7 @@ Plug 'https://github.com/Gee19/indent-ignoreblank.vim' " Get correct indent for 
 Plug 'https://github.com/Gee19/vim-sandwich' " Add insert mappings from surround
 Plug 'https://github.com/Gee19/vim-coiled-snake' " kalekundert/vim-coiled-snake/issues/34
 Plug 'https://github.com/Gee19/lessspace.vim' " Added toggle func
+Plug 'https://github.com/Gee19/vim-glyph-palette' " Undefined g:term_color_13 bugfix
 Plug 'https://github.com/Gee19/vim-peekaboo' " Fixes conflict with lessspace + floating window
 let g:peekaboo_window="float"
 
@@ -79,7 +80,7 @@ Plug 'https://github.com/Vimjas/vim-python-pep8-indent'
 Plug 'https://github.com/Konfekt/FastFold'
 
 " viM iSn'T aN IDe
-Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
+Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'npm install && npm ci'}
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
 Plug 'https://github.com/farmergreg/vim-lastplace' " broken in vim + windows terminal :(
 Plug 'https://github.com/editorconfig/editorconfig-vim'
@@ -92,7 +93,6 @@ Plug 'https://github.com/lambdalisue/fern-hijack.vim'
 Plug 'https://github.com/lambdalisue/fern-git-status.vim'
 Plug 'https://github.com/lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'https://github.com/lambdalisue/nerdfont.vim'
-Plug 'https://github.com/lambdalisue/glyph-palette.vim'
 
 " Instant markdown preview (Only accessible on localhost / blocks scripts by default)
 Plug 'https://github.com/instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do':'yarn install'}
