@@ -59,8 +59,8 @@
   // TS/JS {{{
   "prettier.disableLanguages": ["yaml"],
   "snippets.ultisnips.enable": false,
-  "tsserver.npm": "/home/jhaine/.fnm/node-versions/v18.13.0/installation/bin/npm",
-  "npm.binPath": "/home/jhaine/.fnm/node-versions/v18.13.0/installation/bin/npm",
+  "tsserver.npm": "/home/jhaine/.fnm/node-versions/v18.20.0/installation/bin/npm",
+  "npm.binPath": "/home/jhaine/.fnm/node-versions/v18.20.0/installation/bin/npm",
   "javascript.referencesCodeLens.enable": false,
   "javascript.implementationsCodeLens.enable": false,
   "typescript.referencesCodeLens.enable": false,
