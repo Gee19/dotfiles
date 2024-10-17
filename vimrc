@@ -22,7 +22,7 @@ call plug#begin('~/.vim/plugged')
 if has('nvim')
   Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'https://github.com/hiphish/rainbow-delimiters.nvim'
+  " Plug 'https://github.com/hiphish/rainbow-delimiters.nvim'
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'https://github.com/levouh/tint.nvim'
   Plug 'https://github.com/Bekaboo/dropbar.nvim'
@@ -1072,26 +1072,26 @@ require('tint').setup({
     return buftype == "terminal" or floating
   end
 })
-local rainbow_delimiters = require 'rainbow-delimiters'
-vim.g.rainbow_delimiters = {
-    strategy = {
-        [''] = rainbow_delimiters.strategy['global'],
-        vim = rainbow_delimiters.strategy['local'],
-    },
-    query = {
-        [''] = 'rainbow-delimiters',
-        lua = 'rainbow-blocks',
-    },
-    highlight = {
-        'RainbowDelimiterRed',
-        'RainbowDelimiterYellow',
-        'RainbowDelimiterBlue',
-        'RainbowDelimiterOrange',
-        'RainbowDelimiterGreen',
-        'RainbowDelimiterViolet',
-        'RainbowDelimiterCyan',
-    },
-}
+--  local rainbow_delimiters = require 'rainbow-delimiters'
+--  vim.g.rainbow_delimiters = {
+--      strategy = {
+--          [''] = rainbow_delimiters.strategy['global'],
+--          vim = rainbow_delimiters.strategy['local'],
+--      },
+--      query = {
+--          [''] = 'rainbow-delimiters',
+--          lua = 'rainbow-blocks',
+--      },
+--      highlight = {
+--          'RainbowDelimiterRed',
+--          'RainbowDelimiterYellow',
+--          'RainbowDelimiterBlue',
+--          'RainbowDelimiterOrange',
+--          'RainbowDelimiterGreen',
+--          'RainbowDelimiterViolet',
+--          'RainbowDelimiterCyan',
+--      },
+--  }
 require('ts_context_commentstring').setup {
   enable_autocmd = false,
 }
