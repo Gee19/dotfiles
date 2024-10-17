@@ -348,7 +348,8 @@ function buildv() {
     cd "$HOME/dev/vim" && git pull
   fi
 
-  make clean && make distclean
+  make clean
+  make distclean
   if [[ "$1" == "nvim" ]]; then
     make CMAKE_BUILD_TYPE=RelWithDebInfo
   else
