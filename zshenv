@@ -29,8 +29,8 @@ export sde_admin_repo_path="$HOME/dev/sde-admin/"
 export sde_build_repo_path="$HOME/dev/sde-build/"
 
 # fnm
-export PATH=/home/jhaine/.fnm:$PATH
-eval "`fnm env`"
+# export PATH=/home/jhaine/.fnm:$PATH
+# eval "`fnm env`"
 
 # Yava
 export M2_HOME=/opt/maven
