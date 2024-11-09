@@ -351,7 +351,8 @@ function buildv() {
   make clean
   make distclean
   if [[ "$1" == "nvim" ]]; then
-    make CMAKE_BUILD_TYPE=RelWithDebInfo
+    make -j16 CMAKE_BUILD_TYPE=RelWithDebInfo
+    sudo rm -rf /usr/local/share/nvim/runtime
   else
     make
   fi
