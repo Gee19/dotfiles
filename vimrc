@@ -1104,11 +1104,11 @@ require('nvim-treesitter.configs').setup({
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = { 'vim' },
-    max_file_lines = 10000,
+    -- max_file_lines = 10000,
     use_languagetree = true,
-    disable = function(lang, bufnr)
-      return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1048576
-    end,
+    -- disable = function(lang, bufnr)
+    --   return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1048576
+    -- end,
   },
   autotag = {
     enable = true,
