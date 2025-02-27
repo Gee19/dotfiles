@@ -145,7 +145,7 @@ if has('termguicolors')
 endif
 
 set background=dark
-let s:scheme = has('nvim') ? 'tokyonight-night' : 'retrobox'
+let s:scheme = has('nvim') ? 'tokyonight-night' : 'default'
 let s:lightline_scheme = has('nvim') ? 'tokyonight' : 'solarized'
 execute 'colorscheme ' . s:scheme
 
@@ -270,7 +270,7 @@ set relativenumber " Show line numbers from current location
 set mouse=a " Enable mouse support in 'all' modes, fixes scrolling tmux history
 set wildignorecase " Ignore case when completing file names and directories
 set isfname-== " Open paths like foo=/tmp/foo with 'gf'
-set wildoptions=pum " Use popupmenu for wildmenu in vim
+" set wildoptions=pum " Use popupmenu for wildmenu in vim
 set wildcharm=<C-z> " Use C-z for activating wildmenu in commands
 set matchtime=2 " Time to show matching pair
 set matchpairs+=<:> " Add <> to matchpairs
@@ -503,6 +503,7 @@ let g:lightline.component_type = {'buffers': 'tabsel'}
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 " }}}
 " fern {{{
+let g:fern_disable_startup_warnings = 1
 let g:fern#renderer = "nerdfont" " devicons
 
 " mappings inspired dirvish
