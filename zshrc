@@ -294,6 +294,9 @@ bindkey '^[[B' history-substring-search-down
 bindkey '^N' history-substring-search-down
 bindkey '^P' history-substring-search-up
 
+# rebind C-r?
+bindkey '^R' history-incremental-pattern-search-backward
+
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
