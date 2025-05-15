@@ -65,15 +65,11 @@ mv ijq-0.3.6/ijq ~/.local/bin/ijq
 rm ijq-0.3.6-linux-x86_64.tar.gz
 rm -rf ijq-0.3.6
 
-# EXA
-wget "https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip"
-unzip -o exa-linux-x86_64-v0.10.1.zip
-mv ./bin/exa ~/.local/bin/exa
-rm ./exa-linux-x86_64-v0.10.1.zip
+# EZA
 
 # Should probably install man pages/completions
-sudo mv ./completions/exa.zsh /usr/share/zsh/vendor-completions/_exa
-sudo mv ./man/exa.1 /usr/share/man/man1/exa.1
+# sudo mv ./completions/exa.zsh /usr/share/zsh/vendor-completions/_exa
+# sudo mv ./man/exa.1 /usr/share/man/man1/exa.1
 rm -rf ./completions/
 rm -rf ./man/
 rm -rf ./bin/

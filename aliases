@@ -88,8 +88,8 @@ alias pag='ps aux | rg'
 alias htop="btm -b"
 
 alias ls="ls --hyperlink=auto --color=auto"
-alias l="exa"
-alias ll="exa -la"
+alias l="eza"
+alias ll="eza -la"
 
 alias gjm="git jump merge"
 alias gjd="git jump diff"
