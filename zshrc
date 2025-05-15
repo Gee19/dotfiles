@@ -382,3 +382,8 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/jhaine/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
