@@ -380,8 +380,8 @@ bindkey '^Z' fancy-ctrl-z
 FNM_PATH="/home/jhaine/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="/home/jhaine/.local/share/fnm:$PATH"
-  eval "`fnm env`"
 fi
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"

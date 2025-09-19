@@ -27,10 +27,7 @@ export DJANGO_SETTINGS_MODULE=settings
 # export PYTHONPATH=.
 export sde_admin_repo_path="$HOME/dev/sde-admin/"
 export sde_build_repo_path="$HOME/dev/sde-build/"
-
-# fnm
-# export PATH=/home/jhaine/.fnm:$PATH
-# eval "`fnm env`"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # Yava
 export M2_HOME=/opt/maven
