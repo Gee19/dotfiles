@@ -23,8 +23,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export GPG_TTY=$(tty)
 
 # Work
-export DJANGO_SETTINGS_MODULE=settings
 # export PYTHONPATH=.
+export DJANGO_SETTINGS_MODULE=config.settings.base_settings
 export sde_admin_repo_path="$HOME/dev/sde-admin/"
 export sde_build_repo_path="$HOME/dev/sde-build/"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
