@@ -19,6 +19,7 @@ PURE_CMD_MAX_EXEC_TIME=10
 ZSH_AUTOSUGGEST_USE_ASYNC='true'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
+zstyle '*:compinit' arguments -u
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 
