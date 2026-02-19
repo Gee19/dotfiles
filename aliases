@@ -36,8 +36,8 @@ alias rdb="socat readline tcp:"
 alias tma="tmux a -t"
 
 # fixes pip install smart_open[s3] in zsh
-alias pip='noglob pip'
-alias pip3='noglob pip3'
+# alias pip='noglob pip'
+# alias pip3='noglob pip3'
 
 alias v="nvim"
 alias vi="nvim"
