@@ -95,9 +95,9 @@ Plug 'https://github.com/lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'https://github.com/lambdalisue/nerdfont.vim'
 
 " Instant markdown preview (Only accessible on localhost / blocks scripts by default)
-Plug 'https://github.com/instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do':'yarn install'}
-let g:instant_markdown_autostart = 0
-let g:instant_markdown_allow_external_content = 0
+" Plug 'https://github.com/instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do':'yarn install'}
+" let g:instant_markdown_autostart = 0
+" let g:instant_markdown_allow_external_content = 0
 
 " Inline colours
 Plug 'https://github.com/rrethy/vim-hexokinase', { 'do': 'make hexokinase && cp ./hexokinase/hexokinase ${GOPATH}/bin/hexokinase' }
