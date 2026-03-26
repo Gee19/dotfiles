@@ -26,7 +26,7 @@ if has('nvim')
   Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'https://github.com/levouh/tint.nvim'
   Plug 'https://github.com/Bekaboo/dropbar.nvim'
-  Plug 'https://github.com/lukas-reineke/indent-blankline.nvim', { 'tag': 'v2.20.8' }
+  Plug 'https://github.com/lukas-reineke/indent-blankline.nvim'
   Plug 'https://github.com/windwp/nvim-ts-autotag'
   Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 endif
@@ -948,7 +948,6 @@ endfunction
 " }}}
 " vim-gitgutter {{{
 let g:gitgutter_map_keys = 0
-let g:gitgutter_grep = 'rg'
 let g:gitgutter_preview_win_floating = 0
 
 " mappings
@@ -1048,16 +1047,7 @@ set jumpoptions=stack " Make the jumplist behave like the tagstack
 lua << EOF
 vim.loader.enable()
 vim.g.skip_ts_context_commentstring_module = true
-require("indent_blankline").setup({
-    show_current_context = true,
-    show_trailing_blankline_indent = false,
-    indent_blankline_use_treesitter = true,
-    filetype_exclude = {
-      'gitcommit',
-      'help',
-      'text'
-    }
-})
+require("ibl").setup()
 require('tint').setup({
   tint = -25,
   highlight_ignore_patterns = {
@@ -1078,7 +1068,7 @@ require('tint').setup({
 require('ts_context_commentstring').setup {
   enable_autocmd = false,
 }
-require('nvim-treesitter.configs').setup({
+require('nvim-treesitter.config').setup({
   ensure_installed = { -- {{{
     'javascript',
     'typescript',
