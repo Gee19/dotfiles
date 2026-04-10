@@ -21,25 +21,22 @@ sudo apt -y install zsh unzip python3-pip tmux mosh vim-gtk3 gettext-base xclip
 # Neovim build deps
 sudo apt -y install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config doxygen
 
+# stuff on apt now
+sudo apt install -y jq ripgrep bat fd-find
+ln -s $(which fdfind) ~/.local/bin/fd
+
 # TODO: fix this?
 # TPM
-if [[ -d "~/.tmux/plugins/tpm" ]]
-then
-  echo "Skipping tpm.."
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
+# if [[ -d "~/.tmux/plugins/tpm" ]]
+# then
+#   echo "Skipping tpm.."
+#   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# fi
 
 # Yarn
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt -y update && sudo apt -y install yarn
-
-# Znap
-if [[ -d "~/zsh/znap-repos/zsh-snap" ]]
-then
-  echo "Skipping znap.."
-  git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git ~/zsh/znap-repos/zsh-snap
-fi
 
 mkdir -p ~/.config/nvim/lua
 mkdir -p ~/.vim
@@ -53,20 +50,20 @@ if [[ $(uname -r) =~ WSL2$ ]]; then
   chmod +x wsl-open
 fi
 
-# jq
-wget "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
-mv ./jq-linux64 ~/.local/bin/jq
-chmod +x ~/.local/bin/jq
-
 # ijq
-wget "https://git.sr.ht/~gpanders/ijq/refs/download/v0.3.6/ijq-0.3.6-linux-x86_64.tar.gz"
-tar xzvf ijq-0.3.6-linux-x86_64.tar.gz
-mv ijq-0.3.6/ijq ~/.local/bin/ijq
-rm ijq-0.3.6-linux-x86_64.tar.gz
-rm -rf ijq-0.3.6
+# wget "https://git.sr.ht/~gpanders/ijq/refs/download/v0.3.6/ijq-0.3.6-linux-x86_64.tar.gz"
+# tar xzvf ijq-0.3.6-linux-x86_64.tar.gz
+# mv ijq-0.3.6/ijq ~/.local/bin/ijq
+# rm ijq-0.3.6-linux-x86_64.tar.gz
+# rm -rf ijq-0.3.6
 
 # EZA
-
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
 # Should probably install man pages/completions
 # sudo mv ./completions/exa.zsh /usr/share/zsh/vendor-completions/_exa
 # sudo mv ./man/exa.1 /usr/share/man/man1/exa.1
@@ -74,38 +71,22 @@ rm -rf ./completions/
 rm -rf ./man/
 rm -rf ./bin/
 
-# BAT
-wget "https://github.com/sharkdp/bat/releases/download/v0.21.0/bat_0.21.0_amd64.deb"
-sudo dpkg -i bat_0.21.0_amd64.deb
-rm bat_0.21.0_amd64.deb
-
-# FD
-wget "https://github.com/sharkdp/fd/releases/download/v8.3.0/fd_8.3.0_amd64.deb"
-sudo dpkg -i fd_8.3.0_amd64.deb
-rm fd_8.3.0_amd64.deb
-
-# RG
-wget "https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb"
-sudo dpkg -i ripgrep_13.0.0_amd64.deb
-rm ripgrep_13.0.0_amd64.deb
-
 # Bottom
-wget "https://github.com/ClementTsang/bottom/releases/download/0.6.4/bottom_0.6.4_amd64.deb"
-sudo dpkg -i bottom_0.6.4_amd64.deb
-rm bottom_0.6.4_amd64.deb
+curl -LO https://github.com/ClementTsang/bottom/releases/download/0.12.3/bottom_0.12.3-1_amd64.deb
+sudo dpkg -i bottom_0.12.3-1_amd64.deb
+rm bottom_0.12.3-1_amd64.deb
 
 # Golang
-wget "https://go.dev/dl/go1.18.linux-amd64.tar.gz"
-rm -rf ~/go
-rm -rf /usr/local/go && tar -C $HOME -xzf go1.18.linux-amd64.tar.gz
-rm go1.18.linux-amd64.tar.gz
+# wget "https://go.dev/dl/go1.18.linux-amd64.tar.gz"
+# rm -rf ~/go
+# rm -rf /usr/local/go && tar -C $HOME -xzf go1.18.linux-amd64.tar.gz
+# rm go1.18.linux-amd64.tar.gz
 
 # fast node manager
-curl -fsSL https://fnm.vercel.app/install | bash --skip-shell
-fnm completions --shell zsh >> /tmp/_fnm
-sudo mv /tmp/_fnm /usr/share/zsh/vendor-completions/_fnm
-fnm install v18.20.0
-fnm default v18.20.0
+curl -fsSL https://fnm.vercel.app/install | bash
+fnm install v18
+fnm default v18
+sudo apt install -y npm
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/dev/fzf
