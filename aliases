@@ -5,8 +5,6 @@
 alias ..="cd .."
 alias fix_suspend="sudo systemctl cancel; sudo systemctl stop systemd-suspend.service"
 
-alias docker="podman"
-
 alias gs="git status || ll"
 alias gp="git pull"
 alias gb="git branch"
@@ -83,13 +81,13 @@ alias pas_celery="COMMAND_INPUT_FILE_FOLDER=~/dev/management_command_system/dev_
 
 alias stopdock='docker stop $(docker ps -a -q)'
 alias rmdock='docker rm $(docker ps -a -q)'
-alias dc='docker-compose'
-alias dcrb='docker-compose down -v --remove-orphans && docker-compose build --parallel'
+alias dc='docker compose'
+alias dcrb='docker compose down -v --remove-orphans && docker-compose build --parallel'
 
 alias pag='ps aux | rg'
 alias htop="btm -b"
 
-alias ls="ls --hyperlink=auto --color=auto"
+alias ls="ls --color=auto"
 alias l="eza"
 alias ll="eza -la"
 
