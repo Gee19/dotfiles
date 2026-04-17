@@ -28,4 +28,4 @@
 [init]
 	defaultBranch = master
 [jump]
-    grepCmd = rg --vimgrep --no-heading
+	grepCmd = rg --vimgrep --no-heading
