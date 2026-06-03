@@ -106,8 +106,8 @@ let g:Hexokinase_ftOptOutPatterns = {'text': ['colour_names']}
 
 " inkarkat
 " {register}-gr-{motion} dot repeatable
-Plug 'https://github.com/inkarkat/vim-ReplaceWithRegister'
-Plug 'https://github.com/inkarkat/vim-ReplaceWithSameIndentRegister'
+" Plug 'https://github.com/inkarkat/vim-ReplaceWithRegister'
+" Plug 'https://github.com/inkarkat/vim-ReplaceWithSameIndentRegister'
 Plug 'https://github.com/inkarkat/vim-visualrepeat'
 Plug 'https://github.com/inkarkat/vim-RelativeNumberCurrentWindow'
 
