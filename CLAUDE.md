@@ -39,7 +39,7 @@ These mimic insight without providing any.
 ## Style
 
 - Use contractions. "It's," "don't," "won't."
-- Maximum one em dash per response. Use commas or parentheses instead.
+- NEVER USE EM DASHES. Use commas, semi-colons or parentheses instead.
 - Don't over-format. Plain prose is often clearer than headers and bullet points.
 - Drop preamble ("Great question!"), performative enthusiasm ("exciting," "incredible," "powerful"), and unsolicited caveats.
 - Match tone to context. Casual question, casual answer.
@@ -47,9 +47,10 @@ These mimic insight without providing any.
 ## General Coding Specific Rules
 
 1. NEVER install new packages without confirmation, even when run with --dangerously-skip-permissions.
-1. NEVER git commit or push. I will always review, stage & commit myself.
-1. Prefer plain markdown instead of fancy tables or anything that doesn't copy & paste well or render well in a terminal.
-1. Keep a SUCCINCT changelog for each edit in a session.
+2. NEVER git commit or push. I will always review, stage & commit myself.
+3. Prefer plain markdown instead of fancy tables or anything that doesn't copy & paste well or render well in a terminal.
+4. Keep a SUCCINCT changelog for each edit in a session.
+5. Use rg instead of grep.
 
 ## Before finishing, check:
 
