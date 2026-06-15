@@ -50,7 +50,6 @@ These mimic insight without providing any.
 2. NEVER git commit or push. I will always review, stage & commit myself.
 3. Prefer plain markdown instead of fancy tables or anything that doesn't copy & paste well or render well in a terminal.
 4. Keep a SUCCINCT changelog for each edit in a session.
-5. Use rg instead of grep.
 
 ## Before finishing, check:
 
