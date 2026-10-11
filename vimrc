@@ -561,8 +561,8 @@ if has_key(g:plugs, 'coc.nvim')
     let g:coc_disable_startup_warning = 1
   endif
 
-  " let g:coc_node_path = '/home/jhaine/.fnm/node-versions/v18.20.0/installation/bin/node'
-  " let g:coc_node_path = '/run/user/1000/fnm_multishells/8536_1730829113766/bin/node'
+  " let g:coc_node_path = '/home/jhaine/.fnm/node-versions/v24.21.0/installation/bin/node'
+  " let g:coc_node_path = '/run/user/1000/fnm_multishells/155437_1791580803679/bin/node'
   " let g:coc_node_path = fnamemodify(system('which node'), '^@')
 
   let g:coc_global_extensions = [

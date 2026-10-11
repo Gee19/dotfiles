@@ -46,16 +46,7 @@ alias dev="cd ~/dev"
 alias docs="cd ~/Documents"
 alias dls="cd ~/Downloads"
 
-alias mcs="cd ~/dev/management_command_system; poetry shell; fnm use v22"
-alias ebank="workon exploitmebank; cd ~/dev/exploitmebank/ExploitMe_Bank"
-alias ebank3="workon ebank3; cd ~/dev/exploitmebank/ExploitMe_Bank"
-alias csec="workon csec; cd ~/dev/checksec"
 alias djsec="workon djangosec; cd ~/dev/django-security"
-alias csd="cd ~/dev/sdelements/sigma; poetry shell; fnm use v22"
-alias cst="cd ~/dev/sdetools; poetry shell"
-alias cpca="cd ~/dev/project-creation-automation; poetry shell"
-alias cpkg="cd ~/.cache/pypoetry/virtualenvs/sdelements-FOqhXTaE-py3.8/lib/python3.8/site-packages"
-alias cperft="cd ~/dev/perft"
 alias ec="cd ~/dev/EquipmentCloud"
 
 alias nds="node devServer.js"
@@ -70,14 +61,7 @@ alias djmk="./manage.py makemigrations"
 alias djc="./manage.py collectstatic --noinput"
 alias djsh="./manage.py shell_plus"
 
-alias tst="./manage.py test --settings=test_local_settings --nomigrations"
-alias tstci="./manage.py test --settings=test_local_settings --failfast --noinput -v 2 --parallel 2"
 alias pytst="pytest --no-migrations"
-
-alias mailserv="python3 -m smtpd -n -c DebuggingServer localhost:1025"
-
-alias start_celery="celery -A celery_mod worker -l debug"
-alias pas_celery="COMMAND_INPUT_FILE_FOLDER=~/dev/management_command_system/dev_test_folder/input COMMAND_OUTPUT_FILE_FOLDER=~/dev/management_command_system/dev_test_folder/output celery worker --app=pas_celery_mod -l info -Q command_worker.run_command -Q command_worker.delete_sde_custom_plugin -n pas_command_worker@%h"
 
 alias stopdock='docker stop $(docker ps -a -q)'
 alias rmdock='docker rm $(docker ps -a -q)'

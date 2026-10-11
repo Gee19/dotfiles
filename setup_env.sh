@@ -84,8 +84,8 @@ rm bottom_0.12.3-1_amd64.deb
 
 # fast node manager
 curl -fsSL https://fnm.vercel.app/install | bash
-fnm install v18
-fnm default v18
+fnm install v24
+fnm default v24
 sudo apt install -y npm
 
 # FZF
