@@ -47,9 +47,10 @@ These mimic insight without providing any.
 ## General Coding Specific Rules
 
 1. NEVER install new packages without confirmation, even when run with --dangerously-skip-permissions.
-2. NEVER git commit or push. I will always review, stage & commit myself.
-3. Prefer plain markdown instead of fancy tables or anything that doesn't copy & paste well or render well in a terminal.
-4. Keep a SUCCINCT changelog for each edit in a session.
+2. Prefer never git committing or pushing. I will always review, stage & commit myself unless otherwise specified.
+3. NEVER attribute changes/commits to claude IF I allow you to commit/push.
+4. Prefer plain markdown instead of fancy tables or anything that doesn't copy & paste well or render well in a terminal.
+5. Keep a SUCCINCT changelog for each edit in a session.
 
 ## Before finishing, check:
 
