@@ -1,8 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Jordan Haine
-	email = jhaine@securitycompass.com
-	signingkey = 0CBAF74277601D93
+	email = gee19haine@gmail.com
+	signingkey = 6892B707C894CBED409CC5A0D5DA698DE558077F
 [core]
 	excludesfile = /home/jhaine/.gitignore_global
 	editor = nvim

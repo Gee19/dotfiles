@@ -68,7 +68,11 @@
   // }}}
   // Lua {{{
   "Lua.telemetry.enable": false,
-  "Lua.window.statusBar": false
+  "Lua.window.statusBar": false,
+  "json.schemaDownload.trustedDomains": {
+    "https://www.schemastore.org": true,
+    "https://json.schemastore.org": true
+  }
   // }}}
   // Cucumber {{{
   // "cucumber.enable": false,

@@ -7,6 +7,7 @@ include = {
     # kitty
     "kitty.conf": "$HOME/.config/kitty/kitty.conf",
     # Git
+    "gitconfig": "$HOME/.gitconfig",
     "gitignore_global": "$HOME/.gitignore_global",
     "git-jump": "$HOME/.local/bin/git-jump",
     # coc.nvim
@@ -29,13 +30,7 @@ include = {
     "zshrc": "$HOME/.zshrc",
 }
 
-# git
-in_wsl = "WSL" in os.uname().release
-relevant_gitconfig = "gitconfig" if not in_wsl else "gitconfig_home"
-include[relevant_gitconfig] = "$HOME/.gitconfig"
-
 here = os.path.abspath(".")
-
 cmds = []
 for f, install_path in include.items():
     local_file = "%s/%s" % (here, f)
