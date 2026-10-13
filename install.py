@@ -32,16 +32,18 @@ include = {
     "zshrc": "$HOME/.zshrc",
 }
 
-here = os.path.abspath(".")
+here = os.path.dirname(os.path.abspath(__file__))
 cmds = []
 for f, install_path in include.items():
     local_file = "%s/%s" % (here, f)
 
-    if isinstance(install_path, list):
-        for path in install_path:
-            cmds.append("ln -sf %s %s" % (local_file, path))
-    else:
-        cmds.append("ln -sf %s %s" % (local_file, install_path))
+    paths = install_path if isinstance(install_path, list) else [install_path]
+    for path in paths:
+        parent = os.path.dirname(path)
+        # gpg refuses to use a ~/.gnupg other users can read
+        mode = "-m 700 " if parent.endswith(".gnupg") else ""
+        cmds.append("mkdir -p %s%s" % (mode, parent))
+        cmds.append("ln -sfn %s %s" % (local_file, path))
 
 for cmd in cmds:
     print(cmd)
