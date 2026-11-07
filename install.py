@@ -32,6 +32,12 @@ include = {
     "zshrc": "$HOME/.zshrc",
 }
 
+# WSL: `open .` (xdg-open) sends folders to whatever claims inode/directory, which is RawTherapee once it's installed.
+# Without a handler xdg-open fell back to $BROWSER (wsl-open); make that explicit.
+wsl = os.uname().release.endswith("WSL2")
+if wsl:
+    include["wsl-open.desktop"] = "$HOME/.local/share/applications/wsl-open.desktop"
+
 here = os.path.dirname(os.path.abspath(__file__))
 cmds = []
 for f, install_path in include.items():
@@ -44,6 +50,9 @@ for f, install_path in include.items():
         mode = "-m 700 " if parent.endswith(".gnupg") else ""
         cmds.append("mkdir -p %s%s" % (mode, parent))
         cmds.append("ln -sfn %s %s" % (local_file, path))
+
+if wsl:
+    cmds.append("xdg-mime default wsl-open.desktop inode/directory")
 
 for cmd in cmds:
     print(cmd)

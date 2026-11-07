@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=wsl-open
+Comment=Open folders in Windows Explorer from WSL (install.py makes this the inode/directory default)
+Exec=wsl-open %f
+MimeType=inode/directory;
+NoDisplay=true
+Terminal=false
